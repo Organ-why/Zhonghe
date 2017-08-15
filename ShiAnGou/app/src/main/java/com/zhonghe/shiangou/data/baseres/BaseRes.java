@@ -7,6 +7,7 @@ import com.zhonghe.shiangou.data.bean.BaseBean;
  */
 
 public class BaseRes<T> extends BaseBean {
+    private static final long serialVersionUID = 1L;
     int state;
     String msg;
     Class<T> datas;
