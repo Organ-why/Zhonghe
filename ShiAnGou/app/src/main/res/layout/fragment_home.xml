@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:id="@+id/cart_id_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:ptrMode="pullFromStart">
+
+        <LinearLayout
+            android:id="@+id/ll_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/ll_content_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+            <LinearLayout
+                android:id="@+id/ll_content_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+
+        </LinearLayout>
+
+
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+    <com.zhonghe.shiangou.ui.widget.HorizontalListView
+        android:id="@+id/id_home_category_horizontal_title_hl"
+        android:layout_width="match_parent"
+        android:background="@color/res_color_white"
+        android:layout_height="@dimen/home_category_title_height"
+        android:visibility="gone"></com.zhonghe.shiangou.ui.widget.HorizontalListView>
+</RelativeLayout>

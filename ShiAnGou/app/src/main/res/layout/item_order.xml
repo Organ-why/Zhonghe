@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_msize">
+
+        <TextView
+            style="@style/common_text_deep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@mipmap/icon_order_code"
+            android:drawablePadding="@dimen/padding_xxlsize"
+            android:text="2170151210854152105151545" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/common_user_order_unpay"
+            android:textColor="@color/res_color_apptheme"
+            android:textSize="@dimen/font_xlsize" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_gray"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_xxlsize">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/id_order_goods_img"
+            android:layout_width="@dimen/image_width_lsize"
+            android:layout_height="@dimen/image_width_lsize"
+            android:scaleType="fitXY"
+            app:placeholderImage="@mipmap/icon_pro_default" />
+
+        <TextView
+            android:id="@+id/id_order_goods_name_tv"
+            style="@style/common_order_name_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:text="滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right|center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_xxlsize">
+
+        <TextView
+            style="@style/common_order_total_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="共1件商品 合计: ¥" />
+
+        <TextView
+            style="@style/home_category_item_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_m"
+            android:layout_marginRight="@dimen/margin_m"
+            android:text="188.00" />
+
+        <TextView
+            style="@style/common_order_total_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" (含运费¥0.00)" />
+    </LinearLayout>
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical|right"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_xxlsize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/circle_graylight_hollow_bg"
+            android:gravity="center"
+            android:minWidth="@dimen/order_bt_width"
+            android:padding="@dimen/padding_xxlsize"
+            android:text="@string/order_bt_cancel" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:background="@drawable/circle_orange_hollow_bg"
+            android:gravity="center"
+            android:minWidth="@dimen/order_bt_width"
+            android:padding="@dimen/padding_xxlsize"
+            android:text="@string/order_bt_pay" />
+
+    </LinearLayout>
+</LinearLayout>

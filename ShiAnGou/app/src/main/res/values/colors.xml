@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="res_color_apptheme">#FF8500</color>
+
+
+    <!--公共颜色-->
+    <color name="common_gray">#F4F4F4</color>
+    <color name="common_gray_hollow">#dcdcdc</color>
+    <color name="common_white">#FFFFFF</color>
+    <color name="common_white_dialog">#FFFFFE</color>
+    <color name="common_red">#FF4664</color>
+    <color name="common_brown_normal">#524033</color>
+    <color name="common_white_normal">#7D340D</color>
+    <color name="common_brown_pressed">#413328</color>
+    <color name="common_tran">#50000000</color>
+    <color name="common_transparent">#00000000</color>
+    <color name="common_yellow">#FFBA26</color>
+    <color name="common_yellow2">#ffca90</color>
+    <color name="common_green">#05DFAE</color>
+    <!--字体颜色-->
+    <color name="common_font_brown">#524033</color>
+    <color name="common_font_normal">#333333</color>
+    <color name="common_font_deep">#666666</color>
+    <color name="common_font_shallow">#999999</color>
+    <color name="common_font_hint">#CCCCCC</color>
+    <color name="common_font_blue">#4B9DFF</color>
+    <color name="common_font_green">#00BF94</color>
+    <color name="common_font_yellow">#FF9200</color>
+    <color name="common_font_red">#e60000</color>
+    <!--hint-->
+    <color name="res_color_hint_search">#999999</color>
+    <!--分割线-->
+    <color name="common_divide_shallow">#E5E5E5</color>
+    <color name="common_divide_normal">#D7D7D7</color>
+    <color name="common_divide_deep">@color/common_font_hint</color>
+
+
+    <!--非公共字体颜色-->
+    <color name="common_font_copyright">#a88f5d33</color>
+
+</resources>

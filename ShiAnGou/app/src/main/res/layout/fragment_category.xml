@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/res_color_white"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/id_category_radiogroup"
+        android:layout_width="@dimen/view_category_radiogroup"
+        android:layout_height="match_parent"
+        android:background="@color/common_gray"
+        android:divider="@color/res_color_black_text"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/ids_rb"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_category_rb_bg"
+            android:button="@drawable/selector_category_rb"
+            android:checked="true"
+            android:gravity="center"
+            android:text="品牌推荐" />
+
+        <RadioButton
+            android:id="@+id/ids_rb2"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_category_rb_bg"
+            android:button="@drawable/selector_category_rb"
+            android:gravity="center"
+            android:text="品牌推荐" />
+
+        <RadioButton
+            android:id="@+id/ids_rb3"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_category_rb_bg"
+            android:button="@drawable/selector_category_rb"
+            android:gravity="center"
+            android:text="品牌推荐" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/id_category_radiogroup"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_title_custom"
+            android:gravity="center"
+            android:text="品牌推荐" />
+
+    </LinearLayout>
+</RelativeLayout>
