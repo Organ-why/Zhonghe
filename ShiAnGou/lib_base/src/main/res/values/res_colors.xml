@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--透明 -->
+    <color name="res_color_transparent">#00000000</color>
+
+    <!--与黑色相关的颜色-->
+    <!--black -->
+    <color name="res_color_black">#FF000000</color>
+    <!--black divider-->
+    <color name="res_color_black_divider">#1F000000</color>
+    <!--black disabled/hint text-->
+    <color name="res_color_black_hint_text">#42000000</color>
+    <!--black secondary text-->
+    <color name="res_color_black_secondary_text">#8A000000</color>
+    <!--black text -->
+    <color name="res_color_black_text">#DE000000</color>
+
+    <!--black secondary text-->
+    <color name="res_color_black_tab_unselected">#989898</color>
+
+    <!--与白色相关的颜色-->
+    <!--white -->
+    <color name="res_color_white">#FFFFFFFF</color>
+    <!--white divider -->
+    <color name="res_color_white_divider">#1FFFFFFF</color>
+    <!--white disabled/hint text -->
+    <color name="res_color_white_hint_text">#4DFFFFFF</color>
+    <!--white secondary text -->
+    <color name="res_color_white_secondary_text">#B2FFFFFF</color>
+    <color name="res_color_gray_title">#333333</color>
+    <!--white text -->
+    <color name="res_color_white_text">#FFFFFFFF</color>
+    <color name="res_color_white_btbg" >#A0FFFFFF</color>
+
+
+    <!--<color name="res_color_primary">#FF3F51B5</color>-->
+    <color name="res_color_primary">#FFFF8500</color>
+    <color name="res_color_primary_dark">#FF303F9F</color>
+    <color name="res_color_primary_secondary">#FFC5CAE9</color>
+    <color name="res_color_accent">#FFFF4081</color>
+    <color name="res_color_accent_dark">#FFF50057</color>
+    <color name="res_color_accent_secondary">#FFFF80AB</color>
+
+    <!-- 应用背景 -->
+    <color name="res_color_window_background">@color/res_color_white</color>
+
+    <!-- 状态栏颜色 -->
+    <color name="res_color_statusbar">@color/res_color_primary_dark</color>
+
+    <!-- 标题栏颜色 -->
+    <color name="res_color_toolbar">@color/res_color_primary</color>
+    <!-- 标题字体颜色 -->
+    <color name="res_color_toolbar_text">@color/res_color_white</color>
+    <!-- 底部导航栏颜色 -->
+    <color name="res_color_navigationbar">@color/res_color_primary_secondary</color>
+
+    <color name="res_color_progress">#00D6A3</color>
+
+    <drawable name="res_color_white_rect_btn_normal">@color/res_color_transparent</drawable>
+    <drawable name="res_color_white_rect_btn_pressed">#7fbcbcbc</drawable>
+</resources>

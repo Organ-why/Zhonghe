@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/height_ll_custom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_item_height"
+                android:background="@color/common_white"
+                android:paddingLeft="@dimen/padding_xxlsize"
+                android:paddingRight="@dimen/padding_xxlsize">
+
+
+                <TextView
+                    style="@style/common_text_setup_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_lsize"
+                    android:text="@string/confirmorder_receipt_text" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_next"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/common_divider_style1"
+                android:layout_alignParentBottom="true" />
+
+            <RelativeLayout
+                android:id="@+id/id_confirmorder_address_rl"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_item_height"
+                android:background="@color/common_white"
+                android:paddingLeft="@dimen/padding_xxlsize"
+                android:paddingRight="@dimen/padding_xxlsize">
+
+
+                <TextView
+                    style="@style/common_text_setup_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_lsize"
+                    android:text="@string/confirmorder_receiptmsg_text" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_next"
+                    android:visibility="visible" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/common_divider_style1"
+                android:layout_alignParentBottom="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_item_height"
+                android:background="@color/common_white"
+                android:paddingLeft="@dimen/padding_xxlsize"
+                android:paddingRight="@dimen/padding_xxlsize">
+
+
+                <TextView
+                    style="@style/common_text_setup_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_lsize"
+                    android:text="@string/confirmorder_goodscount_text" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_next"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <View
+                style="@style/common_divider_style1"
+                android:layout_alignParentBottom="true" />
+
+            <LinearLayout
+                android:id="@+id/id_confirmorder_goodslist_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <include layout="@layout/item_home_category_item" />
+
+            </LinearLayout>
+
+            <View
+                style="@style/common_divider_style1"
+                android:layout_alignParentBottom="true" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_item_height"
+                android:background="@color/common_white"
+                android:paddingLeft="@dimen/padding_xxlsize"
+                android:paddingRight="@dimen/padding_xxlsize">
+
+
+                <TextView
+                    style="@style/common_text_setup_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginLeft="@dimen/margin_lsize"
+                    android:text="@string/confirmorder_goodscount_text" />
+
+
+
+            </RelativeLayout>
+
+            <View
+                style="@style/common_divider_style10"
+                android:layout_alignParentBottom="true" />
+
+            <EditText
+                android:layout_margin="@dimen/padding_xxlsize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/circle_gray_hollow_bg"
+                android:minHeight="@dimen/button_hight_msize"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/user_item_height"
+                android:background="@color/common_white"
+                android:paddingLeft="@dimen/padding_xxlsize"
+                android:paddingRight="@dimen/padding_xxlsize">
+
+
+                <TextView
+                    style="@style/common_text_setup_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_lsize"
+                    android:text="@string/confirmorder_freighttotal_text" />
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_next"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+            <View
+                style="@style/common_divider_style10"
+                android:layout_alignParentBottom="true" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/cart_id_pay_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/res_color_white"
+        android:visibility="visible">
+
+        <TextView
+            android:id="@+id/cart_id_all_cb"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:gravity="center"
+            android:paddingLeft="@dimen/padding_xxlsize"
+            android:text="@string/confirmorder_total_text" />
+
+
+        <LinearLayout
+            android:id="@+id/cart_id_total_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_xxmsize"
+            android:layout_toRightOf="@id/cart_id_all_cb"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/common_cart_total_pay"
+                    android:textColor="@color/common_red"
+                    android:textSize="@dimen/font_msize"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xxlsize"
+                    android:text="@string/symbol_money"
+                    android:textColor="@color/common_red"
+                    android:textSize="@dimen/font_xlsize"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/cart_id_totalpay_tv"
+                    style="@style/common_content_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="128.00" />
+                <!--android:layout_toRightOf="@id/prodetail_id_symbol_tv"-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_lsize"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/common_cart_fullcut"
+                    android:textColor="@color/common_font_brown"
+                    android:textSize="@dimen/font_xlsize" />
+
+                <TextView
+                    android:id="@+id/cart_id_total_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xxlsize"
+                    android:textColor="@color/common_font_brown"
+                    android:textSize="@dimen/font_xlsize"
+                    tools:text="￥20" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/cart_id_tobuy_bt"
+            style="@style/button_orange_selector_style"
+            android:layout_width="@dimen/view_width_xlsize"
+            android:layout_height="@dimen/button_hight_xxxlsize"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/confirmorder_title_text"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/cart_id_del_bt"
+            style="@style/button_orange_selector_style"
+            android:layout_width="@dimen/view_width_xlsize"
+            android:layout_height="@dimen/button_hight_xxxlsize"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:text="@string/common_cart_del"
+            android:visibility="gone" />
+
+        <View
+            style="@style/common_divider_style"
+            android:visibility="visible" />
+
+        <View
+            style="@style/common_divider_style"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

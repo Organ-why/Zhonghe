@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.zhonghe.shiangou.ui.activity.RemarkActivity">
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:gravity="center_vertical"
+        android:paddingBottom="@dimen/padding_msize"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize"
+        android:paddingTop="@dimen/padding_msize">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/id_home_category_item_iv"
+            android:layout_width="@dimen/home_category_item_img_width"
+            android:layout_height="@dimen/home_category_item_img_height"
+            android:scaleType="fitXY"
+            app:placeholderImage="@mipmap/icon_pro_default" />
+
+        <TextView
+            android:id="@+id/id_home_category_item_title_tv"
+            style="@style/home_category_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/id_home_category_item_iv"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:layout_toRightOf="@id/id_home_category_item_iv"
+            android:text="评价" />
+
+        <RatingBar
+            style="?android:attr/ratingBarStyleSmall"
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbarSize="20dp"
+            android:layout_alignBottom="@+id/id_home_category_item_iv"
+            android:layout_toEndOf="@+id/id_home_category_item_iv"
+            android:layout_toRightOf="@+id/id_home_category_item_iv" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>

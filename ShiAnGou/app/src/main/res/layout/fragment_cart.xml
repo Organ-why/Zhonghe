@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/cart_id_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/layout_hight_xxxlsize"
+        android:layout_marginTop="@dimen/margin_xxlsize"
+        android:divider="@null"
+        app:ptrMode="both" />
+
+    <RelativeLayout
+        android:id="@+id/cart_id_pay_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/res_color_white"
+        android:visibility="visible">
+
+        <CheckBox
+            android:id="@+id/cart_id_all_cb"
+            style="@style/common_checkbox_"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:paddingLeft="@dimen/padding_xxlsize"
+            android:text="@string/common_cart_all" />
+
+
+        <LinearLayout
+            android:id="@+id/cart_id_total_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/margin_xxmsize"
+            android:layout_toRightOf="@id/cart_id_all_cb"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/common_cart_total_pay"
+                    android:textColor="@color/common_red"
+                    android:textSize="@dimen/font_msize" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xxlsize"
+                    android:text="@string/symbol_money"
+                    android:textColor="@color/common_red"
+                    android:textSize="@dimen/font_xlsize" />
+
+                <TextView
+                    android:id="@+id/cart_id_totalpay_tv"
+                    style="@style/common_content_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:text="0" />
+                <!--android:layout_toRightOf="@id/prodetail_id_symbol_tv"-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_lsize"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/common_cart_fullcut"
+                    android:textColor="@color/common_font_brown"
+                    android:textSize="@dimen/font_xlsize" />
+
+                <TextView
+                    android:id="@+id/cart_id_total_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_xxlsize"
+                    android:textColor="@color/common_font_brown"
+                    android:textSize="@dimen/font_xlsize"
+                    tools:text="￥20" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/cart_id_tobuy_bt"
+            style="@style/button_brown_selector_style"
+            android:layout_width="@dimen/view_width_xlsize"
+            android:layout_height="@dimen/button_hight_lsize"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_xxlsize"
+            android:text="@string/common_cart_tobuy" />
+
+        <Button
+            android:id="@+id/cart_id_del_bt"
+            style="@style/button_white_selector_style"
+            android:layout_width="@dimen/view_width_xlsize"
+            android:layout_height="@dimen/button_hight_lsize"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_xxlsize"
+            android:text="@string/common_cart_del"
+            android:textColor="@color/common_brown_normal"
+            android:visibility="gone" />
+
+        <View
+            style="@style/common_divider_style"
+            android:visibility="visible" />
+
+        <View
+            style="@style/common_divider_style"
+            android:layout_alignParentBottom="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</RelativeLayout>

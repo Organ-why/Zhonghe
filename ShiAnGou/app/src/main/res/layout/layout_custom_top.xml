@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/rl_title"
+    android:layout_height="@dimen/height_title_custom"
+    android:background="@color/res_color_apptheme">
+
+    <ImageButton
+        android:id="@+id/title_user_ivb"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_title_custom"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/margin_h"
+        android:paddingRight="@dimen/margin_h"
+        android:background="@null"
+        android:src="@mipmap/icon_user" />
+    <ImageButton
+        android:id="@+id/title_msg_ivb"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_title_custom"
+        android:layout_centerVertical="true"
+        android:paddingLeft="@dimen/margin_h"
+        android:paddingRight="@dimen/margin_h"
+        android:background="@null"
+        android:src="@mipmap/icon_msg" />
+
+<TextView
+    android:id="@+id/id_category_title_tv"
+    style="@style/hint_search_style"
+    android:gravity="center_vertical"
+    android:drawablePadding="@dimen/margin_h"
+    android:layout_centerInParent="true"
+    android:paddingLeft="@dimen/margin_h"
+    android:text="@string/str_home_search_tip"
+    android:drawableLeft="@mipmap/icon_search"
+    android:background="@drawable/circle_search_white_bg"
+    android:layout_width="@dimen/width_search_custom"
+    android:layout_height="@dimen/height_search_custom" />
+</RelativeLayout>

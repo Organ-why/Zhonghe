@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="182dp"
+    android:background="@mipmap/res_user_top_bg"
+    android:clipToPadding="false"
+    android:fitsSystemWindows="true">
+
+    <ImageButton
+        android:id="@+id/id_user_setup_ib"
+        android:layout_width="@dimen/height_title_custom"
+        android:layout_height="@dimen/height_title_custom"
+        android:background="@null"
+        android:src="@mipmap/icon_user_setup" />
+
+    <ImageView
+        android:id="@+id/id_user_header_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:src="@mipmap/icon_user_unlog" />
+
+    <TextView
+        android:id="@+id/id_user_name_tv"
+        style="@style/common_text_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_user_header_iv"
+        android:layout_centerHorizontal="true"
+        android:text="购物达人" />
+</RelativeLayout>

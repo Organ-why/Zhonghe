@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/id_cart_pro_group_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+        <CheckBox
+            android:id="@+id/id_cart_pro_group_ck"
+            style="@style/common_checkbox_"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/padding_xxlsize"
+            android:text="食安购直销" />
+
+        <!--<TextView-->
+        <!--style="@style/common_text_deep"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerVertical="true"-->
+        <!--android:text="@string/common_user_order_title" />-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/id_user_name_tv"-->
+            <!--style="@style/common_text_normal"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="@dimen/margin_xxlsize"-->
+            <!--android:layout_toLeftOf="@+id/id_user_name_right_iv"-->
+            <!--android:layout_toStartOf="@+id/id_user_name_right_iv"-->
+            <!--android:gravity="right"-->
+            <!--android:text="@string/common_user_order_title_tips" />-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/id_user_name_right_iv"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:src="@mipmap/icon_next" />-->
+
+    </RelativeLayout>
+</LinearLayout>

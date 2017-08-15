@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/id_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/res_toolbar_height"
+            android:background="@color/res_color_white"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/res_color_white" />
+        </android.support.v7.widget.Toolbar>
+
+        <FrameLayout
+            android:id="@+id/base_id_content_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/mtabhost"
+            android:layout_below="@id/id_toolbar"
+            android:layout_weight="1"></FrameLayout>
+
+        <android.support.v4.app.FragmentTabHost
+            android:id="@id/mtabhost"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/res_color_white">
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"/>
+        </android.support.v4.app.FragmentTabHost>
+
+
+    </RelativeLayout>
+</LinearLayout>

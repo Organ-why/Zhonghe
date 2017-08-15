@@ -1,0 +1,296 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+         <!--Customize your theme here.-->
+        <!--&lt;!&ndash;Appbar背景色，应用的主要色调，actionBar默认使用该颜色&ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/res_color_apptheme</item>-->
+        <!--&lt;!&ndash;&lt;!&ndash;状态栏颜色，应用的主要暗色调，statusBarColor默认使用该颜色&ndash;&gt;&ndash;&gt;-->
+        <!--<item name="colorPrimaryDark">@color/res_color_apptheme</item>-->
+        <!--&lt;!&ndash;&lt;!&ndash;一般控件的选种效果默认采用该颜色&ndash;&gt;&ndash;&gt;-->
+        <!--<item name="colorAccent">@color/res_color_apptheme</item>-->
+
+        <!--&lt;!&ndash;Appbar背景色，应用的主要色调，actionBar默认使用该颜色&ndash;&gt;-->
+        <!--<item name="android:colorPrimary">@color/material_animations_primary</item>-->
+        <!--&lt;!&ndash;状态栏颜色，应用的主要暗色调，statusBarColor默认使用该颜色&ndash;&gt;-->
+        <!--<item name="android:colorPrimaryDark">@color/material_animations_primary_dark</item>-->
+        <!--&lt;!&ndash;状态栏颜色，默认使用colorPrimaryDark&ndash;&gt;-->
+        <!--<item name="android:statusBarColor">@color/material_animations_primary_dark</item>-->
+        <!--&lt;!&ndash;页面背景色&ndash;&gt;-->
+        <!--<item name="android:windowBackground">@color/light_grey</item>-->
+        <!--&lt;!&ndash;底部导航栏颜色&ndash;&gt;-->
+        <!--<item name="android:navigationBarColor">@color/navigationColor</item>-->
+        <!--&lt;!&ndash;应用的主要文字颜色，actionBar的标题文字默认使用该颜色&ndash;&gt;-->
+        <!--<item name="android:textColorPrimary">@android:color/black</item>-->
+        <!--&lt;!&ndash;ToolBar上的Title颜色&ndash;&gt;-->
+        <!--<item name="android:textColorPrimaryInverse">@color/text_light</item>-->
+        <!--&lt;!&ndash;应用的前景色，ListView的分割线，switch滑动区默认使用该颜色&ndash;&gt;-->
+        <!--<item name="android:colorForeground">@color/colorForeground</item>-->
+        <!--&lt;!&ndash;应用的背景色，popMenu的背景默认使用该颜色&ndash;&gt;-->
+        <!--<item name="android:colorBackground">@color/colorForeground</item>-->
+        <!--&lt;!&ndash;一般控件的选种效果默认采用该颜色&ndash;&gt;-->
+        <!--<item name="android:colorAccent">@color/colorAccent</item>-->
+        <!--&lt;!&ndash;控件选中时的颜色，默认使用colorAccent&ndash;&gt;-->
+        <!--<item name="android:colorControlActivated">@color/colorControlActivated</item>-->
+        <!--&lt;!&ndash;各个控制控件的默认颜色&ndash;&gt;-->
+        <!--<item name="android:colorControlNormal">@color/colorControlNormal</item>-->
+        <!--&lt;!&ndash;Button，textView的文字颜色&ndash;&gt;-->
+        <!--<item name="android:textColor">@color/text_dark</item>-->
+        <!--&lt;!&ndash;RadioButton checkbox等控件的文字&ndash;&gt;-->
+        <!--<item name="android:textColorPrimaryDisableOnly">@color/text_dark</item>-->
+        <!--&lt;!&ndash;默认按钮的背景颜色&ndash;&gt;-->
+        <!--<item name="android:colorButtonNormal">@color/text_dark</item>-->
+        <!--&lt;!&ndash;控件按压时的色调&ndash;&gt;-->
+        <!--<item name="android:colorControlHighlight">@color/colorControlHighlight</item>-->
+
+
+    </style>
+
+    <!-- 全屏样式-->
+    <style name="res_theme_fullscreen_app" parent="res_theme_app">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="TranslucentTheme" parent="AppTheme">
+        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
+    </style>
+    <!--分割线样式    竖-->
+    <style name="common_vertical_divider_style">
+        <item name="android:background">@color/common_font_shallow</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/height_divider_line_lsize</item>
+    </style>
+    <!--分割线样式    深色-->
+    <style name="common_dark_divider_style">
+        <item name="android:background">@color/common_gray</item>
+        <item name="android:layout_height">@dimen/height_divider_line_lsize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--分割线样式    浅色-->
+    <style name="common_light_divider_style">
+        <item name="android:background">@color/common_divide_shallow</item>
+        <item name="android:layout_height">@dimen/height_divider_line_lsize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--间隔条样式 -->
+    <style name="common_divider_view_style10">
+        <item name="android:background">@color/common_gray</item>
+        <item name="android:layout_height">@dimen/height_divider_line_hsize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="hint_search_style">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/res_color_hint_search</item>
+    </style>
+    <!--自定义top title style-->
+    <style name="common_custom_title">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/common_font_brown</item>
+        <item name="android:textSize">@dimen/font_hsize</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <!--自定义top righttext style-->
+    <style name="common_custom_righttext">
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/common_font_brown</item>
+        <item name="android:textSize">@dimen/font_msize</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <!--首页-->
+    <!--商品列表title-->
+    <style name="home_category_item_title">
+        <item name="android:textColor">@color/common_font_normal</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
+        <item name="android:maxLines">2</item>
+    </style>
+    <!--金额符号-->
+    <style name="symbol_money_style">
+        <item name="android:textColor">@color/common_font_normal</item>
+        <item name="android:textSize">@dimen/font_xlsize</item>
+    </style>
+    <!--金额-->
+    <style name="home_category_item_money">
+        <item name="android:textColor">@color/common_font_red</item>
+        <item name="android:textSize">@dimen/font_msize</item>
+    </style>
+    <!--原金额-->
+    <style name="home_category_item_oldmoney">
+        <item name="android:textColor">@color/common_font_shallow</item>
+        <item name="android:textSize">@dimen/font_size</item>
+    </style>
+
+    <!-- -个人中心-->
+
+    <style name="common_text_deep">
+        <item name="android:textColor">@color/common_font_normal</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
+    </style>
+
+    <style name="common_text_user_item">
+        <item name="android:textColor">@color/common_font_normal</item>
+        <item name="android:textSize">@dimen/font_xxlsize</item>
+    </style>
+    <!--设置-->
+    <style name="common_text_setup_item">
+        <item name="android:textSize">@dimen/font_xxlsize</item>
+        <item name="android:textColor">@color/common_font_shallow</item>
+    </style>
+    <!--//用户名-->
+    <style name="common_text_user_name">
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
+    </style>
+
+    <style name="common_text_normal">
+        <item name="android:textColor">@color/common_font_shallow</item>
+        <item name="android:textSize">@dimen/font_xlsize</item>
+    </style>
+    <style name="common_address_style">
+        <item name="android:textColor">@color/res_color_apptheme</item>
+        <item name="android:textSize">@dimen/font_xxlsize</item>
+    </style>
+
+    <style name="common_text_user_order">
+        <item name="android:textColor">@color/common_font_deep</item>
+        <item name="android:textSize">@dimen/font_xlsize</item>
+    </style>
+    <!--订单 商品描述-->
+    <style name="common_order_name_style">
+        <item name="android:textColor">@color/common_font_normal</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">2</item>
+    </style>
+    <!--订单 合计-->
+    <style name="common_order_total_style">
+        <item name="android:textColor">@color/common_font_normal</item>
+        <item name="android:textSize">@dimen/font_xlsize</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    <!--EditTextView   样式 -->
+    <style name="common_edittext_style">
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/common_font_deep</item>
+        <item name="android:background">@null</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textSize">@dimen/font_xlsize</item>
+    </style>
+
+
+    <!--CheckBox   地址-->
+    <style name="common_checkbox_">
+        <item name="android:button">@drawable/common_selectall_cb_selector</item>
+        <item name="android:background">@null</item>
+        <!--<item name="android:textColor">@color/common_font_brown</item>-->
+        <item name="android:textSize">@dimen/font_msize</item>
+    </style>
+    <!--CheckBox   购物车-->
+    <style name="common_checkbox_selector">
+        <item name="android:button">@drawable/common_selectall_cb_selector</item>
+        <item name="android:background">@null</item>
+        <!--<item name="android:textColor">@color/common_font_brown</item>-->
+        <item name="android:textSize">@dimen/font_msize</item>
+    </style>
+    <!--商品sku price字体样式-->
+    <style name="common_content_price">
+        <item name="android:textColor">@color/common_red</item>
+        <item name="android:textSize">@dimen/font_xmsize</item>
+    </style>
+    <!--褐色点击效果样式-->
+    <style name="button_brown_selector_style">
+        <item name="android:background">@drawable/brown_button_selector</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/font_msize</item>
+    </style>
+    <!--橙色 方角按钮-->
+    <style name="button_orange_selector_style">
+        <item name="android:background">@color/res_color_apptheme</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/font_msize</item>
+        <item name="android:height">@dimen/button_hight_xxxlsize</item>
+        <item name="android:width">@dimen/view_width_xlsize</item>
+    </style>
+
+    <style name="button_orangecirc_selector_style">
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/circle_bt_orange_bg</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/font_lsize</item>
+    </style>
+    <style name="button_orangecirc_bg_style">
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/circle_bt_orange_bg</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
+    </style>
+
+    <style name="button_yellowcirc_selector_style">
+        <item name="android:background">@drawable/circle_bt_yellow_bg</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
+        <item name="android:layout_height">@dimen/button_hight_xxxlsize</item>
+    </style>
+    <!--白色按键点击效果样式-->
+    <style name="button_white_selector_style">
+        <item name="android:background">@drawable/white_button_selector</item>
+        <item name="android:textColor">@drawable/white_buttontext_selector</item>
+        <item name="android:textSize">@dimen/font_msize</item>
+    </style>
+    <!--分割线样式-->
+    <style name="common_divider_style">
+        <item name="android:background">@color/common_divide_normal</item>
+        <item name="android:layout_height">@dimen/height_divider_line_lsize</item>
+        <item name="android:layout_width">match_parent</item>
+
+    </style>
+
+    <style name="common_divider_style1">
+        <item name="android:background">@color/common_gray</item>
+        <item name="android:layout_height">@dimen/height_divider_line_msize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="common_divider_style10">
+        <item name="android:background">@color/common_gray</item>
+        <item name="android:layout_height">@dimen/height_divider_line_hsize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="common_divider_view_style30">
+        <item name="android:background">@color/common_gray</item>
+        <item name="android:layout_height">@dimen/height_divider_line_xlsize</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <!--商品sku title字体样式-->
+    <style name="common_content_title">
+        <item name="android:textColor">@color/common_font_normal</item>
+        <item name="android:textSize">@dimen/font_msize</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <!--商品折扣背景样式-->
+    <style name="common_discount_bg">
+        <item name="android:textColor">@color/common_red</item>
+        <item name="android:textSize">@dimen/font_xlsize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/common_discount_bg</item>
+        <item name="android:layout_height">@dimen/view_discount_height_xlsize</item>
+        <item name="android:layout_width">@dimen/view_discount_width_lsize</item>
+    </style>
+    <!--Cart商品sku字体样式-->
+    <style name="common_cart_sku">
+        <item name="android:textColor">@color/common_font_shallow</item>
+        <item name="android:textSize">@dimen/left_font_xlsize</item>
+    </style>
+    <!-- 失效商品-->
+    <style name="common_cart_status">
+        <item name="android:textColor">@color/common_font_deep</item>
+        <item name="android:textSize">@dimen/font_lsize</item>
+        <item name="android:background">@drawable/common_bg_gray_fillet</item>
+        <item name="android:padding">2dp</item>
+    </style>
+</resources>

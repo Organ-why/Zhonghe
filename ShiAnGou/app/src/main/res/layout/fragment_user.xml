@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/id_user_order_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+        <TextView
+            style="@style/common_text_deep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/common_user_order_title" />
+
+        <TextView
+            android:id="@+id/id_user_name_tv"
+            style="@style/common_text_normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:layout_toLeftOf="@+id/id_user_name_right_iv"
+            android:layout_toStartOf="@+id/id_user_name_right_iv"
+            android:gravity="right"
+            android:text="@string/common_user_order_title_tips" />
+
+        <ImageView
+            android:id="@+id/id_user_name_right_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_divider_line_msize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/common_gray" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_order_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/id_user_unpay_ll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_user_unpay" />
+
+            <TextView
+                style="@style/common_text_user_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_user_order_unpay" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_user_unsend_ll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_user_unsend" />
+
+            <TextView
+                style="@style/common_text_user_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_user_order_unsend" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_user_wait_ll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_user_wait" />
+
+            <TextView
+                style="@style/common_text_user_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_user_order_wait" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_user_unremark_ll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_user_unremark" />
+
+            <TextView
+                style="@style/common_text_user_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_user_order_unremark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/id_user_return_ll"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_user_return" />
+
+            <TextView
+                style="@style/common_text_user_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_user_order_return" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View style="@style/common_divider_style10" />
+
+    <RelativeLayout
+        android:id="@+id/id_user_like_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+        <ImageView
+            android:id="@+id/ids_like"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_user_like" />
+
+        <TextView
+            style="@style/common_text_user_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_lsize"
+            android:layout_toRightOf="@id/ids_like"
+            android:text="@string/common_user_item_like" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_divider_line_msize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/common_gray" />
+
+    <RelativeLayout
+        android:id="@+id/id_user_contactus_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+        <ImageView
+            android:id="@+id/ids_contact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_user_contact" />
+
+        <TextView
+            style="@style/common_text_user_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_lsize"
+            android:layout_toRightOf="@id/ids_contact"
+            android:text="@string/common_user_item_contactus" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_divider_line_msize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/common_gray" />
+
+    <RelativeLayout
+        android:id="@+id/id_user_help_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+        <ImageView
+            android:id="@+id/ids_help"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_user_help" />
+
+        <TextView
+            style="@style/common_text_user_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_lsize"
+            android:layout_toRightOf="@id/ids_help"
+            android:text="@string/common_user_item_help" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_divider_line_msize"
+        android:layout_alignParentBottom="true"
+        android:background="@color/common_gray" />
+
+</LinearLayout>

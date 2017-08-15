@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 公共字体大小定义 -->
+    <dimen name="res_font_lsize">10sp</dimen>
+    <dimen name="res_font_xlsize">12sp</dimen>
+    <dimen name="res_font_xxlsize">14sp</dimen>
+    <dimen name="res_font_msize">16sp</dimen>
+    <dimen name="res_font_xmsize">18sp</dimen>
+    <dimen name="res_font_xxmsize">20sp</dimen>
+    <dimen name="res_font_hsize">22sp</dimen>
+    <dimen name="res_font_xhsize">24sp</dimen>
+    <dimen name="res_font_xxhsize">26sp</dimen>
+
+
+    <dimen name="res_toolbar_height">50dp</dimen>
+
+    <dimen name="res_fab_margin">0dp</dimen>
+
+    <!--处理statusbar透明时，appbar布局padding top值-->
+    <dimen name="res_statusbar_height">0dp</dimen>
+</resources>

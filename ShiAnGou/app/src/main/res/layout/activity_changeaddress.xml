@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_hight_xxxlsize"
+            android:paddingLeft="@dimen/padding_xmsize"
+            android:paddingRight="@dimen/padding_xmsize">
+
+            <TextView
+                android:id="@+id/ids_icon_input1"
+                style="@style/common_text_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/address_addressperson_text" />
+
+            <EditText
+                android:id="@+id/id_addressmsg_person_et"
+                style="@style/common_edittext_style"
+                android:layout_marginLeft="@dimen/margin_h"
+                android:layout_toRightOf="@id/ids_icon_input1" />
+        </RelativeLayout>
+
+        <View
+            style="@style/common_divider_style1"
+            android:layout_alignParentBottom="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_hight_xxxlsize"
+            android:paddingLeft="@dimen/padding_xmsize"
+            android:paddingRight="@dimen/padding_xmsize">
+
+            <TextView
+                android:id="@+id/ids_icon_input2"
+                style="@style/common_text_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/address_addressphone_text" />
+
+            <EditText
+                android:id="@+id/id_addressmsg_phone_et"
+                style="@style/common_edittext_style"
+                android:layout_marginLeft="@dimen/margin_h"
+                android:layout_toRightOf="@id/ids_icon_input2" />
+        </RelativeLayout>
+
+        <View
+            style="@style/common_divider_style1"
+            android:layout_alignParentBottom="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_hight_xxxlsize"
+            android:paddingLeft="@dimen/padding_xmsize"
+            android:paddingRight="@dimen/padding_xmsize">
+
+            <TextView
+                android:id="@+id/ids_icon_input3"
+                style="@style/common_text_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/address_address_text" />
+
+            <EditText
+                android:id="@+id/id_addressmsg_address_et"
+                style="@style/common_edittext_style"
+                android:layout_marginLeft="@dimen/margin_h"
+                android:layout_toRightOf="@id/ids_icon_input3" />
+        </RelativeLayout>
+
+        <View
+            style="@style/common_divider_style1"
+            android:layout_alignParentBottom="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/button_hight_xxxlsize"
+            android:paddingLeft="@dimen/padding_xmsize"
+            android:paddingRight="@dimen/padding_xmsize">
+
+            <TextView
+                android:id="@+id/ids_icon_input4"
+                style="@style/common_text_normal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/address_addressmsg_text" />
+
+            <EditText
+                android:id="@+id/id_addressmsg_addressmsg_et"
+                style="@style/common_edittext_style"
+                android:layout_marginLeft="@dimen/margin_h"
+                android:layout_toRightOf="@id/ids_icon_input4"
+                android:hint="@string/address_addressmsg_hint_text" />
+        </RelativeLayout>
+
+        <View
+            style="@style/common_divider_style1"
+            android:layout_alignParentBottom="true" />
+    </LinearLayout>
+
+    <Button
+        style="@style/button_orangecirc_bg_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/padding_xmsize"
+        android:layout_marginLeft="@dimen/padding_xmsize"
+        android:layout_marginRight="@dimen/padding_xmsize"
+        android:layout_marginTop="@dimen/margin_hsize"
+        android:text="@string/address_addresschange_confirm_text" />
+</RelativeLayout>

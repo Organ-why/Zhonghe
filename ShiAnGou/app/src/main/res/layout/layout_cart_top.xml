@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/height_title_custom"
+    android:gravity="center_vertical"
+    android:background="@color/common_white"
+    android:orientation="horizontal">
+
+    <!--android:background="@drawable/common_toolbar_bg"-->
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/custom_top_id_rl"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="@dimen/layout_hight_xxxlsize"-->
+    <!--android:background="@color/common_white"></RelativeLayout>-->
+
+    <ImageView
+        android:id="@+id/custom_top_id_back"
+        android:layout_width="@dimen/button_hight_lsize"
+        android:layout_height="@dimen/button_hight_lsize"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/margin_msize"
+        android:background="@drawable/common_button_white_circle"
+        android:padding="5dp"
+        android:src="@mipmap/common_nav_back"
+        android:visibility="gone" />
+
+    <!--<ImageView-->
+    <!--android:id="@+id/custom_top_id_share"-->
+    <!--android:layout_width="@dimen/button_hight_lsize"-->
+    <!--android:layout_height="@dimen/button_hight_lsize"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginRight="@dimen/margin_msize"-->
+    <!--android:background="@drawable/common_button_white_circle"-->
+    <!--android:padding="5dp"-->
+    <!--android:src="@mipmap/common_nav_share"-->
+    <!--android:visibility="gone" />-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/custom_top_id_like"-->
+    <!--android:layout_width="@dimen/button_hight_lsize"-->
+    <!--android:layout_height="@dimen/button_hight_lsize"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginRight="10dp"-->
+    <!--android:layout_toLeftOf="@id/custom_top_id_share"-->
+    <!--android:background="@drawable/common_button_white_circle"-->
+    <!--android:padding="5dp"-->
+    <!--android:src="@mipmap/common_nav_like"-->
+    <!--android:visibility="gone" />-->
+
+
+    <TextView
+        android:id="@+id/custom_top_id_title"
+        style="@style/common_custom_title"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/height_title_custom"
+        android:layout_centerInParent="true"
+        tools:text="hehhe" />
+
+    <TextView
+        android:id="@+id/custom_top_id_right_tv"
+        style="@style/common_custom_righttext"
+        android:layout_width="56dp"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/res_bg_white_rect_btn"
+        tools:text="hehhe" />
+
+    <View
+        style="@style/common_divider_style"
+        android:layout_alignBottom="@+id/custom_top_id_title" />
+</RelativeLayout>

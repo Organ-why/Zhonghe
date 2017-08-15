@@ -1,0 +1,149 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <!--控件高度-->
+    <dimen name="height_title_custom">50dp</dimen>
+    <dimen name="height_search_custom">25dp</dimen>
+
+    <dimen name="height_ll_custom">50dp</dimen>
+    <!-- 公共字体大小定义 -->
+    <dimen name="font_size">10sp</dimen>
+    <dimen name="font_lsize">11sp</dimen>
+    <dimen name="font_xlsize">12sp</dimen>
+    <dimen name="font_xxlsize">13sp</dimen>
+    <dimen name="font_xxxlsize">14sp</dimen>
+    <dimen name="font_msize">15sp</dimen>
+    <dimen name="font_xmsize">16sp</dimen>
+    <dimen name="font_hsize">20sp</dimen>
+    <dimen name="font_xxmsize">18sp</dimen>
+    <dimen name="font_xhsize">22sp</dimen>
+    <dimen name="font_xxhsize">24sp</dimen>
+    <dimen name="font_xxxhsize">26sp</dimen>
+    <dimen name="font_ehsize">30sp</dimen>
+
+
+    <!--控件宽-->
+    <dimen name="width_search_custom">265dp</dimen>
+
+
+    <!--margin-->
+    <dimen name="margin_m">5dp</dimen>
+    <dimen name="margin_h">10dp</dimen>
+    <dimen name="margin_xh">20dp</dimen>
+    <dimen name="margin_xxh">50dp</dimen>
+    <dimen name="margin_splash_logo">260dp</dimen>
+    <!-- 公共外间距定义 -->
+    <dimen name="margin_lsize">5dp</dimen>
+    <dimen name="margin_xlsize">8dp</dimen>
+    <dimen name="margin_xxlsize">10dp</dimen>
+    <dimen name="margin_xxxlsize">12dp</dimen>
+    <dimen name="margin_msize">15dp</dimen>
+    <dimen name="margin_xmsize">16dp</dimen>
+    <dimen name="margin_xxmsize">20dp</dimen>
+    <dimen name="margin_xxxmsize">24dp</dimen>
+    <dimen name="margin_hsize">28dp</dimen>
+    <dimen name="margin_ehsize">40dp</dimen>
+    <!-- 公共内间距定义 -->
+    <dimen name="padding_size">6dp</dimen>
+    <dimen name="padding_lsize">4dp</dimen>
+    <dimen name="padding_xlsize">8dp</dimen>
+    <dimen name="padding_xxlsize">10dp</dimen>
+    <dimen name="padding_xxxlsize">12dp</dimen>
+    <dimen name="padding_msize">16dp</dimen>
+    <dimen name="padding_xmsize">20dp</dimen>
+    <dimen name="padding_xxmsize">24dp</dimen>
+    <dimen name="padding_hsize">28dp</dimen>
+    <!--公共按钮高度-->
+    <dimen name="button_hight_size">25dp</dimen>
+    <dimen name="button_hight_lsize">35dp</dimen>
+    <dimen name="button_hight_xlsize">30dp</dimen>
+    <dimen name="button_hight_xxlsize">45dp</dimen>
+    <dimen name="button_hight_xxxlsize">50dp</dimen>
+    <dimen name="button_hight_msize">60dp</dimen>
+    <dimen name="button_hight_hsize">75dp</dimen>
+
+    <!-- 公共宽度定义 -->
+    <dimen name="width_lsize">4dp</dimen>
+    <dimen name="width_divider_line_lsize">0.5dp</dimen>
+    <dimen name="width_divider_line_msize">1dp</dimen>
+    <dimen name="width_divider_line_hsize">2dp</dimen>
+
+    <!-- 公共分割线高度定义 -->
+    <dimen name="height_divider_line_lsize">0.5dp</dimen>
+    <dimen name="height_divider_line_msize">1dp</dimen>
+    <dimen name="height_divider_line_hsize">10dp</dimen>
+    <dimen name="height_divider_line_xhsize">12dp</dimen>
+    <dimen name="height_divider_line_xxhsize">15dp</dimen>
+    <dimen name="height_divider_line_xxxhsize">20dp</dimen>
+    <dimen name="height_divider_line_xlsize">30dp</dimen>
+
+    <!--公共布局高度-->
+    <dimen name="layout_hight_lsize">20dp</dimen>
+    <dimen name="layout_hight_xlsize">30dp</dimen>
+    <dimen name="layout_hight_xxlsize">40dp</dimen>
+    <dimen name="layout_hight_xxxlsize">50dp</dimen>
+    <dimen name="layout_hight_msize">60dp</dimen>
+    <dimen name="layout_hight_xmsize">70dp</dimen>
+    <dimen name="layout_hight_xxmsize">80dp</dimen>
+    <dimen name="layout_hight_ehmsize">90dp</dimen>
+    <dimen name="layout_hight_xhsize">100dp</dimen>
+    <dimen name="layout_hight_xxhsize">110dp</dimen>
+    <dimen name="layout_hight_xxxhsize">285dp</dimen>
+    <dimen name="layout_hight_xxxxhsize">290dp</dimen>
+
+    <!--公共图片宽度定义-->
+    <dimen name="image_width_lsize">60dp</dimen>
+    <dimen name="image_width_xlsize">80dp</dimen>
+    <dimen name="image_width_msize">100dp</dimen>
+    <dimen name="image_width_lmsize">120dp</dimen>
+
+    <!--公共图片高度定义-->
+    <dimen name="image_height_size">55dp</dimen>
+    <dimen name="image_height_lsize">60dp</dimen>
+    <dimen name="image_height_xlsize">80dp</dimen>
+    <dimen name="image_height_msize">100dp</dimen>
+    <dimen name="image_height_lmsize">120dp</dimen>
+
+
+    <!-- 非公共控件宽-->
+    <dimen name="view_width_lsize">30dp</dimen>
+    <dimen name="view_width_xlsize">110dp</dimen>
+    <dimen name="view_discount_width_size">31dp</dimen>
+    <dimen name="view_discount_width_lsize">37dp</dimen>
+    <dimen name="view_category_radiogroup">94dp</dimen>
+    <dimen name="view_category_icon">26dp</dimen>
+    <dimen name="home_category_item_img_width">79dp</dimen>
+    <dimen name="home_category_title_width">185dp</dimen>
+    <dimen name="order_bt_width">80dp</dimen>
+    <!-- 非公共控件高-->
+    <dimen name="cart_amount_shortage">13dp</dimen>
+    <dimen name="view_discount_height_xlsize">16dp</dimen>
+    <dimen name="password_set_height">25dp</dimen>
+    <dimen name="password_set_width">25dp</dimen>
+    <dimen name="user_item_height">44dp</dimen>
+    <dimen name="user_order_height">65dp</dimen>
+    <dimen name="height_sku_select">460dp</dimen>
+    <dimen name="order_empty_padding_bottom">150dp</dimen>
+    <dimen name="toolbar_height">56dp</dimen>
+    <dimen name="home_categoryimg_height">140dp</dimen>
+    <dimen name="home_category_item_img_height">68dp</dimen>
+    <dimen name="home_category_title_height">75dp</dimen>
+
+    <dimen name="integral_width">140dp</dimen>
+    <dimen name="integral_margin">30dp</dimen>
+    <dimen name="user_point_height">18dp</dimen>
+    <dimen name="sku_padding_lsize">12sp</dimen>
+    <dimen name="sku_padding_msize">15sp</dimen>
+
+    <!-- 非公共字体大小定义 -->
+    <dimen name="album_font_lsize">8sp</dimen>
+    <dimen name="album_font_msize">10sp</dimen>
+    <dimen name="album_font_xmsize">17sp</dimen>
+    <dimen name="left_font_xlsize">11sp</dimen>
+    <dimen name="item_font_lsize">13sp</dimen>
+    <dimen name="item_font_xxlsize">30sp</dimen>
+    <dimen name="item_font_hsize">40sp</dimen>
+</resources>

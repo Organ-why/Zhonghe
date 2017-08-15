@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/id_item_home_category_title_ll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+        <!--<com.facebook.drawee.view.SimpleDraweeView-->
+        <!--android:id="@+id/id_item_home_category_iv"-->
+        <!--android:layout_width="@dimen/view_category_icon"-->
+        <!--android:layout_height="@dimen/view_category_icon"-->
+        <!--app:placeholderImage="@mipmap/icon_home_category_seafood" />-->
+        <ImageView
+            android:id="@+id/id_item_home_category_title_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_home_category_seafood" />
+
+        <TextView
+            android:id="@+id/id_item_home_category_title_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_m"
+            android:text="水产海鲜" />
+    </LinearLayout>
+</LinearLayout>

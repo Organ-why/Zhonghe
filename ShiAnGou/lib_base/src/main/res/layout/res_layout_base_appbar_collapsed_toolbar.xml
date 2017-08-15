@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.AppBarLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:id="@+id/base_id_appbar_collapsed_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:contentScrim="@color/res_color_primary"
+        app:expandedTitleMarginStart="20dp"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <!-- app custombar-->
+        <ViewStub
+            android:id="@+id/base_id_appbar_custom_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_collapseMode="parallax"
+            app:layout_collapseParallaxMultiplier="0.7"/>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/base_id_appbar_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_collapseMode="pin"
+            />
+    </android.support.design.widget.CollapsingToolbarLayout>
+    <!-- app tabs -->
+    <ViewStub
+        android:id="@+id/base_id_appbar_tabs_stub"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_scrollFlags="scroll|enterAlwaysCollapsed"/>
+
+</android.support.design.widget.AppBarLayout>
