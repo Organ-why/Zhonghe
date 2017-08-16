@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout 
+        android:layout_width="match_parent"
+		android:id="@+id/photo_id_root"
+		android:layout_height="wrap_content"
+   		android:layout_alignParentBottom="true"
+   		android:orientation="vertical">
+
+		<LinearLayout
+			style="@style/user_button_style"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="@dimen/margin_xxlsize"
+			android:padding="2dp"
+			android:layout_marginRight="@dimen/margin_xxlsize"
+			android:orientation="vertical">
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/layout_hight_xxxlsize"
+				android:layout_marginLeft="@dimen/margin_xxlsize"
+				android:layout_marginRight="@dimen/margin_xxlsize"
+				android:background="@color/common_white"
+				android:gravity="center_horizontal|center_vertical"
+				android:id="@+id/photo_id_camera"
+				android:text="@string/common_camera"
+				android:textSize="@dimen/font_hsize"
+				android:textColor="@color/common_font_blue" />
+
+			<View style="@style/common_divider_style" />
+
+			<TextView
+				android:id="@+id/photo_id_picked"
+				android:layout_width="match_parent"
+				android:layout_height="@dimen/layout_hight_xxxlsize"
+				android:layout_marginLeft="@dimen/margin_xxlsize"
+				android:layout_marginRight="@dimen/margin_xxlsize"
+				android:background="@color/common_white"
+				android:gravity="center_horizontal|center_vertical"
+				android:text="@string/common_picked"
+				android:textSize="@dimen/font_hsize"
+				android:textColor="@color/common_font_blue" />
+		</LinearLayout>
+
+        <TextView 
+            android:id="@+id/photo_id_cancel"
+			style="@style/user_button_style"
+			android:layout_width="match_parent"
+			android:textSize="@dimen/font_hsize"
+			android:layout_height="@dimen/layout_hight_xxxlsize"
+			android:layout_margin="@dimen/margin_xxlsize"
+			android:gravity="center_horizontal|center_vertical"
+			android:text="@string/common_cancel" />
+    </LinearLayout>
+
+</RelativeLayout>

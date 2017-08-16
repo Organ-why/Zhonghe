@@ -16,6 +16,6 @@ public class GoodsDetailActivity extends BaseTopActivity {
 
     @Override
     protected void initLayout() {
-        super.initLayout();
+        setContentView(R.layout.activity_goodsdetail);
     }
 }

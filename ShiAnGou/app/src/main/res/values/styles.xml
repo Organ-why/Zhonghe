@@ -1,33 +1,33 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- 窗口的背景颜色 -->
-        <item name="android:windowBackground">@color/res_color_window_background</item>
-        <!-- toolbar相关样式 -->
-        <!-- toolbar背景色 -->
-        <item name="colorPrimary">@color/common_white</item>
-        <!-- toolbar menu字体样式 -->
-        <item name="actionMenuTextColor">@color/common_font_brown</item>
-        <item name="actionMenuTextAppearance">@style/res_style_toolbar_menu_text</item>
-        <!-- toolbar searchView样式-->
-        <item name="searchViewStyle">@style/res_style_toolbar_search_view</item>
-        <!-- toolbar overflow样式-->
-        <item name="actionOverflowButtonStyle">@style/res_style_toolbar_overflow_button</item>
+    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
+        <!--&lt;!&ndash; 窗口的背景颜色 &ndash;&gt;-->
+        <!--<item name="android:windowBackground">@color/res_color_window_background</item>-->
+        <!--&lt;!&ndash; toolbar相关样式 &ndash;&gt;-->
+        <!--&lt;!&ndash; toolbar背景色 &ndash;&gt;-->
+        <!--<item name="colorPrimary">@color/common_white</item>-->
+        <!--&lt;!&ndash; toolbar menu字体样式 &ndash;&gt;-->
+        <!--<item name="actionMenuTextColor">@color/common_font_brown</item>-->
+        <!--<item name="actionMenuTextAppearance">@style/res_style_toolbar_menu_text</item>-->
+        <!--&lt;!&ndash; toolbar searchView样式&ndash;&gt;-->
+        <!--<item name="searchViewStyle">@style/res_style_toolbar_search_view</item>-->
+        <!--&lt;!&ndash; toolbar overflow样式&ndash;&gt;-->
+        <!--<item name="actionOverflowButtonStyle">@style/res_style_toolbar_overflow_button</item>-->
 
-        <!--popup menu样式-->
-        <item name="popupMenuStyle">@style/res_style_popup_menu</item>
-        <item name="textAppearanceLargePopupMenu">@style/res_style_popup_menu_text_large</item>
-        <item name="textAppearanceSmallPopupMenu">@style/res_style_popup_menu_text_small</item>
+        <!--&lt;!&ndash;popup menu样式&ndash;&gt;-->
+        <!--<item name="popupMenuStyle">@style/res_style_popup_menu</item>-->
+        <!--<item name="textAppearanceLargePopupMenu">@style/res_style_popup_menu_text_large</item>-->
+        <!--<item name="textAppearanceSmallPopupMenu">@style/res_style_popup_menu_text_small</item>-->
 
-        <!--alert dialog样式-->
-        <item name="alertDialogTheme">@style/res_theme_dialog_normal</item>
+        <!--&lt;!&ndash;alert dialog样式&ndash;&gt;-->
+        <!--<item name="alertDialogTheme">@style/res_theme_dialog_normal</item>-->
 
 
-        <!--分割线-->
-        <item name="android:listDivider">@drawable/res_ic_list_black_divider</item>
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="elevation">0dp</item>
+        <!--&lt;!&ndash;分割线&ndash;&gt;-->
+        <!--<item name="android:listDivider">@drawable/res_ic_list_black_divider</item>-->
+        <!--<item name="android:windowContentOverlay">@null</item>-->
+        <!--<item name="elevation">0dp</item>-->
          <!--Customize your theme here.-->
         <!--&lt;!&ndash;Appbar背景色，应用的主要色调，actionBar默认使用该颜色&ndash;&gt;-->
         <!--<item name="colorPrimary">@color/res_color_apptheme</item>-->
@@ -70,15 +70,15 @@
         <!--<item name="android:colorControlHighlight">@color/colorControlHighlight</item>-->
 
 
-    </style>
+    <!--</style>-->
 
     <!-- 全屏样式-->
     <style name="res_theme_fullscreen_app" parent="res_theme_app">
         <item name="android:windowFullscreen">true</item>
     </style>
-    <style name="TranslucentTheme" parent="AppTheme">
-        <!--在Android 4.4之前的版本上运行，直接跟随系统主题-->
-    </style>
+    <!--<style name="TranslucentTheme" parent="AppTheme">-->
+        <!--&lt;!&ndash;在Android 4.4之前的版本上运行，直接跟随系统主题&ndash;&gt;-->
+    <!--</style>-->
     <!--分割线样式    竖-->
     <style name="common_vertical_divider_style">
         <item name="android:background">@color/common_font_shallow</item>
@@ -128,7 +128,15 @@
         <item name="android:textSize">@dimen/font_msize</item>
         <item name="android:singleLine">true</item>
     </style>
-
+    <style name="user_button_style">
+        <item name="android:background">@drawable/circle_gray_hollow_bg</item>
+        <item name="android:textColor">@color/common_font_blue</item>
+    </style>
+    <!-- popup window向上弹出样式 -->
+    <style name="commom_popup_fade_anim_style" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/common_fade_in</item>
+        <item name="android:windowExitAnimation">@anim/common_fade_out</item>
+    </style>
     <!--首页-->
     <!--商品列表title-->
     <style name="home_category_item_title">
@@ -150,6 +158,11 @@
     <style name="detial_goods_money">
         <item name="android:textColor">@color/common_font_red</item>
         <item name="android:textSize">@dimen/font_xxmsize</item>
+    </style>
+    <!--金额-->
+    <style name="detial_goods_money_orange">
+        <item name="android:textColor">@color/res_color_apptheme</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
     </style>
     <!--原金额-->
     <style name="home_category_item_oldmoney">
@@ -244,6 +257,12 @@
         <item name="android:background">@drawable/circle_bt_orange_bg</item>
         <item name="android:textColor">@color/common_white</item>
         <item name="android:textSize">@dimen/font_xxxlsize</item>
+    </style>
+    <style name="button_graycirc_bg_style">
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/circle_gray_bg</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">@dimen/font_xmsize</item>
     </style>
 
     <style name="button_yellowcirc_selector_style">

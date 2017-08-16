@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_gray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/user_item_height"
+            android:background="@color/common_white"
+            android:paddingLeft="@dimen/padding_xxlsize"
+            android:paddingRight="@dimen/padding_xxlsize">
+
+
+            <TextView
+                style="@style/common_text_deep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/prodetail_refunds_moneytip" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
+
+                <TextView
+                    style="@style/detial_goods_money_orange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_lsize"
+                    android:text="¥258" />
+
+            </LinearLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/user_item_height"
+            android:layout_marginTop="@dimen/margin_xxlsize"
+            android:background="@color/common_white"
+            android:paddingLeft="@dimen/padding_xxlsize"
+            android:paddingRight="@dimen/padding_xxlsize">
+
+
+            <TextView
+                style="@style/common_text_deep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/prodetail_refunds_tip" />
+
+
+        </RelativeLayout>
+
+        <View
+            style="@style/common_divider_style1"
+            android:layout_width="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/common_white"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_xxlsize">
+
+            <EditText
+                android:id="@+id/id_refund_submit_desc_et"
+                style="@style/common_text_user_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="@string/prodetail_refunds_tip_hint"
+                android:minHeight="150dp"
+                android:textColorHint="@color/common_font_hint" />
+
+            <GridView
+                android:id="@+id/id_refund_submit_img_gv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:numColumns="3"
+                android:verticalSpacing="10dp"></GridView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/id_refund_submit_bt"
+        style="@style/button_graycirc_bg_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/padding_xmsize"
+        android:text="@string/common_submit" />
+</RelativeLayout>

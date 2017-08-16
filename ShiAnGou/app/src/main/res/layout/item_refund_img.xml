@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_refund_imgitem_img"
+        android:layout_width="@dimen/image_width_xlsize"
+        android:layout_height="@dimen/image_width_xlsize"
+        android:scaleType="fitXY"
+        app:placeholderImage="@mipmap/res_default_goods" />
+
+
+    <ImageButton
+        android:id="@+id/id_refund_cancel_img_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/id_refund_imgitem_img"
+        android:layout_alignTop="@id/id_refund_imgitem_img"
+        android:background="@null"
+        android:src="@mipmap/icon_cancel" />
+
+    <LinearLayout
+        android:id="@+id/id_refund_imgitem_ll"
+        android:layout_width="@dimen/image_width_xlsize"
+        android:layout_height="@dimen/image_width_xlsize"
+        android:background="@drawable/circle_gray_dotted_bg"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/icon_add_img" />
+
+        <TextView
+            style="@style/common_text_user_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/common_addimg" />
+
+    </LinearLayout>
+</RelativeLayout>

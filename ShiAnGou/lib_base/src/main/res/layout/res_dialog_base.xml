@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" 
+    android:background="@android:color/white">
+    <!-- 标题栏区域 -->
+	<ViewStub 
+	    android:id="@+id/dialog_base_id_top"
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:layout="@layout/res_layout_dialog_top"/>
+	
+	<!-- 内容区域 --> 
+	<RelativeLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="0dp"
+    	android:layout_weight="1"
+    	android:padding="16dp">
+	    <FrameLayout 
+		    android:id="@+id/dialog_base_id_root"
+		    android:layout_width="match_parent"
+	    	android:layout_height="wrap_content">
+	    	
+	    </FrameLayout>
+	    <include
+		    android:layout_width="match_parent"
+	    	android:layout_height="wrap_content"
+			layout="@layout/res_layout_dialog_net"/>
+	</RelativeLayout>
+	
+	<!-- 底部按钮区域 --> 
+	<FrameLayout 
+	    android:layout_width="match_parent"
+    	android:layout_height="wrap_content">
+	    <ViewStub 
+		    android:id="@+id/dialog_base_id_single"
+		    android:layout_width="match_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout="@layout/res_layout_dialog_single_bottom"/>
+	    <ViewStub 
+		    android:id="@+id/dialog_base_id_double"
+		    android:layout_width="match_parent"
+	    	android:layout_height="wrap_content"
+	    	android:layout="@layout/res_layout_dialog_double_bottom"/>
+	   
+	</FrameLayout>
+</LinearLayout>

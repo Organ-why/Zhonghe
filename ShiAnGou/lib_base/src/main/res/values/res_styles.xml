@@ -27,7 +27,36 @@
         <!--分割线-->
         <item name="android:listDivider">@drawable/res_ic_list_black_divider</item>
         <item name="android:windowContentOverlay">@null</item>
-        <item name="elevation">0dp</item>
+        <item name="elevation">5dp</item>
+
+
+            <!--&lt;!&ndash; 窗口的背景颜色 &ndash;&gt;-->
+            <!--<item name="android:windowBackground">@color/res_color_window_background</item>-->
+
+            <!-- toolbar相关样式 -->
+            <!--<item name="actionBarSize">44dp</item>-->
+            <!-- toolbar背景色（app标题） -->
+            <!--<item name="colorPrimary">@color/res_color_toolbar</item>-->
+            <!--statusbar背景色（时间，网络，电池）-->
+            <!--<item name="colorPrimaryDark">@color/res_color_black</item>-->
+            <!--&lt;!&ndash; toolbar menu字体样式 &ndash;&gt;-->
+            <!--<item name="actionMenuTextColor">@color/res_color_green</item>-->
+            <!--<item name="actionMenuTextAppearance">@style/res_style_toolbar_menu_text</item>-->
+            <!--&lt;!&ndash; toolbar searchView样式&ndash;&gt;-->
+            <!--<item name="searchViewStyle">@style/res_style_toolbar_search_view</item>-->
+            <!--&lt;!&ndash; toolbar overflow样式&ndash;&gt;-->
+            <!--<item name="actionOverflowButtonStyle">@style/res_style_toolbar_overflow_button</item>-->
+
+            <!--&lt;!&ndash;popup menu样式&ndash;&gt;-->
+            <!--<item name="popupMenuStyle">@style/res_style_popup_menu</item>-->
+            <!--<item name="textAppearanceLargePopupMenu">@style/res_style_popup_menu_text_large</item>-->
+            <!--<item name="textAppearanceSmallPopupMenu">@style/res_style_popup_menu_text_small</item>-->
+
+            <!--&lt;!&ndash;alert dialog样式&ndash;&gt;-->
+            <!--<item name="alertDialogTheme">@style/res_theme_dialog_normal</item>-->
+
+            <!--&lt;!&ndash;分割线&ndash;&gt;-->
+            <!--<item name="android:listDivider">@drawable/res_ic_list_black_divider</item>-->
     </style>
 
     <!-- 全屏样式-->

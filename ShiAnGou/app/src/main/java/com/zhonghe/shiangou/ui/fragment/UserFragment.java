@@ -134,7 +134,8 @@ public class UserFragment extends BaseTopFragment {
                 ProDispatcher.goOrderManageActivity(mActivity);
                 break;
             case R.id.id_user_return_ll:
-                ProDispatcher.goRefundsActivity(mActivity);
+//                ProDispatcher.goRefundsActivity(mActivity);
+                ProDispatcher.goRefundsBeginActivity(mActivity);
                 break;
             case R.id.id_user_like_rl:
                 ProDispatcher.goLikeActivity(mActivity);

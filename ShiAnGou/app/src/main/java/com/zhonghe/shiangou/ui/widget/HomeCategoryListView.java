@@ -12,6 +12,7 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
 import com.zhonghe.shiangou.data.bean.ProInfo;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.List;
@@ -34,16 +35,22 @@ public class HomeCategoryListView {
         for (HomeCategoryInfo info : categoryInfos) {
             View inflate = inflater.inflate(R.layout.layout_home_category_item, null);
             SimpleDraweeView img = (SimpleDraweeView) inflate.findViewById(R.id.id_home_category_item_title_iv);//分类大图片
-            ProjectApplication.mImageLoader.loadImage(img,info.getCat_images());
+            ProjectApplication.mImageLoader.loadImage(img, info.getCat_images());
             LinearLayout itemList = (LinearLayout) inflate.findViewById(R.id.id_home_category_item_ll);//商品列表
             for (GoodsInfo itemInfo : info.getList()) {
                 View itemView = inflater.inflate(R.layout.item_home_category_item, null);
                 SimpleDraweeView proimg = (SimpleDraweeView) itemView.findViewById(R.id.id_home_category_item_iv);
-                ProjectApplication.mImageLoader.loadImage(proimg,itemInfo.getGoods_img());
+                ProjectApplication.mImageLoader.loadImage(proimg, itemInfo.getGoods_img());
                 TextView tvtitle = (TextView) itemView.findViewById(R.id.id_home_category_item_title_tv);
                 tvtitle.setText(itemInfo.getGoods_name());
                 TextView tvprice = (TextView) itemView.findViewById(R.id.id_home_category_item_price_tv);
                 tvprice.setText(itemInfo.getShop_price());
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        ProDispatcher.goGoodsDetailActivity(context);
+                    }
+                });
                 itemList.addView(itemView);
             }
 

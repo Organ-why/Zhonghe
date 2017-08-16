@@ -22,14 +22,13 @@
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/address_user_tv"
             style="@style/common_text_normal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_xxxlsize"
             android:layout_toRightOf="@id/item_cart_id_cb"
             android:text="雷文豪" />
 
@@ -94,4 +93,48 @@
         android:layout_height="@dimen/height_divider_line_lsize"
         android:layout_alignParentBottom="true"
         android:background="@color/common_divide_shallow" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_xxxlsize">
+
+        <TextView
+            android:id="@+id/address_setdefault_tv"
+            style="@style/common_order_total_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@mipmap/icon_cb_redright"
+            android:drawablePadding="@dimen/padding_xxlsize"
+            android:gravity="center_vertical"
+            android:text="@string/address_setdefault_text" />
+
+        <TextView
+            android:id="@+id/address_delete_tv"
+            style="@style/common_text_user_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawableLeft="@mipmap/icon_delete"
+            android:drawablePadding="@dimen/padding_xxlsize"
+            android:gravity="center_vertical"
+            android:text="@string/common_cart_del" />
+
+        <TextView
+            android:id="@+id/address_edit_tv"
+            style="@style/common_text_user_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/margin_l"
+            android:layout_toLeftOf="@id/address_delete_tv"
+            android:drawableLeft="@mipmap/icon_edit"
+            android:drawablePadding="@dimen/padding_xxlsize"
+            android:gravity="center_vertical"
+            android:text="@string/common_cart_edit" />
+
+
+    </RelativeLayout>
 </LinearLayout>

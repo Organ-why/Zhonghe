@@ -7,11 +7,13 @@ import com.zhonghe.shiangou.ui.activity.AddressManageActivity;
 import com.zhonghe.shiangou.ui.activity.ChangeAddressActivity;
 import com.zhonghe.shiangou.ui.activity.ConfirmOrderActivity;
 import com.zhonghe.shiangou.ui.activity.ForgetPwdActivity;
+import com.zhonghe.shiangou.ui.activity.GoodsDetailActivity;
 import com.zhonghe.shiangou.ui.activity.LikeActivity;
 import com.zhonghe.shiangou.ui.activity.LoginActivity;
 import com.zhonghe.shiangou.ui.activity.MainActivity;
 import com.zhonghe.shiangou.ui.activity.OrderManageActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsActivity;
+import com.zhonghe.shiangou.ui.activity.RefundsBeginActivity;
 import com.zhonghe.shiangou.ui.activity.RegisterActivity;
 import com.zhonghe.shiangou.ui.activity.RemarkActivity;
 import com.zhonghe.shiangou.ui.activity.SetupActivity;
@@ -178,6 +180,7 @@ public class ProDispatcher {
         Intent intent = new Intent(context, RefundsActivity.class);
         context.startActivity(intent);
     }
+
     /**
      * 我喜欢的
      *
@@ -193,6 +196,7 @@ public class ProDispatcher {
 
     /**
      * 评论
+     *
      * @param context
      */
     public static void goRemarkActivity(Context context) {
@@ -200,6 +204,32 @@ public class ProDispatcher {
             return;
         }
         Intent intent = new Intent(context, RemarkActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 退货退款
+     *
+     * @param context
+     */
+    public static void goRefundsBeginActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, RefundsBeginActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 商品详情
+     *
+     * @param context
+     */
+    public static void goGoodsDetailActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, GoodsDetailActivity.class);
         context.startActivity(intent);
     }
 }

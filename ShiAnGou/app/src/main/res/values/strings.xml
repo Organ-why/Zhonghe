@@ -13,7 +13,14 @@
     <string name="main_tabs_cart">购物车</string>
     <string name="main_tabs_user">我</string>
 
-
+    <string name="common_confirm">确认</string>
+    <string name="common_cancel">取消</string>
+    <string name="common_finish">完成</string>
+    <string name="common_camera">拍照</string>
+    <string name="common_manage">管理</string>
+    <string name="common_submit">提交</string>
+    <string name="common_addimg">添加图片</string>
+    <string name="common_picked">从相册选择</string>
     <!--Splash-->
     <string name="splash_slogan_text">©2017 ShiAnGou (China) Softwareco.Ltd</string>
 
@@ -72,8 +79,12 @@
     <string name="prodetail_collection_cancel_success">取消收藏成功</string>
 
 
-    <string name="prodetail_title_refunds">退货退款</string>
+    <string name="prodetail_title_refunds">退货/退款</string>
+    <string name="prodetail_title_refundsdetail">退货详情</string>
     <string name="prodetail_refunds_money">退款金额: ¥</string>
+    <string name="prodetail_refunds_moneytip">退款金额</string>
+    <string name="prodetail_refunds_tip">退款说明</string>
+    <string name="prodetail_refunds_tip_hint">请填写退款说明</string>
     <string name="prodetail_refunds_detail">查看详情</string>
 
 
@@ -92,6 +103,7 @@
     <string name="address_addressmsg_hint_text">街道/楼栋号/门牌号</string>
     <string name="address_addresschange_title_text">收货信息</string>
     <string name="address_addresschange_confirm_text">保存并作用</string>
+    <string name="address_setdefault_text">设为默认地址</string>
 
     <!-- 购物车-->
     <string name="common_cart_title">购物车</string>
