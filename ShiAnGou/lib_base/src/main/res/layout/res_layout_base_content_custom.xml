@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <FrameLayout
+        android:id="@+id/base_id_content_root"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </FrameLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.pnikosis.materialishprogress.ProgressWheel
+            android:id="@+id/base_id_content_progress"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            app:matProg_barColor="@color/res_color_progress"
+            app:matProg_progressIndeterminate="true"
+            />
+
+        <TextView
+            android:id="@+id/base_id_content_retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/res_string_retry"
+            android:textColor="@color/res_color_black_hint_text"
+            android:textSize="@dimen/res_font_msize"
+            android:drawableTop="@mipmap/res_ic_retry"
+            android:drawablePadding="20dp"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/base_id_content_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@color/res_color_black_hint_text"
+            android:textSize="@dimen/res_font_msize"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/base_id_content_shadow_top"
+        android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
+        style="@style/res_style_shadow_top"/>
+</RelativeLayout>

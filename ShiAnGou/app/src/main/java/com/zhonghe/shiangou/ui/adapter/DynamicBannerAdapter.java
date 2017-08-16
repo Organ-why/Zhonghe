@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.widget.ImageView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.squareup.picasso.Picasso;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -83,8 +85,9 @@ public class DynamicBannerAdapter extends PagerAdapter {
         } else {
             itemView = views.remove(views.size() - 1);
         }
-        ImageView ivAdvertise = (ImageView) itemView.findViewById(R.id.ivAdvertise);
-        Picasso.with(context).load(R.mipmap.banner).into(ivAdvertise);
+        SimpleDraweeView ivAdvertise = (SimpleDraweeView) itemView.findViewById(R.id.ivAdvertise);
+        String images = advertiseArray.get(mPOSITION).getBanner_images();
+        ProjectApplication.mImageLoader.loadImage(ivAdvertise,images);
         container.addView(itemView);
         return itemView;
     }

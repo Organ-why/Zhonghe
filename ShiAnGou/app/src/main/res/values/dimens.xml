@@ -32,6 +32,7 @@
     <!--margin-->
     <dimen name="margin_m">5dp</dimen>
     <dimen name="margin_h">10dp</dimen>
+    <dimen name="margin_l">15dp</dimen>
     <dimen name="margin_xh">20dp</dimen>
     <dimen name="margin_xxh">50dp</dimen>
     <dimen name="margin_splash_logo">260dp</dimen>
@@ -110,6 +111,7 @@
 
     <!-- 非公共控件宽-->
     <dimen name="view_width_lsize">30dp</dimen>
+    <dimen name="view_width_header">33dp</dimen>
     <dimen name="view_width_xlsize">110dp</dimen>
     <dimen name="view_discount_width_size">31dp</dimen>
     <dimen name="view_discount_width_lsize">37dp</dimen>

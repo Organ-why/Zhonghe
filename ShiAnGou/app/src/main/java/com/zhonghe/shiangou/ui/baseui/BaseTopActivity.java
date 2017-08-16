@@ -27,7 +27,7 @@ public abstract class BaseTopActivity extends BaseUIActivity {
     protected long initOptions() {
         return UIOptions.UI_OPTIONS_APPBAR_TOOLBAR | UIOptions.UI_OPTIONS_CONTENT_CUSTOM;
     }
-    void addRequest(Request request) {
+    protected void addRequest(Request request) {
         ProjectApplication.proReqestQueue.addRequest( request, this);
     }
 

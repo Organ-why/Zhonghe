@@ -5,7 +5,7 @@ package com.zhonghe.shiangou.ui.listener;
  * Author: whyang
  */
 public interface ResultListener<T> {
-    void onFial(String error);
+    void onFail(String error);
 
     void onSuccess(Object obj);
 }

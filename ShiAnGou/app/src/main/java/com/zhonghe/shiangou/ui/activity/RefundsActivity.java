@@ -15,7 +15,7 @@ public class RefundsActivity extends BaseTopActivity {
 
     @Override
     protected void initTop() {
-        setTitle(R.string.title_login_title);
+        setTitle(R.string.common_user_order_return);
         setNavigation(R.mipmap.common_nav_back);
     }
 }

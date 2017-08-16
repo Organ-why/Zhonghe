@@ -5,4 +5,5 @@ package com.zhonghe.shiangou.system.constant;
  * Author: whyang
  */
 public class CstProject {
+    public static String URL_PRO = "http://test.shiangou.com.cn/Android/";
 }

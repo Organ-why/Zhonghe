@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ################### THEME ##################### -->
+    <style name="res_theme_app" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 窗口的背景颜色 -->
+        <item name="android:windowBackground">@color/res_color_window_background</item>
+
+        <!-- toolbar相关样式 -->
+        <!-- toolbar背景色 -->
+        <item name="colorPrimary">@color/res_color_toolbar</item>
+        <!-- toolbar menu字体样式 -->
+        <item name="actionMenuTextColor">@color/res_color_white</item>
+        <item name="actionMenuTextAppearance">@style/res_style_toolbar_menu_text</item>
+        <!-- toolbar searchView样式-->
+        <item name="searchViewStyle">@style/res_style_toolbar_search_view</item>
+        <!-- toolbar overflow样式-->
+        <item name="actionOverflowButtonStyle">@style/res_style_toolbar_overflow_button</item>
+
+        <!--popup menu样式-->
+        <item name="popupMenuStyle">@style/res_style_popup_menu</item>
+        <item name="textAppearanceLargePopupMenu">@style/res_style_popup_menu_text_large</item>
+        <item name="textAppearanceSmallPopupMenu">@style/res_style_popup_menu_text_small</item>
+
+        <!--alert dialog样式-->
+        <item name="alertDialogTheme">@style/res_theme_dialog_normal</item>
+
+        <!--分割线-->
+        <item name="android:listDivider">@drawable/res_ic_list_black_divider</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="elevation">0dp</item>
+    </style>
+
+    <!-- 全屏样式-->
+    <style name="res_theme_fullscreen_app" parent="res_theme_app">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- 对话框样式 -->
+    <style name="res_theme_dialog_base" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@drawable/res_ic_dialog_bg</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+
+    <!-- 普通框样式 -->
+    <style name="res_theme_dialog_normal" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="windowMinWidthMinor">80%</item>
+        <item name="android:backgroundDimAmount">0.35</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/res_ic_dialog_bg</item>
+        <item name="android:textColorPrimary">@color/res_color_black_text</item>
+        <item name="android:background">@color/res_color_white</item>
+        <item name="colorAccent">@color/res_color_accent_dark</item>
+        <item name="buttonBarNegativeButtonStyle">@style/res_style_dialog_negative_button</item>
+    </style>
+
+    <!-- 等待对话框样式 -->
+    <style name="res_theme_dialog_waiting" parent="android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/res_color_transparent</item>
+        <item name="android:backgroundDimAmount">0.45</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+    </style>
+
+
+    <!-- ################### STYLE ##################### -->
+    <!--toolbar样式 -->
+    <!--<style name="res_style_toolbar"  >-->
+        <!--<item name="android:background">@color/res_color_primary</item>-->
+        <!--<item name="android:layout_height">?attr/actionBarSize</item>-->
+    <!--</style>-->
+    <style name="res_style_toolbar"  >
+        <item name="android:background">@color/res_color_white</item>
+        <item name="android:layout_height">50dp</item>
+    </style>
+
+    <!--toolbar title位置样式，可使用left、center -->
+    <style name="res_style_toolbar_title_gravity">
+        <item name="android:gravity">left</item>
+    </style>
+
+    <!--toolbar title样式 -->
+    <style name="res_style_toolbar_title_text"  >
+        <item name="android:textColor">@color/res_color_gray_title</item>
+        <item name="android:textSize">@dimen/res_font_xxmsize</item>
+    </style>
+
+    <!--toolbar collapsed title样式 -->
+    <style name="res_style_toolbar_collapsed_title_text"  >
+        <item name="android:textColor">@color/res_color_white</item>
+        <item name="android:textSize">@dimen/res_font_xxmsize</item>
+    </style>
+
+    <!--toolbar expanded title样式 -->
+    <style name="res_style_toolbar_expanded_title_text"  >
+        <item name="android:textColor">@color/res_color_white</item>
+        <item name="android:textSize">@dimen/res_font_hsize</item>
+    </style>
+
+    <!--toolbar subtitle样式 -->
+    <style name="res_style_toolbar_subtitle_text"  >
+        <item name="android:textColor">@color/res_color_white</item>
+        <item name="android:textSize">@dimen/res_font_xxlsize</item>
+    </style>
+
+    <!--toolbar menu字体样式 -->
+    <style name="res_style_toolbar_menu_text"  >
+        <item name="android:textSize">@dimen/res_font_msize</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- toolbar searchView样式-->
+    <style name="res_style_toolbar_search_view" parent="Widget.AppCompat.SearchView">
+        <item name="queryBackground">@drawable/res_ic_textfield_search_material</item>
+        <item name="submitBackground">@drawable/res_ic_textfield_search_material</item>
+        <item name="closeIcon">@mipmap/res_ic_clear_mtrl_alpha</item>
+        <item name="searchIcon">@mipmap/res_ic_search_api_mtrl_alpha</item>
+        <item name="searchHintIcon">@mipmap/res_ic_search_api_mtrl_alpha</item>
+    </style>
+
+    <!-- toolbar overflow样式-->
+    <style name="res_style_toolbar_overflow_button" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@mipmap/res_ic_menu_more</item>
+    </style>
+
+
+
+
+    <!--top阴影 -->
+    <style name="res_style_shadow_top"  >
+        <item name="android:layout_height">8dp</item>
+        <item name="android:background">@color/res_color_transparent</item>
+    </style>
+
+    <!--bottom阴影 -->
+    <style name="res_style_shadow_bottom"  >
+        <item name="android:layout_height">8dp</item>
+        <item name="android:background">@color/res_color_transparent</item>
+    </style>
+
+
+
+    <!--popup menu样式-->
+    <style name="res_style_popup_menu" parent="Widget.AppCompat.PopupMenu">
+        <item name="android:popupBackground">@drawable/res_ic_popup_background_mtrl_mult</item>
+    </style>
+
+    <style name="res_style_popup_menu_text_small" parent="TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
+        <item name="android:textColor">@color/res_color_black_text</item>
+    </style>
+
+    <style name="res_style_popup_menu_text_large" parent="TextAppearance.AppCompat.Light.Widget.PopupMenu.Large">
+        <item name="android:textColor">@color/res_color_black_text</item>
+    </style>
+
+
+    <!-- dialog样式 -->
+    <style name="res_style_dialog_negative_button" parent="Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/res_color_black_secondary_text</item>
+    </style>
+
+    <!--AppBarLayout样式-->
+    <style name="Widget.Design.AppBarLayout" parent="android:Widget">
+        <item name="elevation">0dp</item>
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <!--TabLayout样式-->
+    <style name="res_style_tablayout">
+        <item name="android:background">@color/res_color_white</item>
+        <item name="android:layout_height">45dp</item>
+    </style>
+
+    <style name="Widget.Design.TabLayout" parent="Base.Widget.Design.TabLayout">
+        <item name="tabGravity">fill</item>
+        <item name="tabMode">fixed</item>
+    </style>
+
+    <style name="Base.Widget.Design.TabLayout" parent="android:Widget">
+        <item name="tabIndicatorColor">@color/res_color_white</item>
+        <item name="tabIndicatorHeight">2dp</item>
+        <item name="tabPaddingStart">12dp</item>
+        <item name="tabPaddingEnd">12dp</item>
+        <item name="tabBackground">?attr/selectableItemBackground</item>
+        <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
+        <item name="tabSelectedTextColor">@color/res_color_white</item>
+    </style>
+
+    <style name="TextAppearance.Design.Tab" parent="TextAppearance.AppCompat.Button">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">?android:textColorSecondary</item>
+        <item name="textAllCaps">true</item>
+    </style>
+
+
+
+    <!-- Navbar TABS相关style-->
+    <style name="res_style_navbar_tabs_bg" >
+        <item name="android:background">@color/res_color_white</item>
+    </style>
+
+    <style name="res_style_navbar_tabs_divider" >
+        <item name="android:background">@color/res_color_black_divider</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="res_style_navbar_tabs_text" >
+        <item name="android:textColor">@drawable/res_ic_tab_txt_selector</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="res_style_navbar_tabs_dot" >
+        <item name="android:src">@mipmap/res_ic_msg_dot</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <!--分割线-->
+    <!--白色屏幕的黑色分割线-->
+    <style name="res_style_list_black_divider" >
+        <item name="android:listDivider">@drawable/res_ic_list_black_divider</item>
+    </style>
+    <!--黑色屏幕的白色分割线-->
+    <style name="res_style_list_white_divider" >
+        <item name="android:listDivider">@drawable/res_ic_list_white_divider</item>
+    </style>
+
+</resources>

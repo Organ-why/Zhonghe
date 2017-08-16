@@ -17,15 +17,19 @@ import okhttp3.OkHttpClient;
  * Author: whyang
  */
 public class ProjectApplication extends Application {
+    public static ProjectApplication mInstance;
     //图片加载
     public static UtilImage mImageLoader;
 
     public static ProReqestQueue proReqestQueue;
 
+    public static synchronized ProjectApplication getInstance() {
+        return mInstance;
+    }
     @Override
     public void onCreate() {
         super.onCreate();
-
+        mInstance = this;
         //图片加载实例
         mImageLoader = UtilImage.getInstance(this);
         proReqestQueue = ProReqestQueue.getInstance(this);

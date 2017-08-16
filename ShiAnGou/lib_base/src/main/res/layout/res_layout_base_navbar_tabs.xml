@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhonghe.lib_base.widget.FragmentTabHost
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    style="@style/res_style_navbar_tabs_bg">
+    <View
+        android:layout_width="match_parent"
+        style="@style/res_style_navbar_tabs_divider"/>
+    <FrameLayout
+        android:id="@android:id/tabcontent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+</com.zhonghe.lib_base.widget.FragmentTabHost>

@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -16,7 +17,13 @@ public class LogisticsActivity extends BaseTopActivity {
 
     @Override
     protected void initTop() {
-        setTitle(R.string.setup_title_text);
+        setTitle(R.string.order_title_logistics);
         setNavigation(R.mipmap.common_nav_back);
+    }
+
+    @Override
+    protected void initViews() {
+//        mEmptyDraw = ContextCompat.getDrawable(mAct, R.mipmap.common_empty_cart);
+//        mEmptyDraw.setBounds(0, 0, mEmptyDraw.getMinimumWidth(), mEmptyDraw.getMinimumHeight());
     }
 }

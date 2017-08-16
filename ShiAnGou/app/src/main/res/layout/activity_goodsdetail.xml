@@ -1,8 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
+    <LinearLayout
+        android:id="@+id/id_goodsdetail_banner_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"></LinearLayout>
 
-</RelativeLayout>
+    <View
+        style="@style/common_light_divider_style5"
+        android:layout_width="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_xxlsize">
+
+        <TextView
+            android:id="@+id/id_goodsdetail_title_tv"
+            style="@style/common_content_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="有机长茄子 新鲜蔬菜" />
+
+        <TextView
+            android:id="@+id/id_goodsdetail_desc_tv"
+            style="@style/common_cart_sku"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_goodsdetail_title_tv"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="农场直供 有机认证 软糯细腻 鲜嫩" />
+
+        <TextView
+            android:id="@+id/id_goodsdetail_price_tv"
+            style="@style/detial_goods_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_goodsdetail_desc_tv"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="¥9.9" />
+
+        <TextView
+            android:id="@+id/id_goodsdetail_soldnum_tv"
+            style="@style/common_text_user_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/id_goodsdetail_price_tv"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/id_goodsdetail_desc_tv"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="已售：1999" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_goodsdetail_soldnum_tv"
+            android:layout_marginTop="@dimen/margin_h"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/common_cart_sku"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_cb_redright"
+                android:drawablePadding="2dp"
+                android:text="农场直销" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        style="@style/common_light_divider_style5"
+        android:layout_width="match_parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_xxlsize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="请选择产品规格" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_down" />
+    </RelativeLayout>
+
+    <View
+        style="@style/common_light_divider_style5"
+        android:layout_width="match_parent" />
+</LinearLayout>

@@ -4,6 +4,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
 
+    <string name="error_timeout">请求超时</string>
+    <string name="error_server">服务器错误</string>
+    <string name="error_internet">网络错误</string>
 
     <string name="main_tabs_home">首页</string>
     <string name="main_tabs_category">分类</string>
@@ -23,6 +26,11 @@
     <string name="title_login_fogavepwd">忘记密码？</string>
     <string name="title_login_registernow">立即注册</string>
     <string name="title_register_code">获取验证码</string>
+    <string name="title_register_phone_hint">请输入您的手机号</string>
+    <string name="title_register_code_hint">请输入您的验证码</string>
+    <string name="title_register_pwd_hint">请设定您的密码（限6-16个字母、数字，区分大小写）</string>
+    <string name="title_register_pwdag_hint">请再次输入您的密码</string>
+    <string name="title_register_phone_tip">请输入正确的手机号</string>
 
     <!--设置-->
     <string name="setup_title_text">设置</string>
@@ -45,6 +53,8 @@
     <string name="confirmorder_freighttotal_text">运费合计：¥</string>
     <string name="confirmorder_total_text">应付款：¥</string>
     <!-- 商品详情-->
+
+    <string name="prodetail_act_title">商品详情</string>
     <string name="prodetail_img_title">图文详情</string>
     <string name="prodetail_discount">折扣</string>
     <string name="prodetail_full">满减</string>
@@ -62,7 +72,7 @@
     <string name="prodetail_collection_cancel_success">取消收藏成功</string>
 
 
-    <string name="prodetail_title_refunds">退化退款</string>
+    <string name="prodetail_title_refunds">退货退款</string>
     <string name="prodetail_refunds_money">退款金额: ¥</string>
     <string name="prodetail_refunds_detail">查看详情</string>
 
@@ -122,6 +132,12 @@
     <!--我的订单-->
     <string name="order_bt_cancel">取消订单</string>
     <string name="order_bt_pay">去支付</string>
+    <string name="order_title_logistics">物流信息</string>
+
+
+    <!--评论-->
+    <string name="remark_title">评论</string>
+
 
     <!--符号-->
     <string name="symbol_money">¥</string>

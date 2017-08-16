@@ -57,7 +57,7 @@
                 android:layout_width="@dimen/image_width_xlsize"
                 android:layout_height="@dimen/image_height_xlsize"
                 android:layout_centerVertical="true"
-                app:placeholderImage="@mipmap/banner" />
+                app:placeholderImage="@mipmap/res_default_goods" />
 
             <TextView
                 android:id="@+id/item_cart_id_shortage_tv"

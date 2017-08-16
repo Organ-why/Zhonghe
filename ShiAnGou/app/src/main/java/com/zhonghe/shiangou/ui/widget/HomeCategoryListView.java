@@ -5,10 +5,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
 import com.zhonghe.shiangou.data.bean.ProInfo;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.List;
 
@@ -29,10 +33,17 @@ public class HomeCategoryListView {
     public void initView(List<HomeCategoryInfo> categoryInfos, ViewGroup parentView) {
         for (HomeCategoryInfo info : categoryInfos) {
             View inflate = inflater.inflate(R.layout.layout_home_category_item, null);
-            inflate.findViewById(R.id.id_home_category_item_title_iv);//分类大图片
+            SimpleDraweeView img = (SimpleDraweeView) inflate.findViewById(R.id.id_home_category_item_title_iv);//分类大图片
+            ProjectApplication.mImageLoader.loadImage(img,info.getCat_images());
             LinearLayout itemList = (LinearLayout) inflate.findViewById(R.id.id_home_category_item_ll);//商品列表
-            for (ProInfo itemInfo : info.getProList()) {
+            for (GoodsInfo itemInfo : info.getList()) {
                 View itemView = inflater.inflate(R.layout.item_home_category_item, null);
+                SimpleDraweeView proimg = (SimpleDraweeView) itemView.findViewById(R.id.id_home_category_item_iv);
+                ProjectApplication.mImageLoader.loadImage(proimg,itemInfo.getGoods_img());
+                TextView tvtitle = (TextView) itemView.findViewById(R.id.id_home_category_item_title_tv);
+                tvtitle.setText(itemInfo.getGoods_name());
+                TextView tvprice = (TextView) itemView.findViewById(R.id.id_home_category_item_price_tv);
+                tvprice.setText(itemInfo.getShop_price());
                 itemList.addView(itemView);
             }
 

@@ -142,6 +142,7 @@ public class UserFragment extends BaseTopFragment {
             case R.id.id_user_contactus_rl:
                 break;
             case R.id.id_user_help_rl:
+                ProDispatcher.goRemarkActivity(mActivity);
                 break;
         }
     }

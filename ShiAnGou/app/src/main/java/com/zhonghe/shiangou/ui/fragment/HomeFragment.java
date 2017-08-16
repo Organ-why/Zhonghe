@@ -14,6 +14,7 @@ import android.widget.ScrollView;
 import com.android.volley.Request;
 import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.lib_base.utils.Utilm;
@@ -100,12 +101,12 @@ public class HomeFragment extends BaseTopFragment {
         List<HomeCategoryInfo> itemList = new ArrayList<>();
         for (int i = 0; i < 7; i++) {
             HomeCategoryInfo homeCategoryInfo = new HomeCategoryInfo();
-            List<ProInfo> proList = new ArrayList<>();
+            List<GoodsInfo> proList = new ArrayList<>();
             for (int j = 0; j < 5; j++) {
-                ProInfo proInfo = new ProInfo();
+                GoodsInfo proInfo = new GoodsInfo();
                 proList.add(proInfo);
             }
-            homeCategoryInfo.setProList(proList);
+            homeCategoryInfo.setList(proList);
             itemList.add(homeCategoryInfo);
         }
 
@@ -159,8 +160,9 @@ public class HomeFragment extends BaseTopFragment {
 
     void getHomeData(){
         Request<?> request = HttpUtil.getHomeData(mActivity, new ResultListener() {
+
             @Override
-            public void onFial(String error) {
+            public void onFail(String error) {
                 Log.i("onFial", error);
             }
 

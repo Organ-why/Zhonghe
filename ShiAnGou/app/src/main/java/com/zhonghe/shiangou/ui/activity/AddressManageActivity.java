@@ -14,7 +14,7 @@ import butterknife.OnClick;
 
 public class AddressManageActivity extends BaseTopActivity {
 
-/////
+
     @Bind(R.id.id_addressmng_add_bt)
     Button idAddressmngAddBt;
 

@@ -17,6 +17,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+
+    signingConfigs {
+        debug {
+//            storeFile file("davebella.jks")
+//            storePassword "davebella2016"
+//            keyAlias "davebella"
+//            keyPassword "davebella2016"
+        }
+
+
+        release {
+//            storeFile file("davebella.jks")
+//            storePassword "davebella2016"
+//            keyAlias "davebella"
+//            keyPassword "davebella2016"
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
 }
 
 dependencies {

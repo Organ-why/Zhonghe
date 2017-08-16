@@ -27,35 +27,59 @@
             android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
+        <!-- 注册 -->
         <activity
             android:name=".ui.activity.RegisterActivity"
             android:screenOrientation="portrait" />
+        <!-- 登录 -->
         <activity
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait" />
+        <!-- 设置 -->
         <activity
             android:name=".ui.activity.SetupActivity"
             android:screenOrientation="portrait" />
+        <!-- 确认订单 -->
         <activity
             android:name=".ui.activity.ConfirmOrderActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 地址管理 -->
         <activity
             android:name=".ui.activity.AddressManageActivity"
             android:screenOrientation="portrait" />
+        <!-- 修改地址 -->
         <activity
             android:name=".ui.activity.ChangeAddressActivity"
             android:screenOrientation="portrait" />
+        <!-- 订单管理 -->
         <activity
             android:name=".ui.activity.OrderManageActivity"
             android:screenOrientation="portrait" />
+        <!-- 用户信息 -->
         <activity
             android:name=".ui.activity.UserActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.activity.LogisticsActivity" />
-        <activity android:name=".ui.activity.RefundsActivity" />
-        <activity android:name=".ui.activity.LikeActivity" />
-        <activity android:name=".ui.activity.RemarkActivity"></activity>
+        <!-- 物流 -->
+        <activity
+            android:name=".ui.activity.LogisticsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 退款退货 -->
+        <activity
+            android:name=".ui.activity.RefundsActivity"
+            android:screenOrientation="portrait" />
+        <!-- 我喜欢的 -->
+        <activity
+            android:name=".ui.activity.LikeActivity"
+            android:screenOrientation="portrait" />
+        <!-- 评论 -->
+        <activity
+            android:name=".ui.activity.RemarkActivity"
+            android:screenOrientation="portrait"></activity>
+        <!-- 忘记密码 -->
+        <activity
+            android:name=".ui.activity.ForgetPwdActivity"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

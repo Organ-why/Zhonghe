@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_xxlsize">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_item_remark_header_img"
+        android:layout_width="@dimen/view_width_header"
+        android:layout_height="@dimen/view_width_header"
+        app:placeholderImage="@mipmap/res_default_header" />
+
+    <TextView
+        android:id="@+id/id_item_remark_name_tv"
+        style="@style/common_cart_sku"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_xxlsize"
+        android:layout_toRightOf="@id/id_item_remark_header_img"
+        android:text="183****5366" />
+
+    <TextView
+        android:id="@+id/id_item_remark_date_tv"
+        style="@style/common_remark_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/id_item_remark_header_img"
+        android:layout_marginLeft="@dimen/margin_xxlsize"
+        android:layout_toRightOf="@id/id_item_remark_header_img"
+        android:text="2017-08-01" />
+    <TextView
+        android:id="@+id/id_item_remark_desc_tv"
+        style="@style/common_remark_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_l"
+        android:layout_below="@id/id_item_remark_header_img"
+        android:text="特别新鲜，物流特别快，很喜欢！！" />
+
+
+</RelativeLayout>

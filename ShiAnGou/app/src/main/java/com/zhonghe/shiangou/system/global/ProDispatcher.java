@@ -13,6 +13,7 @@ import com.zhonghe.shiangou.ui.activity.MainActivity;
 import com.zhonghe.shiangou.ui.activity.OrderManageActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsActivity;
 import com.zhonghe.shiangou.ui.activity.RegisterActivity;
+import com.zhonghe.shiangou.ui.activity.RemarkActivity;
 import com.zhonghe.shiangou.ui.activity.SetupActivity;
 import com.zhonghe.shiangou.ui.activity.UserActivity;
 import com.zhonghe.shiangou.ui.fragment.UserFragment;
@@ -187,6 +188,18 @@ public class ProDispatcher {
             return;
         }
         Intent intent = new Intent(context, LikeActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 评论
+     * @param context
+     */
+    public static void goRemarkActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, RemarkActivity.class);
         context.startActivity(intent);
     }
 }
