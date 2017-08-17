@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/common_gray"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/padding_msize"
+            android:paddingTop="@dimen/padding_msize">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_cb_nomal" />
+
+
+            <TextView
+                style="@style/common_text_user_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/margin_h"
+                android:text="@string/prodetail_refunds_progressbegin" />
+
+            <TextView
+                style="@style/common_redtime_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_m"
+                android:text="2017-08-10 09:56" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/padding_msize"
+            android:paddingTop="@dimen/padding_msize">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_cb_nomal" />
+
+
+            <TextView
+                style="@style/common_text_user_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/margin_h"
+                android:text="@string/prodetail_refunds_progressing" />
+
+            <TextView
+                style="@style/common_redtime_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_m"
+                android:text="" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/padding_msize"
+            android:paddingTop="@dimen/padding_msize">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/icon_cb_nomal" />
+
+
+            <TextView
+                style="@style/common_text_user_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/margin_h"
+                android:text="@string/prodetail_refunds_progressuccess" />
+
+            <TextView
+                style="@style/common_redtime_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_m"
+                android:text="" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        style="@style/common_divider_view_style10"
+        android:layout_width="match_parent" />
+
+    <TextView
+        style="@style/common_text_deep"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:background="@color/common_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:text="退款编号:123456478" />
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="match_parent" />
+
+    <TextView
+        style="@style/common_text_user_order"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:layout_centerVertical="true"
+        android:background="@color/common_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:text="退款编辑:123121" />
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:orientation="horizontal">
+
+
+        <TextView
+            style="@style/common_text_user_order"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_ll_custom"
+            android:layout_centerVertical="true"
+            android:background="@color/common_white"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/padding_xxlsize"
+            android:text="退款金额: " />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:text="@string/symbol_money"
+            android:textColor="@color/common_red"
+            android:textSize="@dimen/font_xlsize" />
+
+        <TextView
+            style="@style/home_category_item_money"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_ll_custom"
+            android:layout_centerVertical="true"
+            android:background="@color/common_white"
+            android:gravity="center_vertical"
+            android:text="256" />
+    </LinearLayout>
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="match_parent" />
+
+    <TextView
+        style="@style/common_text_user_order"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:layout_centerVertical="true"
+        android:background="@color/common_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:text="退款原因: 拍错/不想要" />
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="match_parent" />
+
+    <TextView
+        style="@style/common_text_user_order"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:layout_centerVertical="true"
+        android:background="@color/common_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:text="退款编号: 12346432" />
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="match_parent" />
+
+    <TextView
+        style="@style/common_text_user_order"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:layout_centerVertical="true"
+        android:background="@color/common_white"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:text="申请时间: 2017-08-10 09:56" />
+</LinearLayout>

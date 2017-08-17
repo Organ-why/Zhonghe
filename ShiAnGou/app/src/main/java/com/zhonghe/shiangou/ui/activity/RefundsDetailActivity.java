@@ -13,4 +13,9 @@ public class RefundsDetailActivity extends BaseTopActivity {
         setNavigation(R.mipmap.common_nav_back);
         setTitle(R.string.prodetail_title_refundsdetail);
     }
+
+    @Override
+    protected void initLayout() {
+        setContentView(R.layout.activity_refunds_detail);
+    }
 }

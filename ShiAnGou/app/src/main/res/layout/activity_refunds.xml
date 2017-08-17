@@ -6,5 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.zhonghe.shiangou.ui.activity.RefundsActivity">
 
-    <include layout="@layout/item_refunds" />
+    <include layout="@layout/item_refunds_parent"
+       />
 </android.support.constraint.ConstraintLayout>

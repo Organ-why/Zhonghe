@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/common_popup_bg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/order_sku_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_hight_xhsize"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sku_select_img"
+            android:layout_width="@dimen/image_width_xlsize"
+            android:layout_height="@dimen/image_height_xlsize"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="@dimen/margin_xxlsize"
+            app:placeholderImage="@mipmap/res_default_goods" />
+
+        <TextView
+            android:id="@+id/sku_select_title_tv"
+            style="@style/common_content_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/sku_select_img"
+            android:layout_toLeftOf="@+id/sku_select_close_iv"
+            android:layout_toRightOf="@+id/sku_select_img"
+            android:layout_toStartOf="@+id/sku_select_close_iv"
+            android:text="戴维贝拉女童装戴维贝拉女童装戴维贝拉女童装戴维贝拉女童装戴维贝拉女童装戴维贝拉女童装" />
+
+        <ImageView
+            android:id="@+id/sku_select_close_iv"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/sku_select_title_tv"
+            android:layout_marginLeft="@dimen/padding_xxlsize"
+            android:layout_marginRight="@dimen/padding_xxlsize"
+            android:src="@mipmap/icon_cancel" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/sku_select_img"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin_xxlsize"
+            android:layout_marginRight="@dimen/padding_xxlsize"
+            android:layout_marginTop="@dimen/padding_xxlsize"
+            android:layout_toRightOf="@+id/sku_select_img">
+
+            <TextView
+                android:id="@+id/item_sku_select_symbol_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:text="@string/symbol_money"
+                android:textColor="@color/common_red"
+                android:textSize="@dimen/left_font_xlsize" />
+
+            <TextView
+                android:id="@+id/item_sku_select_price_tv"
+                style="@style/common_content_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/item_sku_select_symbol_tv"
+                tools:text="189" />
+
+            <TextView
+                android:id="@+id/item_sku_select_oldprice_tv"
+                style="@style/common_content_oldprice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/padding_xxlsize"
+                android:layout_toRightOf="@id/item_sku_select_price_tv"
+                tools:text="￥418" />
+
+
+            <TextView
+                android:id="@+id/item_sku_select_amounttv"
+                style="@style/common_text_shallow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/margin_xxlsize"
+                android:layout_toRightOf="@+id/item_sku_select_oldprice_tv"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textSize="@dimen/font_lsize"
+                tools:text="颜色: 大红  尺码: 73cm" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+</LinearLayout>

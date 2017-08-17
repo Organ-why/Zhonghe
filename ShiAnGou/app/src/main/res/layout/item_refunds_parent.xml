@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:padding="@dimen/padding_xxlsize">
+
+        <TextView
+            style="@style/common_text_deep"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="退款编号:123456478" />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include layout="@layout/item_refunds" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="match_parent" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_xxlsize">
+
+        <TextView
+            android:id="@+id/ids_total_money"
+            style="@style/common_order_total_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="合计: ¥" />
+
+        <TextView
+            style="@style/home_category_item_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_m"
+            android:layout_marginRight="@dimen/margin_m"
+            android:layout_toRightOf="@id/ids_total_money"
+            android:text="188.00" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/circle_orange_hollow_bg"
+            android:gravity="center"
+            android:minWidth="@dimen/order_bt_width"
+            android:padding="@dimen/padding_lsize"
+            android:text="@string/prodetail_refunds_detail"
+            android:textColor="@color/res_color_apptheme"
+            android:textSize="@dimen/font_xxlsize" />
+
+    </RelativeLayout>
+</LinearLayout>

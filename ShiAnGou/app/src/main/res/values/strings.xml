@@ -86,6 +86,9 @@
     <string name="prodetail_refunds_tip">退款说明</string>
     <string name="prodetail_refunds_tip_hint">请填写退款说明</string>
     <string name="prodetail_refunds_detail">查看详情</string>
+    <string name="prodetail_refunds_progressbegin">申请退货</string>
+    <string name="prodetail_refunds_progressing">退货中</string>
+    <string name="prodetail_refunds_progressuccess">退货成功</string>
 
 
     <string name="prodetail_error_getdesc">获取失败请重试</string>
@@ -149,6 +152,7 @@
 
     <!--评论-->
     <string name="remark_title">评论</string>
+    <string name="remark_Anonymous">您的评价会以匿名的形式展现</string>
 
 
     <!--符号-->

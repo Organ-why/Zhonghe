@@ -34,8 +34,6 @@ public class RefundsBeginActivity extends BaseSelectImageActivity {
     //保存图片路径
     private String mPath;
     RefundSubmitAdapter adapter;
-
-
     RefundImgInfo infoadd;
 
     @Override

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <!--android:background="@color/res_color_transparent"-->
+    <RelativeLayout
+        android:id="@+id/sku_context_id_context"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_sku_select"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/sku_context_msg_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <include layout="@layout/layout_prodetail_sku_content" />
+
+            <View style="@style/common_divider_style" />
+        </LinearLayout>
+
+        <ScrollView
+            style="@style/common_popup_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/sku_context_change_ll"
+            android:layout_below="@+id/sku_context_msg_ll">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/sku_select_id_ll"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"></LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/layout_hight_xhsize"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/padding_xxlsize">
+
+                    <TextView
+                        style="@style/common_content_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:text="购买数量" />
+
+                    <include
+                        layout="@layout/layout_change_number"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/margin_xxxlsize" />
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/sku_context_change_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+
+            <View style="@style/common_divider_style" />
+
+            <LinearLayout
+                style="@style/common_popup_bg"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/layout_hight_xxxlsize"
+                android:layout_alignParentBottom="true"
+                android:gravity="center">
+
+                <Button
+                    android:id="@+id/sku_select_id_confirm_bt"
+                    style="@style/button_orangecirc_bg_style"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_ll_custom"
+                    android:layout_margin="@dimen/margin_h"
+                    android:text="@string/common_confirm" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
