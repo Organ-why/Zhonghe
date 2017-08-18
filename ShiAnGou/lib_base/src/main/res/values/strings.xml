@@ -3,7 +3,7 @@
 
     <string name="title_register_phone_tip">请输入正确的手机号</string>
     <string name="title_register_code_tip">请输入您的验证码</string>
-    <string name="title_register_pwd_tip">请输入您的密码</string>
+    <string name="title_register_pwd_tip">请确认您的密码</string>
     <string name="title_register_pwdag_tip">请输入您的确认密码</string>
     <string name="title_register_pwddfrt_tip">您再次输入的密码不一致</string>
 </resources>

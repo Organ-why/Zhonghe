@@ -33,4 +33,5 @@ dependencies {
     //facebook 图片加载
     compile 'com.facebook.fresco:fresco:0.8.0+'
     compile 'com.pnikosis:materialish-progress:1.5'
+    compile files('libs/ormlite-android-4.48.jar')
 }

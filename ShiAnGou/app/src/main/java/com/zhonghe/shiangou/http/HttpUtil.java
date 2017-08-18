@@ -15,7 +15,9 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.reflect.TypeToken;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
+import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
+import com.zhonghe.shiangou.data.bean.StringInfo;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.utile.Device;
 import com.zhonghe.shiangou.utile.JSONParser;
@@ -36,36 +38,35 @@ import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
  */
 
 public class HttpUtil {
+    // 首页信息
     public static String URL_HomeData = URL_PRO + "index.php";
+    //注册
     public static String URL_Register = URL_PRO + "register.php";
+    //手机验证码
     public static String URL_GetPhoneCode = URL_PRO + "phone.php";
+    //登录
+    public static String URL_Login = URL_PRO + "login.php";
+    //商品详情
+    public static String URL_GoodsDetail = URL_PRO + "goods.php";
+    //添加购物车
+    public static String URL_AddCart = URL_PRO + "cart.php";
+    //订单
+    public static String URL_Order = URL_PRO + "order.php";
+    //订单列表
+    public static String URL_OrderList = URL_PRO + "orderindex.php";
+    //地址
+    public static String URL_Address = URL_PRO + "address.php";
+    //密码
+    public static String URL_Password = URL_PRO + "password.php";
 
-    public static Request<?> volleyPost(Context context, String url, final Map<String, String> map, final ResultListener listener) {
-        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    listener.onSuccess(object);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    listener.onFail(e.getMessage());
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                listener.onFail(error.getMessage());
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                return map;
-            }
-        };
-        return request;
-    }
 
+    /**
+     * 获取首页信息
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
     public static Request<?> getHomeData(Context context, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("curpage", "0");
@@ -85,9 +86,7 @@ public class HttpUtil {
     public static Request<?> getPhoneCode(Context context, String phone, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone);
-        BaseRes<String> res = new BaseRes<>();
-        Type bean = new TypeToken< BaseRes<String>>(){}.getType();
-        Request<?> request = volleyPost(context, URL_GetPhoneCode, map, listener, bean);
+        Request<?> request = volleyPost(context, URL_GetPhoneCode, map, listener, StringInfo.class);
         return request;
     }
 
@@ -106,11 +105,48 @@ public class HttpUtil {
         map.put("phone", phone);
         map.put("password", pwd);
         map.put("ident", code);
-        BaseRes<String> res = new BaseRes<>();
-        Request<?> request = volleyPost(context, URL_Register, map, listener, res);
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_Register, map, listener, StringInfo.class);
         return request;
     }
 
+    /**
+     * 登录
+     *
+     * @param context
+     * @param phone
+     * @param pwd
+     * @param listener
+     * @return
+     */
+    public static Request<?> getLogin(Context context, String phone, String pwd, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("phone", phone);
+        map.put("password", pwd);
+//        map.put("ident", code);
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_Login, map, listener, String.class);
+        return request;
+    }
+
+    /**
+     * 商品详情
+     *
+     * @param context
+     * @param goods_id
+     * @param listener
+     * @return
+     */
+    public static Request<?> getLogin(Context context, String goods_id, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("goods_id", goods_id);
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_GoodsDetail, map, listener, GoodsdetailInfo.class);
+        return request;
+    }
+
+
+/////////////////////////////////////////////////////////网络基本请求////////////////////////////////////////////////////////////////////////
 
     public static final String CHAR_SET = "utf-8";
 
@@ -361,13 +397,13 @@ public class HttpUtil {
      * @param url
      * @param map
      * @param listener
-     * @param bean
+     * @param
      * @return
      */
-    public static Request<?> volleyPostString(final Context context, final String url, final Map<String, String> map, final ResultListener listener, final Object bean) {
-        map.put("pubversion", Device.getCurrentAppVersionName(context) + "");
-        map.put("pubdevice", Device.getDeviceId(context));
-        map.put("pubplatform", "android");
+    public static Request<?> volleyPostString(final Context context, final String url, final Map<String, String> map, final ResultListener listener) {
+//        map.put("pubversion", Device.getCurrentAppVersionName(context) + "");
+//        map.put("pubdevice", Device.getDeviceId(context));
+//        map.put("pubplatform", "android");
 
 //        String memberKey = PrefUtils.getString(context, "pubMemberKey", "");
 //        if (!TextUtils.isEmpty(memberKey)) {
@@ -384,6 +420,7 @@ public class HttpUtil {
                     listener.onSuccess(s);
                 } catch (Exception e) {
                     e.printStackTrace();
+                    listener.onFail(e.getMessage());
                 }
             }
         }, new Response.ErrorListener() {

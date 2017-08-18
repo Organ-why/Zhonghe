@@ -8,6 +8,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.lib_httpok.OkHttp3Stack;
 import com.zhonghe.lib_base.utils.UtilImage;
+import com.zhonghe.shiangou.data.db.DaoFactory;
 import com.zhonghe.shiangou.http.ProReqestQueue;
 
 import okhttp3.OkHttpClient;
@@ -18,6 +19,8 @@ import okhttp3.OkHttpClient;
  */
 public class ProjectApplication extends Application {
     public static ProjectApplication mInstance;
+    //数据库
+    public static DaoFactory mDaoFactory;
     //图片加载
     public static UtilImage mImageLoader;
 
@@ -26,6 +29,7 @@ public class ProjectApplication extends Application {
     public static synchronized ProjectApplication getInstance() {
         return mInstance;
     }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -34,11 +38,9 @@ public class ProjectApplication extends Application {
         mImageLoader = UtilImage.getInstance(this);
         proReqestQueue = ProReqestQueue.getInstance(this);
 
+        mDaoFactory = DaoFactory.getInstance(this);
+
     }
-
-
-
-
 
 
 }

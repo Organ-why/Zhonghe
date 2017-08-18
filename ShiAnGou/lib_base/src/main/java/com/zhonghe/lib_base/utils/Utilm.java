@@ -19,31 +19,41 @@ import java.util.regex.Pattern;
  */
 public class Utilm {
 
-    public static boolean isRegiste(Context context,EditText phoneview, EditText codeview, EditText pwdview, EditText pwdagview) {
+    /**
+     * 注册检查
+     *
+     * @param context
+     * @param phoneview
+     * @param codeview
+     * @param pwdview
+     * @param pwdagview
+     * @return
+     */
+    public static boolean isRegiste(Context context, EditText phoneview, EditText codeview, EditText pwdview, EditText pwdagview) {
 
         String strphone = phoneview.getText().toString();
         String strcode = codeview.getText().toString();
         String strpwd = pwdview.getText().toString();
         String strpwdag = pwdagview.getText().toString();
-        if (!isPhone(strphone)){
+        if (!isPhone(strphone)) {
             toast(context, R.string.title_register_phone_tip);
-            return  false;
+            return false;
         }
-        if (UtilString.isBlank(strcode)){
+        if (UtilString.isBlank(strcode)) {
             toast(context, R.string.title_register_code_tip);
-            return  false;
+            return false;
         }
-        if (UtilString.isBlank(strpwd)){
+        if (!isPwd(strpwd)) {
             toast(context, R.string.title_register_pwd_tip);
-            return  false;
+            return false;
         }
-        if (UtilString.isBlank(strpwdag)){
+        if (UtilString.isBlank(strpwdag)) {
             toast(context, R.string.title_register_pwdag_tip);
-            return  false;
+            return false;
         }
-        if (!strpwd.equals(strpwdag)){
+        if (!strpwd.equals(strpwdag)) {
             toast(context, R.string.title_register_pwddfrt_tip);
-            return  false;
+            return false;
         }
 
         return true;
@@ -55,16 +65,53 @@ public class Utilm {
      * 是否是手机号码
      *
      * @param phone
-     * @return
+     * @return 是true
      */
     public static boolean isPhone(String phone) {
-        if (UtilString.isBlank(phone)) {
+        if (UtilString.isBlank(phone)||phone.length()!=11) {
             return false;
         }
+        return  isMobile(phone);
+//        String reg = "^[a-zA-Z0-9\u4e00-\u9fa5]+$";
+//        Pattern pattern = Pattern.compile(reg);
+//        Matcher matcher = pattern.matcher(phone);
+//        boolean b = matcher.matches();
+////        reg代表就是你要写的正则的规则 !让后就会返回...
+////        Pattern pattern = Patterns.PHONE;
+////        Matcher matcher = pattern.matcher(phone);
+//        return b;
+    }
 
-        Pattern pattern = Patterns.PHONE;
-        Matcher matcher = pattern.matcher(phone);
-        return matcher.find();
+    /**
+     * 验证手机格式
+     */
+    public static boolean isMobile(String number) {
+    /*
+    移动：134、135、136、137、138、139、150、151、157(TD)、158、159、187、188
+    联通：130、131、132、152、155、156、185、186
+    电信：133、153、180、189、（1349卫通）
+    总结起来就是第一位必定为1，第二位必定为3或5或8，其他位置的可以为0-9
+    */
+        String num = "[1][3578]\\d{9}";//"[1]"代表第1位为数字1，"[358]"代表第二位可以为3、5、8中的一个，"\\d{9}"代表后面是可以是0～9的数字，有9位。
+        if (UtilString.isEmpty(number)) {
+            return false;
+        } else {
+            //matches():字符串是否在给定的正则表达式匹配
+            return number.matches(num);
+        }
+    }
+
+    /**
+     * 密码格式
+     *
+     * @param
+     * @return 是true
+     */
+    public static boolean isPwd(String pwd) {
+        if (UtilString.isBlank(pwd) || pwd.length() < 6 || pwd.length() > 18) {
+            return false;
+        }
+        return true;
     }
 
 

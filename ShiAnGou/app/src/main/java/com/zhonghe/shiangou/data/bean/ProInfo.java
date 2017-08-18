@@ -1,12 +1,14 @@
 package com.zhonghe.shiangou.data.bean;
 
+import com.zhonghe.shiangou.data.baseres.BaseRes;
+
 import java.math.BigDecimal;
 
 /**
  * Date: 2017/8/7.
  * Author: whyang
  */
-public class ProInfo {
+public class ProInfo extends BaseRes{
     String imgUrl, proName;
     float price, oldPrice;
 

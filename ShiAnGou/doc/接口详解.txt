@@ -1,4 +1,44 @@
+                         发送手机验证码
+请求地址：http://test.shiangou.com.cn/Android/phone.php
+请求方式：post
+请求参数:phone
+
+\u9a8c\u8bc1\u7801\u53d1\u9001\u6210\u529f
+
+                           商品详情页
+请求地址：http://test.shiangou.com.cn/Android/goods.php
+请求参数：goods_id
+请求方式：post
 购物车接口
+
+
+                                注册接口
+请求地址：http://test.shiangou.com.cn/Android/register.php
+请求方式:post
+请求参数
+
+             参数	             值
+            phone	           手机号
+            password	           密码
+            ident	            验证码
+
+
+                             登录接口
+请求地址:http://test.shiangou.com.cn/Android/login.php
+请求方式：post
+请求参数：
+
+           参数	               值
+          phone	             手机号
+          password	              密码
+
+
+首页
+请求地址：test.shiangou.com.cn/Android/index.php
+请求方式：post
+  请求参数：test
+
+
 
 	1.添加购物车
 

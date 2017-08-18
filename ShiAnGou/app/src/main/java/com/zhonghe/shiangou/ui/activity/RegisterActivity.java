@@ -1,6 +1,7 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
+ * 注册
  * Date: 2017/8/12.
  * Author: whyang
  */
@@ -59,9 +61,10 @@ public class RegisterActivity extends BaseTopActivity {
         }
     }
 
+    //检查信息后进行注册
     void toRegiste() {
         String phone = idsRegisterPhoneEt.getText().toString();
-        String code= idsRegisterCodeEt.getText().toString();
+        String code = idsRegisterCodeEt.getText().toString();
         String pwd = idsRegisterPwdEt.getText().toString();
         if (Utilm.isRegiste(this, idsRegisterPhoneEt, idsRegisterCodeEt, idsRegisterPwdEt, idsRegisterPwdagEt)) {
             setWaitingDialog(true);
@@ -82,6 +85,7 @@ public class RegisterActivity extends BaseTopActivity {
 //        Utilm.
     }
 
+    // 获取验证码
     void getPhoneCode() {
         String phone = idsRegisterPhoneEt.getText().toString();
 
@@ -89,19 +93,23 @@ public class RegisterActivity extends BaseTopActivity {
             Utilm.toast(this, R.string.title_register_phone_tip);
             return;
         }
-
+        idRegisterGetcodeTv.setEnabled(false);
         setWaitingDialog(true);
         Request<?> request = HttpUtil.getPhoneCode(this, phone, new ResultListener() {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(RegisterActivity.this, error);
+                idRegisterGetcodeTv.setEnabled(true);
+                Utilm.toast(RegisterActivity.this, error.toString());
+                Log.d("onfail.......",error.toString());
             }
 
             @Override
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
-                Utilm.toast(RegisterActivity.this, obj.toString());
+                idRegisterGetcodeTv.setEnabled(true);
+//                Utilm.toast(RegisterActivity.this, obj.toString());
+                Log.d("onfail.......",obj.toString());
             }
 
         });

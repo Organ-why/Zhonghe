@@ -34,14 +34,16 @@ public class JSONParser {
                 return gson.fromJson(jsonString, (Type) type);
             } catch (JsonSyntaxException e) {
                 e.printStackTrace();
-                return null;
+                throw new RuntimeException("类型转换错误1");
+//                return null;
             }
         } else if (type instanceof Class<?>) {
             try {
                 return gson.fromJson(jsonString, (Class<?>) type);
             } catch (JsonSyntaxException e) {
                 e.printStackTrace();
-                return null;
+                throw new RuntimeException("类型转换错误2");
+//                return null;
             }
         } else {
             throw new RuntimeException("只能是Class<?>或者通过TypeToken获取的Type类型");

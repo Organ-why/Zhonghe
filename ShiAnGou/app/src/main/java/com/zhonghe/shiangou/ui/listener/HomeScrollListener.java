@@ -63,7 +63,7 @@ public class HomeScrollListener implements View.OnTouchListener {
     public boolean onTouch(View v, MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
-                Log.d("HomeScrollListener", "getY..." + v.getY() + "...getScrollY..." + v.getScrollY());
+//                Log.d("HomeScrollListener", "getY..." + v.getY() + "...getScrollY..." + v.getScrollY());
                 //175+50+75
                 if (v.getScrollY() > Utilm.dip2px(context, 300)) {
                     titleListView.setVisibility(View.VISIBLE);

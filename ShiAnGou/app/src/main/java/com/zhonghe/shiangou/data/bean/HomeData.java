@@ -2,6 +2,7 @@ package com.zhonghe.shiangou.data.bean;
 
 
 import com.google.gson.annotations.SerializedName;
+import com.zhonghe.shiangou.data.baseres.BaseRes;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * Created by a on 2017/8/11.
  */
 
-public class HomeData extends BaseBean {
+public class HomeData extends BaseRes {
     /**
      * state : 1
      * msg : 请求成功

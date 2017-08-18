@@ -1,6 +1,7 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -8,9 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
+import com.zhonghe.shiangou.ui.listener.ResultListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -45,6 +50,33 @@ public class LoginActivity extends BaseTopActivity {
         ButterKnife.bind(this);
     }
 
+    void goLogin() {
+        String phone = idLoginNameEt.getText().toString();
+        String pwd = idLoginPwdEt.getText().toString();
+
+        if (!Utilm.isPhone(phone)) {
+            Utilm.toast(this, R.string.title_register_phone_tip);
+            return;
+        }
+        if (!Utilm.isPwd(pwd)) {
+            Utilm.toast(this, R.string.title_register_pwd_tip);
+            return;
+        }
+
+
+        Request<?> request = HttpUtil.getLogin(this, phone, pwd, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+                Utilm.toast(LoginActivity.this, error);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+            }
+        });
+        addRequest(request);
+
+    }
 
     @OnClick({R.id.id_login_register_ll, R.id.id_login_forgetpwd_tv, R.id.id_login_log_bt})
     public void onClick(View view) {
