@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xxh"
+        android:src="@mipmap/res_point_submit_result" />
+
+    <TextView
+        style="@style/common_text_gray_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/margin_xl"
+        android:background="@color/common_white"
+        android:gravity="center"
+        android:text="@string/point_submit_success" />
+
+    <TextView
+        style="@style/common_text_gray_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/margin_l"
+        android:background="@color/common_white"
+        android:gravity="center"
+        android:text="@string/point_submit_desc" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xl"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/id_point_torecord_bt"
+            android:layout_width="@dimen/view_width_default_button"
+            android:layout_height="@dimen/height_ll_item"
+            android:layout_marginLeft="@dimen/padding_xmsize"
+            android:layout_marginRight="@dimen/padding_xmsize"
+            android:background="@drawable/circle_orange_hollow_bg"
+            android:text="@string/point_submit_result_bt_gorecord"
+            android:textColor="@color/res_color_apptheme"
+            android:textSize="@dimen/font_msize" />
+
+        <Button
+            android:id="@+id/id_point_gobuy_bt"
+            android:layout_width="@dimen/view_width_default_button"
+            android:layout_height="@dimen/height_ll_item"
+            android:layout_marginLeft="@dimen/padding_xmsize"
+            android:layout_marginRight="@dimen/padding_xmsize"
+            android:background="@drawable/circle_bt_orange_bg"
+            android:text="@string/point_submit_result_bt_buy"
+            android:textColor="@color/common_white"
+            android:textSize="@dimen/font_msize" />
+
+    </LinearLayout>
+</LinearLayout>

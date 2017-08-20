@@ -25,78 +25,80 @@ import android.widget.GridView;
 
 import com.handmark.pulltorefresh.library.internal.EmptyViewMethodAccessor;
 
-public class PullToRefreshGridView extends PullToRefreshAdapterViewBase<GridView> {
+public class PullToRefreshGridView extends PullToRefreshAdapterViewBase<HeaderGridView> {
 
-	public PullToRefreshGridView(Context context) {
-		super(context);
-	}
+    public PullToRefreshGridView(Context context) {
+        super(context);
+    }
 
-	public PullToRefreshGridView(Context context, AttributeSet attrs) {
-		super(context, attrs);
-	}
+    public PullToRefreshGridView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+    }
 
-	public PullToRefreshGridView(Context context, Mode mode) {
-		super(context, mode);
-	}
+    public PullToRefreshGridView(Context context, Mode mode) {
+        super(context, mode);
+    }
 
-	public PullToRefreshGridView(Context context, Mode mode, AnimationStyle style) {
-		super(context, mode, style);
-	}
+    public PullToRefreshGridView(Context context, Mode mode, AnimationStyle style) {
+        super(context, mode, style);
+    }
 
-	@Override
-	public final Orientation getPullToRefreshScrollDirection() {
-		return Orientation.VERTICAL;
-	}
+    @Override
+    public final Orientation getPullToRefreshScrollDirection() {
+        return Orientation.VERTICAL;
+    }
 
-	@Override
-	protected final GridView createRefreshableView(Context context, AttributeSet attrs) {
-		final GridView gv;
-		if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
-			gv = new InternalGridViewSDK9(context, attrs);
-		} else {
-			gv = new InternalGridView(context, attrs);
-		}
+    HeaderGridView gv;
 
-		// Use Generated ID (from res/values/ids.xml)
-		gv.setId(R.id.gridview);
-		return gv;
-	}
+    @Override
+    protected final HeaderGridView createRefreshableView(Context context, AttributeSet attrs) {
 
-	class InternalGridView extends GridView implements EmptyViewMethodAccessor {
+        if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
+            gv = new InternalGridViewSDK9(context, attrs);
+        } else {
+            gv = new InternalGridView(context, attrs);
+        }
 
-		public InternalGridView(Context context, AttributeSet attrs) {
-			super(context, attrs);
-		}
+        // Use Generated ID (from res/values/ids.xml)
+        gv.setId(R.id.gridview);
+        return gv;
+    }
 
-		@Override
-		public void setEmptyView(View emptyView) {
-			PullToRefreshGridView.this.setEmptyView(emptyView);
-		}
+    class InternalGridView extends HeaderGridView implements EmptyViewMethodAccessor {
 
-		@Override
-		public void setEmptyViewInternal(View emptyView) {
-			super.setEmptyView(emptyView);
-		}
-	}
+        public InternalGridView(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
 
-	@TargetApi(9)
-	final class InternalGridViewSDK9 extends InternalGridView {
+        @Override
+        public void setEmptyView(View emptyView) {
+            PullToRefreshGridView.this.setEmptyView(emptyView);
+        }
 
-		public InternalGridViewSDK9(Context context, AttributeSet attrs) {
-			super(context, attrs);
-		}
+        @Override
+        public void setEmptyViewInternal(View emptyView) {
+            super.setEmptyView(emptyView);
+        }
+    }
 
-		@Override
-		protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX,
-				int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
+    @TargetApi(9)
+    final class InternalGridViewSDK9 extends InternalGridView {
 
-			final boolean returnValue = super.overScrollBy(deltaX, deltaY, scrollX, scrollY, scrollRangeX,
-					scrollRangeY, maxOverScrollX, maxOverScrollY, isTouchEvent);
+        public InternalGridViewSDK9(Context context, AttributeSet attrs) {
+            super(context, attrs);
+        }
 
-			// Does all of the hard work...
-			OverscrollHelper.overScrollBy(PullToRefreshGridView.this, deltaX, scrollX, deltaY, scrollY, isTouchEvent);
+        @Override
+        protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX,
+                                       int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
 
-			return returnValue;
-		}
-	}
+            final boolean returnValue = super.overScrollBy(deltaX, deltaY, scrollX, scrollY, scrollRangeX,
+                    scrollRangeY, maxOverScrollX, maxOverScrollY, isTouchEvent);
+
+            // Does all of the hard work...
+            OverscrollHelper.overScrollBy(PullToRefreshGridView.this, deltaX, scrollX, deltaY, scrollY, isTouchEvent);
+
+            return returnValue;
+        }
+    }
 }

@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_banner_height"
+        app:placeholderImage="@mipmap/res_default_banner" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_item"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_xxlsize">
+
+
+        <TextView
+            style="@style/common_content_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/padding_xxlsize"
+            android:text="商品名称" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_item"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/padding_xxlsize">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@mipmap/icon_point"
+            android:drawablePadding="@dimen/padding_xxlsize"
+            android:text="@string/common_point_str" />
+
+        <TextView
+            style="@style/detial_goods_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:text="8888" />
+
+        <TextView
+            style="@style/common_text_gray_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:gravity="right"
+            android:text="8888" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/id_user_address_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+
+        <TextView
+            style="@style/common_text_gray_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_lsize"
+            android:text="@string/address_titleslct_text" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_xxlsize">
+
+
+        <TextView
+            style="@style/common_content_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/padding_xxlsize"
+            android:text="商品详情" />
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/prodetail_act_title" />
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/prodetail_act_title" />
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/prodetail_act_title" />
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/prodetail_act_title" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_xxlsize"
+        android:visibility="gone">
+
+
+        <TextView
+            style="@style/common_content_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/padding_xxlsize"
+            android:text="注意事项" />
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/prodetail_act_title" />
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/prodetail_act_title" />
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/prodetail_act_title" />
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_h"
+            android:text="@string/prodetail_act_title" />
+    </LinearLayout>
+
+    <Button
+        style="@style/button_orangecirc_bg_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_h"
+        android:background="@drawable/circle_bt_orange_bg"
+        android:text="@string/point_excange_now" />
+</LinearLayout>

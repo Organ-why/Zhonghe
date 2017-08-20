@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_point_banner_sv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_banner_height"
+        android:scaleType="fitXY"
+        app:placeholderImage="@mipmap/res_default_banner" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_item"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_point"
+                android:drawablePadding="@dimen/padding_xxlsize"
+                android:text="@string/common_point_str" />
+
+            <TextView
+                style="@style/detial_goods_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_h"
+                android:text="8888" />
+        </LinearLayout>
+
+        <View style="@style/common_divider_vertical_style" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_point"
+                android:drawablePadding="@dimen/padding_xxlsize"
+                android:text="@string/common_point_str" />
+
+            <!--<TextView-->
+            <!--android:layout_marginLeft="@dimen/margin_h"-->
+            <!--style="@style/detial_goods_money"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="8888" />-->
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View style="@style/common_divider_style10" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_title_height"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/id_point_zero_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/padding_xlsize"
+            android:drawableTop="@mipmap/icon_point_zero"
+            android:gravity="center"
+            android:text="@string/point_zero_str" />
+
+        <TextView
+            android:id="@+id/id_point_today_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/padding_xlsize"
+            android:drawableTop="@mipmap/icon_point_today"
+            android:gravity="center"
+            android:text="@string/point_today_str" />
+
+        <TextView
+            android:id="@+id/id_point_common_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/padding_xlsize"
+            android:drawableTop="@mipmap/icon_point_common"
+            android:gravity="center"
+            android:text="@string/point_common_str" />
+
+        <TextView
+            android:id="@+id/id_point_all_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/padding_xlsize"
+            android:drawableTop="@mipmap/icon_point_all"
+            android:gravity="center"
+            android:text="@string/point_all_str" />
+
+
+    </LinearLayout>
+
+    <View style="@style/common_divider_style10" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_item"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:text="@string/point_alluser_str"></TextView>
+</LinearLayout>

@@ -54,7 +54,6 @@ public class RemarkActivity extends BaseSelectImageActivity {
     protected void initViews() {
         adapter = new RefundSubmitAdapter(this);
         idRefundSubmitImgGv.setAdapter(adapter);
-
         infoadd = new RefundImgInfo();
         infoadd.setAdd(true);
         adapter.addItem(infoadd);

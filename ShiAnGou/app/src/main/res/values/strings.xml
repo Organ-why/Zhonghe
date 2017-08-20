@@ -155,6 +155,23 @@
     <string name="remark_Anonymous">您的评价会以匿名的形式展现</string>
 
 
+    <!--积分-->
+    <string name="common_point_str">积分</string>
+    <string name="common_point_exchange_str">兑换</string>
+    <string name="common_pointtitle_str">积分商城</string>
+    <string name="point_record_str">兑换记录</string>
+    <string name="point_zero_str">0元换购</string>
+    <string name="point_today_str">今日新品</string>
+    <string name="point_common_str">日常家居</string>
+    <string name="point_all_str">所有商品</string>
+    <string name="point_alluser_str">大家都在兑</string>
+    <string name="point_submit_success">您的兑换申请成功提交，工作人员将尽快为您\n处理，请耐心等待</string>
+    <string name="point_submit_desc">在我的订单界面中可查看订单状态</string>
+    <string name="point_submit_result_bt_gorecord">前往兑换记录</string>
+    <string name="point_submit_result_bt_buy">继续逛逛</string>
+    <string name="point_excange_now">立即兑换</string>
+
+
     <!--符号-->
     <string name="symbol_money">¥</string>
     <string name="symbol_money_reduce">-¥</string>

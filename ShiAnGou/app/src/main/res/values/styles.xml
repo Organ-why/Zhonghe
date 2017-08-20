@@ -212,6 +212,15 @@
         <item name="android:textColor">@color/common_font_deep</item>
         <item name="android:textSize">@dimen/font_xlsize</item>
     </style>
+    <style name="common_text_gray_title">
+        <item name="android:textColor">@color/common_font_deep</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
+        <item name="android:maxLines">2</item>
+    </style>
+    <style name="common_text_gray_desc">
+        <item name="android:textColor">@color/common_font_shallow</item>
+        <item name="android:textSize">@dimen/font_xlsize</item>
+    </style>
     <!--订单 商品描述-->
     <style name="common_order_name_style">
         <item name="android:textColor">@color/common_font_normal</item>
@@ -291,7 +300,12 @@
         <item name="android:background">@color/common_divide_normal</item>
         <item name="android:layout_height">@dimen/height_divider_line_lsize</item>
         <item name="android:layout_width">match_parent</item>
-
+    </style>
+    <!--垂直分割线-->
+    <style name="common_divider_vertical_style">
+        <item name="android:background">@color/common_divide_normal</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/height_divider_line_lsize</item>
     </style>
 
     <style name="common_divider_style1">
@@ -311,6 +325,7 @@
         <item name="android:layout_height">@dimen/height_divider_line_xlsize</item>
         <item name="android:layout_width">match_parent</item>
     </style>
+
     <style name="common_text_shallow">
         <item name="android:textColor">@color/common_font_shallow</item>
     </style>
@@ -367,6 +382,7 @@
         <item name="android:textColor">@color/common_red</item>
         <item name="android:textSize">@dimen/font_xmsize</item>
     </style>
+
     <style name="common_popup_bg">
         <item name="android:background">@color/common_white_dialog</item>
     </style>
