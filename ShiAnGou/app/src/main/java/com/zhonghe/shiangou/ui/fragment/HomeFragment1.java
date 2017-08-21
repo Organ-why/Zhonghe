@@ -102,8 +102,8 @@ public class HomeFragment1 extends BaseTopFragment {
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
                 HomeData homeData = (HomeData) obj;
-                bannerInfo = homeData.getDatas().getBannerX();
-                categoryInfo = homeData.getDatas().getCategoryX();
+                bannerInfo = homeData.getBannerX();
+                categoryInfo = homeData.getCategoryX();
                 showBanner();
                 showCategory();
                 Log.i("onSuccess", obj.toString());

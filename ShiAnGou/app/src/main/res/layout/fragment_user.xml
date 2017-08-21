@@ -163,6 +163,41 @@
     <View style="@style/common_divider_style10" />
 
     <RelativeLayout
+        android:id="@+id/id_user_point_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+        <ImageView
+            android:id="@+id/ids_point"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_point_item" />
+
+        <TextView
+            style="@style/common_text_user_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_lsize"
+            android:layout_toRightOf="@id/ids_point"
+            android:text="@string/common_pointtitle_str" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+    <View
+        style="@style/common_divider_style1"/>
+    <RelativeLayout
         android:id="@+id/id_user_like_rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_item_height"
@@ -197,10 +232,7 @@
     </RelativeLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_divider_line_msize"
-        android:layout_alignParentBottom="true"
-        android:background="@color/common_gray" />
+        style="@style/common_divider_style1"/>
 
     <RelativeLayout
         android:id="@+id/id_user_contactus_rl"
@@ -237,13 +269,9 @@
     </RelativeLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_divider_line_msize"
-        android:layout_alignParentBottom="true"
-        android:background="@color/common_gray" />
-
+        style="@style/common_divider_style1"/>
     <RelativeLayout
-        android:id="@+id/id_user_help_rl"
+        android:id="@+id/id_user_msg_rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_item_height"
         android:background="@color/common_white"
@@ -251,11 +279,11 @@
         android:paddingRight="@dimen/padding_xxlsize">
 
         <ImageView
-            android:id="@+id/ids_help"
+            android:id="@+id/ids_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:src="@mipmap/icon_user_help" />
+            android:src="@mipmap/icon_msg_item" />
 
         <TextView
             style="@style/common_text_user_item"
@@ -263,9 +291,43 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin_lsize"
-            android:layout_toRightOf="@id/ids_help"
-            android:text="@string/common_user_item_help" />
+            android:layout_toRightOf="@id/ids_msg"
+            android:text="@string/common_msg" />
 
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+    <View
+        style="@style/common_divider_style1"/>
+    <RelativeLayout
+        android:id="@+id/id_user_setup_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+        <ImageView
+            android:id="@+id/ids_setup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_setup_item" />
+
+        <TextView
+            style="@style/common_text_user_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_lsize"
+            android:layout_toRightOf="@id/ids_setup"
+            android:text="@string/setup_title_text" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -277,9 +339,6 @@
     </RelativeLayout>
 
     <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_divider_line_msize"
-        android:layout_alignParentBottom="true"
-        android:background="@color/common_gray" />
+        style="@style/common_divider_style1"/>
 
 </LinearLayout>

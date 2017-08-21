@@ -21,6 +21,7 @@
     <string name="common_submit">提交</string>
     <string name="common_addimg">添加图片</string>
     <string name="common_picked">从相册选择</string>
+    <string name="common_msg">我的消息</string>
     <!--Splash-->
     <string name="splash_slogan_text">©2017 ShiAnGou (China) Softwareco.Ltd</string>
 
@@ -159,6 +160,7 @@
     <string name="common_point_str">积分</string>
     <string name="common_point_exchange_str">兑换</string>
     <string name="common_pointtitle_str">积分商城</string>
+    <string name="common_point_detail_title_str">积分详情</string>
     <string name="point_record_str">兑换记录</string>
     <string name="point_zero_str">0元换购</string>
     <string name="point_today_str">今日新品</string>
@@ -168,8 +170,12 @@
     <string name="point_submit_success">您的兑换申请成功提交，工作人员将尽快为您\n处理，请耐心等待</string>
     <string name="point_submit_desc">在我的订单界面中可查看订单状态</string>
     <string name="point_submit_result_bt_gorecord">前往兑换记录</string>
+    <string name="point_submit_result_title_success">申请成功</string>
+    <string name="point_submit_result_title_fail">申请失败</string>
     <string name="point_submit_result_bt_buy">继续逛逛</string>
     <string name="point_excange_now">立即兑换</string>
+    <string name="point_excange_title">0元换购</string>
+    <string name="point_excange_record_title">兑换记录</string>
 
 
     <!--符号-->

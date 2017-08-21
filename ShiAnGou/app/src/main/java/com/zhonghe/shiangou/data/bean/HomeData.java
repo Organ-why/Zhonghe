@@ -16,18 +16,18 @@ public class HomeData extends BaseRes {
      * msg : 请求成功
      * datas : {}
      */
-    private DatasBean datas;
+//    private DatasBean datas;
 
-    public DatasBean getDatas() {
-        return datas;
-    }
+//    public DatasBean getDatas() {
+//        return datas;
+//    }
+//
+//    public void setDatas(DatasBean datas) {
+//        this.datas = datas;
+//    }
 
-    public void setDatas(DatasBean datas) {
-        this.datas = datas;
-    }
 
-
-    public static class DatasBean {
+//    public static class DatasBean {
         @SerializedName("category")
         private List<HomeCategoryInfo> categoryX;
         @SerializedName("banner")
@@ -50,5 +50,5 @@ public class HomeData extends BaseRes {
         }
 
 
-    }
+//    }
 }

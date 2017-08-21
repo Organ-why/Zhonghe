@@ -37,7 +37,7 @@ public class HomeCategoryListView {
             SimpleDraweeView img = (SimpleDraweeView) inflate.findViewById(R.id.id_home_category_item_title_iv);//分类大图片
             ProjectApplication.mImageLoader.loadImage(img, info.getCat_images());
             LinearLayout itemList = (LinearLayout) inflate.findViewById(R.id.id_home_category_item_ll);//商品列表
-            for (GoodsInfo itemInfo : info.getList()) {
+            for (final GoodsInfo itemInfo : info.getList()) {
                 View itemView = inflater.inflate(R.layout.item_home_category_item, null);
                 SimpleDraweeView proimg = (SimpleDraweeView) itemView.findViewById(R.id.id_home_category_item_iv);
                 ProjectApplication.mImageLoader.loadImage(proimg, itemInfo.getGoods_img());
@@ -45,10 +45,12 @@ public class HomeCategoryListView {
                 tvtitle.setText(itemInfo.getGoods_name());
                 TextView tvprice = (TextView) itemView.findViewById(R.id.id_home_category_item_price_tv);
                 tvprice.setText(itemInfo.getShop_price());
+                TextView tvmarketprice = (TextView) itemView.findViewById(R.id.id_home_category_item_oldprice_tv);
+                tvmarketprice.setText(itemInfo.getMarket_price());
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ProDispatcher.goGoodsDetailActivity(context);
+                        ProDispatcher.goGoodsDetailActivity(context,itemInfo.getGoods_id());
                     }
                 });
                 itemList.addView(itemView);

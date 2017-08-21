@@ -5,6 +5,8 @@ import android.content.Context;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import com.zhonghe.shiangou.data.bean.UserInfo;
+import com.zhonghe.shiangou.data.db.dao.UserDao;
 
 import java.sql.SQLException;
 
@@ -17,7 +19,7 @@ public class DaoFactory {
     private ConnectionSource mSource;
 
     //用户dao
-//    private UserDao mUserDao;
+    private UserDao mUserDao;
 //    //
 //    private NativeWorksDao mnativeWorksDao;
 
@@ -25,25 +27,24 @@ public class DaoFactory {
     private DaoFactory(Context ctx) {
         this.mSource = OpenHelperManager.getHelper(ctx, DataHelper.class)
                 .getConnectionSource();
-
     }
 
     /**
      * 清除表中的所有数据
      */
     public void clear() {
-//        try {
+        try {
 //            UtilLog.e("drop user table");
-//            TableUtils.dropTable(mSource, MemberInfo.class, true);
+            TableUtils.dropTable(mSource, UserInfo.class, true);
 //            UtilLog.e("create user table");
 //            TableUtils.createTable(mSource, MemberInfo.class);UtilLog.e("drop user table");
 //            UtilLog.e("drop NativeWorks table");
 //            TableUtils.dropTable(mSource, NativeWorksInfo.class, true);
 //            UtilLog.e("create NativeWorks table");
 //            TableUtils.createTable(mSource, NativeWorksInfo.class);
-//        } catch (SQLException e) {
-//
-//        }
+        } catch (SQLException e) {
+
+        }
     }
 
     /**
@@ -58,4 +59,23 @@ public class DaoFactory {
         }
         return mInstance;
     }
+
+    /**
+     * 获取用户dao
+     *
+     * @return
+     */
+    public UserDao getUserDao() {
+        if (null == mUserDao) {
+            try {
+                mUserDao = new UserDao(mSource, UserInfo.class);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return mUserDao;
+    }
+
+
 }

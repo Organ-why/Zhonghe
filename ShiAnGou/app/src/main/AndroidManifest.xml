@@ -35,11 +35,13 @@
         <!-- 注册 -->
         <activity
             android:name=".ui.activity.RegisterActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 登录 -->
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 设置 -->
         <activity
             android:name=".ui.activity.SetupActivity"
@@ -52,39 +54,48 @@
         <!-- 地址管理 -->
         <activity
             android:name=".ui.activity.AddressManageActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 修改地址 -->
         <activity
             android:name=".ui.activity.ChangeAddressActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 订单管理 -->
         <activity
             android:name=".ui.activity.OrderManageActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 用户信息 -->
         <activity
             android:name=".ui.activity.UserActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 物流 -->
         <activity
             android:name=".ui.activity.LogisticsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 退款退货 -->
         <activity
             android:name=".ui.activity.RefundsActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 我喜欢的 -->
         <activity
             android:name=".ui.activity.LikeActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 评论 -->
         <activity
             android:name=".ui.activity.RemarkActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <!-- 忘记密码 -->
         <activity
             android:name=".ui.activity.ForgetPwdActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
         <!--退款退货 -->
         <activity
             android:name=".ui.activity.RefundsBeginActivity"
@@ -100,6 +111,32 @@
             android:name=".ui.activity.RefundsDetailActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <!--积分兑换 -->
+        <activity
+            android:name=".ui.activity.PointActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <!--积分详情 -->
+        <activity
+            android:name=".ui.activity.PointDetailActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <!--积分兑换结果返回 -->
+        <activity
+            android:name=".ui.activity.PointExchangeResultActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <!--积分兑换列表 -->
+        <activity
+            android:name=".ui.activity.PointExcangeListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <!--积分兑换记录 -->
+        <activity
+            android:name=".ui.activity.PointExcangeRecordActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+
     </application>
 
 </manifest>

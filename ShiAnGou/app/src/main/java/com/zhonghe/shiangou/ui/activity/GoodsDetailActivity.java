@@ -1,21 +1,25 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
+import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.PayDialog;
-import com.zhonghe.shiangou.ui.dialog.SelectPictureDialog;
 import com.zhonghe.shiangou.ui.dialog.SkuSelectDialog;
-import com.zhonghe.shiangou.utile.image.CropHelper;
+import com.zhonghe.shiangou.ui.listener.ResultListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -51,6 +55,11 @@ public class GoodsDetailActivity extends BaseTopActivity {
 
     SkuSelectDialog mDialog;
 
+    String goodsId;
+    GoodsdetailInfo data;
+    @Bind(R.id.id_goodsdetail_like_ib)
+    ImageButton idGoodsdetailLikeIb;
+
     @Override
     protected void initTop() {
         setTitle(R.string.prodetail_act_title);
@@ -61,7 +70,34 @@ public class GoodsDetailActivity extends BaseTopActivity {
     protected void initLayout() {
         setContentView(R.layout.activity_goodsdetail);
         ButterKnife.bind(this);
+        goodsId = getIntent().getStringExtra(CstProject.KEY.ID);
     }
+
+    @Override
+    protected void initViews() {
+        setWaitingDialog(true);
+        Request<?> request = HttpUtil.getGoodsDetail(this, goodsId, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+                setWaitingDialog(false);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                setWaitingDialog(false);
+                data = (GoodsdetailInfo) obj;
+                if (data != null) setShowMsg();
+
+            }
+        });
+        addRequest(request);
+    }
+
+    void setShowMsg() {
+        idGoodsdetailTitleTv.setText(data.getGoods_name());
+
+    }
+
 
     public void selectPicture(View parent) {
         if (mDialog == null) {
@@ -86,19 +122,33 @@ public class GoodsDetailActivity extends BaseTopActivity {
         mDialog.showAtLocation(parent, Gravity.CENTER, 0, 0);
     }
 
-    @OnClick({R.id.id_goodsdetail_buynow_bt, R.id.id_goodsdetail_addcart_bt})
+    @OnClick({R.id.id_goodsdetail_buynow_bt, R.id.id_goodsdetail_addcart_bt, R.id.id_goodsdetail_like_ib})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.id_goodsdetail_buynow_bt:
+                if (ProjectApplication.mUser == null) {
+                    ProDispatcher.goLoginActivity(this);
+                    break;
+                }
+
                 ProDispatcher.goRemarkActivity(this);
                 break;
             case R.id.id_goodsdetail_addcart_bt:
-//                ProDispatcher.goRemarkActivity(this);
-//                selectPicture(view);
+                if (ProjectApplication.mUser == null) {
+                    ProDispatcher.goLoginActivity(this);
+                    break;
+                }
                 PayDialog dialog = new PayDialog(this);
                 dialog.showAtLocation(view, Gravity.CENTER, 0, 0);
 //                dialog.show();
                 break;
+            case R.id.id_goodsdetail_like_ib:
+                if (ProjectApplication.mUser == null) {
+                    ProDispatcher.goLoginActivity(this);
+                    break;
+                }
+                break;
         }
     }
+
 }

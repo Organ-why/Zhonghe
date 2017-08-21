@@ -13,5 +13,6 @@ public class ColumnHelper {
         public static final String USERNAME = "_userName";
         public static final String PHONE = "_phone";
         public static final String HEADER = "_header";
+        public static final String POINT = "_point";
     }
 }

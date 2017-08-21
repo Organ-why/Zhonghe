@@ -3,6 +3,7 @@ package com.zhonghe.shiangou.system.global;
 import android.content.Context;
 import android.content.Intent;
 
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.activity.AddressManageActivity;
 import com.zhonghe.shiangou.ui.activity.ChangeAddressActivity;
 import com.zhonghe.shiangou.ui.activity.ConfirmOrderActivity;
@@ -225,11 +226,12 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goGoodsDetailActivity(Context context) {
+    public static void goGoodsDetailActivity(Context context, String goods_id) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, GoodsDetailActivity.class);
+        intent.putExtra(CstProject.KEY.ID, goods_id);
         context.startActivity(intent);
     }
 }

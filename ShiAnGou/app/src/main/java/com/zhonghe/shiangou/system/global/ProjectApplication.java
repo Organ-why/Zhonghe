@@ -8,7 +8,9 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.lib_httpok.OkHttp3Stack;
 import com.zhonghe.lib_base.utils.UtilImage;
+import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.data.db.DaoFactory;
+import com.zhonghe.shiangou.data.pref.ProPrefrences;
 import com.zhonghe.shiangou.http.ProReqestQueue;
 
 import okhttp3.OkHttpClient;
@@ -23,8 +25,12 @@ public class ProjectApplication extends Application {
     public static DaoFactory mDaoFactory;
     //图片加载
     public static UtilImage mImageLoader;
-
+    //任务管理
     public static ProReqestQueue proReqestQueue;
+    //sp实例
+    public static ProPrefrences mPrefrence;
+    //当前用户信息
+    public static UserInfo mUser;
 
     public static synchronized ProjectApplication getInstance() {
         return mInstance;
@@ -39,6 +45,17 @@ public class ProjectApplication extends Application {
         proReqestQueue = ProReqestQueue.getInstance(this);
 
         mDaoFactory = DaoFactory.getInstance(this);
+//        mDaoFactory.clear();
+        mPrefrence = new ProPrefrences(this);
+
+        //获取当前用户信息
+        String userId = mPrefrence.getUserId();
+
+        mUser = mDaoFactory.getUserDao().getUser(userId);
+//        if (memberInfo != null) {
+//            mUser = new User();
+//            mUser.setMember(memberInfo);
+//        }
 
     }
 

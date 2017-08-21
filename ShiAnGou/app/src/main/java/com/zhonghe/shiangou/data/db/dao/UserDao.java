@@ -13,8 +13,8 @@ import java.util.List;
  * Created by a on 2017/8/18.
  */
 
-public abstract class UserDao extends BaseDao<UserInfo> {
-    protected UserDao(ConnectionSource connectionSource, Class<UserInfo> dataClass) throws SQLException {
+public class UserDao extends BaseDao<UserInfo> {
+    public UserDao(ConnectionSource connectionSource, Class<UserInfo> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }
 

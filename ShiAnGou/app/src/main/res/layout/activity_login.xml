@@ -23,6 +23,7 @@
             android:src="@mipmap/icon_register_name" />
 
         <EditText
+            android:text="12345678910"
             android:id="@+id/id_login_name_et"
             style="@style/common_edittext_style"
             android:layout_marginLeft="@dimen/margin_h"
@@ -47,6 +48,8 @@
             android:src="@mipmap/icon_register_pwd" />
 
         <EditText
+            android:text="123"
+            android:inputType="textPassword"
             android:id="@+id/id_login_pwd_et"
             style="@style/common_edittext_style"
             android:layout_marginLeft="@dimen/margin_h"

@@ -16,5 +16,13 @@ public class CstProject {
     // 数据库版本
     public static final int DB_VERSION = 1;
 
-    public static String URL_PRO = "http://test.shiangou.com.cn/Android/";
+    public static String URL_PRO = "http://test.shiangou.com.cn/";
+
+
+
+
+
+    public static class KEY {
+        public final static String ID = "_id";
+    }
 }

@@ -12,8 +12,10 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
@@ -54,24 +56,31 @@ public class LoginActivity extends BaseTopActivity {
         String phone = idLoginNameEt.getText().toString();
         String pwd = idLoginPwdEt.getText().toString();
 
-        if (!Utilm.isPhone(phone)) {
-            Utilm.toast(this, R.string.title_register_phone_tip);
-            return;
-        }
-        if (!Utilm.isPwd(pwd)) {
-            Utilm.toast(this, R.string.title_register_pwd_tip);
-            return;
-        }
+//        if (!Utilm.isPhone(phone)) {
+//            Utilm.toast(this, R.string.title_register_phone_tip);
+//            return;
+//        }
+//        if (!Utilm.isPwd(pwd)) {
+//            Utilm.toast(this, R.string.title_register_pwd_tip);
+//            return;
+//        }
 
-
+        setWaitingDialog(true);
         Request<?> request = HttpUtil.getLogin(this, phone, pwd, new ResultListener() {
             @Override
             public void onFail(String error) {
+                setWaitingDialog(false);
                 Utilm.toast(LoginActivity.this, error);
             }
 
             @Override
             public void onSuccess(Object obj) {
+                setWaitingDialog(false);
+                UserInfo user = (UserInfo) obj;
+                ProjectApplication.mUser = user;
+                ProjectApplication.mDaoFactory.getUserDao().addUser(user);
+                ProjectApplication.mPrefrence.setUserId(user.getUser_id());
+                finish();
             }
         });
         addRequest(request);
@@ -88,7 +97,7 @@ public class LoginActivity extends BaseTopActivity {
                 ProDispatcher.goForgetPwdActivity(this);
                 break;
             case R.id.id_login_log_bt:
-
+                goLogin();
                 break;
         }
     }

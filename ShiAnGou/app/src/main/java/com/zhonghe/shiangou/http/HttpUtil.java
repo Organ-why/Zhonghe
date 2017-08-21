@@ -1,6 +1,7 @@
 package com.zhonghe.shiangou.http;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -18,6 +19,7 @@ import com.zhonghe.shiangou.data.baseres.BaseRes;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.data.bean.StringInfo;
+import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.utile.Device;
 import com.zhonghe.shiangou.utile.JSONParser;
@@ -29,6 +31,7 @@ import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
@@ -39,15 +42,15 @@ import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
 
 public class HttpUtil {
     // 首页信息
-    public static String URL_HomeData = URL_PRO + "index.php";
+    public static String URL_HomeData = URL_PRO + "app/index.php";
     //注册
-    public static String URL_Register = URL_PRO + "register.php";
+    public static String URL_Register = URL_PRO + "user/register.php";
     //手机验证码
     public static String URL_GetPhoneCode = URL_PRO + "phone.php";
     //登录
-    public static String URL_Login = URL_PRO + "login.php";
+    public static String URL_Login = URL_PRO + "app/user/login.php";
     //商品详情
-    public static String URL_GoodsDetail = URL_PRO + "goods.php";
+    public static String URL_GoodsDetail = URL_PRO + "app/goods/goods.php";
     //添加购物车
     public static String URL_AddCart = URL_PRO + "cart.php";
     //订单
@@ -59,22 +62,6 @@ public class HttpUtil {
     //密码
     public static String URL_Password = URL_PRO + "password.php";
 
-
-    /**
-     * 获取首页信息
-     *
-     * @param context
-     * @param listener
-     * @return
-     */
-    public static Request<?> getHomeData(Context context, final ResultListener listener) {
-        Map<String, String> map = new HashMap<>();
-        map.put("curpage", "0");
-//        BaseRes<HomeData> res = new BaseRes<>();
-//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
-        Request<?> request = volleyPost(context, URL_HomeData, map, listener, HomeData.class);
-        return request;
-    }
 
     /**
      * 手机验证码
@@ -125,7 +112,24 @@ public class HttpUtil {
         map.put("password", pwd);
 //        map.put("ident", code);
 //        BaseRes<String> res = new BaseRes<>();
-        Request<?> request = volleyPost(context, URL_Login, map, listener, String.class);
+        Request<?> request = volleyPost(context, URL_Login, map, listener, UserInfo.class);
+        return request;
+    }
+
+
+    /**
+     * 获取首页信息
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getHomeData(Context context, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("curpage", "0");
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Request<?> request = volleyPost(context, URL_HomeData, map, listener, HomeData.class);
         return request;
     }
 
@@ -133,18 +137,17 @@ public class HttpUtil {
      * 商品详情
      *
      * @param context
-     * @param goods_id
      * @param listener
      * @return
      */
-    public static Request<?> getLogin(Context context, String goods_id, final ResultListener listener) {
+    public static Request<?> getGoodsDetail(Context context, String goods_id, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("goods_id", goods_id);
-//        BaseRes<String> res = new BaseRes<>();
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
         Request<?> request = volleyPost(context, URL_GoodsDetail, map, listener, GoodsdetailInfo.class);
         return request;
     }
-
 
 /////////////////////////////////////////////////////////网络基本请求////////////////////////////////////////////////////////////////////////
 
@@ -196,8 +199,16 @@ public class HttpUtil {
                     Log.d("resp-map", map.toString());
                     Log.d("resp-str", s);
                     JSONObject json = new JSONObject(s);
-                    Object obj = JSONParser.toObject(json.toString(), bean);
-                    listener.onSuccess(obj);
+                    BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
+                    if (obj.getState() != 1) {
+                        listener.onFail(obj.getMsg());
+                    } else if (bean!=null){
+                        String strdata = JSONParser.toString(obj.getDatas());
+                        Object data = JSONParser.toObject(strdata, bean);
+                        listener.onSuccess(data);
+                    }else {
+                        listener.onSuccess(null);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     listener.onFail(e.getMessage());
