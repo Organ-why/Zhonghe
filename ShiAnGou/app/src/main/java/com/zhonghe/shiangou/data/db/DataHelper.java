@@ -29,6 +29,7 @@ public class DataHelper extends OrmLiteSqliteOpenHelper {
             TableUtils.createTable(connectionSource, UserInfo.class);
         } catch (SQLException e) {
             e.printStackTrace();
+            Log.e(CstProject.PROJECT,"create database error");
         }
     }
 
@@ -38,5 +39,10 @@ public class DataHelper extends OrmLiteSqliteOpenHelper {
         if (oldVersion != newVersion) {
 
         }
+    }
+
+    @Override
+    public void close() {
+        super.close();
     }
 }

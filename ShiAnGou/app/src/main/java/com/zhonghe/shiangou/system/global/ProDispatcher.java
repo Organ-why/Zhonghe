@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.zhonghe.shiangou.system.constant.CstProject;
+import com.zhonghe.shiangou.system.constant.CstProject.BROADCAST_ACTION;
 import com.zhonghe.shiangou.ui.activity.AddressManageActivity;
 import com.zhonghe.shiangou.ui.activity.ChangeAddressActivity;
 import com.zhonghe.shiangou.ui.activity.ConfirmOrderActivity;
@@ -26,6 +27,10 @@ import com.zhonghe.shiangou.ui.fragment.UserFragment;
  * Author: whyang
  */
 public class ProDispatcher {
+
+
+    //////////////////////////////////////////Activity跳转////////////////////////////////////////////////
+
     /**
      * 打开界面
      *
@@ -233,5 +238,35 @@ public class ProDispatcher {
         Intent intent = new Intent(context, GoodsDetailActivity.class);
         intent.putExtra(CstProject.KEY.ID, goods_id);
         context.startActivity(intent);
+    }
+
+
+    //////////////////////////////////////////Sendbroadcast////////////////////////////////////////////////
+
+    /**
+     * 登录广播
+     *
+     * @param context
+     */
+    public static void sendLoginBroadcast(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setAction(BROADCAST_ACTION.LOGIN_ACTION);
+        context.sendBroadcast(intent);
+    }
+    /**
+     * 登录广播
+     *
+     * @param context
+     */
+    public static void sendLogoutBroadcast(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setAction(BROADCAST_ACTION.LOGOUT_ACTION);
+        context.sendBroadcast(intent);
     }
 }

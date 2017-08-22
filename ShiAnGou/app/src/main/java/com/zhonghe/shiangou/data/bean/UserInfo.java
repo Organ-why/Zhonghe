@@ -1,13 +1,17 @@
 package com.zhonghe.shiangou.data.bean;
 
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 import com.zhonghe.shiangou.data.db.ColumnHelper;
 
 /**
  * Created by a on 2017/8/18.
  */
-
+@DatabaseTable(tableName = "userinfo")
 public class UserInfo extends BaseBean {
+    public UserInfo() {
+    }
+
     /**
      * user_id : 21
      * email : 0
@@ -46,11 +50,10 @@ public class UserInfo extends BaseBean {
      * passwd_answer : null
      * agree : 0
      */
-
-    @DatabaseField(columnName = ColumnHelper.UserColumns.PHONE)
-    private String phone;
     @DatabaseField(id = true, columnName = ColumnHelper.UserColumns.USERID)
     private String user_id;
+    @DatabaseField(columnName = ColumnHelper.UserColumns.PHONE)
+    private String phone;
     private String email;
     @DatabaseField(columnName = ColumnHelper.UserColumns.USERNAME)
     private String user_name;

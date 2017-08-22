@@ -19,10 +19,25 @@ public class CstProject {
     public static String URL_PRO = "http://test.shiangou.com.cn/";
 
 
-
-
-
+    /**
+     * 数据传输KEY
+     */
     public static class KEY {
         public final static String ID = "_id";
+    }
+
+    /**
+     * 广播
+     */
+    public static class BROADCAST_ACTION {
+        // 网络广播
+        public static final String NETWORK_ACTION = "android.net.conn.CONNECTIVITY_CHANGE";
+        // 来电广播
+        public static final String PHONESTATE_ACTION = "android.intent.action.PHONE_STATE";
+        // 登录广播
+        public static final String LOGIN_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGIN_ACTION";
+        // 登出广播
+        public static final String LOGOUT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGOUT_ACTION";
+
     }
 }

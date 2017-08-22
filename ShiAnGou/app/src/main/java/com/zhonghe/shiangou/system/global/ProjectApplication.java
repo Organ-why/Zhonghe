@@ -50,7 +50,6 @@ public class ProjectApplication extends Application {
 
         //获取当前用户信息
         String userId = mPrefrence.getUserId();
-
         mUser = mDaoFactory.getUserDao().getUser(userId);
 //        if (memberInfo != null) {
 //            mUser = new User();
