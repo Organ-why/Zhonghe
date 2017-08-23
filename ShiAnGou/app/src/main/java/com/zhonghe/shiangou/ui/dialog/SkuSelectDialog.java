@@ -27,7 +27,7 @@ public class SkuSelectDialog extends PopupWindow {
     private View mLlRoot;
     private Context mContext;
 
-    public SkuSelectDialog(Activity context, OnClickListener listener) {
+    public SkuSelectDialog(Activity context) {
         super(context); 
         mContext = context;
         LayoutInflater inflater = (LayoutInflater)context

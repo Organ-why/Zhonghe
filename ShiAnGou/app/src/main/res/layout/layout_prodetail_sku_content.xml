@@ -32,7 +32,6 @@
             android:layout_alignTop="@+id/sku_select_img"
             android:layout_toLeftOf="@+id/sku_select_close_iv"
             android:layout_toRightOf="@+id/sku_select_img"
-            android:layout_toStartOf="@+id/sku_select_close_iv"
             android:text="戴维贝拉女童装戴维贝拉女童装戴维贝拉女童装戴维贝拉女童装戴维贝拉女童装戴维贝拉女童装" />
 
         <ImageView

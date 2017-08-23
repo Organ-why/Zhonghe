@@ -22,9 +22,14 @@
     <string name="common_addimg">添加图片</string>
     <string name="common_picked">从相册选择</string>
     <string name="common_msg">我的消息</string>
+    <string name="common_save">保存</string>
     <!--Splash-->
     <string name="splash_slogan_text">©2017 ShiAnGou (China) Softwareco.Ltd</string>
 
+
+    <!--警示-->
+    <string name="common_tip_changename">注意: 与食安购业务或品牌冲突的名称，将有权收回</string>
+    <string name="common_tip_anonymous">你的评论会以匿名的方式展现</string>
 
     <!--注册  登录-->
     <string name="title_register_title">注册</string>
@@ -35,6 +40,7 @@
     <string name="title_login_registernow">立即注册</string>
     <string name="title_register_code">获取验证码</string>
     <string name="title_register_phone_hint">请输入您的手机号</string>
+    <string name="title_register_name_hint">请输入您的用户名</string>
     <string name="title_register_code_hint">请输入您的验证码</string>
     <string name="title_register_pwd_hint">请设定您的密码（限6-16个字母、数字，区分大小写）</string>
     <string name="title_register_pwdag_hint">请再次输入您的密码</string>

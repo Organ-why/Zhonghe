@@ -17,7 +17,7 @@ public class BaseBannerInfo extends BaseBean {
     private String banner_id;
     private String banner_images;
     private String banner_type;
-    private Object banner_url;
+    private String banner_url;
 
     public String getImgUrl() {
         return imgUrl;
@@ -59,11 +59,11 @@ public class BaseBannerInfo extends BaseBean {
         this.banner_type = banner_type;
     }
 
-    public Object getBanner_url() {
+    public String getBanner_url() {
         return banner_url;
     }
 
-    public void setBanner_url(Object banner_url) {
+    public void setBanner_url(String banner_url) {
         this.banner_url = banner_url;
     }
 }

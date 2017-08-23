@@ -48,7 +48,7 @@
             android:src="@mipmap/icon_register_pwd" />
 
         <EditText
-            android:text="123"
+            android:text="123456"
             android:inputType="textPassword"
             android:id="@+id/id_login_pwd_et"
             style="@style/common_edittext_style"

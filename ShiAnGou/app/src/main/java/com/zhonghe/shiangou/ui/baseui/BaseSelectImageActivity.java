@@ -3,15 +3,23 @@ package com.zhonghe.shiangou.ui.baseui;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.SelectPictureDialog;
+import com.zhonghe.shiangou.utile.JSONParser;
+import com.zhonghe.shiangou.utile.PrefUtils;
+import com.zhonghe.shiangou.utile.UploadImageTask;
 import com.zhonghe.shiangou.utile.image.CropHandler;
 import com.zhonghe.shiangou.utile.image.CropHelper;
 import com.zhonghe.shiangou.utile.image.CropParams;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -125,4 +133,42 @@ public abstract class BaseSelectImageActivity extends BaseTopActivity
     public CropParams getCropParams() {
         return mCropParams;
     }
+
+    public  void upLowdImage(List<File> fileList){
+//        File files = new File(url_image);
+//        List<File> fileList = new ArrayList<>();
+//        fileList.add(files);
+//        UploadImageTask uploadImage = new UploadImageTask(Url.UP_LOAD, memberId,
+////                PrefUtils.getString(this, Const.MEMBER_KEY, ""
+//                ), fileList) {
+//            @Override
+//            protected void onPostExecute(String result) {
+//                super.onPostExecute(result);
+//
+//                try {
+//                    if (TextUtils.isEmpty(result)) {
+//                        ToastUtils.showError(activity);
+//                        dialog.dismiss();
+//                        return;
+//                    }
+//                    AddPhotoResponse response = (AddPhotoResponse) JSONParser.toObject(result, AddPhotoResponse.class);
+//                    if (response.getCode() == 0) {
+//                        CommentPhoto commentPhoto = new CommentPhoto();
+//                        commentPhoto.setImgUrl(response.getUrls().get(0).getUrl());
+//                    } else {
+//                        ToastUtils.showError(activity, response.getMsg());
+//                    }
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                    ToastUtils.showError(activity);
+//                }
+//
+//                dialog.dismiss();
+//            }
+//        };
+//        uploadImage.execute();
+    }
+
+
+
 }

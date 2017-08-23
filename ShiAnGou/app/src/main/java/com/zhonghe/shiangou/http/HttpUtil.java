@@ -53,6 +53,8 @@ public class HttpUtil {
     public static String URL_GoodsDetail = URL_PRO + "app/goods/goods.php";
     //添加购物车
     public static String URL_AddCart = URL_PRO + "cart.php";
+    //购物车列表
+    public static String URL_CartList = URL_PRO + "app/cart/show.php";
     //订单
     public static String URL_Order = URL_PRO + "order.php";
     //订单列表
@@ -149,6 +151,24 @@ public class HttpUtil {
         return request;
     }
 
+    /**
+     * 购物车列表
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getCartList(Context context, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("user_id", "22");
+        map.put("curpage", "1");
+        map.put("cursize", "10");
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Request<?> request = volleyPost(context, URL_CartList, map, listener, null);
+        return request;
+    }
+
 /////////////////////////////////////////////////////////网络基本请求////////////////////////////////////////////////////////////////////////
 
     public static final String CHAR_SET = "utf-8";
@@ -202,11 +222,11 @@ public class HttpUtil {
                     BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
                     if (obj.getState() != 1) {
                         listener.onFail(obj.getMsg());
-                    } else if (bean!=null){
+                    } else if (bean != null) {
                         String strdata = JSONParser.toString(obj.getDatas());
                         Object data = JSONParser.toObject(strdata, bean);
                         listener.onSuccess(data);
-                    }else {
+                    } else {
                         listener.onSuccess(null);
                     }
                 } catch (Exception e) {

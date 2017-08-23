@@ -1,0 +1,16 @@
+公司邮箱
+shiangou@163.com
+zhonghesannong
+
+微信开发者账号
+wechat_shiangou@163.com
+Shiangou123
+
+AppID: wx91470ddde903ce11
+AppSecret : ade964807819601cbdd95508c83fae8b
+
+支付宝账号
+shiangou@163.com
+zhonghesannong010
+
+APPID: 2017080408031021

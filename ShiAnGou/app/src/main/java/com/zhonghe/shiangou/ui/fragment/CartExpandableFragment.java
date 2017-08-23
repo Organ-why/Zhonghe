@@ -8,13 +8,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.CartItemBO;
 import com.zhonghe.shiangou.data.bean.CartItemGroupBO;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.ui.listener.CartExpandableListener;
+import com.zhonghe.shiangou.ui.listener.ResultListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -112,10 +115,28 @@ public class CartExpandableFragment extends BaseTopFragment {
         customTopIdTitle.setText(R.string.common_cart_title);
         customTopIdRightTv.setText(R.string.common_cart_edit);
 
+
+        getCartData();
     }
 
 
     int isEditFlag = 0;
+
+    void getCartData() {
+        Request<?> request = HttpUtil.getCartList(mActivity, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+
+            }
+        });
+        addRequest(request);
+    }
+
 
     /**
      * 编辑购物车

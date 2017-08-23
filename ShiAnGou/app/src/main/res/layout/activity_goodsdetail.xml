@@ -56,15 +56,15 @@
                     android:text="¥9.9" />
 
                 <TextView
+                    android:gravity="center"
                     android:id="@+id/id_goodsdetail_soldnum_tv"
                     style="@style/common_text_user_order"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignBottom="@id/id_goodsdetail_price_tv"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@id/id_goodsdetail_desc_tv"
-                    android:layout_marginTop="@dimen/margin_h"
-                    android:text="已售：1999" />
+                    android:text="已售：1999"
+                    android:layout_alignTop="@+id/id_goodsdetail_price_tv" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -73,6 +73,12 @@
                     android:layout_marginTop="@dimen/margin_h"
                     android:orientation="horizontal">
 
+                    <!--<com.zhonghe.shiangou.ui.widget.FlowLayout-->
+                        <!--android:id="@+id/id_goodsdetail_tag_fl"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="wrap_content">-->
+
+                    <!--</com.zhonghe.shiangou.ui.widget.FlowLayout>-->
                     <TextView
                         style="@style/common_cart_sku"
                         android:layout_width="wrap_content"
@@ -89,6 +95,7 @@
                 android:layout_width="match_parent" />
 
             <RelativeLayout
+                android:id="@+id/id_goodsdetail_sku_rl"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/padding_xxlsize">

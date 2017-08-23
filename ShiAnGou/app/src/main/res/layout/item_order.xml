@@ -13,6 +13,7 @@
         android:padding="@dimen/padding_msize">
 
         <TextView
+            android:id="@+id/id_order_code_tv"
             style="@style/common_text_deep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,6 +23,7 @@
             android:text="2170151210854152105151545" />
 
         <TextView
+            android:id="@+id/id_order_type_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -32,28 +34,12 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/id_order_goodslist_ll"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/common_gray"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="@dimen/padding_xxlsize">
+        android:layout_height="wrap_content">
+        <include layout="@layout/item_order_child"/>
 
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/id_order_goods_img"
-            android:layout_width="@dimen/image_width_lsize"
-            android:layout_height="@dimen/image_width_lsize"
-            android:scaleType="fitXY"
-            app:placeholderImage="@mipmap/icon_pro_default" />
-
-        <TextView
-            android:id="@+id/id_order_goods_name_tv"
-            style="@style/common_order_name_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_h"
-            android:text="滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇" />
     </LinearLayout>
 
     <LinearLayout
@@ -64,12 +50,14 @@
         android:padding="@dimen/padding_xxlsize">
 
         <TextView
+            android:id="@+id/id_order_num_tv"
             style="@style/common_order_total_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="共1件商品 合计: ¥" />
 
         <TextView
+            android:id="@+id/id_order_total_tv"
             style="@style/home_category_item_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,6 +66,7 @@
             android:text="188.00" />
 
         <TextView
+            android:id="@+id/id_order_freight_tv"
             style="@style/common_order_total_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,6 +85,7 @@
         android:padding="@dimen/padding_xxlsize">
 
         <TextView
+            android:id="@+id/id_order_negative_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/circle_graylight_hollow_bg"
@@ -105,6 +95,7 @@
             android:text="@string/order_bt_cancel" />
 
         <TextView
+            android:id="@+id/id_order_positive_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_h"

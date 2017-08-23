@@ -183,6 +183,9 @@ public class HomeFragment1 extends BaseTopFragment {
         llContentTitle.addView(BannerView);
     }
 
+
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

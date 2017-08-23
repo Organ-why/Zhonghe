@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/padding_xmsize"
+    android:paddingRight="@dimen/padding_xmsize">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_hight_xxxlsize">
+
+        <View
+            style="@style/common_divider_style1"
+            android:layout_alignParentBottom="true" />
+
+        <ImageView
+            android:id="@+id/ids_icon_input4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_register_pwd" />
+
+        <EditText
+            android:id="@+id/ids_register_pwdag_et"
+            style="@style/common_edittext_style"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:layout_toRightOf="@id/ids_icon_input4"
+            android:hint="@string/title_register_pwdag_hint"
+            android:inputType="textPassword"
+            android:maxLength="18" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_hight_xxxlsize">
+
+        <View
+            style="@style/common_divider_style1"
+            android:layout_alignParentBottom="true" />
+
+        <ImageView
+            android:id="@+id/ids_icon_input2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_register_code" />
+
+        <EditText
+            android:id="@+id/ids_register_code_et"
+            style="@style/common_edittext_style"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:layout_toRightOf="@id/ids_icon_input2"
+            android:hint="@string/title_register_code_hint" />
+    </RelativeLayout>
+
+    <TextView
+        style="@style/common_text_gray_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_h"
+        android:text="@string/title_register_pwd_hint" />
+
+    <Button
+        android:id="@+id/id_register_regist_bt"
+        style="@style/button_orangecirc_bg_style"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_hsize"
+        android:text="@string/title_register_title" />
+</LinearLayout>
