@@ -23,6 +23,9 @@
     <string name="common_picked">从相册选择</string>
     <string name="common_msg">我的消息</string>
     <string name="common_save">保存</string>
+    <string name="common_success_tip">操作成功</string>
+    <string name="common_user_center">我的帐户</string>
+    <string name="common_search">搜索</string>
     <!--Splash-->
     <string name="splash_slogan_text">©2017 ShiAnGou (China) Softwareco.Ltd</string>
 
@@ -33,6 +36,7 @@
 
     <!--注册  登录-->
     <string name="title_register_title">注册</string>
+    <string name="title_register_success">注册成功</string>
     <string name="title_login_title">登录</string>
     <string name="title_logout_title">退出登录</string>
     <string name="title_login_nouser">没有账号？</string>
@@ -66,8 +70,8 @@
     <string name="confirmorder_goodstotal_text">小计：¥</string>
     <string name="confirmorder_freighttotal_text">运费合计：¥</string>
     <string name="confirmorder_total_text">应付款：¥</string>
-    <!-- 商品详情-->
 
+    <!-- 商品详情-->
     <string name="prodetail_act_title">商品详情</string>
     <string name="prodetail_img_title">图文详情</string>
     <string name="prodetail_discount">折扣</string>
@@ -84,6 +88,7 @@
     <string name="prodetail_buy_instoke">商品已下架</string>
     <string name="prodetail_collection_save_success">收藏成功</string>
     <string name="prodetail_collection_cancel_success">取消收藏成功</string>
+    <string name="prodetail_more_remark">查看更多评价</string>
 
 
     <string name="prodetail_title_refunds">退货/退款</string>
@@ -183,7 +188,10 @@
     <string name="point_excange_title">0元换购</string>
     <string name="point_excange_record_title">兑换记录</string>
 
-
+    <!--搜索-->
+    <string name="search_title_hot">热门搜索</string>
+    <string name="search_title_history">历史搜索</string>
+    <string name="search_search_tip">请输入商品名称</string>
     <!--符号-->
     <string name="symbol_money">¥</string>
     <string name="symbol_money_reduce">-¥</string>

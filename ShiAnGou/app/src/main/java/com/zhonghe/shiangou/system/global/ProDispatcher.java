@@ -18,6 +18,7 @@ import com.zhonghe.shiangou.ui.activity.RefundsActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsBeginActivity;
 import com.zhonghe.shiangou.ui.activity.RegisterActivity;
 import com.zhonghe.shiangou.ui.activity.RemarkActivity;
+import com.zhonghe.shiangou.ui.activity.SearchActivity;
 import com.zhonghe.shiangou.ui.activity.SetupActivity;
 import com.zhonghe.shiangou.ui.activity.UserActivity;
 import com.zhonghe.shiangou.ui.fragment.UserFragment;
@@ -237,6 +238,18 @@ public class ProDispatcher {
         }
         Intent intent = new Intent(context, GoodsDetailActivity.class);
         intent.putExtra(CstProject.KEY.ID, goods_id);
+        context.startActivity(intent);
+    }
+    /**
+     * 商品详情
+     *
+     * @param context
+     */
+    public static void goSearchActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, SearchActivity.class);
         context.startActivity(intent);
     }
 

@@ -2,20 +2,18 @@ package com.zhonghe.shiangou.ui.fragment;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
-import com.example.lib_httpok.OkHttp3Stack;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
@@ -23,6 +21,7 @@ import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.ui.listener.HomeScrollListener;
@@ -32,13 +31,11 @@ import com.zhonghe.shiangou.ui.widget.FlowLayout;
 import com.zhonghe.shiangou.ui.widget.HomeCategoryListView;
 import com.zhonghe.shiangou.ui.widget.HorizontalListView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import okhttp3.OkHttpClient;
+import butterknife.OnClick;
 
 /**
  * Date: 2017/7/4.
@@ -60,6 +57,12 @@ public class HomeFragment1 extends BaseTopFragment {
 //    private Productadapter adapter;
 
 
+    @Bind(R.id.title_user_ivb)
+    ImageButton titleUserIvb;
+    @Bind(R.id.title_msg_ivb)
+    ImageButton titleMsgIvb;
+    @Bind(R.id.id_category_title_tv)
+    TextView idCategoryTitleTv;
     List<HomeCategoryInfo> categoryInfo;
     List<BaseBannerInfo> bannerInfo;
 
@@ -147,7 +150,7 @@ public class HomeFragment1 extends BaseTopFragment {
             View item = LayoutInflater.from(mActivity).inflate(R.layout.item_home_category_title, null);
             SimpleDraweeView iconimg = (SimpleDraweeView) item.findViewById(R.id.id_item_home_category_title_iv);
             TextView icontv = (TextView) item.findViewById(R.id.id_item_home_category_title_name);
-            ProjectApplication.mImageLoader.loadImage(iconimg,categoryInfo.getCat_thumb());
+            ProjectApplication.mImageLoader.loadImage(iconimg, categoryInfo.getCat_thumb());
             icontv.setText(categoryInfo.getCat_name());
             item.setLayoutParams(categoryParams);
             final int finalChildHeight = childHeight;
@@ -184,8 +187,6 @@ public class HomeFragment1 extends BaseTopFragment {
     }
 
 
-
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -201,4 +202,17 @@ public class HomeFragment1 extends BaseTopFragment {
         setAppCustomLayout(R.layout.layout_custom_top);
     }
 
+
+    @OnClick({R.id.title_user_ivb, R.id.title_msg_ivb, R.id.id_category_title_tv})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.title_user_ivb:
+                break;
+            case R.id.title_msg_ivb:
+                break;
+            case R.id.id_category_title_tv:
+                ProDispatcher.goSearchActivity(mActivity);
+                break;
+        }
+    }
 }

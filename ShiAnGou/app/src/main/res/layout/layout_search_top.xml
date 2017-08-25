@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+        <TextView
+            android:id="@+id/id_search_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:paddingLeft="@dimen/padding_xxlsize"
+            android:text="@string/common_cancel" />
+
+        <EditText
+            android:singleLine="true"
+            android:id="@+id/id_category_title_tv"
+            android:imeOptions="actionSearch"
+            style="@style/hint_search_style"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_search_custom"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/id_search_cancel"
+            android:background="@drawable/circle_search_gray_bg"
+            android:drawableLeft="@mipmap/icon_search"
+            android:drawablePadding="@dimen/margin_h"
+            android:gravity="center_vertical"
+            android:hint="@string/str_home_search_tip"
+            android:paddingLeft="@dimen/margin_h" />
+    </RelativeLayout>
+</LinearLayout>

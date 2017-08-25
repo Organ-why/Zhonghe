@@ -26,6 +26,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TabHost;
 import android.widget.TextView;
@@ -75,9 +76,12 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     private Dialog mWaitDialog;
     //空信息
     private TextView mTvEmpty;
+    //自定义title
+    private LinearLayout mViewTitleTop;
 
     @Override
     protected void init(Bundle savedInstanceState) {
+        mContext = this;
         mOptions = initOptions();
     }
 
@@ -137,6 +141,7 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         } else if (withOption(UIOptions.UI_OPTIONS_CONTENT_CUSTOM)) {
             contentStub.setLayoutResource(R.layout.res_layout_base_content_custom);
             contentStub.inflate();
+            mViewTitleTop = (LinearLayout) findViewById(R.id.base_id_title_top);
             mTvEmpty = (TextView) findViewById(R.id.base_id_content_empty);
         }
 
@@ -517,6 +522,13 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         }
     }
 
+    public void setTitleView(@LayoutRes int layoutResId) {
+        if (layoutResId > 0) {
+            View view = LayoutInflater.from(this).inflate(layoutResId, null);
+            mViewTitleTop.setVisibility(View.VISIBLE);
+            if (mViewTitleTop != null) mViewTitleTop.addView(view);
+        }
+    }
     /**
      * 显示空数据文本提示
      *

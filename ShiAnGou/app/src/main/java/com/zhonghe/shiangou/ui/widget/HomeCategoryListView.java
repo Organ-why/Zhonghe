@@ -1,6 +1,7 @@
 package com.zhonghe.shiangou.ui.widget;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class HomeCategoryListView {
                 tvprice.setText(itemInfo.getShop_price());
                 TextView tvmarketprice = (TextView) itemView.findViewById(R.id.id_home_category_item_oldprice_tv);
                 tvmarketprice.setText(itemInfo.getMarket_price());
+                tvmarketprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

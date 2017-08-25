@@ -6,7 +6,7 @@
 
     <!--控件高度-->
     <dimen name="height_title_custom">50dp</dimen>
-    <dimen name="height_search_custom">25dp</dimen>
+    <dimen name="height_search_custom">26dp</dimen>
 
     <dimen name="height_ll_custom">50dp</dimen>
     <dimen name="height_ll_item">44dp</dimen>
@@ -156,4 +156,11 @@
     <dimen name="item_font_lsize">13sp</dimen>
     <dimen name="item_font_xxlsize">30sp</dimen>
     <dimen name="item_font_hsize">40sp</dimen>
+
+
+    <!--sku按钮-->
+    <dimen name="sk_button_width">75dp</dimen>
+    <dimen name="sk_button_height">25dp</dimen>
+    <dimen name="sk_button_lheight">26dp</dimen>
+    <dimen name="order_total_height">35dp</dimen>
 </resources>

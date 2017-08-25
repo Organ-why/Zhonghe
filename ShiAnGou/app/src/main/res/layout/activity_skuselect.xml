@@ -38,7 +38,17 @@
                     android:id="@+id/sku_select_id_ll"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"></LinearLayout>
+                    android:orientation="horizontal">
+
+                    <com.zhonghe.shiangou.ui.widget.FlowLayout1
+                        android:orientation="horizontal"
+                        android:id="@+id/sku_select_id__flow"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/margin_xxlsize"
+                        android:layout_marginLeft="@dimen/margin_xxxlsize"
+                        android:layout_marginTop="@dimen/margin_lsize"></com.zhonghe.shiangou.ui.widget.FlowLayout1>
+                </LinearLayout>
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -57,7 +67,6 @@
 
                     <include
                         layout="@layout/layout_change_number"
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -83,17 +92,31 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/layout_hight_xxxlsize"
                 android:layout_alignParentBottom="true"
-                android:gravity="center">
+                android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/sku_select_id_confirm_bt"
-                    style="@style/button_orangecirc_bg_style"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/height_ll_custom"
-                    android:layout_margin="@dimen/margin_h"
-                    android:text="@string/common_confirm" />
-            </LinearLayout>
+                    android:id="@+id/id_goodsdetail_addcart_bt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_toLeftOf="@id/id_goodsdetail_buynow_bt"
+                    android:layout_weight="1"
+                    android:background="@mipmap/res_addcard_bg"
+                    android:text="@string/prodetail_buy_addcart"
+                    android:textColor="@color/common_white"
+                    android:textSize="@dimen/font_xxmsize" />
 
+                <Button
+                    android:id="@+id/id_goodsdetail_buynow_bt"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_weight="1"
+                    android:background="@mipmap/res_buynow_bg"
+                    android:text="@string/prodetail_buy_buy"
+                    android:textColor="@color/common_white"
+                    android:textSize="@dimen/font_xxmsize" />
+
+            </LinearLayout>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

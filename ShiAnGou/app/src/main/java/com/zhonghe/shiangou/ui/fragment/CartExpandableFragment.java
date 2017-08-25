@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.shiangou.data.bean.CartInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.R;
@@ -60,6 +62,9 @@ public class CartExpandableFragment extends BaseTopFragment {
 
     CartExpandableListener listener;
 
+    int curpage = 1;
+    int cursize = 10;
+
     @Override
     protected void initTop() {
     }
@@ -79,16 +84,16 @@ public class CartExpandableFragment extends BaseTopFragment {
         ButterKnife.bind(this, getView());
 
         data = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            CartItemGroupBO cartItemGroupBO = new CartItemGroupBO();
-            ArrayList<CartItemBO> itemBOs = new ArrayList<>();
-            for (int j = 0; j < 3; j++) {
-                CartItemBO itemBO = new CartItemBO();
-                itemBOs.add(itemBO);
-            }
-            cartItemGroupBO.setChildPro(itemBOs);
-            data.add(cartItemGroupBO);
-        }
+//        for (int i = 0; i < 5; i++) {
+//            CartItemGroupBO cartItemGroupBO = new CartItemGroupBO();
+//            ArrayList<CartItemBO> itemBOs = new ArrayList<>();
+//            for (int j = 0; j < 3; j++) {
+//                CartItemBO itemBO = new CartItemBO();
+//                itemBOs.add(itemBO);
+//            }
+//            cartItemGroupBO.setChildPro(itemBOs);
+//            data.add(cartItemGroupBO);
+//        }
         listener = new CartExpandableListener(mActivity, cartIdLv.getRefreshableView()) {
             @Override
             public void checkGroup(int groupPosition, boolean isChecked) {
@@ -109,8 +114,7 @@ public class CartExpandableFragment extends BaseTopFragment {
                 cartIdAllCb.setChecked(true);
             }
         };
-        listener.addmData(data);
-
+//        listener.addmData(data);
 
         customTopIdTitle.setText(R.string.common_cart_title);
         customTopIdRightTv.setText(R.string.common_cart_edit);
@@ -123,15 +127,22 @@ public class CartExpandableFragment extends BaseTopFragment {
     int isEditFlag = 0;
 
     void getCartData() {
-        Request<?> request = HttpUtil.getCartList(mActivity, new ResultListener() {
+        setWaitingDialog(true);
+        Request<?> request = HttpUtil.getCartList(mActivity, curpage, cursize, new ResultListener() {
             @Override
             public void onFail(String error) {
-
+                setWaitingDialog(false);
+                Utilm.toast(mActivity, error);
             }
 
             @Override
             public void onSuccess(Object obj) {
-
+                setWaitingDialog(false);
+                CartInfo info = (CartInfo) obj;
+                CartItemGroupBO cartItemGroupBO = new CartItemGroupBO();
+                cartItemGroupBO.setChildPro(info.getCarts());
+                data.add(cartItemGroupBO);
+                listener.addmData(data);
             }
         });
         addRequest(request);

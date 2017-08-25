@@ -27,7 +27,9 @@ public class UIOptions {
     //默认构造界面
     public static final long UI_OPTIONS_SCREEN_DEFAULT = UI_OPTIONS_SYSTEMBAR;
 
-
+    //拥有系统栏的界面
+    public static final long UI_OPTIONS_SCREEN_SYSTEM = UI_OPTIONS_SYSTEMBAR
+            | UI_OPTIONS_CONTENT_CUSTOM;
 
     //普通带标题栏&Tab栏的界面
     public static final long UI_OPTIONS_SCREEN_TOP_TABS = UI_OPTIONS_SYSTEMBAR

@@ -16,10 +16,14 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.reflect.TypeToken;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
+import com.zhonghe.shiangou.data.bean.CartInfo;
+import com.zhonghe.shiangou.data.bean.CategoryChild;
+import com.zhonghe.shiangou.data.bean.CategoryParent;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.data.bean.StringInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.utile.Device;
 import com.zhonghe.shiangou.utile.JSONParser;
@@ -37,16 +41,20 @@ import java.util.Map;
 import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
 
 /**
- * Created by a on 2017/8/10.
+ * Created by whyang on 2017/8/10.
  */
 
 public class HttpUtil {
     // 首页信息
     public static String URL_HomeData = URL_PRO + "app/index.php";
+
+    //分类
+    public static String URL_CategoryParent = URL_PRO + "app/type/ding.php";
+    public static String URL_CategoryChild = URL_PRO + "app/type/children.php";
     //注册
-    public static String URL_Register = URL_PRO + "user/register.php";
+    public static String URL_Register = URL_PRO + "app/user/register.php";
     //手机验证码
-    public static String URL_GetPhoneCode = URL_PRO + "phone.php";
+    public static String URL_GetPhoneCode = URL_PRO + "app/user/phone.php";
     //登录
     public static String URL_Login = URL_PRO + "app/user/login.php";
     //商品详情
@@ -63,6 +71,12 @@ public class HttpUtil {
     public static String URL_Address = URL_PRO + "address.php";
     //密码
     public static String URL_Password = URL_PRO + "password.php";
+    //头像
+    public static String URL_HeaderUp = URL_PRO + "app/private/private.php";
+
+    //商品收藏
+    public static String URL_GoodsUnFollow = URL_PRO + "app/collection/delete.php";
+    public static String URL_GoodsFollow = URL_PRO + "app/collection/add.php";
 
 
     /**
@@ -75,7 +89,7 @@ public class HttpUtil {
     public static Request<?> getPhoneCode(Context context, String phone, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone);
-        Request<?> request = volleyPost(context, URL_GetPhoneCode, map, listener, StringInfo.class);
+        Request<?> request = volleyPost(context, URL_GetPhoneCode, map, listener, null);
         return request;
     }
 
@@ -95,7 +109,7 @@ public class HttpUtil {
         map.put("password", pwd);
         map.put("ident", code);
 //        BaseRes<String> res = new BaseRes<>();
-        Request<?> request = volleyPost(context, URL_Register, map, listener, StringInfo.class);
+        Request<?> request = volleyPost(context, URL_Register, map, listener, null);
         return request;
     }
 
@@ -152,20 +166,76 @@ public class HttpUtil {
     }
 
     /**
+     * 商品收藏操作
+     *
+     * @param context
+     * @param goods_id
+     * @param listener
+     * @return
+     */
+    public static Request<?> getFollowGoods(Context context, String goods_id, boolean isFollow, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("goods_id", goods_id);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        String url = isFollow ? URL_GoodsFollow : URL_GoodsUnFollow;
+        Request<?> request = volleyPost(context, url, map, listener, null);
+        return request;
+    }
+
+    /**
      * 购物车列表
      *
      * @param context
      * @param listener
      * @return
      */
-    public static Request<?> getCartList(Context context, final ResultListener listener) {
+    public static Request<?> getCartList(Context context, int curpage, int cursize, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("user_id", "22");
-        map.put("curpage", "1");
-        map.put("cursize", "10");
+        map.put("curpage", String.valueOf(curpage));
+        map.put("cursize", String.valueOf(cursize));
 //        BaseRes<HomeData> res = new BaseRes<>();
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
-        Request<?> request = volleyPost(context, URL_CartList, map, listener, null);
+        Request<?> request = volleyPost(context, URL_CartList, map, listener, CartInfo.class);
+        return request;
+    }
+
+    /**
+     * 分类 父级
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getCategoryParent(Context context, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("user_id", "22");
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Type bean = new TypeToken<List<CategoryParent>>() {
+        }.getType();
+        Request<?> request = volleyGet(context, URL_CategoryParent, listener, bean);
+        return request;
+    }
+
+    /**
+     * 分类 子级
+     *
+     * @param context
+     * @param childId
+     * @param listener
+     * @return
+     */
+    public static Request<?> getCategoryChild(Context context, String childId, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("cat_id", childId);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Type bean = new TypeToken<List<CategoryChild>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_CategoryChild, map, listener, bean);
         return request;
     }
 
@@ -583,9 +653,21 @@ public class HttpUtil {
                 try {
                     Log.d("resp-url", url);
                     Log.d("resp-str", s);
+//                    JSONObject json = new JSONObject(s);
+//                    Object obj = JSONParser.toObject(json.toString(), bean);
+//                    listener.onSuccess(obj);
+
                     JSONObject json = new JSONObject(s);
-                    Object obj = JSONParser.toObject(json.toString(), bean);
-                    listener.onSuccess(obj);
+                    BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
+                    if (obj.getState() != 1) {
+                        listener.onFail(obj.getMsg());
+                    } else if (bean != null) {
+                        String strdata = JSONParser.toString(obj.getDatas());
+                        Object data = JSONParser.toObject(strdata, bean);
+                        listener.onSuccess(data);
+                    } else {
+                        listener.onSuccess(null);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

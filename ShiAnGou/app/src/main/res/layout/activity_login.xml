@@ -3,7 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_white"
+    android:gravity="center_horizontal"
     android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_xl"
+        android:src="@mipmap/icon_logo_login" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,11 +30,11 @@
             android:src="@mipmap/icon_register_name" />
 
         <EditText
-            android:text="12345678910"
             android:id="@+id/id_login_name_et"
             style="@style/common_edittext_style"
             android:layout_marginLeft="@dimen/margin_h"
-            android:layout_toRightOf="@id/ids_icon_input3" />
+            android:layout_toRightOf="@id/ids_icon_input3"
+            android:text="12345678910" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -48,12 +55,12 @@
             android:src="@mipmap/icon_register_pwd" />
 
         <EditText
-            android:text="123456"
-            android:inputType="textPassword"
             android:id="@+id/id_login_pwd_et"
             style="@style/common_edittext_style"
             android:layout_marginLeft="@dimen/margin_h"
-            android:layout_toRightOf="@id/ids_icon_input4" />
+            android:layout_toRightOf="@id/ids_icon_input4"
+            android:inputType="textPassword"
+            android:text="123456" />
     </RelativeLayout>
 
     <RelativeLayout

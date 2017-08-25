@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <Button
+        android:layout_margin="@dimen/margin_h"
+        android:id="@+id/sku_select_id__button"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/sk_button_lheight"
+        android:layout_marginRight="@dimen/margin_xxmsize"
+        android:background="@drawable/circle_orange_hollow_bg"
+        android:gravity="center"
+        android:paddingLeft="@dimen/padding_msize"
+        android:paddingRight="@dimen/padding_msize"
+        android:singleLine="true"
+        android:textColor="@color/res_color_apptheme"
+        android:textSize="@dimen/font_xxlsize"
+        android:visibility="visible" />
+</LinearLayout>

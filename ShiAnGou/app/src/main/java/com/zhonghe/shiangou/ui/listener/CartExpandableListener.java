@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ExpandableListView;
 
-import com.zhonghe.shiangou.data.bean.CartItemBO;
+import com.zhonghe.shiangou.data.bean.CartGoods;
 import com.zhonghe.shiangou.data.bean.CartItemGroupBO;
 import com.zhonghe.shiangou.ui.adapter.CartExpandableAdapter;
 import com.zhonghe.shiangou.ui.fragment.CartExpandableFragment;
@@ -100,7 +100,7 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
     public void checkChild(int groupPosition, int childPosition, boolean isChecked) {
         mData.get(groupPosition).getChildPro().get(childPosition).setCheck(isChecked);
         int childSelectCount = 0;
-        for (CartItemBO itemBo : mData.get(groupPosition).getChildPro()
+        for (CartGoods itemBo : mData.get(groupPosition).getChildPro()
                 ) {
             if (!itemBo.isCheck()) {
                 break;
@@ -119,18 +119,18 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
     //商品数量减少
     @Override
     public void doIncrease(int groupPosition, int childPosition, View showCountView, boolean isChecked) {
-        Integer amount = mData.get(groupPosition).getChildPro().get(childPosition).getAmount();
+        Integer amount = Integer.valueOf(mData.get(groupPosition).getChildPro().get(childPosition).getClick_count());
         amount--;
-        mData.get(groupPosition).getChildPro().get(childPosition).setAmount(amount);
+        mData.get(groupPosition).getChildPro().get(childPosition).setClick_count(String.valueOf(amount));
         reFreshData();
     }
 
     //商品数量增加
     @Override
     public void doDecrease(int groupPosition, int childPosition, View showCountView, boolean isChecked) {
-        Integer amount = mData.get(groupPosition).getChildPro().get(childPosition).getAmount();
+        Integer amount = Integer.valueOf(mData.get(groupPosition).getChildPro().get(childPosition).getClick_count());
         amount++;
-        mData.get(groupPosition).getChildPro().get(childPosition).setAmount(amount);
+        mData.get(groupPosition).getChildPro().get(childPosition).setClick_count(String.valueOf(amount));
         reFreshData();
     }
 

@@ -65,12 +65,15 @@ public class UtilImage {
                 .setRoundingParams(roundedParams);
 
         //圆形图片配置
+        BitmapDrawable defaultPlaceholderDrawableheader = new BitmapDrawable(res,
+                BitmapFactory.decodeResource(res, R.mipmap.common_image_default_header));
         RoundingParams circleParams = new RoundingParams();
         circleParams.setRoundAsCircle(true);
         mCircleHierarchyBuilder = new GenericDraweeHierarchyBuilder(res)
                 .setFadeDuration(300)
                 .setActualImageScaleType(ScaleType.CENTER_CROP)
-                .setRoundingParams(circleParams);
+                .setRoundingParams(circleParams)
+                .setPlaceholderImage(defaultPlaceholderDrawableheader);
 
 
         mSkewXPostprocessor = new BasePostprocessor() {
@@ -142,6 +145,7 @@ public class UtilImage {
 
     /**
      * 图片  不裁剪
+     *
      * @param view
      * @param url
      */
@@ -251,7 +255,7 @@ public class UtilImage {
             int widthSpec = View.MeasureSpec.makeMeasureSpec(width, View.MeasureSpec.EXACTLY);
             int heightSpec = View.MeasureSpec.makeMeasureSpec(height, View.MeasureSpec.EXACTLY);
             comBitmap.measure(widthSpec, heightSpec);
-            comBitmap.layout(0, 0, width/4, height/4);
+            comBitmap.layout(0, 0, width / 4, height / 4);
 //            comBitmap.layout(0, 0, width, height);
 
             comBitmap.buildDrawingCache();

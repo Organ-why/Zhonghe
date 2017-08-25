@@ -80,6 +80,7 @@ public class LoginActivity extends BaseTopActivity {
                 ProjectApplication.mUser = user;
                 ProjectApplication.mDaoFactory.getUserDao().addUser(user);
                 ProjectApplication.mPrefrence.setUserId(user.getUser_id());
+                ProDispatcher.sendLoginBroadcast(mContext);
                 finish();
             }
         });

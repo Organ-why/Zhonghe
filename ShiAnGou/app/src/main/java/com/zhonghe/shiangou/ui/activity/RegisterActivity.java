@@ -72,11 +72,14 @@ public class RegisterActivity extends BaseTopActivity {
                 @Override
                 public void onFail(String error) {
                     setWaitingDialog(false);
+                    Utilm.toast(mContext, error);
                 }
 
                 @Override
                 public void onSuccess(Object obj) {
                     setWaitingDialog(false);
+                    Utilm.toast(mContext, R.string.title_register_success);
+                    finish();
                 }
             });
             addRequest(request);
@@ -101,7 +104,7 @@ public class RegisterActivity extends BaseTopActivity {
                 setWaitingDialog(false);
                 idRegisterGetcodeTv.setEnabled(true);
                 Utilm.toast(RegisterActivity.this, error.toString());
-                Log.d("onfail.......",error.toString());
+                Log.d("onfail.......", error.toString());
             }
 
             @Override
@@ -109,7 +112,7 @@ public class RegisterActivity extends BaseTopActivity {
                 setWaitingDialog(false);
                 idRegisterGetcodeTv.setEnabled(true);
 //                Utilm.toast(RegisterActivity.this, obj.toString());
-                Log.d("onfail.......",obj.toString());
+//                Log.d("onfail.......", obj.toString());
             }
 
         });

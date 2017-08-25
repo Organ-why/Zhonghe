@@ -99,7 +99,11 @@ public class UserFragment extends BaseTopFragment {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.id_user_header_iv:
-                ProDispatcher.goLoginActivity(mActivity);
+                if (ProjectApplication.mUser == null) {
+                    ProDispatcher.goLoginActivity(mActivity);
+                } else {
+                    ProDispatcher.goUserActivity(mActivity);
+                }
                 break;
             case R.id.id_user_setup_rl:
                 ProDispatcher.goSetupActivity(mActivity);
@@ -139,22 +143,13 @@ public class UserFragment extends BaseTopFragment {
     }
 
 
-    @OnClick({R.id.id_user_point_rl, R.id.id_user_msg_rl})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.id_user_point_rl:
-                break;
-            case R.id.id_user_msg_rl:
-                break;
-        }
-    }
-
     @Override
     protected void onReceive(Intent intent) {
         super.onReceive(intent);
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.LOGIN_ACTION:
                 idUserNameTv.setText(ProjectApplication.mUser.getUser_name());
+                ProjectApplication.mImageLoader.loadCircleImage(idUserHeaderIv, ProjectApplication.mUser.getUser_pic());
                 break;
             case CstProject.BROADCAST_ACTION.LOGOUT_ACTION:
                 break;

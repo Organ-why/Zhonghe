@@ -5,55 +5,47 @@
     android:background="@color/res_color_white"
     android:orientation="vertical">
 
-    <RadioGroup
-        android:id="@+id/id_category_radiogroup"
+    <ScrollView
+        android:id="@+id/id_category_radiogroup_sv"
         android:layout_width="@dimen/view_category_radiogroup"
         android:layout_height="match_parent"
         android:background="@color/common_gray"
-        android:divider="@color/res_color_black_text"
-        android:orientation="vertical">
+        android:scrollbars="none">
 
-        <RadioButton
-            android:id="@+id/ids_rb"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/selector_category_rb_bg"
-            android:button="@drawable/selector_category_rb"
-            android:checked="true"
-            android:gravity="center"
-            android:text="品牌推荐" />
+        <RadioGroup
+            android:id="@+id/id_category_radiogroup"
+            android:layout_width="@dimen/view_category_radiogroup"
+            android:layout_height="match_parent"
+            android:background="@color/common_gray"
+            android:divider="@color/res_color_black_text"
+            android:orientation="vertical">
 
-        <RadioButton
-            android:id="@+id/ids_rb2"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/selector_category_rb_bg"
-            android:button="@drawable/selector_category_rb"
-            android:gravity="center"
-            android:text="品牌推荐" />
-
-        <RadioButton
-            android:id="@+id/ids_rb3"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/selector_category_rb_bg"
-            android:button="@drawable/selector_category_rb"
-            android:gravity="center"
-            android:text="品牌推荐" />
-    </RadioGroup>
+        </RadioGroup>
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_toRightOf="@id/id_category_radiogroup"
+        android:layout_toRightOf="@id/id_category_radiogroup_sv"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/id_category_child_title_tv"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_title_custom"
             android:gravity="center"
-            android:text="品牌推荐" />
+            android:text="品牌推荐"
+            android:textColor="@color/common_font_normal"
+            android:textSize="@dimen/font_msize" />
+
+        <GridView
+            android:id="@+id/id_category_child_gv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:numColumns="3"
+            android:verticalSpacing="10dp"></GridView>
 
     </LinearLayout>
 </RelativeLayout>

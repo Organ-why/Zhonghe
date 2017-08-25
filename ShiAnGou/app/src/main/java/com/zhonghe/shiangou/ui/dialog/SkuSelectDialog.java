@@ -7,96 +7,265 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.bean.GoodsTypeBean;
+import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.widget.FlowLayout;
+import com.zhonghe.shiangou.ui.widget.FlowLayout1;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import butterknife.Bind;
+import butterknife.BindDimen;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 /**
- * @desc   :
+ * @desc :
  */
-public class SkuSelectDialog extends PopupWindow {
+public class SkuSelectDialog extends PopupWindow implements View.OnClickListener {
+    @Bind(R.id.sku_select_img)
+    SimpleDraweeView skuSelectImg;
+    @Bind(R.id.sku_select_title_tv)
+    TextView skuSelectTitleTv;
+    @Bind(R.id.sku_select_close_iv)
+    ImageView skuSelectCloseIv;
+    @Bind(R.id.item_sku_select_symbol_tv)
+    TextView itemSkuSelectSymbolTv;
+    @Bind(R.id.item_sku_select_price_tv)
+    TextView itemSkuSelectPriceTv;
+    @Bind(R.id.item_sku_select_oldprice_tv)
+    TextView itemSkuSelectOldpriceTv;
+    @Bind(R.id.item_sku_select_amounttv)
+    TextView itemSkuSelectAmounttv;
+    @Bind(R.id.order_sku_rl)
+    RelativeLayout orderSkuRl;
+    @Bind(R.id.sku_context_msg_ll)
+    LinearLayout skuContextMsgLl;
+    @Bind(R.id.sku_select_id_ll)
+    LinearLayout skuSelectIdLl;
+    @Bind(R.id.layout_id_reduce_iv)
+    ImageView layoutIdReduceIv;
+    @Bind(R.id.layout_id_number_tv)
+    TextView layoutIdNumberTv;
+    @Bind(R.id.layout_id_add_iv)
+    ImageView layoutIdAddIv;
+    @Bind(R.id.layout_layout_id_changenum)
+    LinearLayout layoutLayoutIdChangenum;
+    @Bind(R.id.sku_context_change_ll)
+    LinearLayout skuContextChangeLl;
+    @Bind(R.id.sku_context_id_context)
+    RelativeLayout skuContextIdContext;
+    @Bind(R.id.sku_select_id__flow)
+    FlowLayout1 skuFlow;
     private View mMenuView;
     private View mLlRoot;
     private Context mContext;
 
-    public SkuSelectDialog(Activity context) {
-        super(context); 
+    SkuSelectListener skuSelectListener;
+
+    Integer mAmount = 1;
+
+    private GoodsdetailInfo detail;
+    private String mSkuId;
+    //sku list
+    private List<View> viewList;
+    @BindDimen(R.dimen.padding_xlsize)
+    int skuPadding;
+
+    public SkuSelectDialog(Activity context, GoodsdetailInfo data, int mCount, String skuId, SkuSelectListener skuSelectListener) {
+        super(context);
         mContext = context;
-        LayoutInflater inflater = (LayoutInflater)context
-        		.getSystemService(Context.LAYOUT_INFLATER_SERVICE);  
+        this.detail = data;
+        this.mAmount = mCount;
+        this.mSkuId = skuId;
+        this.skuSelectListener = skuSelectListener;
+        viewList = new ArrayList<>();
+        LayoutInflater inflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMenuView = inflater.inflate(R.layout.activity_skuselect, null);
-        mLlRoot = (RelativeLayout)mMenuView.findViewById(R.id.sku_context_id_context);
-//
-//        //取消按钮
-//        mMenuView.findViewById(R.id.photo_id_cancel).setOnClickListener(new OnClickListener() {
-//
-//            public void onClick(View v) {
-//                //销毁弹出框
-//                dismiss();
-//            }
-//        });
-//
-//        //设置按钮监听
-//       	//拍照
-//        mMenuView.findViewById(R.id.photo_id_camera).setOnClickListener(listener);
-//        //从相册选取图片
-//        mMenuView.findViewById(R.id.photo_id_picked).setOnClickListener(listener);
-      
-        setContentView(mMenuView);   
-        setWidth(LayoutParams.MATCH_PARENT);  
+        mLlRoot = (RelativeLayout) mMenuView.findViewById(R.id.sku_context_id_context);
+
+        setContentView(mMenuView);
+        setWidth(LayoutParams.MATCH_PARENT);
         setHeight(LayoutParams.MATCH_PARENT);
-        setFocusable(true);  
+        setFocusable(true);
         //设置弹出窗体动画效果  
-        setAnimationStyle(R.style.commom_popup_fade_anim_style);  
+        setAnimationStyle(R.style.commom_popup_fade_anim_style);
         //实例化一个ColorDrawable颜色为半透明  
-        ColorDrawable dw = new ColorDrawable(0x7f000000);  
+        ColorDrawable dw = new ColorDrawable(0x7f000000);
         //设置弹出窗体的背景  
-        this.setBackgroundDrawable(dw);  
-        
+        this.setBackgroundDrawable(dw);
+
         //mMenuView添加OnTouchListener监听判断获取触屏位置如果在选择框外面则销毁弹出框  
-        mMenuView.setOnTouchListener(new OnTouchListener() {  
-              
-            public boolean onTouch(View v, MotionEvent event) {  
-                 
-                int height = mLlRoot.getTop();  
-                int y=(int) event.getY();  
-                if(event.getAction()==MotionEvent.ACTION_UP){  
-                    if(y<height){  
-                    	 dismiss();
-                    }  
-                } 
-                
-                return true;  
-            }  
-        }); 
-        
+        mMenuView.setOnTouchListener(new OnTouchListener() {
+
+            public boolean onTouch(View v, MotionEvent event) {
+
+                int height = mLlRoot.getTop();
+                int y = (int) event.getY();
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (y < height) {
+                        dismiss();
+                    }
+                }
+
+                return true;
+            }
+        });
+
+        layoutIdNumberTv = ButterKnife.findById(mMenuView, R.id.layout_id_number_tv);
+        skuFlow = ButterKnife.findById(mMenuView, R.id.sku_select_id__flow);
+        skuSelectTitleTv = ButterKnife.findById(mMenuView, R.id.sku_select_title_tv);
+        itemSkuSelectPriceTv = ButterKnife.findById(mMenuView, R.id.item_sku_select_price_tv);
+        itemSkuSelectOldpriceTv = ButterKnife.findById(mMenuView, R.id.item_sku_select_oldprice_tv);
+        skuSelectImg = ButterKnife.findById(mMenuView, R.id.sku_select_img);
+        layoutIdAddIv = ButterKnife.findById(mMenuView, R.id.layout_id_add_iv);
+        layoutIdReduceIv = ButterKnife.findById(mMenuView, R.id.layout_id_reduce_iv);
+        layoutIdAddIv.setOnClickListener(this);
+        layoutIdReduceIv.setOnClickListener(this);
+
+
+        layoutIdNumberTv.setText(String.valueOf(mAmount));
+        setSkuList(detail.getGoods_type());
+        skuSelectTitleTv.setText(detail.getGoods().getGoods_name());
+        itemSkuSelectPriceTv.setText(detail.getGoods().getShop_price());
+        itemSkuSelectOldpriceTv.setText(detail.getGoods().getMarket_price());
+        ProjectApplication.mImageLoader.loadImage(skuSelectImg, detail.getGoods().getGoods_img());
+
+
         Animation anim = AnimationUtils.loadAnimation(context, R.anim.common_push_up_in);
         mLlRoot.startAnimation(anim);
     }
-    
-    
-	@Override
-	public void dismiss() {
-		Animation anim = AnimationUtils.loadAnimation(mContext, R.anim.common_push_down_out);
-		mLlRoot.startAnimation(anim);
-		
-        new Handler().postDelayed(new Runnable(){
 
-			@Override
-			public void run() {
-				 SkuSelectDialog.super.dismiss();
-			}
-       	  
-         }, 300);
-        
-	}  
-  
+
+    @Override
+    public void dismiss() {
+        Animation anim = AnimationUtils.loadAnimation(mContext, R.anim.common_push_down_out);
+        mLlRoot.startAnimation(anim);
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                SkuSelectDialog.super.dismiss();
+            }
+
+        }, 300);
+
+    }
+
+    // sku item 显示
+    void setSkuList(List<GoodsTypeBean> goods_type) {
+        for (final GoodsTypeBean sku : goods_type) {
+            View btnLayout = LayoutInflater.from(mContext).inflate(R.layout.layout_prodetail_sku_bt, null);
+            Button skuBt = (Button) btnLayout.findViewById(R.id.sku_select_id__button);
+            skuBt.setText(sku.getAttr_value());
+            skuBt.setTag(sku);
+            skuBt.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button mBtn = (Button) v;
+                    if (null != mBtn.getTag()) {
+                        GoodsTypeBean item = (GoodsTypeBean) mBtn.getTag();
+                        if (item != null) {
+                            mSkuId = item.getAttr_id();
+                            for (View btv : viewList) {
+                                Button listBt = (Button) btv.findViewById(R.id.sku_select_id__button);
+                                GoodsTypeBean tag = (GoodsTypeBean) listBt.getTag();
+                                if (tag.getAttr_id() == mSkuId) {
+                                    listBt.setBackgroundResource(R.drawable.circle_bt_orange_bg);
+                                    listBt.setTextColor(mContext.getResources().getColor(R.color.common_white));
+                                    skuSelectListener.onCheckSKU(tag.getAttr_id());
+                                } else {
+                                    if (listBt.isEnabled()) {
+                                        listBt.setBackgroundResource(R.drawable.circle_orange_hollow_bg);
+                                        listBt.setTextColor(mContext.getResources().getColor(R.color.res_color_apptheme));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            btnLayout.setPadding(0,skuPadding,0,skuPadding);
+//            btnLayout.setPadding(skuPadding, skuPadding, skuPadding, skuPadding);
+            skuFlow.addView(btnLayout);
+            viewList.add(btnLayout);
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.layout_id_add_iv:
+                addAmount();
+                break;
+            case R.id.layout_id_reduce_iv:
+                reduceAmount();
+                break;
+        }
+    }
+
+    /**
+     * sku选择 接口
+     */
+    public interface SkuSelectListener {
+        /**
+         * 修改商品数量
+         *
+         * @param count
+         */
+        void onCountChange(int count);
+
+        /**
+         * 选择sku
+         *
+         * @param sku
+         */
+        void onCheckSKU(String sku);
+    }
+
+
+    /**
+     * 增加数量
+     */
+    @OnClick(R.id.layout_id_add_iv)
+    protected void addAmount() {
+//        if (mAmount < mCount) {
+        mAmount++;
+        layoutIdNumberTv.setText(String.valueOf(mAmount));
+        skuSelectListener.onCountChange(mAmount);
+//        } else {
+//            UtilOuer.toast(this, R.string.prodetail_sku_select_amount);
+//        }
+
+    }
+
+    /**
+     * 减少数量
+     */
+    @OnClick(R.id.layout_id_reduce_iv)
+    protected void reduceAmount() {
+        if (mAmount > 1) {
+            mAmount--;
+            layoutIdNumberTv.setText(String.valueOf(mAmount));
+            skuSelectListener.onCountChange(mAmount);
+        }
+    }
 }  

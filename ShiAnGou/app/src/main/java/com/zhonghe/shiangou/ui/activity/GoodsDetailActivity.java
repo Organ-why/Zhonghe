@@ -22,7 +22,6 @@ import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
-import com.zhonghe.shiangou.ui.dialog.PayDialog;
 import com.zhonghe.shiangou.ui.dialog.SkuSelectDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.DynamicBanner;
@@ -38,7 +37,7 @@ import butterknife.OnClick;
  * Created by a on 2017/8/15.
  */
 
-public class GoodsDetailActivity extends BaseTopActivity {
+public class GoodsDetailActivity extends BaseTopActivity implements SkuSelectDialog.SkuSelectListener {
     @Bind(R.id.id_goodsdetail_banner_ll)
     LinearLayout idGoodsdetailBannerLl;
     @Bind(R.id.id_goodsdetail_title_tv)
@@ -70,6 +69,16 @@ public class GoodsDetailActivity extends BaseTopActivity {
     GoodsdetailInfo data;
     @Bind(R.id.id_goodsdetail_like_ib)
     ImageButton idGoodsdetailLikeIb;
+    @Bind(R.id.id_goodsdetail_more_tv)
+    TextView idGoodsdetailMoreTv;
+
+    //添加商品数量
+    private int mCount = 1;
+    private String mSKU;
+    //SKU 选择Dialog
+    SkuSelectDialog skudialog;
+
+    boolean isFollow = true;
 
     @Override
     protected void initTop() {
@@ -108,18 +117,20 @@ public class GoodsDetailActivity extends BaseTopActivity {
         addRequest(request);
     }
 
+    //商品信息
     void setShowMsg() {
         idGoodsdetailTitleTv.setText(data.getGoods().getGoods_name());
         idGoodsdetailDescTv.setText(data.getGoods().getGoods_desc());
         idGoodsdetailPriceTv.setText(data.getGoods().getShop_price());
         idGoodsdetailSoldnumTv.setText(data.getGoods().getWarn_number());
 
-        ProjectApplication.mImageLoader.loadImage(idItemRemarkHeaderImg,data.getGoods_ping().getImg());
+        ProjectApplication.mImageLoader.loadCircleImage(idItemRemarkHeaderImg, data.getGoods_ping().getImg());
         idItemRemarkNameTv.setText(data.getGoods_ping().getUser_name());
         idItemRemarkDateTv.setText(data.getGoods_ping().getAdd_time());
         idItemRemarkDescTv.setText(data.getGoods_ping().getContent());
     }
 
+    //商品图片
     void setShowBanner() {
 
         for (String imgurl : data.getGoods_img()) {
@@ -142,7 +153,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
 //        View tagView = LayoutInflater.from(this).inflate(R.layout.item_tag_goods, null);
 //    }
 
-    @OnClick({R.id.id_goodsdetail_sku_rl,R.id.id_goodsdetail_buynow_bt, R.id.id_goodsdetail_addcart_bt, R.id.id_goodsdetail_like_ib})
+    @OnClick({R.id.id_goodsdetail_more_tv, R.id.id_goodsdetail_sku_rl, R.id.id_goodsdetail_buynow_bt, R.id.id_goodsdetail_addcart_bt, R.id.id_goodsdetail_like_ib})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.id_goodsdetail_buynow_bt:
@@ -151,15 +162,16 @@ public class GoodsDetailActivity extends BaseTopActivity {
                     break;
                 }
 
-                ProDispatcher.goRemarkActivity(this);
+
                 break;
             case R.id.id_goodsdetail_addcart_bt:
                 if (ProjectApplication.mUser == null) {
                     ProDispatcher.goLoginActivity(this);
                     break;
                 }
-                PayDialog dialog = new PayDialog(this);
-                dialog.showAtLocation(view, Gravity.CENTER, 0, 0);
+                showSkuDialog(view);
+//                PayDialog dialog = new PayDialog(this);
+//                dialog.showAtLocation(view, Gravity.CENTER, 0, 0);
 //                dialog.show();
                 break;
             case R.id.id_goodsdetail_like_ib:
@@ -167,17 +179,66 @@ public class GoodsDetailActivity extends BaseTopActivity {
                     ProDispatcher.goLoginActivity(this);
                     break;
                 }
+                setWaitingDialog(true);
+                Request<?> request = HttpUtil.getFollowGoods(mContext, data.getGoods().getGoods_id(), isFollow, new ResultListener() {
+                    @Override
+                    public void onFail(String error) {
+                        setWaitingDialog(false);
+                    }
+
+                    @Override
+                    public void onSuccess(Object obj) {
+                        setWaitingDialog(false);
+                        if (isFollow) {
+                            idGoodsdetailLikeIb.setImageResource(R.mipmap.res_follow_selected);
+                        } else {
+                            idGoodsdetailLikeIb.setImageResource(R.mipmap.res_follow_nomal);
+                        }
+                        isFollow = !isFollow;
+                    }
+                });
+                addRequest(request);
                 break;
             case R.id.id_goodsdetail_sku_rl:
                 if (ProjectApplication.mUser == null) {
                     ProDispatcher.goLoginActivity(this);
                     break;
                 }
-                SkuSelectDialog skudialog = new SkuSelectDialog(this);
-                skudialog.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+                showSkuDialog(view);
 //                dialog.show();
+                break;
+            case R.id.id_goodsdetail_more_tv:
+                ProDispatcher.goRemarkActivity(this);
                 break;
         }
     }
+
+    void showSkuDialog(View view) {
+        if (skudialog == null) {
+            skudialog = new SkuSelectDialog(this, data, mCount, mSKU, new SkuSelectDialog.SkuSelectListener() {
+                @Override
+                public void onCountChange(int count) {
+
+                }
+
+                @Override
+                public void onCheckSKU(String sku) {
+
+                }
+            });
+        }
+        skudialog.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+    }
+
+    @Override
+    public void onCountChange(int count) {
+        mCount = count;
+    }
+
+    @Override
+    public void onCheckSKU(String sku) {
+        mSKU = sku;
+    }
+
 
 }

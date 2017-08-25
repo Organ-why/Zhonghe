@@ -112,6 +112,7 @@
 
     <style name="hint_search_style">
         <item name="android:textSize">12sp</item>
+        <item name="android:maxLines">1</item>
         <item name="android:textColor">@color/res_color_hint_search</item>
     </style>
     <!--自定义top title style-->
@@ -212,14 +213,21 @@
         <item name="android:textColor">@color/common_font_deep</item>
         <item name="android:textSize">@dimen/font_xlsize</item>
     </style>
+    <!--title gray-->
     <style name="common_text_gray_title">
         <item name="android:textColor">@color/common_font_deep</item>
         <item name="android:textSize">@dimen/font_xxxlsize</item>
         <item name="android:maxLines">2</item>
     </style>
+
     <style name="common_text_gray_desc">
         <item name="android:textColor">@color/common_font_shallow</item>
         <item name="android:textSize">@dimen/font_xlsize</item>
+    </style>
+
+    <style name="common_text_gray_deep_title">
+        <item name="android:textColor">@color/common_font_normal</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
     </style>
     <!--订单 商品描述-->
     <style name="common_order_name_style">
@@ -397,4 +405,17 @@
         <item name="android:textColor">@color/common_font_shallow</item>
         <item name="android:textSize">@dimen/font_msize</item>
     </style>
+
+
+    <!--Category 大分类radiobt 样式-->
+    <style name="common_categoryparent_style">
+        <item name="android:textColor">@drawable/selector_category_tv_color</item>
+        <item name="android:textSize">@dimen/font_xxlsize</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/button_hight_xxxlsize</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/selector_category_rb_bg</item>
+        <item name="android:button">@drawable/selector_category_rb</item>
+    </style>
+
 </resources>

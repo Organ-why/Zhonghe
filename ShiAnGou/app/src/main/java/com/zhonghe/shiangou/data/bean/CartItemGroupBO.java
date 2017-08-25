@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public class CartItemGroupBO extends BaseBean {
-    List<CartItemBO> childPro;
+    List<CartGoods> childPro;
     int Id;
     boolean isCheck;
     String groupName;
@@ -25,11 +25,11 @@ public class CartItemGroupBO extends BaseBean {
         isCheck = check;
     }
 
-    public List<CartItemBO> getChildPro() {
+    public List<CartGoods> getChildPro() {
         return childPro;
     }
 
-    public void setChildPro(List<CartItemBO> childPro) {
+    public void setChildPro(List<CartGoods> childPro) {
         this.childPro = childPro;
     }
 

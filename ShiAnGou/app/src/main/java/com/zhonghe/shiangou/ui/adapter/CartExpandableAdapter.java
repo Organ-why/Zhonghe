@@ -13,8 +13,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.bean.CartGoods;
 import com.zhonghe.shiangou.data.bean.CartItemGroupBO;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.List;
 
@@ -178,6 +181,11 @@ public class CartExpandableAdapter extends BaseExpandableListAdapter {
         } else {
             holder = (ChildViewHolder) view.getTag();
         }
+        final CartGoods goods = data.get(i).getChildPro().get(i1);
+        ProjectApplication.mImageLoader.loadImage(holder.itemCartIdIv, UtilString.nullToEmpty(goods.getGoods_img()));
+        holder.itemCartIdTitleTv.setText(UtilString.nullToEmpty(goods.getGoods_name()));
+        holder.itemCartIdTotalpayTv.setText(UtilString.nullToEmpty(goods.getShop_price()));
+        holder.layoutIdNumberTv.setText(UtilString.nullToEmpty(goods.getClick_count()));
         holder.itemCartIdCb.setChecked(data.get(i).getChildPro().get(i1).isCheck());
         holder.itemCartIdCb.setOnClickListener(
                 new View.OnClickListener() {
@@ -188,6 +196,18 @@ public class CartExpandableAdapter extends BaseExpandableListAdapter {
                 }
 
         );
+        holder.layoutIdAddIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modifyCountInterface.doIncrease(i, i1, holder.layoutIdNumberTv, goods.isCheck());
+            }
+        });
+        holder.layoutIdReduceIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modifyCountInterface.doDecrease(i, i1, holder.layoutIdNumberTv, goods.isCheck());
+            }
+        });
         return view;
     }
 
