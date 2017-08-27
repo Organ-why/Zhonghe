@@ -5,6 +5,7 @@ import android.support.annotation.IdRes;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -20,6 +21,7 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.CategoryChild;
 import com.zhonghe.shiangou.data.bean.CategoryParent;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.ui.adapter.CategoryChildAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
@@ -76,6 +78,13 @@ public class CategoryFragment extends BaseTopFragment {
         childMap = new HashMap<>();
         childAdapter = new CategoryChildAdapter(mActivity);
         idCategoryChildGv.setAdapter(childAdapter);
+        idCategoryChildGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ProDispatcher.goGoodsListActivity(mActivity, childAdapter.getData().get(i).getCat_id(), "");
+            }
+        });
+
         getCategoryParent();
     }
 
@@ -125,7 +134,7 @@ public class CategoryFragment extends BaseTopFragment {
             tempButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                    if (b)  getCategoryChild(categoryParents.get(finalI).getCat_id());
+                    if (b) getCategoryChild(categoryParents.get(finalI).getCat_id());
                 }
             });
             idCategoryRadiogroup.addView(tempButton, LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);

@@ -5,33 +5,48 @@
     android:orientation="vertical"
     android:padding="@dimen/padding_xxlsize">
 
-    <TextView
-        style="@style/common_text_gray_deep_title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_ll_item"
-        android:gravity="center_vertical"
-        android:text="@string/search_title_hot" />
-
-    <com.zhonghe.shiangou.ui.widget.FlowLayout1
-        android:id="@+id/id_search_hot_fl"
+    <LinearLayout
+        android:id="@+id/id_serach_hot_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-    </com.zhonghe.shiangou.ui.widget.FlowLayout1>
+        <TextView
+            style="@style/common_text_gray_deep_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_ll_item"
+            android:gravity="center_vertical"
+            android:text="@string/search_title_hot" />
 
-    <TextView
-        style="@style/common_text_gray_deep_title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_ll_item"
-        android:gravity="center_vertical"
-        android:text="@string/search_title_history" />
+        <com.zhonghe.shiangou.ui.widget.FlowLayout1
+            android:id="@+id/id_search_hot_fl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-    <com.zhonghe.shiangou.ui.widget.FlowLayout1
-        android:id="@+id/id_search_history_fl"
+
+        </com.zhonghe.shiangou.ui.widget.FlowLayout1>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/id_serach_history_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-    </com.zhonghe.shiangou.ui.widget.FlowLayout1>
+        <TextView
+            style="@style/common_text_gray_deep_title"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_ll_item"
+            android:gravity="center_vertical"
+            android:text="@string/search_title_history" />
+
+        <com.zhonghe.shiangou.ui.widget.FlowLayout1
+            android:id="@+id/id_search_history_fl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </com.zhonghe.shiangou.ui.widget.FlowLayout1>
+    </LinearLayout>
 </LinearLayout>

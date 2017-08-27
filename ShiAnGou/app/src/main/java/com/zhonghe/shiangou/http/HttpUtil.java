@@ -19,6 +19,7 @@ import com.zhonghe.shiangou.data.baseres.BaseRes;
 import com.zhonghe.shiangou.data.bean.CartInfo;
 import com.zhonghe.shiangou.data.bean.CategoryChild;
 import com.zhonghe.shiangou.data.bean.CategoryParent;
+import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.data.bean.StringInfo;
@@ -59,8 +60,12 @@ public class HttpUtil {
     public static String URL_Login = URL_PRO + "app/user/login.php";
     //商品详情
     public static String URL_GoodsDetail = URL_PRO + "app/goods/goods.php";
+    //搜索搜索
+    public static String URL_SearchHot = URL_PRO + "app/goods/goods_read.php";
+    //搜索
+    public static String URL_Search = URL_PRO + "app/goods/goods_select.php";
     //添加购物车
-    public static String URL_AddCart = URL_PRO + "cart.php";
+    public static String URL_AddCart = URL_PRO + "app/cart/add.php";
     //购物车列表
     public static String URL_CartList = URL_PRO + "app/cart/show.php";
     //订单
@@ -107,6 +112,7 @@ public class HttpUtil {
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone);
         map.put("password", pwd);
+        map.put("upassword", pwd);
         map.put("ident", code);
 //        BaseRes<String> res = new BaseRes<>();
         Request<?> request = volleyPost(context, URL_Register, map, listener, null);
@@ -146,6 +152,49 @@ public class HttpUtil {
 //        BaseRes<HomeData> res = new BaseRes<>();
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
         Request<?> request = volleyPost(context, URL_HomeData, map, listener, HomeData.class);
+        return request;
+    }
+
+    /**
+     * 商品列表
+     *
+     * @param context
+     * @param cat_id
+     * @param keywords
+     * @param cursize
+     * @param curpage
+     * @param orderby
+     * @param listener
+     * @return
+     */
+    public static Request<?> getSearch(Context context, String cat_id,
+                                       String keywords, int cursize, int curpage, String orderby, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("cat_id", cat_id);
+        map.put("keywords", keywords);
+        map.put("cursize", cursize + "");
+        map.put("curpage", curpage + "");
+        map.put("orderby", orderby);
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Type bean = new TypeToken<List<GoodsInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_Search, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 热门
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getSearchHost(Context context, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Type bean = new TypeToken<List<GoodsInfo>>() {
+        }.getType();
+        Request<?> request = volleyGet(context, URL_SearchHot, listener, bean);
         return request;
     }
 
@@ -200,6 +249,28 @@ public class HttpUtil {
 //        BaseRes<HomeData> res = new BaseRes<>();
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
         Request<?> request = volleyPost(context, URL_CartList, map, listener, CartInfo.class);
+        return request;
+    }
+
+    /**
+     * 添加购物车
+     *
+     * @param context
+     * @param goodsId
+     * @param attr_id
+     * @param goodsCount
+     * @param listener
+     * @return
+     */
+    public static Request<?> getAddCart(Context context, String goodsId, String attr_id, String goodsCount, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("goods_id", goodsId);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+        map.put("goods_number", goodsCount);
+        map.put("goods_attr_id", attr_id);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Request<?> request = volleyPost(context, URL_AddCart, map, listener, null);
         return request;
     }
 

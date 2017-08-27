@@ -37,7 +37,7 @@ import butterknife.OnClick;
  * Created by a on 2017/8/15.
  */
 
-public class GoodsDetailActivity extends BaseTopActivity implements SkuSelectDialog.SkuSelectListener {
+public class GoodsDetailActivity extends BaseTopActivity {
     @Bind(R.id.id_goodsdetail_banner_ll)
     LinearLayout idGoodsdetailBannerLl;
     @Bind(R.id.id_goodsdetail_title_tv)
@@ -111,7 +111,6 @@ public class GoodsDetailActivity extends BaseTopActivity implements SkuSelectDia
                     setShowMsg();
                     setShowBanner();
                 }
-
             }
         });
         addRequest(request);
@@ -218,26 +217,38 @@ public class GoodsDetailActivity extends BaseTopActivity implements SkuSelectDia
             skudialog = new SkuSelectDialog(this, data, mCount, mSKU, new SkuSelectDialog.SkuSelectListener() {
                 @Override
                 public void onCountChange(int count) {
-
+                    mCount = count;
                 }
 
                 @Override
                 public void onCheckSKU(String sku) {
+                    mSKU = sku;
+                }
+
+                @Override
+                public void onAddCart(String sku) {
+                    setWaitingDialog(true);
+                    Request<?> request = HttpUtil.getAddCart(mContext, goodsId, sku, mCount + "", new ResultListener() {
+                        @Override
+                        public void onFail(String error) {
+                            setWaitingDialog(false);
+                        }
+
+                        @Override
+                        public void onSuccess(Object obj) {
+                            setWaitingDialog(false);
+                        }
+                    });
+                    addRequest(request);
+                }
+
+                @Override
+                public void onBuyNow(String sku) {
 
                 }
             });
         }
         skudialog.showAtLocation(view, Gravity.BOTTOM, 0, 0);
-    }
-
-    @Override
-    public void onCountChange(int count) {
-        mCount = count;
-    }
-
-    @Override
-    public void onCheckSKU(String sku) {
-        mSKU = sku;
     }
 
 

@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.android.volley.Request;
 import com.zhonghe.lib_base.baseui.BaseUIActivity;
 import com.zhonghe.lib_base.baseui.BaseUIFragment;
 import com.zhonghe.lib_base.baseui.UIOptions;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 public abstract class BaseSystemActivity extends BaseUIActivity {
     /**
@@ -46,7 +48,7 @@ public abstract class BaseSystemActivity extends BaseUIActivity {
 //        addFragment(fragmentClzz, null);
 //    }
 
-//    /**
+    //    /**
 //     * 添加片段
 //     * @param fragmentClzz
 //     * @param bundle
@@ -77,5 +79,13 @@ public abstract class BaseSystemActivity extends BaseUIActivity {
 //            e.printStackTrace();
 //        }
 //    }
+    protected void addRequest(Request request) {
+        ProjectApplication.proReqestQueue.addRequest(request, this);
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ProjectApplication.proReqestQueue.cancleRequest(this);
+    }
 }

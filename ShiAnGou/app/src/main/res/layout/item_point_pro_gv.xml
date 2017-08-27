@@ -25,6 +25,7 @@
         android:text="8888积分" />
 
     <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_goods_img"
         android:layout_width="@dimen/image_width_msize"
         android:layout_height="@dimen/image_width_msize"
         android:layout_gravity="center_horizontal"

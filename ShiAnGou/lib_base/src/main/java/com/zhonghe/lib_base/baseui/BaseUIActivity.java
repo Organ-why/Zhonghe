@@ -419,6 +419,15 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     public void addAppTab(@StringRes int txtRes, Class<? extends BaseUIFragment> cls) {
         addAppTab(getString(txtRes), cls, null);
     }
+    /**
+     * 添加appbar上的文本tab
+     *
+     * @param txtRes
+     * @param cls
+     */
+    public void addAppTab(@StringRes int txtRes, Class<? extends BaseUIFragment> cls,Bundle args) {
+        addAppTab(getString(txtRes), cls, args);
+    }
 
     /**
      * 添加appbar上的文本tab

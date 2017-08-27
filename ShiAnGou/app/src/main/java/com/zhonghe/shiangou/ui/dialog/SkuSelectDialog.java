@@ -22,7 +22,9 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsTypeBean;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
+import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.FlowLayout;
 import com.zhonghe.shiangou.ui.widget.FlowLayout1;
 
@@ -71,6 +73,8 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
     LinearLayout skuContextChangeLl;
     @Bind(R.id.sku_context_id_context)
     RelativeLayout skuContextIdContext;
+    Button addbtn;
+    Button buybtn;
     @Bind(R.id.sku_select_id__flow)
     FlowLayout1 skuFlow;
     private View mMenuView;
@@ -137,8 +141,12 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
         skuSelectImg = ButterKnife.findById(mMenuView, R.id.sku_select_img);
         layoutIdAddIv = ButterKnife.findById(mMenuView, R.id.layout_id_add_iv);
         layoutIdReduceIv = ButterKnife.findById(mMenuView, R.id.layout_id_reduce_iv);
+        addbtn = ButterKnife.findById(mMenuView, R.id.id_goodsdetail_addcart_bt);
+        buybtn = ButterKnife.findById(mMenuView, R.id.id_goodsdetail_buynow_bt);
         layoutIdAddIv.setOnClickListener(this);
         layoutIdReduceIv.setOnClickListener(this);
+        addbtn.setOnClickListener(this);
+        buybtn.setOnClickListener(this);
 
 
         layoutIdNumberTv.setText(String.valueOf(mAmount));
@@ -203,7 +211,7 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
                     }
                 }
             });
-            btnLayout.setPadding(0,skuPadding,0,skuPadding);
+            btnLayout.setPadding(0, skuPadding, 0, skuPadding);
 //            btnLayout.setPadding(skuPadding, skuPadding, skuPadding, skuPadding);
             skuFlow.addView(btnLayout);
             viewList.add(btnLayout);
@@ -218,6 +226,11 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
                 break;
             case R.id.layout_id_reduce_iv:
                 reduceAmount();
+                break;
+            case R.id.id_goodsdetail_addcart_bt:
+                skuSelectListener.onAddCart(mSkuId);
+                break;
+            case R.id.id_goodsdetail_buynow_bt:
                 break;
         }
     }
@@ -239,6 +252,10 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
          * @param sku
          */
         void onCheckSKU(String sku);
+
+        void onAddCart(String sku);
+
+        void onBuyNow(String sku);
     }
 
 

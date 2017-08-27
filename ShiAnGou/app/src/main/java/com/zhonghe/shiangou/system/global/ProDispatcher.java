@@ -10,6 +10,7 @@ import com.zhonghe.shiangou.ui.activity.ChangeAddressActivity;
 import com.zhonghe.shiangou.ui.activity.ConfirmOrderActivity;
 import com.zhonghe.shiangou.ui.activity.ForgetPwdActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsDetailActivity;
+import com.zhonghe.shiangou.ui.activity.GoodsListActivity;
 import com.zhonghe.shiangou.ui.activity.LikeActivity;
 import com.zhonghe.shiangou.ui.activity.LoginActivity;
 import com.zhonghe.shiangou.ui.activity.MainActivity;
@@ -240,6 +241,23 @@ public class ProDispatcher {
         intent.putExtra(CstProject.KEY.ID, goods_id);
         context.startActivity(intent);
     }
+
+    /**
+     * 商品列表
+     * @param context
+     * @param cat_id
+     * @param keywords
+     */
+    public static void goGoodsListActivity(Context context, String cat_id, String keywords) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, GoodsListActivity.class);
+        intent.putExtra(CstProject.KEY.ID, cat_id);
+        intent.putExtra(CstProject.KEY.KEY, keywords);
+        context.startActivity(intent);
+    }
+
     /**
      * 商品详情
      *
@@ -269,6 +287,7 @@ public class ProDispatcher {
         intent.setAction(BROADCAST_ACTION.LOGIN_ACTION);
         context.sendBroadcast(intent);
     }
+
     /**
      * 登录广播
      *
