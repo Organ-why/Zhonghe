@@ -4,8 +4,12 @@ import android.content.Context;
 import android.view.View;
 import android.widget.ExpandableListView;
 
+import com.android.volley.Request;
 import com.zhonghe.shiangou.data.bean.CartGoods;
 import com.zhonghe.shiangou.data.bean.CartItemGroupBO;
+import com.zhonghe.shiangou.data.bean.GoodsInfo;
+import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.CartExpandableAdapter;
 import com.zhonghe.shiangou.ui.fragment.CartExpandableFragment;
 
@@ -48,7 +52,8 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
     }
 
     public void setmData(List<CartItemGroupBO> mData) {
-        this.mData = mData;
+        this.mData.clear();
+        this.mData.addAll(mData);
         reFreshData();
     }
 
@@ -118,26 +123,53 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
 
     //商品数量减少
     @Override
-    public void doIncrease(int groupPosition, int childPosition, View showCountView, boolean isChecked) {
-        Integer amount = Integer.valueOf(mData.get(groupPosition).getChildPro().get(childPosition).getClick_count());
+    public void doIncrease(final int groupPosition, final int childPosition, View showCountView, boolean isChecked) {
+        Integer amount = Integer.valueOf(mData.get(groupPosition).getChildPro().get(childPosition).getGoods_count());
         amount--;
-        mData.get(groupPosition).getChildPro().get(childPosition).setClick_count(String.valueOf(amount));
-        reFreshData();
+        if (amount == 0)
+            return;
+        final Integer finalAmount = amount;
+        Request<?> request = HttpUtil.getChangeCart(mContext, mData.get(groupPosition).getChildPro().get(childPosition).getGoods_id(), amount, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                mData.get(groupPosition).getChildPro().get(childPosition).setGoods_count(String.valueOf(finalAmount));
+                reFreshData();
+            }
+        });
+        ProjectApplication.proReqestQueue.addRequest(request, mContext);
+
     }
 
     //商品数量增加
     @Override
-    public void doDecrease(int groupPosition, int childPosition, View showCountView, boolean isChecked) {
-        Integer amount = Integer.valueOf(mData.get(groupPosition).getChildPro().get(childPosition).getClick_count());
+    public void doDecrease(final int groupPosition, final int childPosition, View showCountView, boolean isChecked) {
+        Integer amount = Integer.valueOf(mData.get(groupPosition).getChildPro().get(childPosition).getGoods_count());
         amount++;
-        mData.get(groupPosition).getChildPro().get(childPosition).setClick_count(String.valueOf(amount));
-        reFreshData();
+        final Integer finalAmount = amount;
+        Request<?> request = HttpUtil.getChangeCart(mContext, mData.get(groupPosition).getChildPro().get(childPosition).getGoods_id(), amount, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                mData.get(groupPosition).getChildPro().get(childPosition).setGoods_count(String.valueOf(finalAmount));
+                reFreshData();
+            }
+        });
+        ProjectApplication.proReqestQueue.addRequest(request, mContext);
     }
 
 //    //本地删除
 //    @Override
 //    public void childDelete(int groupPosition, int childPosition) {
-//        
+//
 //    }
 
     //编辑
@@ -148,8 +180,39 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
     ;
 
     //删除
-    public void deleteData() {
+    public void deleteGoods() {
+        if (mSelectData.size() > 0) {
+            mData.removeAll(mSelectData);
+            adapter.notifyDataSetChanged();
+        }
+    }
 
+    ;
+    private List<String> selectlist;
+
+    //删除
+    public List<String> getSelectGoods() {
+        if (selectlist == null) selectlist = new ArrayList<>();
+        selectlist.clear();
+        mSelectData.clear();
+        for (CartItemGroupBO parentinfo : mData) {
+            List<CartGoods> childlist = new ArrayList<>();
+            for (CartGoods childinfo : parentinfo.getChildPro()) {
+                if (childinfo.isCheck()) {
+                    childlist.add(childinfo);
+                    selectlist.add(childinfo.getGoods_id());
+                }
+            }
+            if (childlist.size() > 0) {
+                CartItemGroupBO selectinfo = new CartItemGroupBO();
+                selectinfo = parentinfo;
+                selectinfo.setChildPro(childlist);
+                mSelectData.add(selectinfo);
+            }
+
+        }
+
+        return selectlist;
     }
 
     ;

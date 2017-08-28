@@ -1,9 +1,11 @@
 package com.zhonghe.shiangou.data.bean;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * auther: whyang
  * date: 2017/8/24
- * desc:
+ * desc:购物车列表
  */
 
 public class CartGoods extends BaseBean {
@@ -16,7 +18,7 @@ public class CartGoods extends BaseBean {
      * goods_name_style : +
      * click_count : 6
      * brand_id : 17
-     * provider_name : 
+     * provider_name :
      * goods_number : 99
      * goods_weight : 0.000
      * market_price : 79.20
@@ -26,14 +28,14 @@ public class CartGoods extends BaseBean {
      * promote_start_date : 0
      * promote_end_date : 0
      * warn_number : 1
-     * keywords : 
-     * goods_brief : 
+     * keywords :
+     * goods_brief :
      * goods_desc : <p>还行吧</p>
      * goods_thumb : images/201708/thumb_img/118_thumb_G_1503379094922.jpg
      * goods_img : images/201708/goods_img/118_G_1503379094344.jpg
      * original_img : images/201708/source_img/118_G_1503379094276.jpg
      * is_real : 1
-     * extension_code : 
+     * extension_code :
      * is_on_sale : 1
      * is_alone_sale : 1
      * is_shipping : 0
@@ -48,13 +50,14 @@ public class CartGoods extends BaseBean {
      * bonus_type_id : 0
      * last_update : 1503472258
      * goods_type : 10
-     * seller_note : 
+     * seller_note :
      * give_integral : -1
      * rank_integral : -1
      * suppliers_id : 0
      * is_check : null
      * jifen : 0
      */
+
     boolean isCheck;
     private String goods_id;
     private String cat_id;
@@ -101,6 +104,37 @@ public class CartGoods extends BaseBean {
     private String suppliers_id;
     private String is_check;
     private String jifen;
+    /**
+     * rec_id : 267
+     * user_id : 21
+     * session_id :
+     * product_id : 0
+     * goods_price : 250
+     * goods_count : 5
+     * goods_attr : null
+     * parent_id : 0
+     * rec_type : 0
+     * is_gift : 0
+     * can_handsel : 0
+     * goods_attr_id : null
+     * is_check : null
+     * label : 农场直销
+     */
+
+    private String rec_id;
+    private String user_id;
+    private String session_id;
+    private String product_id;
+    private String goods_price;
+    private String goods_count;
+    private String goods_attr;
+    private String parent_id;
+    private String rec_type;
+    private String is_gift;
+    private String can_handsel;
+    private String goods_attr_id;
+    private String is_checkX;
+    private String label;
 
     public boolean isCheck() {
         return isCheck;
@@ -468,5 +502,117 @@ public class CartGoods extends BaseBean {
 
     public void setJifen(String jifen) {
         this.jifen = jifen;
+    }
+
+    public String getRec_id() {
+        return rec_id;
+    }
+
+    public void setRec_id(String rec_id) {
+        this.rec_id = rec_id;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getSession_id() {
+        return session_id;
+    }
+
+    public void setSession_id(String session_id) {
+        this.session_id = session_id;
+    }
+
+    public String getProduct_id() {
+        return product_id;
+    }
+
+    public void setProduct_id(String product_id) {
+        this.product_id = product_id;
+    }
+
+    public String getGoods_price() {
+        return goods_price;
+    }
+
+    public void setGoods_price(String goods_price) {
+        this.goods_price = goods_price;
+    }
+
+    public String getGoods_count() {
+        return goods_count;
+    }
+
+    public void setGoods_count(String goods_count) {
+        this.goods_count = goods_count;
+    }
+
+    public String getGoods_attr() {
+        return goods_attr;
+    }
+
+    public void setGoods_attr(String goods_attr) {
+        this.goods_attr = goods_attr;
+    }
+
+    public String getParent_id() {
+        return parent_id;
+    }
+
+    public void setParent_id(String parent_id) {
+        this.parent_id = parent_id;
+    }
+
+    public String getRec_type() {
+        return rec_type;
+    }
+
+    public void setRec_type(String rec_type) {
+        this.rec_type = rec_type;
+    }
+
+    public String getIs_gift() {
+        return is_gift;
+    }
+
+    public void setIs_gift(String is_gift) {
+        this.is_gift = is_gift;
+    }
+
+    public String getCan_handsel() {
+        return can_handsel;
+    }
+
+    public void setCan_handsel(String can_handsel) {
+        this.can_handsel = can_handsel;
+    }
+
+    public String getGoods_attr_id() {
+        return goods_attr_id;
+    }
+
+    public void setGoods_attr_id(String goods_attr_id) {
+        this.goods_attr_id = goods_attr_id;
+    }
+
+    public String getIs_checkX() {
+        return is_checkX;
+    }
+
+    public void setIs_checkX(String is_checkX) {
+        this.is_checkX = is_checkX;
+    }
+
+    public String getLabel() {
+        return label;
+    }
+
+    public void setLabel(String label) {
+        this.label = label;
     }
 }

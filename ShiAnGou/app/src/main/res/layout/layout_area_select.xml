@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/photo_id_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/padding_hsize">
+
+
+        <com.zhonghe.shiangou.ui.widget.PickerView
+            android:id="@+id/id_area_province"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1" />
+
+        <com.zhonghe.shiangou.ui.widget.PickerView
+            android:id="@+id/id_area_city"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1" />
+
+        <com.zhonghe.shiangou.ui.widget.PickerView
+            android:id="@+id/id_area_district"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white">
+
+        <TextView
+            android:id="@+id/photo_id_cancel"
+            style="@style/user_button_style"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_hight_xxxlsize"
+            android:layout_margin="@dimen/margin_xxlsize"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="@string/common_confirm"
+            android:textSize="@dimen/font_hsize" />
+
+    </LinearLayout>
+
+</LinearLayout>

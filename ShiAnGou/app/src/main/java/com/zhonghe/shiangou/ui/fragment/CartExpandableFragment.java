@@ -3,14 +3,18 @@ package com.zhonghe.shiangou.ui.fragment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.shiangou.data.bean.CartGoods;
 import com.zhonghe.shiangou.data.bean.CartInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
@@ -32,7 +36,7 @@ import butterknife.OnClick;
  * Date: 2017/8/8.
  * Author: whyang
  */
-public class CartExpandableFragment extends BaseTopFragment {
+public class CartExpandableFragment extends BaseTopFragment implements PullToRefreshBase.OnRefreshListener2<ExpandableListView> {
     @Bind(R.id.cart_id_expandlv)
     PullToRefreshExpandableListView cartIdLv;
     @Bind(R.id.cart_id_all_cb)
@@ -119,7 +123,7 @@ public class CartExpandableFragment extends BaseTopFragment {
         customTopIdTitle.setText(R.string.common_cart_title);
         customTopIdRightTv.setText(R.string.common_cart_edit);
 
-
+        cartIdLv.setOnRefreshListener(this);
         getCartData();
     }
 
@@ -133,16 +137,27 @@ public class CartExpandableFragment extends BaseTopFragment {
             public void onFail(String error) {
                 setWaitingDialog(false);
                 Utilm.toast(mActivity, error);
+                cartIdLv.onRefreshComplete();
             }
 
             @Override
             public void onSuccess(Object obj) {
+                cartIdLv.onRefreshComplete();
                 setWaitingDialog(false);
-                CartInfo info = (CartInfo) obj;
-                CartItemGroupBO cartItemGroupBO = new CartItemGroupBO();
-                cartItemGroupBO.setChildPro(info.getCarts());
-                data.add(cartItemGroupBO);
-                listener.addmData(data);
+                List<CartGoods> info = (List<CartGoods>) obj;
+
+                if (info.size() > 0) {
+                    curpage++;
+                    CartItemGroupBO cartItemGroupBO = new CartItemGroupBO();
+                    cartItemGroupBO.setChildPro(info);
+                    data.add(cartItemGroupBO);
+                }
+
+                if (curpage == 1) {
+                    listener.setmData(data);
+                } else {
+                    listener.addmData(data);
+                }
             }
         });
         addRequest(request);
@@ -188,7 +203,39 @@ public class CartExpandableFragment extends BaseTopFragment {
                 ProDispatcher.goConfirmOrderActivity(mActivity);
                 break;
             case R.id.cart_id_del_bt:
+                List<String> delist = listener.getSelectGoods();
+                if (UtilList.isEmpty(delist)) {
+                    Utilm.toast(mActivity, R.string.common_cart_noselect);
+                } else {
+                    setWaitingDialog(true);
+                    Request<?> request = HttpUtil.getDeleteCart(mActivity, delist, new ResultListener() {
+                        @Override
+                        public void onFail(String error) {
+                            setWaitingDialog(false);
+                        }
+
+                        @Override
+                        public void onSuccess(Object obj) {
+                            setWaitingDialog(false);
+                            listener.deleteGoods();
+                        }
+                    });
+                    addRequest(request);
+                }
                 break;
         }
+    }
+
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
+        Utilm.toast(mActivity, "down");
+        curpage = 1;
+        getCartData();
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
+        Utilm.toast(mActivity, "up");
+        getCartData();
     }
 }

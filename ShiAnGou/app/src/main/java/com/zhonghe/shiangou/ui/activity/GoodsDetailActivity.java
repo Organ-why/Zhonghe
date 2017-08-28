@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
@@ -62,6 +63,8 @@ public class GoodsDetailActivity extends BaseTopActivity {
     Button idGoodsdetailAddcartBt;
     @Bind(R.id.id_goodsdetail_sku_rl)
     RelativeLayout skurl;
+    @Bind(R.id.id_layout_remark)
+    RelativeLayout remark;
 
     SkuSelectDialog mDialog;
     List<BaseBannerInfo> bannerInfo;
@@ -97,7 +100,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
     @Override
     protected void initViews() {
         setWaitingDialog(true);
-        Request<?> request = HttpUtil.getGoodsDetail(this, "115", new ResultListener() {
+        Request<?> request = HttpUtil.getGoodsDetail(this, goodsId, new ResultListener() {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
@@ -122,11 +125,15 @@ public class GoodsDetailActivity extends BaseTopActivity {
         idGoodsdetailDescTv.setText(data.getGoods().getGoods_desc());
         idGoodsdetailPriceTv.setText(data.getGoods().getShop_price());
         idGoodsdetailSoldnumTv.setText(data.getGoods().getWarn_number());
-
-        ProjectApplication.mImageLoader.loadCircleImage(idItemRemarkHeaderImg, data.getGoods_ping().getImg());
-        idItemRemarkNameTv.setText(data.getGoods_ping().getUser_name());
-        idItemRemarkDateTv.setText(data.getGoods_ping().getAdd_time());
-        idItemRemarkDescTv.setText(data.getGoods_ping().getContent());
+        if (data.getGoods_ping() != null) {
+            String img = data.getGoods_ping().getImg();
+            ProjectApplication.mImageLoader.loadCircleImage(idItemRemarkHeaderImg, UtilString.nullToEmpty(img));
+            idItemRemarkNameTv.setText(UtilString.nullToEmpty(data.getGoods_ping().getUser_name()));
+            idItemRemarkDateTv.setText(UtilString.nullToEmpty(data.getGoods_ping().getAdd_time()));
+            idItemRemarkDescTv.setText(UtilString.nullToEmpty(data.getGoods_ping().getContent()));
+        } else {
+            remark.setVisibility(View.GONE);
+        }
     }
 
     //商品图片
@@ -134,7 +141,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
 
         for (String imgurl : data.getGoods_img()) {
             BaseBannerInfo baseBannerInfo = new BaseBannerInfo();
-            baseBannerInfo.setImgUrl(imgurl);
+            baseBannerInfo.setBanner_images(imgurl);
             bannerInfo.add(baseBannerInfo);
         }
         if (bannerInfo.size() > 0) {
@@ -160,7 +167,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
                     ProDispatcher.goLoginActivity(this);
                     break;
                 }
-
+                showSkuDialog(view, false);
 
                 break;
             case R.id.id_goodsdetail_addcart_bt:
@@ -168,7 +175,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
                     ProDispatcher.goLoginActivity(this);
                     break;
                 }
-                showSkuDialog(view);
+                showSkuDialog(view, true);
 //                PayDialog dialog = new PayDialog(this);
 //                dialog.showAtLocation(view, Gravity.CENTER, 0, 0);
 //                dialog.show();
@@ -203,7 +210,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
                     ProDispatcher.goLoginActivity(this);
                     break;
                 }
-                showSkuDialog(view);
+                showSkuDialog(view, true);
 //                dialog.show();
                 break;
             case R.id.id_goodsdetail_more_tv:
@@ -212,7 +219,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
         }
     }
 
-    void showSkuDialog(View view) {
+    void showSkuDialog(View view, boolean justSku) {
         if (skudialog == null) {
             skudialog = new SkuSelectDialog(this, data, mCount, mSKU, new SkuSelectDialog.SkuSelectListener() {
                 @Override
@@ -228,15 +235,18 @@ public class GoodsDetailActivity extends BaseTopActivity {
                 @Override
                 public void onAddCart(String sku) {
                     setWaitingDialog(true);
-                    Request<?> request = HttpUtil.getAddCart(mContext, goodsId, sku, mCount + "", new ResultListener() {
+                    Request<?> request = HttpUtil.getAddCart(mContext, goodsId, UtilString.nullToString(mSKU), mCount + "", new ResultListener() {
                         @Override
                         public void onFail(String error) {
                             setWaitingDialog(false);
+//                            skudialog.dismiss();
                         }
 
                         @Override
                         public void onSuccess(Object obj) {
                             setWaitingDialog(false);
+                            skudialog.dismiss();
+                            Utilm.toast(mContext, R.string.common_cart_add_success);
                         }
                     });
                     addRequest(request);
@@ -244,10 +254,12 @@ public class GoodsDetailActivity extends BaseTopActivity {
 
                 @Override
                 public void onBuyNow(String sku) {
-
+                    skudialog.dismiss();
+                    ProDispatcher.goConfirmOrderActivity(mContext);
                 }
             });
         }
+        skudialog.setDialogType(justSku);
         skudialog.showAtLocation(view, Gravity.BOTTOM, 0, 0);
     }
 

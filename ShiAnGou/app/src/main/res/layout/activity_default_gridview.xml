@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <com.handmark.pulltorefresh.library.PullToRefreshGridView
@@ -11,6 +12,7 @@
         android:gravity="center"
         android:listSelector="@color/res_color_transparent"
         android:numColumns="2"
+        app:ptrMode="both"
         android:verticalSpacing="10dp">
 
     </com.handmark.pulltorefresh.library.PullToRefreshGridView>

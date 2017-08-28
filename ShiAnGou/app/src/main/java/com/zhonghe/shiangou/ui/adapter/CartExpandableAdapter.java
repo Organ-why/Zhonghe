@@ -185,7 +185,7 @@ public class CartExpandableAdapter extends BaseExpandableListAdapter {
         ProjectApplication.mImageLoader.loadImage(holder.itemCartIdIv, UtilString.nullToEmpty(goods.getGoods_img()));
         holder.itemCartIdTitleTv.setText(UtilString.nullToEmpty(goods.getGoods_name()));
         holder.itemCartIdTotalpayTv.setText(UtilString.nullToEmpty(goods.getShop_price()));
-        holder.layoutIdNumberTv.setText(UtilString.nullToEmpty(goods.getClick_count()));
+        holder.layoutIdNumberTv.setText(UtilString.nullToEmpty(goods.getGoods_count()));
         holder.itemCartIdCb.setChecked(data.get(i).getChildPro().get(i1).isCheck());
         holder.itemCartIdCb.setOnClickListener(
                 new View.OnClickListener() {
@@ -199,13 +199,14 @@ public class CartExpandableAdapter extends BaseExpandableListAdapter {
         holder.layoutIdAddIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                modifyCountInterface.doIncrease(i, i1, holder.layoutIdNumberTv, goods.isCheck());
+                modifyCountInterface.doDecrease(i, i1, holder.layoutIdNumberTv, goods.isCheck());
+
             }
         });
         holder.layoutIdReduceIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                modifyCountInterface.doDecrease(i, i1, holder.layoutIdNumberTv, goods.isCheck());
+                modifyCountInterface.doIncrease(i, i1, holder.layoutIdNumberTv, goods.isCheck());
             }
         });
         return view;

@@ -75,6 +75,8 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
     RelativeLayout skuContextIdContext;
     Button addbtn;
     Button buybtn;
+    Button confirmbtn;
+    LinearLayout addcarLl;
     @Bind(R.id.sku_select_id__flow)
     FlowLayout1 skuFlow;
     private View mMenuView;
@@ -86,7 +88,7 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
     Integer mAmount = 1;
 
     private GoodsdetailInfo detail;
-    private String mSkuId;
+    private String mSkuId="";
     //sku list
     private List<View> viewList;
     @BindDimen(R.dimen.padding_xlsize)
@@ -143,8 +145,13 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
         layoutIdReduceIv = ButterKnife.findById(mMenuView, R.id.layout_id_reduce_iv);
         addbtn = ButterKnife.findById(mMenuView, R.id.id_goodsdetail_addcart_bt);
         buybtn = ButterKnife.findById(mMenuView, R.id.id_goodsdetail_buynow_bt);
+        skuSelectCloseIv = ButterKnife.findById(mMenuView, R.id.sku_select_close_iv);
+        confirmbtn = ButterKnife.findById(mMenuView, R.id.id_confirm_bt);
+        addcarLl = ButterKnife.findById(mMenuView, R.id.id_sku_select_ll);
         layoutIdAddIv.setOnClickListener(this);
         layoutIdReduceIv.setOnClickListener(this);
+        confirmbtn.setOnClickListener(this);
+        skuSelectCloseIv.setOnClickListener(this);
         addbtn.setOnClickListener(this);
         buybtn.setOnClickListener(this);
 
@@ -232,6 +239,11 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
                 break;
             case R.id.id_goodsdetail_buynow_bt:
                 break;
+            case R.id.sku_select_close_iv:
+                dismiss();
+            case R.id.id_confirm_bt:
+                skuSelectListener.onAddCart(mSkuId);
+                break;
         }
     }
 
@@ -258,6 +270,15 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
         void onBuyNow(String sku);
     }
 
+    public void setDialogType(boolean justSku) {
+        if (justSku) {
+            addcarLl.setVisibility(View.GONE);
+            confirmbtn.setVisibility(View.VISIBLE);
+        } else {
+            addcarLl.setVisibility(View.VISIBLE);
+            confirmbtn.setVisibility(View.GONE);
+        }
+    }
 
     /**
      * 增加数量

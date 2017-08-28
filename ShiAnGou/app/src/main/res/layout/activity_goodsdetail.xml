@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <ScrollView
@@ -35,7 +36,7 @@
                     style="@style/common_content_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="有机长茄子 新鲜蔬菜" />
+                    tools:text="有机长茄子 新鲜蔬菜" />
 
                 <TextView
                     android:id="@+id/id_goodsdetail_desc_tv"
@@ -44,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/id_goodsdetail_title_tv"
                     android:layout_marginTop="@dimen/margin_h"
-                    android:text="农场直供 有机认证 软糯细腻 鲜嫩" />
+                    tools:text="农场直供 有机认证 软糯细腻 鲜嫩" />
 
                 <TextView
                     android:id="@+id/id_goodsdetail_price_tv"
@@ -53,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/id_goodsdetail_desc_tv"
                     android:layout_marginTop="@dimen/margin_h"
-                    android:text="¥9.9" />
+                    tools:text="¥9.9" />
 
                 <TextView
                     android:id="@+id/id_goodsdetail_soldnum_tv"
@@ -64,7 +65,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_alignTop="@+id/id_goodsdetail_price_tv"
                     android:gravity="center"
-                    android:text="已售：1999" />
+                    tools:text="已售：1999" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

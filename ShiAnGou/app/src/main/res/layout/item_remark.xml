@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/id_layout_remark"
     android:padding="@dimen/padding_xxlsize">
 
     <com.facebook.drawee.view.SimpleDraweeView
@@ -19,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_xxlsize"
         android:layout_toRightOf="@id/id_item_remark_header_img"
-        android:text="183****5366" />
+        tools:text="183****5366" />
 
     <TextView
         android:id="@+id/id_item_remark_date_tv"
@@ -29,15 +31,16 @@
         android:layout_alignBottom="@id/id_item_remark_header_img"
         android:layout_marginLeft="@dimen/margin_xxlsize"
         android:layout_toRightOf="@id/id_item_remark_header_img"
-        android:text="2017-08-01" />
+        tools:text="2017-08-01" />
+
     <TextView
         android:id="@+id/id_item_remark_desc_tv"
         style="@style/common_remark_desc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/margin_l"
         android:layout_below="@id/id_item_remark_header_img"
-        android:text="特别新鲜，物流特别快，很喜欢！！" />
+        android:layout_marginTop="@dimen/margin_l"
+        tools:text="特别新鲜，物流特别快，很喜欢！！" />
 
 
 </RelativeLayout>

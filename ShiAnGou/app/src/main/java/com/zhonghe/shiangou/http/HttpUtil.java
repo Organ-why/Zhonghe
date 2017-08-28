@@ -16,6 +16,9 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.reflect.TypeToken;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
+import com.zhonghe.shiangou.data.bean.AddressInfo;
+import com.zhonghe.shiangou.data.bean.AddressSelectInfo;
+import com.zhonghe.shiangou.data.bean.CartGoods;
 import com.zhonghe.shiangou.data.bean.CartInfo;
 import com.zhonghe.shiangou.data.bean.CategoryChild;
 import com.zhonghe.shiangou.data.bean.CategoryParent;
@@ -66,14 +69,22 @@ public class HttpUtil {
     public static String URL_Search = URL_PRO + "app/goods/goods_select.php";
     //添加购物车
     public static String URL_AddCart = URL_PRO + "app/cart/add.php";
+    //删除购物车
+    public static String URL_DeleteCart = URL_PRO + "app/cart/delete.php";
+    //修改购物车
+    public static String URL_ChangeCart = URL_PRO + "app/cart/update.php";
     //购物车列表
     public static String URL_CartList = URL_PRO + "app/cart/show.php";
     //订单
     public static String URL_Order = URL_PRO + "order.php";
     //订单列表
     public static String URL_OrderList = URL_PRO + "orderindex.php";
-    //地址
-    public static String URL_Address = URL_PRO + "address.php";
+    //地址列表
+    public static String URL_Address = URL_PRO + "app/address/show.php";
+    //地址 省市县选择
+    public static String URL_AddressSelect = URL_PRO + "app/address/address.php";
+    //添加地址
+    public static String URL_AddAddress = URL_PRO + "app/address/update.php";
     //密码
     public static String URL_Password = URL_PRO + "password.php";
     //头像
@@ -235,6 +246,45 @@ public class HttpUtil {
     }
 
     /**
+     * 地址列表
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getAddressList(Context context, ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Type bean = new TypeToken<List<AddressInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_Address, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 三级地址列表
+     *
+     * @param context
+     * @param areaid
+     * @param listener
+     * @return
+     */
+    public static Request<?> getAddressSelect(Context context, String areaid, ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("areaid ", areaid);
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken<List<AddressInfo>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_AddressSelect, map, listener, AddressSelectInfo.class);
+        return request;
+    }
+
+    /**
      * 购物车列表
      *
      * @param context
@@ -243,12 +293,13 @@ public class HttpUtil {
      */
     public static Request<?> getCartList(Context context, int curpage, int cursize, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
-        map.put("user_id", "22");
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
         map.put("curpage", String.valueOf(curpage));
         map.put("cursize", String.valueOf(cursize));
 //        BaseRes<HomeData> res = new BaseRes<>();
-//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
-        Request<?> request = volleyPost(context, URL_CartList, map, listener, CartInfo.class);
+        Type bean = new TypeToken<List<CartGoods>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_CartList, map, listener, bean);
         return request;
     }
 
@@ -271,6 +322,47 @@ public class HttpUtil {
 //        BaseRes<HomeData> res = new BaseRes<>();
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
         Request<?> request = volleyPost(context, URL_AddCart, map, listener, null);
+        return request;
+    }
+
+    /**
+     * 删除购物车
+     *
+     * @param context
+     * @param goodsId
+     * @param listener
+     * @return
+     */
+    public static Request<?> getDeleteCart(Context context, List<String> goodsId, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("goods_id", goodsId.toString());
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        map.put("goods_number", goodsCount);
+//        map.put("goods_attr_id", attr_id);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Request<?> request = volleyPost(context, URL_DeleteCart, map, listener, null);
+        return request;
+    }
+
+    /**
+     * 修改购物车数量
+     *
+     * @param context
+     * @param goodsId
+     * @param listener
+     * @return
+     */
+    public static Request<?> getChangeCart(Context context, String goodsId, int count, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("goods_id", goodsId.toString());
+        map.put("goods_count", count + "");
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        map.put("goods_number", goodsCount);
+//        map.put("goods_attr_id", attr_id);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Request<?> request = volleyPost(context, URL_ChangeCart, map, listener, null);
         return request;
     }
 
