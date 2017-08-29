@@ -94,13 +94,32 @@ public class PickerView extends View {
     private void performSelect() {
         if (mSelectListener != null)
             mSelectListener.onSelect(mDataList.get(mCurrentSelected));
+        mSelectListener.onSelectId(mCurrentSelected);
     }
 
     public void setData(List<String> datas) {
         mDataList = datas;
 //        mCurrentSelected = datas.size() / 2;
-        mCurrentSelected = 1;
+        mCurrentSelected = 0;
         invalidate();
+    }
+
+    /**
+     * 当前选择地区文字
+     *
+     * @return
+     */
+    public String getSelectStr() {
+        return mDataList.get(mCurrentSelected);
+    }
+
+    /**
+     * 返回当前选择index
+     *
+     * @return
+     */
+    public int getSelectId() {
+        return mCurrentSelected;
     }
 
     /**
@@ -181,7 +200,9 @@ public class PickerView extends View {
     private void drawData(Canvas canvas) {
         // 先绘制选中的text再往上往下绘制其余的text
         float scale = parabola(mViewHeight / 4.0f, mMoveLen);
-        float size = (mMaxTextSize - mMinTextSize) * scale + mMinTextSize;
+//        float size = (mMaxTextSize - mMinTextSize) * scale + mMinTextSize;
+//        float size = (mMaxTextSize - mMinTextSize)  + mMinTextSize;
+        float size = mMaxTextSize;
         mPaint.setTextSize(size);
         mPaint.setColor(this.getResources().getColor(android.R.color.black));
         mPaint.setAlpha((int) ((mMaxTextAlpha - mMinTextAlpha) * scale + mMinTextAlpha));
@@ -191,14 +212,16 @@ public class PickerView extends View {
         Paint.FontMetricsInt fmi = mPaint.getFontMetricsInt();
         float baseline = (float) (y - (fmi.bottom / 2.0 + fmi.top / 2.0));
 
-        canvas.drawText(mDataList.get(mCurrentSelected), x, baseline, mPaint);
-        // 绘制上方data
-        for (int i = 1; (mCurrentSelected - i) >= 0; i++) {
-            drawOtherText(canvas, i, -1);
-        }
-        // 绘制下方data
-        for (int i = 1; (mCurrentSelected + i) < mDataList.size(); i++) {
-            drawOtherText(canvas, i, 1);
+        if (mDataList.size() > 0) {
+            canvas.drawText(mDataList.get(mCurrentSelected), x, baseline, mPaint);
+            // 绘制上方data
+            for (int i = 1; (mCurrentSelected - i) >= 0; i++) {
+                drawOtherText(canvas, i, -1);
+            }
+            // 绘制下方data
+            for (int i = 1; (mCurrentSelected + i) < mDataList.size(); i++) {
+                drawOtherText(canvas, i, 1);
+            }
         }
 
     }
@@ -306,5 +329,7 @@ public class PickerView extends View {
 
     public interface onSelectListener {
         void onSelect(String text);
+
+        void onSelectId(int id);
     }
 }

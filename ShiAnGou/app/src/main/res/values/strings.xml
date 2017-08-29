@@ -65,11 +65,14 @@
     <string name="confirmorder_title_text">确认订单</string>
     <string name="confirmorder_receipt_text">收货信息</string>
     <string name="confirmorder_receiptmsg_text">请填写收货信息</string>
-    <string name="confirmorder_goodscount_text">共1件商品</string>
+    <string name="confirmorder_goodscount_text">共%d件商品</string>
     <string name="confirmorder_remark_text">留言/备注</string>
     <string name="confirmorder_goodstotal_text">小计：¥</string>
-    <string name="confirmorder_freighttotal_text">运费合计：¥</string>
+    <string name="confirmorder_freighttotal_text">运费合计：¥ %1$f%2$s</string>
     <string name="confirmorder_total_text">应付款：¥</string>
+    <string name="confirmorder_name">姓名: %s</string>
+    <string name="confirmorder_addre">地址: %s</string>
+    <string name="confirmorder_phone">电话: %s</string>
 
     <!-- 商品详情-->
     <string name="prodetail_act_title">商品详情</string>
@@ -119,6 +122,7 @@
     <string name="address_addresschange_title_text">收货信息</string>
     <string name="address_addresschange_confirm_text">保存并作用</string>
     <string name="address_setdefault_text">设为默认地址</string>
+    <string name="address_tip_consignee">请完善收货信息</string>
 
     <!-- 购物车-->
     <string name="common_cart_title">购物车</string>

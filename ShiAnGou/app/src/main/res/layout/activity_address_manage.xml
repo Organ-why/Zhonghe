@@ -12,7 +12,8 @@
         android:id="@+id/id_address_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="@dimen/height_ll_custom"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+        android:paddingBottom="@dimen/image_width_xlsize"
+        app:ptrMode="both"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
     <Button
         android:id="@+id/id_addressmng_add_bt"

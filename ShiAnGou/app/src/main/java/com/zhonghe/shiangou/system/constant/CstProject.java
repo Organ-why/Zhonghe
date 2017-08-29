@@ -26,6 +26,7 @@ public class CstProject {
         public final static String ID = "_id";
         public final static String KEY = "_key";
         public final static String ORDERBY = "_orderby";
+        public final static String DATA = "_data";
     }
 
     /**

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:toolds="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,7 +30,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/margin_lsize"
                     android:text="@string/confirmorder_receipt_text" />
 
 
@@ -61,7 +61,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/margin_lsize"
                     android:text="@string/confirmorder_receiptmsg_text" />
 
 
@@ -74,6 +73,43 @@
                     android:visibility="visible" />
 
             </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/id_confirm_address_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/padding_xxlsize"
+                android:paddingRight="@dimen/padding_xxlsize">
+
+                <TextView
+                    android:id="@+id/id_confirm_address_name_tv"
+                    style="@style/common_text_gray_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_size"
+                    android:paddingTop="@dimen/padding_size"
+                    tools:text="哈哈哈" />
+
+                <TextView
+                    android:id="@+id/id_confirm_address_phone_tv"
+                    style="@style/common_text_gray_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_size"
+                    android:paddingTop="@dimen/padding_size"
+                    tools:text="哈哈哈" />
+
+                <TextView
+                    android:id="@+id/id_confirm_address_area_tv"
+                    style="@style/common_text_gray_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/padding_size"
+                    android:paddingTop="@dimen/padding_size"
+                    tools:text="哈哈哈" />
+
+            </LinearLayout>
 
             <View
                 style="@style/common_divider_style1"
@@ -88,11 +124,11 @@
 
 
                 <TextView
+                    android:id="@+id/id_confirm_num_tv"
                     style="@style/common_text_setup_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="@dimen/margin_lsize"
                     android:text="@string/confirmorder_goodscount_text" />
 
 
@@ -116,7 +152,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <include layout="@layout/item_home_category_item" />
 
             </LinearLayout>
 
@@ -129,18 +164,19 @@
                 android:layout_height="@dimen/user_item_height"
                 android:background="@color/common_white"
                 android:paddingLeft="@dimen/padding_xxlsize"
-                android:paddingRight="@dimen/padding_xxlsize">
+                android:paddingRight="@dimen/padding_xxlsize"
+                android:visibility="gone">
 
 
                 <TextView
+
                     style="@style/common_text_setup_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="@dimen/margin_lsize"
-                    android:text="@string/confirmorder_goodscount_text" />
-
+                    tools:text="@string/confirmorder_goodscount_text" />
 
 
             </RelativeLayout>
@@ -150,11 +186,13 @@
                 android:layout_alignParentBottom="true" />
 
             <EditText
-                android:layout_margin="@dimen/padding_xxlsize"
+                android:id="@+id/id_confirm_"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/padding_xxlsize"
                 android:background="@drawable/circle_gray_hollow_bg"
-                android:minHeight="@dimen/button_hight_msize"/>
+                android:minHeight="@dimen/button_hight_msize" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/user_item_height"
@@ -164,6 +202,7 @@
 
 
                 <TextView
+                    android:id="@+id/id_confirm_total_tv"
                     style="@style/common_text_setup_item"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,6 +220,7 @@
                     android:visibility="gone" />
 
             </RelativeLayout>
+
             <View
                 style="@style/common_divider_style10"
                 android:layout_alignParentBottom="true" />

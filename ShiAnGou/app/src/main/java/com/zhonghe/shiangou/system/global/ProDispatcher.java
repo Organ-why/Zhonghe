@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.system.global;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -23,6 +24,9 @@ import com.zhonghe.shiangou.ui.activity.SearchActivity;
 import com.zhonghe.shiangou.ui.activity.SetupActivity;
 import com.zhonghe.shiangou.ui.activity.UserActivity;
 import com.zhonghe.shiangou.ui.fragment.UserFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Date: 2017/8/12.
@@ -137,6 +141,20 @@ public class ProDispatcher {
         context.startActivity(intent);
     }
 
+    public static void goSelectAddressActivity(Activity context, Integer requestCode) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, AddressManageActivity.class);
+        if (requestCode == null) {
+            context.startActivity(intent);
+        } else {
+//            intent.putExtra(CstProject.KEY.ID, addressId);
+            context.startActivityForResult(intent, requestCode);
+        }
+
+    }
+
     /**
      * 添加 修改  地址
      *
@@ -155,11 +173,12 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goConfirmOrderActivity(Context context) {
+    public static void goConfirmOrderActivity(Context context, ArrayList<String> ids) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, ConfirmOrderActivity.class);
+        intent.putStringArrayListExtra(CstProject.KEY.ID, ids);
         context.startActivity(intent);
     }
 
@@ -244,6 +263,7 @@ public class ProDispatcher {
 
     /**
      * 商品列表
+     *
      * @param context
      * @param cat_id
      * @param keywords

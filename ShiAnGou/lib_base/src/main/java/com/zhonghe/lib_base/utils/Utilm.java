@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.zhonghe.lib_base.R;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,6 +19,30 @@ import java.util.regex.Pattern;
  * Author: whyang
  */
 public class Utilm {
+    /**
+     * list<String>
+     * , 隔开
+     *
+     * @param strArray
+     * @return
+     */
+    public static String strArrayToStr(List<String> strArray) {
+        String strs = "";
+        if (strArray.size() > 1) {
+            for (int i = 0; i < strArray.size(); i++) {
+                String str = strArray.get(i);
+                if (i == 0) {
+                    strs += str;
+                } else {
+                    strs += "," + str;
+                }
+            }
+
+        } else {
+            strs = strArray.get(0);
+        }
+        return strs;
+    }
 
     /**
      * 注册检查
@@ -68,10 +93,10 @@ public class Utilm {
      * @return 是true
      */
     public static boolean isPhone(String phone) {
-        if (UtilString.isBlank(phone)||phone.length()!=11) {
+        if (UtilString.isBlank(phone) || phone.length() != 11) {
             return false;
         }
-        return  isMobile(phone);
+        return isMobile(phone);
 //        String reg = "^[a-zA-Z0-9\u4e00-\u9fa5]+$";
 //        Pattern pattern = Pattern.compile(reg);
 //        Matcher matcher = pattern.matcher(phone);

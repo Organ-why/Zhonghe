@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
@@ -17,14 +19,12 @@ import com.android.volley.Request;
 import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.AddressArea;
-import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.data.bean.AddressSelectInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.adapter.AddareaAdapter;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
-import com.zhonghe.shiangou.ui.widget.PickerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -36,17 +36,19 @@ import butterknife.ButterKnife;
  * desc:地址选择
  */
 
-public class AreaSelectDialog extends PopupWindow {
+public class AreaSelectListDialog extends PopupWindow {
     @Bind(R.id.id_area_province)
-    PickerView idAreaProvince;
+    ListView idAreaProvince;
     @Bind(R.id.id_area_city)
-    PickerView idAreaCity;
+    ListView idAreaCity;
     @Bind(R.id.id_area_district)
-    PickerView idAreaDistrict;
+    ListView idAreaDistrict;
     @Bind(R.id.photo_id_root)
     LinearLayout photoIdRoot;
     @Bind(R.id.photo_id_cancel)
     TextView photoIdCancel;
+    @Bind(R.id.id_addarea_tv)
+    TextView idAddareaTv;
     private View mMenuView;
     private Context mContext;
     private View mLlRoot;
@@ -56,12 +58,20 @@ public class AreaSelectDialog extends PopupWindow {
     private List<AddressArea> cityList;
     private List<AddressArea> districtList;
 
-    private String addareArea;
+    private String provinceStr = "";
     private String provinceId;
+    private String cityStr = "";
     private String cityId;
+    private String districtStr = "";
     private String districtId;
 
-    public AreaSelectDialog(Context context, List<AddressArea> provinceList) {
+    AddareaAdapter provinceAdapter;
+    AddareaAdapter cityAdapter;
+    AddareaAdapter districtAdapter;
+
+    AddareaConfirm addareaConfirm;
+
+    public AreaSelectListDialog(Context context, List<AddressArea> provinceList) {
         super(context);
         this.mContext = context;
         this.provinceList = provinceList;
@@ -69,22 +79,49 @@ public class AreaSelectDialog extends PopupWindow {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mMenuView = inflater.inflate(R.layout.layout_area_select, null);
         mLlRoot = (LinearLayout) mMenuView.findViewById(R.id.photo_id_root);
+        idAddareaTv = ButterKnife.findById(mMenuView, R.id.id_addarea_tv);
         idAreaProvince = ButterKnife.findById(mMenuView, R.id.id_area_province);
         idAreaCity = ButterKnife.findById(mMenuView, R.id.id_area_city);
         idAreaDistrict = ButterKnife.findById(mMenuView, R.id.id_area_district);
-        setAddressShow(idAreaProvince, provinceList, new PickerView.onSelectListener() {
-            @Override
-            public void onSelect(String text) {
 
-            }
+        provinceAdapter = new AddareaAdapter(mContext, provinceList);
+        cityAdapter = new AddareaAdapter(mContext, cityList);
+        districtAdapter = new AddareaAdapter(mContext, districtList);
 
+        idAreaProvince.setAdapter(provinceAdapter);
+        idAreaCity.setAdapter(cityAdapter);
+        idAreaDistrict.setAdapter(districtAdapter);
+
+        idAreaProvince.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onSelectId(int id) {
-                getCityAreaSet(id);
-                idAreaDistrict.setData(new ArrayList<String>());
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                getCityAreaSet(i);
+                provinceStr = provinceAdapter.getData().get(i).getAreaname();
+                provinceId = provinceAdapter.getData().get(i).getAreaid();
+                districtAdapter.clearAll();
+                districtStr = "";
+                cityStr = "";
+                showAddareStr();
             }
         });
-        idAreaProvince.setSelected(1);
+        idAreaCity.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                getDistrictAreaSet(i);
+                cityStr = cityAdapter.getData().get(i).getAreaname();
+                cityId = cityAdapter.getData().get(i).getAreaid();
+                showAddareStr();
+            }
+        });
+        idAreaDistrict.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                getDistrictAreaSet(i);
+                districtStr = districtAdapter.getData().get(i).getAreaname();
+                districtId = districtAdapter.getData().get(i).getAreaid();
+                showAddareStr();
+            }
+        });
 
         //取消按钮
         mMenuView.findViewById(R.id.photo_id_cancel).setOnClickListener(new View.OnClickListener() {
@@ -92,6 +129,8 @@ public class AreaSelectDialog extends PopupWindow {
             public void onClick(View v) {
                 //销毁弹出框
                 dismiss();
+                String addStr = provinceStr + cityStr + districtStr;
+                addareaConfirm.onConfirmArea(addStr, provinceId, cityId, districtId);
             }
         });
 
@@ -128,6 +167,14 @@ public class AreaSelectDialog extends PopupWindow {
         mLlRoot.startAnimation(anim);
     }
 
+    void showAddareStr() {
+        idAddareaTv.setText(provinceStr + cityStr + districtStr);
+    }
+
+    public void setAddareaConfirm(AddareaConfirm addareaConfirm) {
+        this.addareaConfirm = addareaConfirm;
+    }
+
     @Override
     public void dismiss() {
         Animation anim = AnimationUtils.loadAnimation(mContext, R.anim.common_push_down_out);
@@ -137,23 +184,13 @@ public class AreaSelectDialog extends PopupWindow {
 
             @Override
             public void run() {
-                AreaSelectDialog.super.dismiss();
+                AreaSelectListDialog.super.dismiss();
             }
 
         }, 300);
 
     }
 
-    //设置选择
-    void setAddressShow(PickerView pv, List<AddressArea> provinceList, PickerView.onSelectListener listener) {
-        List<String> areaStr = new ArrayList<>();
-        for (AddressArea ainfo : provinceList) {
-            areaStr.add(ainfo.getAreaname().trim());
-        }
-        pv.setData(areaStr);
-        pv.setSelected(0);
-        pv.setOnSelectListener(listener);
-    }
 
     //设置市
     void getCityAreaSet(int areaPoint) {
@@ -168,17 +205,7 @@ public class AreaSelectDialog extends PopupWindow {
             public void onSuccess(Object obj) {
                 AddressSelectInfo cityInfo = (AddressSelectInfo) obj;
                 cityList = cityInfo.getAddress();
-                setAddressShow(idAreaCity, cityList, new PickerView.onSelectListener() {
-                    @Override
-                    public void onSelect(String text) {
-
-                    }
-
-                    @Override
-                    public void onSelectId(int id) {
-                        getDistrictAreaSet(id);
-                    }
-                });
+                cityAdapter.setList(cityList);
             }
         });
         ProjectApplication.proReqestQueue.addRequest(request, mContext);
@@ -198,24 +225,15 @@ public class AreaSelectDialog extends PopupWindow {
             public void onSuccess(Object obj) {
                 AddressSelectInfo cityInfo = (AddressSelectInfo) obj;
                 districtList = cityInfo.getAddress();
-                setAddressShow(idAreaDistrict, districtList, new PickerView.onSelectListener() {
-                    @Override
-                    public void onSelect(String text) {
-
-                    }
-
-                    @Override
-                    public void onSelectId(int id) {
-//                        getDistrictAreaSet(id);
-                    }
-                });
+                districtAdapter.setList(districtList);
             }
         });
         ProjectApplication.proReqestQueue.addRequest(request, mContext);
     }
 
-    void getArea(String areaId) {
 
+    public interface AddareaConfirm {
+
+        void onConfirmArea(String areaStr, String provinceId, String cityId, String districtId);
     }
-
 }

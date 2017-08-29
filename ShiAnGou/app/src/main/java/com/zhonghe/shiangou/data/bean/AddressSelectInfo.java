@@ -9,13 +9,13 @@ import java.util.List;
  */
 
 public class AddressSelectInfo extends BaseBean {
-    List<AddressInfo> address;
+    List<AddressArea> address;
 
-    public List<AddressInfo> getAddress() {
+    public List<AddressArea> getAddress() {
         return address;
     }
 
-    public void setAddress(List<AddressInfo> address) {
+    public void setAddress(List<AddressArea> address) {
         this.address = address;
     }
 }

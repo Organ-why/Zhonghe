@@ -255,7 +255,9 @@ public class GoodsDetailActivity extends BaseTopActivity {
                 @Override
                 public void onBuyNow(String sku) {
                     skudialog.dismiss();
-                    ProDispatcher.goConfirmOrderActivity(mContext);
+                    ArrayList<String> list = new ArrayList<>();
+                    list.add(data.getGoods().getGoods_id());
+                    ProDispatcher.goConfirmOrderActivity(mContext, list);
                 }
             });
         }

@@ -188,10 +188,25 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
     }
 
     ;
-    private List<String> selectlist;
+    private ArrayList<String> selectlist;
+    private ArrayList<String> confirmlist;
 
-    //删除
-    public List<String> getSelectGoods() {
+    //选中商品购物车id
+    public ArrayList<String> getConfirmGoods() {
+        if (confirmlist == null) confirmlist = new ArrayList<>();
+        confirmlist.clear();
+        for (CartItemGroupBO parentinfo : mData) {
+            for (CartGoods childinfo : parentinfo.getChildPro()) {
+                if (childinfo.isCheck()) {
+                    confirmlist.add(childinfo.getRec_id());
+                }
+            }
+        }
+        return confirmlist;
+    }
+
+    //获取选中商品id
+    public ArrayList<String> getSelectGoods() {
         if (selectlist == null) selectlist = new ArrayList<>();
         selectlist.clear();
         mSelectData.clear();
@@ -214,8 +229,6 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
 
         return selectlist;
     }
-
-    ;
 
 
 }

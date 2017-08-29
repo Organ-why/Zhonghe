@@ -43,7 +43,8 @@
             android:layout_alignTop="@+id/sku_select_title_tv"
             android:layout_marginLeft="@dimen/padding_xxlsize"
             android:layout_marginRight="@dimen/padding_xxlsize"
-            android:src="@mipmap/icon_cancel" />
+            android:src="@mipmap/icon_cancel"
+            android:visibility="gone" />
 
 
         <RelativeLayout
@@ -97,6 +98,14 @@
                 android:singleLine="true"
                 android:textSize="@dimen/font_lsize"
                 tools:text="颜色: 大红  尺码: 73cm" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/id_num_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                tools:text="x1" />
         </RelativeLayout>
 
 

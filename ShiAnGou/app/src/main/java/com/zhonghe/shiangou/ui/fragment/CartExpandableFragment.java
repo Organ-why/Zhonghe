@@ -146,17 +146,19 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
                 setWaitingDialog(false);
                 List<CartGoods> info = (List<CartGoods>) obj;
 
+
                 if (info.size() > 0) {
-                    curpage++;
                     CartItemGroupBO cartItemGroupBO = new CartItemGroupBO();
                     cartItemGroupBO.setChildPro(info);
-                    data.add(cartItemGroupBO);
-                }
-
-                if (curpage == 1) {
-                    listener.setmData(data);
-                } else {
-                    listener.addmData(data);
+//                    data.add(cartItemGroupBO);
+                    List<CartItemGroupBO> newData = new ArrayList<CartItemGroupBO>();
+                    newData.add(cartItemGroupBO);
+                    if (curpage == 1) {
+                        listener.setmData(newData);
+                    } else {
+                        listener.addmData(newData);
+                    }
+                    curpage++;
                 }
             }
         });
@@ -200,7 +202,8 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.cart_id_tobuy_bt:
-                ProDispatcher.goConfirmOrderActivity(mActivity);
+                ArrayList<String> list = listener.getConfirmGoods();
+                ProDispatcher.goConfirmOrderActivity(mActivity, list);
                 break;
             case R.id.cart_id_del_bt:
                 List<String> delist = listener.getSelectGoods();

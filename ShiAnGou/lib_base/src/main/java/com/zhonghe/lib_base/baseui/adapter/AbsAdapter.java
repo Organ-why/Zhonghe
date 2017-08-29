@@ -11,7 +11,7 @@ import java.util.List;
 
 
 /**
- * @desc   : 适配器抽象类
+ * @desc : 适配器抽象类
  */
 public abstract class AbsAdapter<T> extends BaseAdapter {
     protected List<T> mList;
@@ -23,11 +23,11 @@ public abstract class AbsAdapter<T> extends BaseAdapter {
         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.mList = new ArrayList<T>();
     }
-    
+
     public AbsAdapter(Context context, List<T> datas) {
-    	 this.mContext = context;
-         this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-         this.mList = datas != null ? datas : new ArrayList<T>();
+        this.mContext = context;
+        this.mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.mList = datas != null ? datas : new ArrayList<T>();
     }
 
     @Override
@@ -39,7 +39,7 @@ public abstract class AbsAdapter<T> extends BaseAdapter {
     public T getItem(int pos) {
         return mList.size() > pos ? mList.get(pos) : null;
     }
-    
+
     @Override
     public long getItemId(int pos) {
         return pos;
@@ -61,10 +61,17 @@ public abstract class AbsAdapter<T> extends BaseAdapter {
             notifyDataSetChanged();
         }
     }
-    
+
     public void removeItem(T item) {
-    	if (item != null) {
+        if (item != null) {
             mList.remove(item);
+            notifyDataSetChanged();
+        }
+    }
+
+    public void removeItem(int point) {
+        if (point >= 0) {
+            mList.remove(point);
             notifyDataSetChanged();
         }
     }
@@ -82,7 +89,7 @@ public abstract class AbsAdapter<T> extends BaseAdapter {
             notifyDataSetChanged();
         }
     }
-   
+
     public void addList(int position, List<T> items) {
         if (UtilList.isNotEmpty(items)) {
             mList.addAll(position, items);
@@ -98,7 +105,7 @@ public abstract class AbsAdapter<T> extends BaseAdapter {
     }
 
     public void clearAll() {
-        if (UtilList.isNotEmpty(mList)){
+        if (UtilList.isNotEmpty(mList)) {
             mList.clear();
             notifyDataSetChanged();
         }

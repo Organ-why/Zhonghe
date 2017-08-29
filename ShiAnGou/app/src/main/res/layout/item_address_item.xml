@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/item_cart_id_cb"
-            android:text="雷文豪" />
+            tools:text="雷文豪" />
 
 
         <TextView
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:text="北京市海滨区北京市海滨区北京市海滨区北京市海滨区北京市海滨区北京市海滨区" />
+                tools:text="北京市海滨区北京市海滨区北京市海滨区北京市海滨区北京市海滨区北京市海滨区" />
         </LinearLayout>
 
     </RelativeLayout>
