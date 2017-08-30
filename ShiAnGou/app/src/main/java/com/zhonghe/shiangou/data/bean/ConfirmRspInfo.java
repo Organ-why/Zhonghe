@@ -11,10 +11,18 @@ import java.util.List;
 public class ConfirmRspInfo extends BaseBean {
     AddressInfo default_add;
     List<CartGoods> com_goods;
-    int tatal;
+    double total;
     int com_count;
 
     public ConfirmRspInfo() {
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public AddressInfo getDefault_add() {
@@ -33,13 +41,6 @@ public class ConfirmRspInfo extends BaseBean {
         this.com_goods = com_goods;
     }
 
-    public int getTatal() {
-        return tatal;
-    }
-
-    public void setTatal(int tatal) {
-        this.tatal = tatal;
-    }
 
     public int getCom_count() {
         return com_count;

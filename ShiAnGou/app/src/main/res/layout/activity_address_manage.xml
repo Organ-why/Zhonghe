@@ -12,6 +12,7 @@
         android:id="@+id/id_address_listview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:listSelector="@color/res_color_transparent"
         android:paddingBottom="@dimen/image_width_xlsize"
         app:ptrMode="both"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 

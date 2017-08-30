@@ -153,7 +153,7 @@ public class HomeFragment extends BaseTopFragment {
             cp.addView(item);
         }
         //悬浮Title
-        new HomeScrollListener(refreshableView, mActivity, horizontalListView, itemList, childHeight).ListenScroll();
+//        new HomeScrollListener(refreshableView, mActivity, horizontalListView, itemList, childHeight).ListenScroll();
 
 
     }

@@ -13,10 +13,12 @@ import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
 import com.zhonghe.lib_base.utils.UtilList;
+import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.data.bean.CartGoods;
 import com.zhonghe.shiangou.data.bean.CartInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.CartItemBO;
@@ -131,6 +133,11 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
     int isEditFlag = 0;
 
     void getCartData() {
+        if (ProjectApplication.mUser==null) {
+            ProDispatcher.goLoginActivity(mActivity);
+            cartIdLv.onRefreshComplete();
+            return;
+        }
         setWaitingDialog(true);
         Request<?> request = HttpUtil.getCartList(mActivity, curpage, cursize, new ResultListener() {
             @Override

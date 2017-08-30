@@ -40,5 +40,6 @@
 
     <!--非公共字体颜色-->
     <color name="common_font_copyright">#a88f5d33</color>
+    <color name="navpage">#FFE1E8EB</color>
 
 </resources>

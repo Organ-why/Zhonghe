@@ -2,7 +2,10 @@ package com.zhonghe.shiangou.ui.listener;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.os.Build;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -10,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ScrollView;
 
+import com.handmark.pulltorefresh.library.CustomScrollView;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
 import com.zhonghe.shiangou.ui.adapter.HomeCategoryTitleAdapter;
@@ -22,14 +28,14 @@ import java.util.List;
  * Date: 2017/8/7.
  * Author: whyang
  */
-public class HomeScrollListener implements View.OnTouchListener {
+public class HomeScrollListener implements View.OnTouchListener, CustomScrollView.CustomOverScroll {
     List<HomeCategoryInfo> itemListData;
-    ScrollView mScrollView;
+    PullToRefreshScrollView mScrollView;
     Context context;
     HorizontalListView titleListView;
     int ScrollY;
 
-    public HomeScrollListener(ScrollView mScrollView, Context context, HorizontalListView titleList, List<HomeCategoryInfo> itemList, int scrollY) {
+    public HomeScrollListener(PullToRefreshScrollView mScrollView, Context context, HorizontalListView titleList, List<HomeCategoryInfo> itemList, int scrollY) {
         this.mScrollView = mScrollView;
         this.context = context;
         this.titleListView = titleList;
@@ -38,7 +44,9 @@ public class HomeScrollListener implements View.OnTouchListener {
     }
 
     public void ListenScroll() {
-        mScrollView.setOnTouchListener(this);
+        mScrollView.getRefreshableView().setCustomOverScroll(this);
+        mScrollView.getRefreshableView().setOnTouchListener(this);
+//        mScrollView.onscroll/(this);
         HomeCategoryTitleAdapter adapter = new HomeCategoryTitleAdapter(context, itemListData);
         titleListView.setAdapter(adapter);
 
@@ -76,4 +84,14 @@ public class HomeScrollListener implements View.OnTouchListener {
         }
         return false;
     }
+
+    @Override
+    public void onCustomScroll(int deltaX, int deltaY, int scrollX, int scrollY) {
+        UtilLog.i("deltaX.." + deltaX + ".deltaY.." + deltaY + ".scrollX.." + scrollX + ".scrollY.." + scrollY + "...");
+    }
+
+//    @Override
+//    public void onScrollChange(View view, int i, int i1, int i2, int i3) {
+//        UtilLog.i(i + "..." + i1 + "..." + i2 + "..." + i3 + "...");
+//    }
 }

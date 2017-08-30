@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
 
@@ -11,10 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        app:viewAspectRatio="3.6"
-        android:scaleType="fitXY"
-        app:placeholderImage="@mipmap/res_default_banner"
-        android:background="@null"/>
-   
+        app:actualImageScaleType="centerCrop"
+        app:placeholderImage="@mipmap/res_default_banner" />
+    <!--app:viewAspectRatio="3.6"-->
 
 </RelativeLayout>

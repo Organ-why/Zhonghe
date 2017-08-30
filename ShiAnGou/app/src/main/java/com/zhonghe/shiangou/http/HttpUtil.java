@@ -80,8 +80,8 @@ public class HttpUtil {
     public static String URL_CartList = URL_PRO + "app/cart/show.php";
     //确认商品
     public static String URL_ConfirmGoods = URL_PRO + "app/goods/commodity.php";
-    //订单
-    public static String URL_Order = URL_PRO + "order.php";
+    //订单生成
+    public static String URL_Order = URL_PRO + "app/orderindex/generate.php";
     //订单列表
     public static String URL_OrderList = URL_PRO + "orderindex.php";
     //地址列表
@@ -508,6 +508,26 @@ public class HttpUtil {
 //        Type bean = new TypeToken<List<CategoryChild>>() {
 //        }.getType();
         Request<?> request = volleyPost(context, URL_ConfirmGoods, map, listener, ConfirmRspInfo.class);
+        return request;
+    }
+
+    /**
+     * 提交订单
+     *
+     * @param context
+     * @param cat_id
+     * @param listener
+     * @return
+     */
+    public static Request<?> getSubmitOrder(Context context, List<String> cat_id, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("cart_id", Utilm.strArrayToStr(cat_id));
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+//        Type bean = new TypeToken<List<CategoryChild>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_Order, map, listener, String.class);
         return request;
     }
 

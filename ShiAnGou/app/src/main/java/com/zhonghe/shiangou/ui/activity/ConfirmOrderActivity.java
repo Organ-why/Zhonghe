@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
@@ -70,7 +71,9 @@ public class ConfirmOrderActivity extends BaseTopActivity {
     TextView idConfirmTotalTv;
 
     //选择地址
-    private static final int REQUEST_ADDRESS_CODE = 0x10;
+    private static final int REQUEST_ADDRESS_CODE = 0x10 + 1;
+
+    String orderCode = "";
 
     @Override
     protected void initTop() {
@@ -91,6 +94,7 @@ public class ConfirmOrderActivity extends BaseTopActivity {
         getConfirmData();
     }
 
+    //确认商品
     void getConfirmData() {
         setWaitingDialog(true);
         Request<?> request = HttpUtil.getConfirmGoods(mContext, ids, new ResultListener() {
@@ -112,7 +116,34 @@ public class ConfirmOrderActivity extends BaseTopActivity {
         addRequest(request);
     }
 
-    @OnClick({R.id.id_confirmorder_address_rl, R.id.id_confirm_address_ll})
+    //生成订单
+    void submitOrder() {
+        if (UtilString.isEmpty(mData.getDefault_add().getArea_address())) {
+            Utilm.toast(mContext, R.string.confirmorder_receiptmsg_text);
+            return;
+        }
+        setWaitingDialog(true);
+        Request<?> request = HttpUtil.getSubmitOrder(mContext, ids, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+                setWaitingDialog(false);
+                Utilm.toast(mContext, error);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                setWaitingDialog(false);
+                Utilm.toast(mContext, R.string.common_success_tip);
+                orderCode = (String) obj;
+//                setDataShow();
+
+            }
+        });
+        addRequest(request);
+    }
+
+
+    @OnClick({R.id.id_confirmorder_address_rl, R.id.id_confirm_address_ll, R.id.cart_id_tobuy_bt})
     public void onClick(View v) {
 
         switch (v.getId()) {
@@ -120,7 +151,11 @@ public class ConfirmOrderActivity extends BaseTopActivity {
                 ProDispatcher.goSelectAddressActivity(this, REQUEST_ADDRESS_CODE);
                 break;
             case R.id.id_confirm_address_ll:
-                ProDispatcher.goSelectAddressActivity(this);
+                ProDispatcher.goSelectAddressActivity(this, REQUEST_ADDRESS_CODE);
+//                ProDispatcher.goSelectAddressActivity(this);
+                break;
+            case R.id.cart_id_tobuy_bt:
+                submitOrder();
                 break;
         }
     }
@@ -130,7 +165,7 @@ public class ConfirmOrderActivity extends BaseTopActivity {
         setAddressShow(mData.getDefault_add());
         idConfirmNumTv.setText(String.format(getResources().getString(R.string.confirmorder_goodscount_text),
                 mData.getCom_count()));
-        cartIdTotalpayTv.setText(String.valueOf(mData.getTatal()));
+        cartIdTotalpayTv.setText(String.valueOf(mData.getTotal()));
     }
 
     //    设置地址显示
@@ -141,7 +176,7 @@ public class ConfirmOrderActivity extends BaseTopActivity {
         } else {
             idConfirmorderAddressRl.setVisibility(View.GONE);
             idConfirmAddressLl.setVisibility(View.VISIBLE);
-            idConfirmAddressNameTv.setText(String.format(getResources().getString(R.string.confirmorder_name), default_add.getAddress_name()));
+            idConfirmAddressNameTv.setText(String.format(getResources().getString(R.string.confirmorder_name), default_add.getConsignee()));
             idConfirmAddressAreaTv.setText(String.format(getResources().getString(R.string.confirmorder_addre), default_add.getArea_address() + default_add.getAddress()));
             idConfirmAddressPhoneTv.setText(String.format(getResources().getString(R.string.confirmorder_phone), default_add.getMobile()));
         }
@@ -150,6 +185,7 @@ public class ConfirmOrderActivity extends BaseTopActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        UtilLog.i(requestCode + "...." + resultCode + "....");
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 //选择地址

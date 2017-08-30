@@ -29,7 +29,10 @@
     <!--Splash-->
     <string name="splash_slogan_text">©2017 ShiAnGou (China) Softwareco.Ltd</string>
 
-
+    <!-- WXPayEntryActivity -->
+    <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
+    <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
+    <string name="app_tip">提示</string>
     <!--警示-->
     <string name="common_tip_changename">注意: 与食安购业务或品牌冲突的名称，将有权收回</string>
     <string name="common_tip_anonymous">你的评论会以匿名的方式展现</string>
@@ -73,6 +76,7 @@
     <string name="confirmorder_name">姓名: %s</string>
     <string name="confirmorder_addre">地址: %s</string>
     <string name="confirmorder_phone">电话: %s</string>
+    <string name="confirmorder_num">x%s</string>
 
     <!-- 商品详情-->
     <string name="prodetail_act_title">商品详情</string>

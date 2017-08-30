@@ -55,17 +55,17 @@ public class AddressManageActivity extends BaseTopActivity implements PullToRefr
     @Override
     protected void initViews() {
         mData = new ArrayList<>();
-        adapter = new AddressListAdapter(mContext, mData);
+        adapter = new AddressListAdapter(this, mData);
         idAddressListview.setAdapter(adapter);
         adapter.setListener(this);
         idAddressListview.setOnRefreshListener(this);
         idAddressListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent();
-                intent.putExtra(CstProject.KEY.DATA,adapter.getItem(i));
-                setResult(RESULT_OK,intent);
-                finish();
+//                Intent intent = new Intent();
+//                intent.putExtra(CstProject.KEY.DATA,adapter.getItem(i));
+//                setResult(RESULT_OK,intent);
+//                finish();
             }
         });
         getAddress();

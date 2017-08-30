@@ -146,7 +146,9 @@ public class GoodsDetailActivity extends BaseTopActivity {
         }
         if (bannerInfo.size() > 0) {
             View BannerView = new DynamicBanner(this, LayoutInflater.from(this), 5000).initView(bannerInfo);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utilm.dip2px(this, 175));
+//
+//            Utilm.dip2px(this, 175)
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,  Utilm.getScreenWidth(mContext));
             BannerView.setLayoutParams(layoutParams);
             idGoodsdetailBannerLl.addView(BannerView);
         }

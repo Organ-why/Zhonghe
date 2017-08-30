@@ -143,7 +143,7 @@ public class HomeFragment1 extends BaseTopFragment {
 
 
         //悬浮Title
-        new HomeScrollListener(refreshableView, mActivity, horizontalListView, categoryInfo, childHeight).ListenScroll();
+        new HomeScrollListener(cartIdLv, mActivity, horizontalListView, categoryInfo, childHeight).ListenScroll();
 
         for (int i = 0; i < categoryInfo.size(); i++) {
             HomeCategoryInfo categoryInfo = this.categoryInfo.get(i);

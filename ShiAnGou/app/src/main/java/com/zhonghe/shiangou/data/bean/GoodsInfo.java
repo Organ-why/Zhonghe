@@ -97,7 +97,7 @@ public class GoodsInfo {
     private String give_integral;
     private String rank_integral;
     private String suppliers_id;
-    private Object is_check;
+    private String is_check;
 
     public String getGoods_id() {
         return goods_id;
@@ -443,11 +443,11 @@ public class GoodsInfo {
         this.suppliers_id = suppliers_id;
     }
 
-    public Object getIs_check() {
+    public String getIs_check() {
         return is_check;
     }
 
-    public void setIs_check(Object is_check) {
+    public void setIs_check(String is_check) {
         this.is_check = is_check;
     }
 

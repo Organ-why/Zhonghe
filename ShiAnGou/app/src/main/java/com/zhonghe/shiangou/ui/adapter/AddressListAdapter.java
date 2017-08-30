@@ -1,6 +1,8 @@
 package com.zhonghe.shiangou.ui.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -11,6 +13,7 @@ import com.zhonghe.lib_base.baseui.adapter.AbsAdapter;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
+import com.zhonghe.shiangou.system.constant.CstProject;
 
 import java.util.List;
 
@@ -27,9 +30,11 @@ import static android.support.v7.appcompat.R.id.info;
 
 public class AddressListAdapter extends AbsAdapter<AddressInfo> {
     AddressContrListener listener;
+    private Activity mContext;
 
-    public AddressListAdapter(Context context, List<AddressInfo> data) {
+    public AddressListAdapter(Activity context, List<AddressInfo> data) {
         super(context, data);
+        mContext = context;
     }
 
     @Override
@@ -64,6 +69,15 @@ public class AddressListAdapter extends AbsAdapter<AddressInfo> {
         } else {
             holder.addressDefaultTv.setVisibility(View.GONE);
         }
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra(CstProject.KEY.DATA, info);
+                mContext.setResult(mContext.RESULT_OK, intent);
+                mContext.finish();
+            }
+        });
         return view;
     }
 

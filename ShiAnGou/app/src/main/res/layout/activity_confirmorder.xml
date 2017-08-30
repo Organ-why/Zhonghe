@@ -187,11 +187,15 @@
 
             <EditText
                 android:id="@+id/id_confirm_"
+                style="@style/common_text_gray_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/padding_xxlsize"
                 android:background="@drawable/circle_gray_hollow_bg"
-                android:minHeight="@dimen/button_hight_msize" />
+                android:gravity="top|left"
+                android:hint="@string/confirmorder_remark_text"
+                android:minHeight="@dimen/button_hight_msize"
+                android:padding="@dimen/padding_size" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

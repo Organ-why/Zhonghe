@@ -13,6 +13,8 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.CartGoods;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -40,6 +42,8 @@ public class ConfirmGoodsList {
             holder.skuSelectTitleTv.setText(UtilString.nullToEmpty(info.getGoods_name()));
             ProjectApplication.mImageLoader.loadImage(holder.skuSelectImg, info.getGoods_thumb());
             holder.itemSkuSelectPriceTv.setText(UtilString.nullToEmpty(info.getShop_price()));
+            holder.numTv.setVisibility(View.VISIBLE);
+            holder.numTv.setText(String.format(mContext.getResources().getString(R.string.confirmorder_num), info.getGoods_count()));
             viewGroup.addView(view);
         }
     }
@@ -59,6 +63,8 @@ public class ConfirmGoodsList {
         TextView itemSkuSelectAmounttv;
         @Bind(R.id.order_sku_rl)
         RelativeLayout orderSkuRl;
+        @Bind(R.id.id_num_tv)
+        TextView numTv;
 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);

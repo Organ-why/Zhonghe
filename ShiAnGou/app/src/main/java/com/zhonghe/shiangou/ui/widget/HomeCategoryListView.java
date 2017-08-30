@@ -9,6 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhonghe.lib_base.utils.UtilList;
+import com.zhonghe.lib_base.utils.UtilString;
+import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
@@ -38,26 +41,27 @@ public class HomeCategoryListView {
             SimpleDraweeView img = (SimpleDraweeView) inflate.findViewById(R.id.id_home_category_item_title_iv);//分类大图片
             ProjectApplication.mImageLoader.loadImage(img, info.getCat_images());
             LinearLayout itemList = (LinearLayout) inflate.findViewById(R.id.id_home_category_item_ll);//商品列表
-            for (final GoodsInfo itemInfo : info.getList()) {
-                View itemView = inflater.inflate(R.layout.item_home_category_item, null);
-                SimpleDraweeView proimg = (SimpleDraweeView) itemView.findViewById(R.id.id_home_category_item_iv);
-                ProjectApplication.mImageLoader.loadImage(proimg, itemInfo.getGoods_img());
-                TextView tvtitle = (TextView) itemView.findViewById(R.id.id_home_category_item_title_tv);
-                tvtitle.setText(itemInfo.getGoods_name());
-                TextView tvprice = (TextView) itemView.findViewById(R.id.id_home_category_item_price_tv);
-                tvprice.setText(itemInfo.getShop_price());
-                TextView tvmarketprice = (TextView) itemView.findViewById(R.id.id_home_category_item_oldprice_tv);
-                tvmarketprice.setText(itemInfo.getMarket_price());
-                tvmarketprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ProDispatcher.goGoodsDetailActivity(context,itemInfo.getGoods_id());
-                    }
-                });
-                itemList.addView(itemView);
+            if (UtilList.isNotEmpty(info.getList())) {
+                for (final GoodsInfo itemInfo : info.getList()) {
+                    View itemView = inflater.inflate(R.layout.item_home_category_item, null);
+                    SimpleDraweeView proimg = (SimpleDraweeView) itemView.findViewById(R.id.id_home_category_item_iv);
+                    ProjectApplication.mImageLoader.loadImage(proimg, itemInfo.getGoods_img());
+                    TextView tvtitle = (TextView) itemView.findViewById(R.id.id_home_category_item_title_tv);
+                    tvtitle.setText(UtilString.nullToEmpty(itemInfo.getGoods_name()));
+                    TextView tvprice = (TextView) itemView.findViewById(R.id.id_home_category_item_price_tv);
+                    tvprice.setText(UtilString.nullToEmpty(itemInfo.getShop_price()));
+                    TextView tvmarketprice = (TextView) itemView.findViewById(R.id.id_home_category_item_oldprice_tv);
+                    tvmarketprice.setText(UtilString.nullToEmpty(itemInfo.getMarket_price()));
+                    tvmarketprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
+                    itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            ProDispatcher.goGoodsDetailActivity(context, itemInfo.getGoods_id());
+                        }
+                    });
+                    itemList.addView(itemView);
+                }
             }
-
             parentView.addView(inflate);
         }
 
