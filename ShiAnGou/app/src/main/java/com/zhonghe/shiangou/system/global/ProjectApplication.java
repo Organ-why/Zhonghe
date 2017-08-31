@@ -35,7 +35,8 @@ public class ProjectApplication extends Application {
     //当前用户信息
     public static UserInfo mUser;
 
-    public static IWXAPI api;
+    public static IWXAPI WXapi;
+
     public static synchronized ProjectApplication getInstance() {
         return mInstance;
     }
@@ -45,7 +46,13 @@ public class ProjectApplication extends Application {
         super.onCreate();
         mInstance = this;
 
-        api = WXAPIFactory.createWXAPI(getApplicationContext(), CstProject.WEIXIN.WEIXIN_APP_ID);
+//        WXapi = WXAPIFactory.createWXAPI(getApplicationContext(), CstProject.WEIXIN.WEIXIN_APP_ID);
+        WXapi = WXAPIFactory.createWXAPI(getApplicationContext(), null);
+
+// 将该app注册到微信
+
+        WXapi.registerApp(CstProject.WEIXIN.WEIXIN_APP_ID);
+
 //        api.handleIntent(getInstance(), this);
         //图片加载实例
         mImageLoader = UtilImage.getInstance(this);
