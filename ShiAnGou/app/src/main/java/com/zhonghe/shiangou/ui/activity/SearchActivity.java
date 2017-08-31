@@ -1,6 +1,5 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -9,8 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
-import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
@@ -66,7 +65,7 @@ public class SearchActivity extends BaseSystemActivity {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH || actionId == EditorInfo.IME_ACTION_DONE) {
                     String s = idCategoryTitleTv.getText().toString().trim();
                     if (UtilString.isBlank(s)) {
-                        Utilm.toast(mContext, R.string.search_search_tip);
+                        Util.toast(mContext, R.string.search_search_tip);
                         return true;
                     }
                     //如果actionId是搜索的id，则进行下一步的操作
@@ -93,7 +92,7 @@ public class SearchActivity extends BaseSystemActivity {
         Request<?> request = HttpUtil.getSearchHost(this, new ResultListener() {
             @Override
             public void onFail(String error) {
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
                 setWaitingDialog(false);
             }
 

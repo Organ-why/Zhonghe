@@ -15,6 +15,8 @@ public class CstProject {
     public static final String DB_NAME = PROJECT + ".db";
     // 数据库版本
     public static final int DB_VERSION = 1;
+    // CHANNEL META
+    public static final String CHANNEL_META = "InstallChannel";
 
     public static String URL_PRO = "http://test.shiangou.com.cn/";
 

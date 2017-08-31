@@ -2,7 +2,6 @@ package com.zhonghe.shiangou.ui.fragment;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
@@ -97,7 +96,7 @@ public class HomeFragment1 extends BaseTopFragment {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(mActivity, error);
+                Util.toast(mActivity, error);
                 Log.i("onFial", error);
             }
 
@@ -116,7 +115,7 @@ public class HomeFragment1 extends BaseTopFragment {
     }
 
     void showCategory() {
-        int screenWidth = Utilm.getScreenWidth(mActivity);
+        int screenWidth = Util.getScreenWidth(mActivity);
         //ScrollView
         final ScrollView refreshableView = cartIdLv.getRefreshableView();
         //分类icon部分
@@ -139,7 +138,7 @@ public class HomeFragment1 extends BaseTopFragment {
         }
         //首页内Title
         FlowLayout cp = (FlowLayout) viewCategoryTitle.findViewById(R.id.id_home_categroy_title_cp);
-        LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(screenWidth / 4, Utilm.dip2px(mActivity, 75));
+        LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(screenWidth / 4, Util.dip2px(mActivity, 75));
 
 
         //悬浮Title
@@ -160,13 +159,13 @@ public class HomeFragment1 extends BaseTopFragment {
                 public void onClick(View v) {
                     //属性动态   自动滑行到指定位置
                     ObjectAnimator xTranslate = ObjectAnimator.ofInt(refreshableView, "scrollX", 0);
-                    ObjectAnimator yTranslate = ObjectAnimator.ofInt(refreshableView, "scrollY", Utilm.dip2px(mActivity, 300) + finalChildHeight * finalI);
+                    ObjectAnimator yTranslate = ObjectAnimator.ofInt(refreshableView, "scrollY", Util.dip2px(mActivity, 300) + finalChildHeight * finalI);
 
                     AnimatorSet animators = new AnimatorSet();
                     animators.setDuration(1000L);
                     animators.playTogether(xTranslate, yTranslate);
                     animators.start();
-//                    refreshableView.scrollTo(0, Utilm.dip2px(mActivity, 300)+ finalChildHeight * finalI);
+//                    refreshableView.scrollTo(0, Util.dip2px(mActivity, 300)+ finalChildHeight * finalI);
                     if (finalI > 0) {
                         horizontalListView.setVisibility(View.VISIBLE);
                     } else {
@@ -181,7 +180,7 @@ public class HomeFragment1 extends BaseTopFragment {
 
     void showBanner() {
         View BannerView = new DynamicBanner(mActivity, LayoutInflater.from(mActivity), 5000).initView(bannerInfo);
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utilm.dip2px(mActivity, 175));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(mActivity, 175));
         BannerView.setLayoutParams(layoutParams);
         llContentTitle.addView(BannerView);
     }

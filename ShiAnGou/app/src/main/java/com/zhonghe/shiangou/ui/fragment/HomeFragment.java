@@ -12,17 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
 import com.android.volley.Request;
-import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
-import com.zhonghe.shiangou.data.bean.ProInfo;
-import com.zhonghe.shiangou.ui.listener.HomeScrollListener;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.DynamicBanner;
 import com.zhonghe.shiangou.ui.widget.FlowLayout;
@@ -89,7 +86,7 @@ public class HomeFragment extends BaseTopFragment {
         View BannerView = new DynamicBanner(mActivity, LayoutInflater.from(mActivity), 10000).initView(mlist);
         WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
         int width = wm.getDefaultDisplay().getWidth();
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Utilm.dip2px(mActivity, 175));
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(mActivity, 175));
 
         BannerView.setLayoutParams(layoutParams);
         llContentTitle.addView(BannerView);
@@ -126,7 +123,7 @@ public class HomeFragment extends BaseTopFragment {
         }
         //首页内Title
         FlowLayout cp = (FlowLayout) viewCategoryTitle.findViewById(R.id.id_home_categroy_title_cp);
-        LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(width / 4, Utilm.dip2px(mActivity, 75));
+        LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(width / 4, Util.dip2px(mActivity, 75));
         for (int i = 0; i < 7; i++) {
             View item = LayoutInflater.from(mActivity).inflate(R.layout.item_home_category_title, null);
             item.setLayoutParams(categoryParams);
@@ -136,13 +133,13 @@ public class HomeFragment extends BaseTopFragment {
                 @Override
                 public void onClick(View v) {
                     ObjectAnimator xTranslate = ObjectAnimator.ofInt(refreshableView, "scrollX", 0);
-                    ObjectAnimator yTranslate = ObjectAnimator.ofInt(refreshableView, "scrollY", Utilm.dip2px(mActivity, 300) + finalChildHeight * finalI);
+                    ObjectAnimator yTranslate = ObjectAnimator.ofInt(refreshableView, "scrollY", Util.dip2px(mActivity, 300) + finalChildHeight * finalI);
 
                     AnimatorSet animators = new AnimatorSet();
                     animators.setDuration(1000L);
                     animators.playTogether(xTranslate, yTranslate);
                     animators.start();
-//                    refreshableView.scrollTo(0, Utilm.dip2px(mActivity, 300)+ finalChildHeight * finalI);
+//                    refreshableView.scrollTo(0, Util.dip2px(mActivity, 300)+ finalChildHeight * finalI);
                     if (finalI > 0) {
                         horizontalListView.setVisibility(View.VISIBLE);
                     } else {

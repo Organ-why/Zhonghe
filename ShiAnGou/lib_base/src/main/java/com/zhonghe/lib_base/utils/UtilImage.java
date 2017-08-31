@@ -55,7 +55,7 @@ public class UtilImage {
                 .setPlaceholderImage(defaultPlaceholderDrawable);
 
         //圆角图片配置
-        float radius = Utilm.dip2px(ctx, 8);
+        float radius = Util.dip2px(ctx, 8);
         RoundingParams roundedParams = new RoundingParams();
         roundedParams.setRoundAsCircle(false);
         roundedParams.setCornersRadii(radius, radius, radius, radius);

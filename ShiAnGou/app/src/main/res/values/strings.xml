@@ -26,6 +26,19 @@
     <string name="common_success_tip">操作成功</string>
     <string name="common_user_center">我的帐户</string>
     <string name="common_search">搜索</string>
+    <string name="common_updata">更新</string>
+
+    <!--升级功能-->
+    <string name="upgrade_cancel">取消</string>
+    <string name="upgrade_update">升级</string>
+    <string name="upgrade_update_title">发现新版本</string>
+    <string name="upgrade_update_newest">当前已是最新版本</string>
+    <string name="upgrade_download_ticker">正在下载新版本</string>
+    <string name="upgrade_download_title">版本更新中</string>
+    <string name="upgrade_download_progress">已经下载:%1$s%%</string>
+    <string name="upgrade_download_failure">安装包下载失败</string>
+    <string name="upgrade_update_tips">正在检查更新，请稍候...</string>
+    <string name="upgrade_update_failure">检查更新失败，请重试！</string>
     <!--Splash-->
     <string name="splash_slogan_text">©2017 ShiAnGou (China) Softwareco.Ltd</string>
 
@@ -33,6 +46,7 @@
     <string name="pay_result_tip">这个界面用于显示第三方app通过微信支付的结果</string>
     <string name="pay_result_callback_msg" formatted="false">微信支付结果：%s</string>
     <string name="app_tip">提示</string>
+    <string name="pay_by_wx_title">通过微信支付</string>
     <!--警示-->
     <string name="common_tip_changename">注意: 与食安购业务或品牌冲突的名称，将有权收回</string>
     <string name="common_tip_anonymous">你的评论会以匿名的方式展现</string>

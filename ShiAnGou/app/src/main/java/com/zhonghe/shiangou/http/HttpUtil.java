@@ -1,7 +1,6 @@
 package com.zhonghe.shiangou.http;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
@@ -15,27 +14,23 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.reflect.TypeToken;
-import com.zhonghe.lib_base.utils.UtilList;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.data.bean.AddressSelectInfo;
 import com.zhonghe.shiangou.data.bean.CartGoods;
-import com.zhonghe.shiangou.data.bean.CartInfo;
 import com.zhonghe.shiangou.data.bean.CategoryChild;
 import com.zhonghe.shiangou.data.bean.CategoryParent;
+import com.zhonghe.shiangou.data.bean.CharPay;
 import com.zhonghe.shiangou.data.bean.ConfirmRspInfo;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
-import com.zhonghe.shiangou.data.bean.StringInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
-import com.zhonghe.shiangou.utile.Device;
 import com.zhonghe.shiangou.utile.JSONParser;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
@@ -82,6 +77,8 @@ public class HttpUtil {
     public static String URL_ConfirmGoods = URL_PRO + "app/goods/commodity.php";
     //订单生成
     public static String URL_Order = URL_PRO + "app/orderindex/generate.php";
+    //支付
+    public static String URL_Pay = URL_PRO + "app/goods/Zhifu.php";
     //订单列表
     public static String URL_OrderList = URL_PRO + "orderindex.php";
     //地址列表
@@ -424,7 +421,7 @@ public class HttpUtil {
      */
     public static Request<?> getDeleteCart(Context context, List<String> goodsId, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
-        map.put("goods_id", Utilm.strArrayToStr(goodsId));
+        map.put("goods_id", Util.strArrayToStr(goodsId));
         map.put("user_id", ProjectApplication.mUser.getUser_id());
 //        map.put("goods_number", goodsCount);
 //        map.put("goods_attr_id", attr_id);
@@ -501,7 +498,7 @@ public class HttpUtil {
      */
     public static Request<?> getConfirmGoods(Context context, List<String> cat_id, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
-        map.put("cart_id", Utilm.strArrayToStr(cat_id));
+        map.put("cart_id", Util.strArrayToStr(cat_id));
         map.put("user_id", ProjectApplication.mUser.getUser_id());
 //        BaseRes<HomeData> res = new BaseRes<>();
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
@@ -521,13 +518,32 @@ public class HttpUtil {
      */
     public static Request<?> getSubmitOrder(Context context, List<String> cat_id, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
-        map.put("cart_id", Utilm.strArrayToStr(cat_id));
+        map.put("cart_id", Util.strArrayToStr(cat_id));
         map.put("user_id", ProjectApplication.mUser.getUser_id());
 //        BaseRes<HomeData> res = new BaseRes<>();
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
 //        Type bean = new TypeToken<List<CategoryChild>>() {
 //        }.getType();
         Request<?> request = volleyPost(context, URL_Order, map, listener, String.class);
+        return request;
+    }
+
+    /**
+     * 支付
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getPay(Context context, String order_code, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("cart_id", Util.strArrayToStr(cat_id));
+        map.put("order_sn", order_code);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+//        Type bean = new TypeToken<List<CategoryChild>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_Pay, map, listener, CharPay.class);
         return request;
     }
 

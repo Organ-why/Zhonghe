@@ -1,10 +1,7 @@
 package com.zhonghe.shiangou.ui.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.IdRes;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.GridView;
@@ -16,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.CategoryChild;
 import com.zhonghe.shiangou.data.bean.CategoryParent;
@@ -110,7 +107,7 @@ public class CategoryFragment extends BaseTopFragment {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(mActivity, error);
+                Util.toast(mActivity, error);
             }
 
             @Override
@@ -153,7 +150,7 @@ public class CategoryFragment extends BaseTopFragment {
             Request<?> request = HttpUtil.getCategoryChild(mActivity, childId, new ResultListener() {
                 @Override
                 public void onFail(String error) {
-                    Utilm.toast(mActivity, error);
+                    Util.toast(mActivity, error);
                     childAdapter.setList(categoryChild);
                 }
 

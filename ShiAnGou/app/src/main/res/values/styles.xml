@@ -79,6 +79,13 @@
         <!-- <item name="android:background">@drawable/nav_page</item> -->
         <item name="android:background">@color/navpage</item>
     </style>
+    <style name="TitleText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/font_msize</item>
+        <item name="android:textColor">#ff000000</item>
+    </style>
+
     <!--</style>-->
 
     <!-- 全屏样式-->

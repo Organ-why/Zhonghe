@@ -2,21 +2,15 @@ package com.zhonghe.shiangou.ui.listener;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ScrollView;
 
 import com.handmark.pulltorefresh.library.CustomScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilLog;
-import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
 import com.zhonghe.shiangou.ui.adapter.HomeCategoryTitleAdapter;
 import com.zhonghe.shiangou.ui.widget.HorizontalListView;
@@ -54,10 +48,10 @@ public class HomeScrollListener implements View.OnTouchListener, CustomScrollVie
         titleListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                mScrollView.scrollTo(0, Utilm.dip2px(context, 300)+ScrollY*position);
+//                mScrollView.scrollTo(0, Util.dip2px(context, 300)+ScrollY*position);
 
                 ObjectAnimator xTranslate = ObjectAnimator.ofInt(mScrollView, "scrollX", 0);
-                ObjectAnimator yTranslate = ObjectAnimator.ofInt(mScrollView, "scrollY", Utilm.dip2px(context, 300) + ScrollY * position);
+                ObjectAnimator yTranslate = ObjectAnimator.ofInt(mScrollView, "scrollY", Util.dip2px(context, 300) + ScrollY * position);
 
                 AnimatorSet animators = new AnimatorSet();
                 animators.setDuration(1000L);
@@ -73,7 +67,7 @@ public class HomeScrollListener implements View.OnTouchListener, CustomScrollVie
             case MotionEvent.ACTION_MOVE:
 //                Log.d("HomeScrollListener", "getY..." + v.getY() + "...getScrollY..." + v.getScrollY());
                 //175+50+75
-                if (v.getScrollY() > Utilm.dip2px(context, 300)) {
+                if (v.getScrollY() > Util.dip2px(context, 300)) {
                     titleListView.setVisibility(View.VISIBLE);
                 } else {
                     titleListView.setVisibility(View.GONE);

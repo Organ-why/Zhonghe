@@ -1,6 +1,5 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -8,7 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
@@ -66,34 +65,34 @@ public class RegisterActivity extends BaseTopActivity {
         String phone = idsRegisterPhoneEt.getText().toString();
         String code = idsRegisterCodeEt.getText().toString();
         String pwd = idsRegisterPwdEt.getText().toString();
-        if (Utilm.isRegiste(this, idsRegisterPhoneEt, idsRegisterCodeEt, idsRegisterPwdEt, idsRegisterPwdagEt)) {
+        if (Util.isRegiste(this, idsRegisterPhoneEt, idsRegisterCodeEt, idsRegisterPwdEt, idsRegisterPwdagEt)) {
             setWaitingDialog(true);
             Request<?> request = HttpUtil.getRegiste(this, phone, code, pwd, new ResultListener() {
                 @Override
                 public void onFail(String error) {
                     setWaitingDialog(false);
-                    Utilm.toast(mContext, error);
+                    Util.toast(mContext, error);
                 }
 
                 @Override
                 public void onSuccess(Object obj) {
                     setWaitingDialog(false);
-                    Utilm.toast(mContext, R.string.title_register_success);
+                    Util.toast(mContext, R.string.title_register_success);
                     finish();
                 }
             });
             addRequest(request);
         }
         ;
-//        Utilm.
+//        Util.
     }
 
     // 获取验证码
     void getPhoneCode() {
         String phone = idsRegisterPhoneEt.getText().toString();
 
-        if (!Utilm.isPhone(phone)) {
-            Utilm.toast(this, R.string.title_register_phone_tip);
+        if (!Util.isPhone(phone)) {
+            Util.toast(this, R.string.title_register_phone_tip);
             return;
         }
         idRegisterGetcodeTv.setEnabled(false);
@@ -103,7 +102,7 @@ public class RegisterActivity extends BaseTopActivity {
             public void onFail(String error) {
                 setWaitingDialog(false);
                 idRegisterGetcodeTv.setEnabled(true);
-                Utilm.toast(RegisterActivity.this, error.toString());
+                Util.toast(RegisterActivity.this, error.toString());
                 Log.d("onfail.......", error.toString());
             }
 
@@ -111,7 +110,7 @@ public class RegisterActivity extends BaseTopActivity {
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
                 idRegisterGetcodeTv.setEnabled(true);
-//                Utilm.toast(RegisterActivity.this, obj.toString());
+//                Util.toast(RegisterActivity.this, obj.toString());
 //                Log.d("onfail.......", obj.toString());
             }
 

@@ -14,10 +14,9 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.AddressArea;
-import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.data.bean.AddressSelectInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
@@ -161,7 +160,7 @@ public class AreaSelectDialog extends PopupWindow {
         Request<?> request = HttpUtil.getAddressSelect(mContext, proArea.getAreaid(), new ResultListener() {
             @Override
             public void onFail(String error) {
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
             }
 
             @Override
@@ -191,7 +190,7 @@ public class AreaSelectDialog extends PopupWindow {
         Request<?> request = HttpUtil.getAddressSelect(mContext, proArea.getAreaid(), new ResultListener() {
             @Override
             public void onFail(String error) {
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
             }
 
             @Override

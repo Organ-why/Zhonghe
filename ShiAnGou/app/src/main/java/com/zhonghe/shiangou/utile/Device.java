@@ -48,8 +48,6 @@ import java.util.zip.ZipFile;
 
 /**
  * 各种phone信息接口 例如 imei 手机型号，系统 ，分辨率，应用包及包名
- *
- * @author xugang
  */
 public class Device {
 

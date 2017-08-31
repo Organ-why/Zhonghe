@@ -8,13 +8,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
-import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.AddressSelectInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
-import com.zhonghe.shiangou.ui.dialog.AreaSelectDialog;
 import com.zhonghe.shiangou.ui.dialog.AreaSelectListDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
@@ -73,7 +72,7 @@ public class ChangeAddressActivity extends BaseTopActivity {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
             }
 
             @Override
@@ -91,7 +90,7 @@ public class ChangeAddressActivity extends BaseTopActivity {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
             }
 
             @Override
@@ -129,21 +128,21 @@ public class ChangeAddressActivity extends BaseTopActivity {
 
                 String persionStr = idAddressmsgPersonEt.getText().toString();
                 if (UtilString.isBlank(persionStr)) {
-                    Utilm.toast(mContext, R.string.address_tip_consignee);
+                    Util.toast(mContext, R.string.address_tip_consignee);
                     break;
                 }
                 String phoneStr = idAddressmsgPhoneEt.getText().toString();
                 if (UtilString.isBlank(phoneStr)) {
-                    Utilm.toast(mContext, R.string.address_tip_consignee);
+                    Util.toast(mContext, R.string.address_tip_consignee);
                     break;
                 }
                 String addressStr = idAddressmsgAddressmsgEt.getText().toString();
                 if (UtilString.isBlank(addressStr)) {
-                    Utilm.toast(mContext, R.string.address_tip_consignee);
+                    Util.toast(mContext, R.string.address_tip_consignee);
                     break;
                 }
                 if (UtilString.isBlank(mAreaStr)) {
-                    Utilm.toast(mContext, R.string.address_tip_consignee);
+                    Util.toast(mContext, R.string.address_tip_consignee);
                     break;
                 }
                 addAddaress(persionStr, phoneStr, addressStr);

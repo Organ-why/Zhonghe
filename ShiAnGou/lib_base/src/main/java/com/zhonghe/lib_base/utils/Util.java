@@ -1,6 +1,8 @@
 package com.zhonghe.lib_base.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.support.annotation.StringRes;
 import android.util.Patterns;
 import android.view.WindowManager;
@@ -18,7 +20,7 @@ import java.util.regex.Pattern;
  * Date: 2017/8/7.
  * Author: whyang
  */
-public class Utilm {
+public class Util {
     /**
      * list<String>
      * , 隔开
@@ -142,6 +144,11 @@ public class Utilm {
 
     private static WindowManager wm;
 
+    /**
+     * 屏幕宽
+     * @param context
+     * @return
+     */
     public static int getScreenWidth(Context context) {
         if (wm == null) {
             wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -227,4 +234,9 @@ public class Utilm {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (pxValue / scale + 0.5f);
     }
+
+
+
+
+
 }

@@ -1,7 +1,7 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,16 +10,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.lib_base.utils.UtilString;
-import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
+import com.zhonghe.shiangou.data.bean.CharPay;
 import com.zhonghe.shiangou.data.bean.ConfirmRspInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
+import com.zhonghe.shiangou.ui.dialog.PayDialog;
 import com.zhonghe.shiangou.ui.listener.ConfirmGoodsList;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
@@ -101,7 +103,7 @@ public class ConfirmOrderActivity extends BaseTopActivity {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
             }
 
             @Override
@@ -119,7 +121,7 @@ public class ConfirmOrderActivity extends BaseTopActivity {
     //生成订单
     void submitOrder() {
         if (UtilString.isEmpty(mData.getDefault_add().getArea_address())) {
-            Utilm.toast(mContext, R.string.confirmorder_receiptmsg_text);
+            Util.toast(mContext, R.string.confirmorder_receiptmsg_text);
             return;
         }
         setWaitingDialog(true);
@@ -127,21 +129,45 @@ public class ConfirmOrderActivity extends BaseTopActivity {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
             }
 
             @Override
             public void onSuccess(Object obj) {
+                String orderCode = (String) obj;
                 setWaitingDialog(false);
-                Utilm.toast(mContext, R.string.common_success_tip);
+                Util.toast(mContext, R.string.common_success_tip);
                 orderCode = (String) obj;
 //                setDataShow();
-
+                goPay(orderCode);
+                UtilLog.d("submitOrder_success");
             }
         });
         addRequest(request);
     }
 
+    void goPay(String orderCode) {
+        setWaitingDialog(true);
+
+        Request<?> request = HttpUtil.getPay(mContext, orderCode, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+                setWaitingDialog(false);
+                Util.toast(mContext, error);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                CharPay charPay = (CharPay) obj;
+                setWaitingDialog(false);
+                PayDialog dialog = new PayDialog(mContext,charPay.getData());
+                dialog.showAtLocation(cartIdTobuyBt, Gravity.BOTTOM, 0, 0);
+                UtilLog.d("goPay_success");
+//                Util.toast(mContext, R.string.common_success_tip);
+            }
+        });
+        addRequest(request);
+    }
 
     @OnClick({R.id.id_confirmorder_address_rl, R.id.id_confirm_address_ll, R.id.cart_id_tobuy_bt})
     public void onClick(View v) {

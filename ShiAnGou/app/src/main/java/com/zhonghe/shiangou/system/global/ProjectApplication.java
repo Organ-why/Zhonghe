@@ -7,11 +7,14 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.lib_httpok.OkHttp3Stack;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 import com.zhonghe.lib_base.utils.UtilImage;
 import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.data.db.DaoFactory;
 import com.zhonghe.shiangou.data.pref.ProPrefrences;
 import com.zhonghe.shiangou.http.ProReqestQueue;
+import com.zhonghe.shiangou.system.constant.CstProject;
 
 import okhttp3.OkHttpClient;
 
@@ -32,6 +35,7 @@ public class ProjectApplication extends Application {
     //当前用户信息
     public static UserInfo mUser;
 
+    public static IWXAPI api;
     public static synchronized ProjectApplication getInstance() {
         return mInstance;
     }
@@ -40,6 +44,9 @@ public class ProjectApplication extends Application {
     public void onCreate() {
         super.onCreate();
         mInstance = this;
+
+        api = WXAPIFactory.createWXAPI(getApplicationContext(), CstProject.WEIXIN.WEIXIN_APP_ID);
+//        api.handleIntent(getInstance(), this);
         //图片加载实例
         mImageLoader = UtilImage.getInstance(this);
         proReqestQueue = ProReqestQueue.getInstance(this);

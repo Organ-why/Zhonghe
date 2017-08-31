@@ -1,7 +1,5 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -10,11 +8,10 @@ import android.widget.ListView;
 import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
-import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.ui.adapter.AddressListAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
@@ -90,7 +87,7 @@ public class AddressManageActivity extends BaseTopActivity implements PullToRefr
         Request<?> request = HttpUtil.getAddressList(mContext, curPage, curSize, new ResultListener() {
             @Override
             public void onFail(String error) {
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
                 setWaitingDialog(false);
                 idAddressListview.onRefreshComplete();
             }
@@ -131,7 +128,7 @@ public class AddressManageActivity extends BaseTopActivity implements PullToRefr
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(mContext, error);
+                Util.toast(mContext, error);
             }
 
             @Override

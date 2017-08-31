@@ -1,6 +1,5 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +12,8 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
-import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
@@ -147,8 +146,8 @@ public class GoodsDetailActivity extends BaseTopActivity {
         if (bannerInfo.size() > 0) {
             View BannerView = new DynamicBanner(this, LayoutInflater.from(this), 5000).initView(bannerInfo);
 //
-//            Utilm.dip2px(this, 175)
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,  Utilm.getScreenWidth(mContext));
+//            Util.dip2px(this, 175)
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,  Util.getScreenWidth(mContext));
             BannerView.setLayoutParams(layoutParams);
             idGoodsdetailBannerLl.addView(BannerView);
         }
@@ -248,7 +247,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
                         public void onSuccess(Object obj) {
                             setWaitingDialog(false);
                             skudialog.dismiss();
-                            Utilm.toast(mContext, R.string.common_cart_add_success);
+                            Util.toast(mContext, R.string.common_cart_add_success);
                         }
                     });
                     addRequest(request);

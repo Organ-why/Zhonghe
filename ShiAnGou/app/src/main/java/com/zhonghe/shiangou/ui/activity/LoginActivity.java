@@ -1,7 +1,5 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,7 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
@@ -56,12 +54,12 @@ public class LoginActivity extends BaseTopActivity {
         String phone = idLoginNameEt.getText().toString();
         String pwd = idLoginPwdEt.getText().toString();
 
-//        if (!Utilm.isPhone(phone)) {
-//            Utilm.toast(this, R.string.title_register_phone_tip);
+//        if (!Util.isPhone(phone)) {
+//            Util.toast(this, R.string.title_register_phone_tip);
 //            return;
 //        }
-//        if (!Utilm.isPwd(pwd)) {
-//            Utilm.toast(this, R.string.title_register_pwd_tip);
+//        if (!Util.isPwd(pwd)) {
+//            Util.toast(this, R.string.title_register_pwd_tip);
 //            return;
 //        }
 
@@ -70,7 +68,7 @@ public class LoginActivity extends BaseTopActivity {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(LoginActivity.this, error);
+                Util.toast(LoginActivity.this, error);
             }
 
             @Override

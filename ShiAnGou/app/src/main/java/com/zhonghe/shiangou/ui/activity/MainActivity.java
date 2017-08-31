@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.zhonghe.lib_base.baseui.activity.BaseNavActivity;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.ui.dialog.AppUpdataDialog;
 import com.zhonghe.shiangou.ui.fragment.CartExpandableFragment;
 import com.zhonghe.shiangou.ui.fragment.CartFragment;
 import com.zhonghe.shiangou.ui.fragment.CategoryFragment;
@@ -24,5 +25,8 @@ public class MainActivity extends BaseNavActivity {
         addNavTab(R.string.main_tabs_cart, R.drawable.main_tab_cart, CartExpandableFragment.class);
         //我的
         addNavTab(R.string.main_tabs_user, R.drawable.main_tab_user, UserFragment.class);
+
+        AppUpdataDialog dialog = new AppUpdataDialog(MainActivity.this);
+        dialog.show();
     }
 }

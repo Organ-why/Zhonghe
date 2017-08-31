@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ public class CategoryPull extends ViewGroup {
 
     public CategoryPull(Context context) {
         super(context);
-        int i1 = Utilm.GetWindowWidth(context);
+        int i1 = Util.GetWindowWidth(context);
         itemWidth = i1 / 4;
 //        for (int i = 0; i < 7; i++) {
 //            mlist.add("category" + i);

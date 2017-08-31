@@ -12,16 +12,13 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshExpandableListView;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilList;
-import com.zhonghe.lib_base.utils.UtilString;
-import com.zhonghe.lib_base.utils.Utilm;
 import com.zhonghe.shiangou.data.bean.CartGoods;
-import com.zhonghe.shiangou.data.bean.CartInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.R;
-import com.zhonghe.shiangou.data.bean.CartItemBO;
 import com.zhonghe.shiangou.data.bean.CartItemGroupBO;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.ui.listener.CartExpandableListener;
@@ -143,7 +140,7 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                Utilm.toast(mActivity, error);
+                Util.toast(mActivity, error);
                 cartIdLv.onRefreshComplete();
             }
 
@@ -215,7 +212,7 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
             case R.id.cart_id_del_bt:
                 List<String> delist = listener.getSelectGoods();
                 if (UtilList.isEmpty(delist)) {
-                    Utilm.toast(mActivity, R.string.common_cart_noselect);
+                    Util.toast(mActivity, R.string.common_cart_noselect);
                 } else {
                     setWaitingDialog(true);
                     Request<?> request = HttpUtil.getDeleteCart(mActivity, delist, new ResultListener() {
@@ -238,14 +235,14 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
-        Utilm.toast(mActivity, "down");
+        Util.toast(mActivity, "down");
         curpage = 1;
         getCartData();
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
-        Utilm.toast(mActivity, "up");
+        Util.toast(mActivity, "up");
         getCartData();
     }
 }

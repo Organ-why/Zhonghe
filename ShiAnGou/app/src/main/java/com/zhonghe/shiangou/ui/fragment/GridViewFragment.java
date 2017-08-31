@@ -1,17 +1,14 @@
 package com.zhonghe.shiangou.ui.fragment;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.HeaderGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
@@ -81,7 +78,7 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
         Request<?> request = HttpUtil.getSearch(mActivity, listId, listKey, cursize, curpage, orderBy, new ResultListener() {
             @Override
             public void onFail(String error) {
-                Utilm.toast(mActivity, error);
+                Util.toast(mActivity, error);
                 idDefaultGridview.onRefreshComplete();
             }
 

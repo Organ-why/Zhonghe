@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.zhonghe.lib_base.utils.UtilList;
-import com.zhonghe.lib_base.utils.Utilm;
 
 import java.util.List;
 

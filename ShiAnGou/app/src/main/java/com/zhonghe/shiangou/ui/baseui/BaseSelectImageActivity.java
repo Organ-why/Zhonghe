@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.SelectPictureDialog;
 import com.zhonghe.shiangou.utile.JSONParser;
@@ -139,9 +140,9 @@ public abstract class BaseSelectImageActivity extends BaseTopActivity
 //        File files = new File(url_image);
 //        List<File> fileList = new ArrayList<>();
 //        fileList.add(files);
-        UploadImageTask uploadImage = new UploadImageTask(HttpUtil.URL_HeaderUp, "",
+        UploadImageTask uploadImage = new UploadImageTask(HttpUtil.URL_HeaderUp, ProjectApplication.mUser.getUser_id(),
 //                PrefUtils.getString(this, Const.MEMBER_KEY, "")
-                "", fileList) {
+                 fileList) {
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);

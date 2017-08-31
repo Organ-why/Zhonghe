@@ -4,13 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.lib_base.baseui.adapter.AbsAdapter;
-import com.zhonghe.lib_base.utils.Utilm;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
@@ -51,8 +50,8 @@ public class HomeCategoryTitleAdapter extends AbsAdapter<HomeCategoryInfo> {
         HomeCategoryInfo info = datas.get(position);
         ProjectApplication.mImageLoader.loadImage(holder.idItemHomeCategoryTitleIv, info.getCat_thumb());
         holder.idItemHomeCategoryTitleName.setText(info.getCat_name());
-        int width = Utilm.GetWindowWidth(mContext) / 4;
-        LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(width, Utilm.dip2px(mContext, 75));
+        int width = Util.GetWindowWidth(mContext) / 4;
+        LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(width, Util.dip2px(mContext, 75));
         holder.idItemHomeCategoryTitleLl.setLayoutParams(categoryParams);
 
         return convertView;
