@@ -40,7 +40,7 @@ import butterknife.OnClick;
  * Date: 2017/7/4.
  * Author: whyang
  */
-public class HomeFragment1 extends BaseTopFragment {
+public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListView.addCartListener {
     @Bind(R.id.cart_id_lv)
     PullToRefreshScrollView cartIdLv;
     @Bind(R.id.id_home_category_horizontal_title_hl)
@@ -122,7 +122,7 @@ public class HomeFragment1 extends BaseTopFragment {
         View viewCategoryTitle = LayoutInflater.from(mActivity).inflate(R.layout.layout_home_category, null);
         llContentTitle.addView(viewCategoryTitle);
         //分类具体商品列表
-        new HomeCategoryListView(mActivity).initView(categoryInfo, llContentList);
+        new HomeCategoryListView(mActivity).initView(categoryInfo, llContentList, this);
         //每次类别商品列表所占高度
         int childWidth = 0;
         int childHeight = 0;
@@ -206,6 +206,7 @@ public class HomeFragment1 extends BaseTopFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_user_ivb:
+                ProDispatcher.sendMainTabBroadcast(mActivity, 3);
                 break;
             case R.id.title_msg_ivb:
                 break;
@@ -213,5 +214,29 @@ public class HomeFragment1 extends BaseTopFragment {
                 ProDispatcher.goSearchActivity(mActivity);
                 break;
         }
+    }
+
+    @Override
+    public void OnAddCart(final String goods_id) {
+        setWaitingDialog(true);
+        Request<?> request = HttpUtil.getAddCart(mActivity, goods_id, "", "1", new ResultListener() {
+
+            @Override
+            public void onFail(String error) {
+                setWaitingDialog(false);
+                Util.toast(mActivity, error);
+                Log.i("onFial", error);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                setWaitingDialog(false);
+                setWaitingDialog(false);
+                Util.toast(mActivity, R.string.common_cart_add_success);
+                ProDispatcher.sendAddCardBroadcast(mActivity, goods_id);
+//                Log.i("onSuccess", obj.toString());
+            }
+        });
+        addRequest(request);
     }
 }

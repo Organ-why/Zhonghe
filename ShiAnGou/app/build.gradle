@@ -21,18 +21,18 @@ android {
 
     signingConfigs {
         debug {
-//            storeFile file("davebella.jks")
-//            storePassword "davebella2016"
-//            keyAlias "davebella"
-//            keyPassword "davebella2016"
+            storeFile file("keystore/shiangou.jks")
+            storePassword "shiangou123"
+            keyAlias "key_shiangou"
+            keyPassword "shiangou123"
         }
 
 
         release {
-//            storeFile file("davebella.jks")
-//            storePassword "davebella2016"
-//            keyAlias "davebella"
-//            keyPassword "davebella2016"
+            storeFile file("keystore/shiangou.jks")
+            storePassword "shiangou123"
+            keyAlias "key_shiangou"
+            keyPassword "shiangou123"
         }
     }
 

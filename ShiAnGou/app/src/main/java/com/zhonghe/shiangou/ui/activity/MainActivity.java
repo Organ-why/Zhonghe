@@ -1,10 +1,12 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.zhonghe.lib_base.baseui.activity.BaseNavActivity;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.dialog.AppUpdataDialog;
 import com.zhonghe.shiangou.ui.fragment.CartExpandableFragment;
 import com.zhonghe.shiangou.ui.fragment.CartFragment;
@@ -28,5 +30,25 @@ public class MainActivity extends BaseNavActivity {
 
         AppUpdataDialog dialog = new AppUpdataDialog(MainActivity.this);
         dialog.show();
+
+    }
+
+    @Override
+    protected void initViews() {
+        registerAction(CstProject.BROADCAST_ACTION.MAINTAB_CHECK_ACTION);
+    }
+
+    @Override
+    protected void onReceive(Intent intent) {
+        switch (intent.getAction()) {
+            case CstProject.BROADCAST_ACTION.MAINTAB_CHECK_ACTION:
+                int index = intent.getIntExtra(CstProject.KEY.INDEX, 0);
+                setOnTabChanged(index);
+                break;
+        }
+    }
+
+    @Override
+    public void onTabChanged(String tabId) {
     }
 }

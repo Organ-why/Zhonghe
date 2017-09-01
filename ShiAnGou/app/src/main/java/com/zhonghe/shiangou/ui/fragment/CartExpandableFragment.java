@@ -130,7 +130,7 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
     int isEditFlag = 0;
 
     void getCartData() {
-        if (ProjectApplication.mUser==null) {
+        if (ProjectApplication.mUser == null) {
             ProDispatcher.goLoginActivity(mActivity);
             cartIdLv.onRefreshComplete();
             return;
@@ -207,6 +207,10 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
         switch (view.getId()) {
             case R.id.cart_id_tobuy_bt:
                 ArrayList<String> list = listener.getConfirmGoods();
+                if (UtilList.isEmpty(list)) {
+                    Util.toast(mActivity, R.string.common_cart_noselect);
+                    break;
+                }
                 ProDispatcher.goConfirmOrderActivity(mActivity, list);
                 break;
             case R.id.cart_id_del_bt:

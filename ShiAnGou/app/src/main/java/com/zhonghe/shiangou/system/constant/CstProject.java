@@ -29,6 +29,8 @@ public class CstProject {
         public final static String KEY = "_key";
         public final static String ORDERBY = "_orderby";
         public final static String DATA = "_data";
+        public final static String CODE = "_code";
+        public final static String INDEX = "_index";
     }
 
     /**
@@ -43,6 +45,13 @@ public class CstProject {
         public static final String LOGIN_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGIN_ACTION";
         // 登出广播
         public static final String LOGOUT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGOUT_ACTION";
+        // 登出广播
+        public static final String PAY_RESULT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.PAY_RESULT_ACTION";
+        //tab 选中
+        public static final String MAINTAB_CHECK_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.MAINTAB_CHECK_ACTION";
+        //购物车商品
+        public static final String CART_DEL_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.CART_DEL_ACTION";
+        public static final String CART_ADD_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.CAET_ADD_ACTION";
 
     }
 

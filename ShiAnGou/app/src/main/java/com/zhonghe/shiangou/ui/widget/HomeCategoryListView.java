@@ -5,6 +5,7 @@ import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,8 +34,13 @@ public class HomeCategoryListView {
         inflater = LayoutInflater.from(context);
     }
 
-    public void initView(List<HomeCategoryInfo> categoryInfos, ViewGroup parentView) {
-        for (HomeCategoryInfo info : categoryInfos) {
+    public interface addCartListener {
+        void OnAddCart(String goods_id);
+    }
+
+
+    public void initView(List<HomeCategoryInfo> categoryInfos, ViewGroup parentView, final addCartListener addCartListener) {
+        for (final HomeCategoryInfo info : categoryInfos) {
             View inflate = inflater.inflate(R.layout.layout_home_category_item, null);
             SimpleDraweeView img = (SimpleDraweeView) inflate.findViewById(R.id.id_home_category_item_title_iv);//分类大图片
             ProjectApplication.mImageLoader.loadImage(img, info.getCat_images());
@@ -43,6 +49,13 @@ public class HomeCategoryListView {
                 for (final GoodsInfo itemInfo : info.getList()) {
                     View itemView = inflater.inflate(R.layout.item_home_category_item, null);
                     SimpleDraweeView proimg = (SimpleDraweeView) itemView.findViewById(R.id.id_home_category_item_iv);
+                    ImageView addCartIv = (ImageView) itemView.findViewById(R.id.id_home_category_item_cart_iv);
+                    addCartIv.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            addCartListener.OnAddCart(itemInfo.getGoods_id());
+                        }
+                    });
                     ProjectApplication.mImageLoader.loadImage(proimg, itemInfo.getGoods_img());
                     TextView tvtitle = (TextView) itemView.findViewById(R.id.id_home_category_item_title_tv);
                     tvtitle.setText(UtilString.nullToEmpty(itemInfo.getGoods_name()));

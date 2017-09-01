@@ -27,6 +27,8 @@
     <string name="common_user_center">我的帐户</string>
     <string name="common_search">搜索</string>
     <string name="common_updata">更新</string>
+    <string name="common_pay_success">支付成功</string>
+    <string name="common_pay_fail">支付失败</string>
 
     <!--升级功能-->
     <string name="upgrade_cancel">取消</string>
@@ -91,6 +93,8 @@
     <string name="confirmorder_addre">地址: %s</string>
     <string name="confirmorder_phone">电话: %s</string>
     <string name="confirmorder_num">x%s</string>
+    <string name="confirmorder_order_fail">生成订单失败，请重新确认</string>
+    <string name="confirmorder_order_success">订单成功</string>
 
     <!-- 商品详情-->
     <string name="prodetail_act_title">商品详情</string>

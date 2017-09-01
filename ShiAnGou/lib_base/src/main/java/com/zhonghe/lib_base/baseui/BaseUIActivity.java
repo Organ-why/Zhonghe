@@ -201,6 +201,22 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     protected void initViews() {
 
     }
+    /**
+     * 显示的tab项
+     *
+     * @param index
+     */
+    public void setOnTabChanged(int index) {
+        if (index >= 0 && index <= mTabHost.getChildCount())
+            mTabHost.setCurrentTab(index);
+    }
+
+    /**
+     * 选择的tab项
+     */
+    public int getCurrentTab() {
+        return mTabHost.getCurrentTab();
+    }
 
     /**
      * 初始化navigation bar的tabs

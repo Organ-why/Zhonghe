@@ -1,7 +1,9 @@
 package com.zhonghe.shiangou.ui.fragment;
 
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
 import android.widget.GridView;
@@ -30,6 +32,7 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Date: 2017/7/4.
@@ -166,4 +169,18 @@ public class CategoryFragment extends BaseTopFragment {
         }
     }
 
+
+    @OnClick({R.id.title_user_ivb, R.id.title_msg_ivb, R.id.id_category_title_tv})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.title_user_ivb:
+                ProDispatcher.sendMainTabBroadcast(mActivity,3);
+                break;
+            case R.id.title_msg_ivb:
+                break;
+            case R.id.id_category_title_tv:
+                ProDispatcher.goSearchActivity(mActivity);
+                break;
+        }
+    }
 }

@@ -48,11 +48,10 @@ public class CharPay extends BaseBean {
 
         private String appid;
         private String noncestr;
-        @SerializedName("package")
         private String packageX;
         private String partnerid;
         private String prepayid;
-        private String timestamp;
+        private int timestamp;
         private String sign;
         private String out_trade_no;
 
@@ -96,11 +95,11 @@ public class CharPay extends BaseBean {
             this.prepayid = prepayid;
         }
 
-        public String getTimestamp() {
+        public int getTimestamp() {
             return timestamp;
         }
 
-        public void setTimestamp(String timestamp) {
+        public void setTimestamp(int timestamp) {
             this.timestamp = timestamp;
         }
 

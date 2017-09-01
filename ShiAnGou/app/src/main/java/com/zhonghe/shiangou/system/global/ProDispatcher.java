@@ -321,4 +321,52 @@ public class ProDispatcher {
         intent.setAction(BROADCAST_ACTION.LOGOUT_ACTION);
         context.sendBroadcast(intent);
     }
+
+    /**
+     * 支付返回
+     *
+     * @param context
+     * @param resultCode
+     */
+    public static void sendPayResultBroadcast(Context context, int resultCode) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(CstProject.KEY.CODE, resultCode);
+        intent.setAction(BROADCAST_ACTION.PAY_RESULT_ACTION);
+        context.sendBroadcast(intent);
+    }
+
+    /**
+     * tab选中
+     *
+     * @param context
+     * @param tabIndex
+     */
+    public static void sendMainTabBroadcast(Context context, int tabIndex) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(CstProject.KEY.INDEX, tabIndex);
+        intent.setAction(BROADCAST_ACTION.MAINTAB_CHECK_ACTION);
+        context.sendBroadcast(intent);
+    }
+
+    /**
+     * 添加商品到购物车
+     *
+     * @param context
+     * @param goodsId
+     */
+    public static void sendAddCardBroadcast(Context context, String goodsId) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(CstProject.KEY.ID, goodsId);
+        intent.setAction(BROADCAST_ACTION.CART_ADD_ACTION);
+        context.sendBroadcast(intent);
+    }
 }

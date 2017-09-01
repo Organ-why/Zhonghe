@@ -107,7 +107,12 @@ public class HomeFragment extends BaseTopFragment {
             itemList.add(homeCategoryInfo);
         }
 
-        new HomeCategoryListView(mActivity).initView(itemList, llContentList);
+        new HomeCategoryListView(mActivity).initView(itemList, llContentList, new HomeCategoryListView.addCartListener() {
+            @Override
+            public void OnAddCart(String goods_id) {
+
+            }
+        });
 
         int childWidth = 0;
         int childHeight = 0;

@@ -24,6 +24,7 @@ import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.PayDialog;
 import com.zhonghe.shiangou.ui.listener.ConfirmGoodsList;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
+import com.zhonghe.shiangou.utile.UtilPay;
 
 import java.util.List;
 
@@ -35,7 +36,7 @@ import butterknife.OnClick;
  * Date: 2017/8/12.
  * Author: whyang
  */
-public class ConfirmOrderActivity extends BaseTopActivity {
+public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.payClickListener {
     @Bind(R.id.id_confirmorder_address_rl)
     RelativeLayout idConfirmorderAddressRl;
     List<String> ids;
@@ -76,6 +77,9 @@ public class ConfirmOrderActivity extends BaseTopActivity {
     private static final int REQUEST_ADDRESS_CODE = 0x10 + 1;
 
     String orderCode = "";
+    CharPay.DataBean orderMsg;
+    //支付dialog
+    private PayDialog dialog;
 
     @Override
     protected void initTop() {
@@ -91,6 +95,7 @@ public class ConfirmOrderActivity extends BaseTopActivity {
 
     @Override
     protected void initViews() {
+        registerAction(CstProject.BROADCAST_ACTION.PAY_RESULT_ACTION);
         Intent intent = getIntent();
         ids = intent.getStringArrayListExtra(CstProject.KEY.ID);
         getConfirmData();
@@ -134,19 +139,27 @@ public class ConfirmOrderActivity extends BaseTopActivity {
 
             @Override
             public void onSuccess(Object obj) {
-                String orderCode = (String) obj;
-                setWaitingDialog(false);
-                Util.toast(mContext, R.string.common_success_tip);
                 orderCode = (String) obj;
+                setWaitingDialog(false);
+//                Util.toast(mContext, R.string.common_success_tip);
 //                setDataShow();
-                goPay(orderCode);
-                UtilLog.d("submitOrder_success");
+//                goPay(orderCode);
+                if (UtilString.isNotEmpty(orderCode)) {
+                    UtilLog.d("submitOrder_success");
+                    if (dialog == null) {
+                        dialog = new PayDialog(mContext, ConfirmOrderActivity.this);
+                    }
+                    dialog.showAtLocation(cartIdTobuyBt, Gravity.BOTTOM, 0, 0);
+                } else {
+                    Util.toast(mContext, R.string.confirmorder_order_fail);
+                }
             }
         });
         addRequest(request);
     }
 
-    void goPay(String orderCode) {
+    //支付凭证
+    void goPay(String orderCode, final int payType) {
         setWaitingDialog(true);
 
         Request<?> request = HttpUtil.getPay(mContext, orderCode, new ResultListener() {
@@ -155,15 +168,12 @@ public class ConfirmOrderActivity extends BaseTopActivity {
                 setWaitingDialog(false);
                 Util.toast(mContext, error);
             }
-
             @Override
             public void onSuccess(Object obj) {
                 CharPay charPay = (CharPay) obj;
+                orderMsg = charPay.getData();
                 setWaitingDialog(false);
-                PayDialog dialog = new PayDialog(mContext,charPay.getData());
-                dialog.showAtLocation(cartIdTobuyBt, Gravity.BOTTOM, 0, 0);
-                UtilLog.d("goPay_success");
-//                Util.toast(mContext, R.string.common_success_tip);
+                UtilPay.sartPay(payType, orderMsg);
             }
         });
         addRequest(request);
@@ -220,11 +230,23 @@ public class ConfirmOrderActivity extends BaseTopActivity {
                         AddressInfo address = (AddressInfo) data.getSerializableExtra(CstProject.KEY.DATA);
                         mData.setDefault_add(address);
                         setAddressShow(mData.getDefault_add());
-//                        setAddress(address);
-//                        getTotalPrice(proList, mZoneId, mCoupoonId, mtbtSetAdd.isChecked());
                     }
                     break;
             }
         }
+    }
+
+    @Override
+    protected void onReceive(Intent intent) {
+        switch (intent.getAction()) {
+            case CstProject.BROADCAST_ACTION.PAY_RESULT_ACTION:
+
+                break;
+        }
+    }
+
+    @Override
+    public void OnClickPay(int payType) {
+        goPay(orderCode, payType);
     }
 }

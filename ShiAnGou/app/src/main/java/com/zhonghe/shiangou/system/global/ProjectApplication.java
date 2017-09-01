@@ -46,8 +46,8 @@ public class ProjectApplication extends Application {
         super.onCreate();
         mInstance = this;
 
-//        WXapi = WXAPIFactory.createWXAPI(getApplicationContext(), CstProject.WEIXIN.WEIXIN_APP_ID);
-        WXapi = WXAPIFactory.createWXAPI(getApplicationContext(), null);
+        WXapi = WXAPIFactory.createWXAPI(getApplicationContext(), CstProject.WEIXIN.WEIXIN_APP_ID);
+//        WXapi = WXAPIFactory.createWXAPI(getApplicationContext(), null);
 
 // 将该app注册到微信
 
