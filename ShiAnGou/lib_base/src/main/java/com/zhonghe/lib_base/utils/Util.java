@@ -190,7 +190,7 @@ public class Util {
      * @param
      */
     public static void toast(Context context, int resId) {
-        toast(context, context.getString(resId), Toast.LENGTH_SHORT);
+//        toast(context, context.getString(resId), Toast.LENGTH_SHORT);
     }
 
     /**

@@ -3,6 +3,9 @@ package com.zhonghe.shiangou.http;
 import android.os.Environment;
 import android.support.annotation.NonNull;
 
+import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilLog;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -57,12 +60,13 @@ public class DownloadUtil {
                 int len = 0;
                 FileOutputStream fos = null;
                 // 储存下载文件的目录
-                String savePath = isExistDir(saveDir);
+//                String savePath = isExistDir(saveDir);
                 try {
                     is = response.body().byteStream();
                     long total = response.body().contentLength();
                     String nameFromUrl = getNameFromUrl(url);
-                    File file = new File(savePath, nameFromUrl);
+//                    File file = new File(savePath, nameFromUrl);
+                    File file = new File(saveDir);
                     fos = new FileOutputStream(file);
                     long sum = 0;
                     while ((len = is.read(buf)) != -1) {
@@ -76,7 +80,8 @@ public class DownloadUtil {
                     // 下载完成
                     listener.onDownloadSuccess(nameFromUrl);
                 } catch (Exception e) {
-                    listener.onDownloadFailed();
+                    UtilLog.e(e.toString());
+//                    listener.onDownloadFailed();
                 } finally {
                     try {
                         if (is != null)

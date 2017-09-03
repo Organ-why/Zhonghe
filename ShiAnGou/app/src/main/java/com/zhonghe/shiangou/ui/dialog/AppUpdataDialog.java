@@ -16,6 +16,7 @@ import com.zhonghe.lib_base.utils.UtilStorage;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.http.DownloadUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
+import com.zhonghe.shiangou.ui.activity.MainActivity;
 
 import java.io.File;
 
@@ -65,9 +66,9 @@ public class AppUpdataDialog extends BaseDialog {
     private void update() {
 //        String fileName = UtilMD5.getStringMD5(mInfo.getUrl()) + CstFile.SUFFIX_APK;
 
-//        final String filePath = UtilStorage.getFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_APK);
         final String filePath = UtilStorage.getFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_APK);
-        cancel();
+//        final String filePath = UtilStorage.getFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_EXPLORER);
+//        cancel();
         //上一次已经下载了该安装包，并通过校验，则直接安装
         if (new File(filePath).exists()) {
             UtilPackage.installApk(mContext, filePath);
@@ -90,7 +91,8 @@ public class AppUpdataDialog extends BaseDialog {
     }
 
     private void downloadApp() {
-        final String filePath = UtilStorage.createFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_APK);
+//        final String filePath = UtilStorage.createFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_EXPLORER );
+        final String filePath = UtilStorage.createFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_APK );
         //开始
         nofityAppDownload(mContext, 0);
         new DownloadUtil().download(APP_DOWNLOAD_URL, filePath, new DownloadUtil.OnDownloadListener() {
@@ -99,7 +101,8 @@ public class AppUpdataDialog extends BaseDialog {
                 cancelAppDownload(mContext);
                 //下载完成，校验安装包，成功安装应用，否则删除该安装包
 //                if(UtilMD5.getFileMD5(filePath).equals(mInfo.getMd5())) {
-                UtilPackage.installApk(mContext, filePath+"/"+name);
+//                UtilPackage.installApk(mContext, filePath+"/"+name);
+                UtilPackage.installApk(mContext, filePath);
 //                } else {
 //                    UtilFile.deleteFile(filePath);
 //                }

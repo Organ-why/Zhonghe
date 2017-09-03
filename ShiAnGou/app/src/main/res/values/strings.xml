@@ -186,6 +186,11 @@
     <string name="order_bt_cancel">取消订单</string>
     <string name="order_bt_pay">去支付</string>
     <string name="order_title_logistics">物流信息</string>
+    <string name="order_item_count">共%d件商品 合计: ¥</string>
+    <!--<string name="order_status_unpay">物流信息</string>-->
+    <!--<string name="order_title_logistics">物流信息</string>-->
+    <!--<string name="order_title_logistics">物流信息</string>-->
+    <!--<string name="order_title_logistics">物流信息</string>-->
 
 
     <!--评论-->

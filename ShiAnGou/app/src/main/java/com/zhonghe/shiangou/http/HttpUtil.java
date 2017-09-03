@@ -26,6 +26,7 @@ import com.zhonghe.shiangou.data.bean.ConfirmRspInfo;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
+import com.zhonghe.shiangou.data.bean.OrderInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
@@ -80,7 +81,7 @@ public class HttpUtil {
     //支付
     public static String URL_Pay = URL_PRO + "app/goods/Zhifu.php";
     //订单列表
-    public static String URL_OrderList = URL_PRO + "orderindex.php";
+    public static String URL_OrderList = URL_PRO + "app/orderindex/index.php";
     //地址列表
     public static String URL_Address = URL_PRO + "app/address/show.php";
     //地址 省市县选择
@@ -101,6 +102,7 @@ public class HttpUtil {
     //商品收藏
     public static String URL_GoodsUnFollow = URL_PRO + "app/collection/delete.php";
     public static String URL_GoodsFollow = URL_PRO + "app/collection/add.php";
+    public static String URL_GoodsFollowList = URL_PRO + "app/collection/link.php";
 
 
     /**
@@ -254,6 +256,23 @@ public class HttpUtil {
     }
 
     /**
+     * 收藏列表
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getFollowGoodsList(Context context, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Request<?> request = volleyPost(context, URL_GoodsFollowList, map, listener, null);
+        return request;
+    }
+
+    /**
      * 地址列表
      *
      * @param context
@@ -271,6 +290,31 @@ public class HttpUtil {
         Type bean = new TypeToken<List<AddressInfo>>() {
         }.getType();
         Request<?> request = volleyPost(context, URL_Address, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 订单列表
+     *
+     * @param context
+     * @param type
+     * @param curpage
+     * @param cursize
+     * @param listener
+     * @return
+     */
+    public static Request<?> getOrderList(Context context, String type, int curpage, int cursize, ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("curpage", String.valueOf(curpage));
+        map.put("cursize", String.valueOf(cursize));
+        map.put("type", String.valueOf(type));
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Type bean = new TypeToken<List<OrderInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_OrderList, map, listener, bean);
         return request;
     }
 

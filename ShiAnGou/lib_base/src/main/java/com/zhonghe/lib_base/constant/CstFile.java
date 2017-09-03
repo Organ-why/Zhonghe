@@ -27,7 +27,9 @@ public class CstFile {
 	public final static String DIR_ZIP       = DIR_APP + File.separator + "zip";
 	//未知目录
 	public final static String DIR_UNKNOWN   = DIR_APP + File.separator + "unknown";
-		
+	//未知目录
+	public final static String DIR_EXPLORER   = DIR_APP + File.separator + "explorer";
+
 		
 	//------------------文件类型---------------------
 	//未知文件类型
@@ -50,6 +52,8 @@ public class CstFile {
 	public final static int TYPE_APK 			= 8;
 	//压缩文件类型
 	public final static int TYPE_ZIP 			= 9;
+	//压缩文件类型
+	public final static int TYPE_EXPLORER 			= 10;
 
 	
 	//------------------文件后缀名--------------------
@@ -89,4 +93,6 @@ public class CstFile {
 	public final static String SUFFIX_ZIP   = ".zip";
 	//rar文件后缀名
 	public final static String SUFFIX_RAR   = ".rar";
+	//文件夹
+	public final static String SUFFIX_EXPLORER   = "explorer";
 }
