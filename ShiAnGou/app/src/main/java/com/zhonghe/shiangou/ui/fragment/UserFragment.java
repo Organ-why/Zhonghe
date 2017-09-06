@@ -61,12 +61,13 @@ public class UserFragment extends BaseTopFragment {
     protected void initLayout() {
         setContentView(R.layout.fragment_user);
         ButterKnife.bind(this, getView());
+        registerAction(CstProject.BROADCAST_ACTION.LOGIN_ACTION);
+        registerAction(CstProject.BROADCAST_ACTION.LOGOUT_ACTION);
     }
 
     @Override
     protected void initViews() {
-        registerAction(CstProject.BROADCAST_ACTION.LOGIN_ACTION);
-        registerAction(CstProject.BROADCAST_ACTION.LOGOUT_ACTION);
+
         if (ProjectApplication.mUser != null) {
             getUserMSG();
         } else {
@@ -105,22 +106,22 @@ public class UserFragment extends BaseTopFragment {
                 ProDispatcher.goSetupActivity(mActivity);
                 break;
             case R.id.id_user_order_rl:
-                ProDispatcher.goOrderManageActivity(mActivity);
+                ProDispatcher.goOrderManageActivity(mActivity, 0);
                 break;
             case R.id.id_user_unpay_ll:
-                ProDispatcher.goOrderManageActivity(mActivity);
+                ProDispatcher.goOrderManageActivity(mActivity, 1);
                 break;
             case R.id.id_user_unsend_ll:
-                ProDispatcher.goOrderManageActivity(mActivity);
+                ProDispatcher.goOrderManageActivity(mActivity, 2);
                 break;
             case R.id.id_user_wait_ll:
-                ProDispatcher.goOrderManageActivity(mActivity);
+                ProDispatcher.goOrderManageActivity(mActivity, 3);
                 break;
             case R.id.id_user_unremark_ll:
-                ProDispatcher.goOrderManageActivity(mActivity);
+                ProDispatcher.goOrderManageActivity(mActivity, 4);
                 break;
             case R.id.id_user_return_ll:
-//                ProDispatcher.goRefundsActivity(mActivity);
+                ProDispatcher.goRefundsActivity(mActivity);
 //                ProDispatcher.goRefundsBeginActivity(mActivity,"188");
                 break;
             case R.id.id_user_like_rl:

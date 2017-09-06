@@ -129,6 +129,8 @@
     <string name="prodetail_refunds_moneytip">退款金额</string>
     <string name="prodetail_refunds_tip">退款说明</string>
     <string name="prodetail_refunds_code_format">退款编号:%s</string>
+    <string name="prodetail_refunds_explain_format">退款原因:%s</string>
+    <string name="prodetail_refunds_date_format">申请时间:%s</string>
     <string name="prodetail_refunds_tip_hint">请填写退款说明</string>
     <string name="prodetail_refunds_detail">查看详情</string>
     <string name="prodetail_refunds_progressbegin">申请退货</string>
@@ -222,6 +224,8 @@
     <string name="common_pointtitle_str">积分商城</string>
     <string name="common_point_detail_title_str">积分详情</string>
     <string name="point_record_str">兑换记录</string>
+    <string name="point_record_time">兑换时间: %s</string>
+    <string name="point_record_num_format">-%s积分</string>
     <string name="point_zero_str">0元换购</string>
     <string name="point_today_str">今日新品</string>
     <string name="point_common_str">日常家居</string>

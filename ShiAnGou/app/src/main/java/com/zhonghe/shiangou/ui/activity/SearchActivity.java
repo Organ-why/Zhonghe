@@ -1,6 +1,7 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
@@ -8,18 +9,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.google.gson.Gson;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseSystemActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
+import com.zhonghe.shiangou.ui.widget.FlowLayout;
 import com.zhonghe.shiangou.ui.widget.FlowLayout1;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -47,6 +54,8 @@ public class SearchActivity extends BaseSystemActivity {
 
     List<GoodsInfo> searchHot;
 
+    List<String> searchList;
+
     @Override
     protected void initLayout() {
         setContentView(R.layout.activity_search);
@@ -57,8 +66,11 @@ public class SearchActivity extends BaseSystemActivity {
     protected void initViews() {
         ButterKnife.bind(this);
         searchHot = new ArrayList<>();
-        getSearchHot();
+        searchList = new ArrayList<>();
+        searchList = ProjectApplication.mPrefrence.getSearch();
 
+        getSearchHot();
+        setIdSearchHistory();
         idCategoryTitleTv.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
@@ -70,6 +82,9 @@ public class SearchActivity extends BaseSystemActivity {
                     }
                     //如果actionId是搜索的id，则进行下一步的操作
                     ProDispatcher.goGoodsListActivity(mContext, "", s);
+                    searchList.add(s);
+                    ProjectApplication.mPrefrence.setSearch(searchList.toString());
+                    addItem(s,idSearchHistoryFl);
                     return false;
                 }
                 return true;
@@ -109,12 +124,8 @@ public class SearchActivity extends BaseSystemActivity {
     void setSearchHot(List<GoodsInfo> data) {
         if (data != null && data.size() > 0) {
             for (final GoodsInfo info : data) {
-                TextView button = new TextView(this);
-                button.setPadding(25, 10, 25, 10);
-                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(this, null);
-                params.setMargins(10, 0, 10, 0);
-                button.setLayoutParams(params);
-                button.setBackgroundResource(R.drawable.common_bg_gray);
+                View view = LayoutInflater.from(mContext).inflate(R.layout.item_search_hot, null);
+                TextView button = (TextView) view.findViewById(R.id.id_tv);
                 button.setText(info.getGoods_name());
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -122,12 +133,30 @@ public class SearchActivity extends BaseSystemActivity {
                         ProDispatcher.goGoodsListActivity(mContext, info.getCat_id(), "");
                     }
                 });
-                idSearchHotFl.addView(button);
+                idSearchHotFl.addView(view);
             }
         } else {
             idSerachHotLl.setVisibility(View.GONE);
         }
     }
 
+    void setIdSearchHistory() {
+        for (final String info : searchList) {
+            addItem(info,idSearchHistoryFl);
+        }
+    }
+
+    void addItem(final String str, FlowLayout1 fl) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_search_hot, null);
+        TextView button = (TextView) view.findViewById(R.id.id_tv);
+        button.setText(str);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProDispatcher.goGoodsListActivity(mContext, "", str);
+            }
+        });
+        fl.addView(view);
+    }
 
 }

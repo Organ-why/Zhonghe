@@ -153,6 +153,7 @@
         android:background="@color/common_gray" />
 </LinearLayout>
     <Button
+        android:id="@+id/id_logout_bt"
         android:layout_alignParentBottom="true"
         style="@style/button_orangecirc_bg_style"
         android:layout_width="match_parent"

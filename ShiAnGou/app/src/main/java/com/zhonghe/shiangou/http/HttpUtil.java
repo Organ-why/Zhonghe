@@ -14,7 +14,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.reflect.TypeToken;
-import com.zhonghe.lib_base.baseui.BaseActivity;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
@@ -30,6 +29,9 @@ import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.data.bean.OrderInfo;
 import com.zhonghe.shiangou.data.bean.PointDetailInfo;
 import com.zhonghe.shiangou.data.bean.PointGoodsInfo;
+import com.zhonghe.shiangou.data.bean.PointOrderInfo;
+import com.zhonghe.shiangou.data.bean.RefundsDetailInfo;
+import com.zhonghe.shiangou.data.bean.RefundsItemInfo;
 import com.zhonghe.shiangou.data.bean.RemarkInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
@@ -60,6 +62,10 @@ public class HttpUtil {
     public static String URL_PointDetail = URL_PRO + "app/exchange/goods_desc.php";
     //积分兑换
     public static String URL_PointExchange = URL_PRO + "app/exchange/exchange.php";
+    //积分兑换记录
+    public static String URL_PointRecordList = URL_PRO + "app/exchange/read.php";
+    //删除兑换记录
+    public static String URL_PointDel = URL_PRO + "app/exchange/delete.php";
 
     //分类
     public static String URL_CategoryParent = URL_PRO + "app/type/ding.php";
@@ -104,6 +110,10 @@ public class HttpUtil {
     public static String URL_OrderDel = URL_PRO + "app/orderindex/delete.php";
     //退货
     public static String URL_RefundsGoods = URL_PRO + "app/aftersale/salesreturn.php";
+    //退货列表
+    public static String URL_RefundsList = URL_PRO + "app/aftersale/index.php";
+    //退货商品详情
+    public static String URL_RefundsDetail = URL_PRO + "app/aftersale/details.php";
     //评价商品
     public static String URL_CommentGoods = URL_PRO + "app/evaluate/comment.php";
     //评价列表
@@ -706,6 +716,47 @@ public class HttpUtil {
     }
 
     /**
+     * 退货列表
+     *
+     * @param context
+     * @param curpage
+     * @param cursize
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getRefundsList(Context context, int curpage, int cursize, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("cursize", cursize + "");
+        map.put("curpage", curpage + "");
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Type bean = new TypeToken<List<RefundsItemInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_RefundsList, map, resultListener, bean);
+        return request;
+    }
+
+    /**
+     * 退货详情
+     *
+     * @param context
+     * @param refundsId
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getRefundsDetail(Context context, String refundsId, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("return_id", refundsId);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_RefundsDetail, map, resultListener, RefundsDetailInfo.class);
+        return request;
+    }
+
+    /**
      * 评论商品
      *
      * @param context
@@ -839,6 +890,49 @@ public class HttpUtil {
     }
 
     /**
+     * 积分兑换记录
+     *
+     * @param context
+     * @param curpage
+     * @param cursize
+     * @param listener
+     * @return
+     */
+    public static Request<?> getPointRecordList(Context context, int curpage, int cursize, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("cart_id", Util.strArrayToStr(cat_id));
+        map.put("curpage", String.valueOf(curpage));
+        map.put("cursize", String.valueOf(cursize));
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Type bean = new TypeToken<List<PointOrderInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_PointRecordList, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 删除兑换记录
+     *
+     * @param context
+     * @param orderId
+     * @param listener
+     * @return
+     */
+    public static Request<?> getDelExchangeRecord(Context context, String orderId, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("cart_id", Util.strArrayToStr(cat_id));
+        map.put("order_id", orderId);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Type bean = new TypeToken<List<PointOrderInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_PointDel, map, listener, null);
+        return request;
+    }
+
+    /**
      * 积分兑换商品
      *
      * @param context
@@ -857,7 +951,7 @@ public class HttpUtil {
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
 //        Type bean = new TypeToken<List<CategoryChild>>() {
 //        }.getType();
-        Request<?> request = volleyPost(context, URL_PointExchange, map, listener, PointDetailInfo.class);
+        Request<?> request = volleyPost(context, URL_PointExchange, map, listener, null);
         return request;
     }
 

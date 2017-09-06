@@ -120,6 +120,13 @@ public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListVi
         final ScrollView refreshableView = cartIdLv.getRefreshableView();
         //分类icon部分
         View viewCategoryTitle = LayoutInflater.from(mActivity).inflate(R.layout.layout_home_category, null);
+        LinearLayout viewPoint = (LinearLayout) viewCategoryTitle.findViewById(R.id.id_home_point_ll);
+        viewPoint.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProDispatcher.goPointActivity(mActivity);
+            }
+        });
         llContentTitle.addView(viewCategoryTitle);
         //分类具体商品列表
         new HomeCategoryListView(mActivity).initView(categoryInfo, llContentList, this);
@@ -159,7 +166,7 @@ public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListVi
                 public void onClick(View v) {
                     //属性动态   自动滑行到指定位置
                     ObjectAnimator xTranslate = ObjectAnimator.ofInt(refreshableView, "scrollX", 0);
-                    ObjectAnimator yTranslate = ObjectAnimator.ofInt(refreshableView, "scrollY", Util.dip2px(mActivity, 300) + finalChildHeight * finalI);
+                    ObjectAnimator yTranslate = ObjectAnimator.ofInt(refreshableView, "scrollY", Util.dip2px(mActivity, 375) + finalChildHeight * finalI);
 
                     AnimatorSet animators = new AnimatorSet();
                     animators.setDuration(1000L);

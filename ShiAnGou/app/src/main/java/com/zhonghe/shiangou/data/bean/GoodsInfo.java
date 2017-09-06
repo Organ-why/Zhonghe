@@ -5,7 +5,7 @@ package com.zhonghe.shiangou.data.bean;
  * 列表商品信息
  */
 
-public class GoodsInfo {
+public class GoodsInfo extends BaseBean{
 
     /**
      * goods_id : 105

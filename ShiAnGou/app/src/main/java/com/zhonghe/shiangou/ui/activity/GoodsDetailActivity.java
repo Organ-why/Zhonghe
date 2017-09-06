@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,10 +22,12 @@ import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.adapter.GoodsDetailAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.SkuSelectDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.DynamicBanner;
+import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,49 +40,41 @@ import butterknife.OnClick;
  * Created by a on 2017/8/15.
  */
 
-public class GoodsDetailActivity extends BaseTopActivity {
-    @Bind(R.id.id_goodsdetail_banner_ll)
+public class GoodsDetailActivity extends BaseTopActivity implements View.OnClickListener{
     LinearLayout idGoodsdetailBannerLl;
-    @Bind(R.id.id_goodsdetail_title_tv)
     TextView idGoodsdetailTitleTv;
-    @Bind(R.id.id_goodsdetail_desc_tv)
     TextView idGoodsdetailDescTv;
-    @Bind(R.id.id_goodsdetail_price_tv)
     TextView idGoodsdetailPriceTv;
-    @Bind(R.id.id_goodsdetail_soldnum_tv)
     TextView idGoodsdetailSoldnumTv;
-    @Bind(R.id.id_item_remark_header_img)
     SimpleDraweeView idItemRemarkHeaderImg;
-    @Bind(R.id.id_item_remark_name_tv)
     TextView idItemRemarkNameTv;
-    @Bind(R.id.id_item_remark_date_tv)
     TextView idItemRemarkDateTv;
-    @Bind(R.id.id_item_remark_desc_tv)
     TextView idItemRemarkDescTv;
+    RelativeLayout skurl;
+    RelativeLayout remark;
+    TextView idGoodsdetailMoreTv;
+
+    @Bind(R.id.id_goodsdetail_like_ib)
+    ImageButton idGoodsdetailLikeIb;
+    @Bind(R.id.guest_detail_xlistview)
+    NXListViewNO guestDetailXlistview;
     @Bind(R.id.id_goodsdetail_buynow_bt)
     Button idGoodsdetailBuynowBt;
     @Bind(R.id.id_goodsdetail_addcart_bt)
     Button idGoodsdetailAddcartBt;
-    @Bind(R.id.id_goodsdetail_sku_rl)
-    RelativeLayout skurl;
-    @Bind(R.id.id_layout_remark)
-    RelativeLayout remark;
-
     SkuSelectDialog mDialog;
     List<BaseBannerInfo> bannerInfo;
+    List<String> imgMsg;
     String goodsId;
     GoodsdetailInfo data;
-    @Bind(R.id.id_goodsdetail_like_ib)
-    ImageButton idGoodsdetailLikeIb;
-    @Bind(R.id.id_goodsdetail_more_tv)
-    TextView idGoodsdetailMoreTv;
+
 
     //添加商品数量
     private int mCount = 1;
     private String mSKU;
     //SKU 选择Dialog
     SkuSelectDialog skudialog;
-
+    GoodsDetailAdapter adapter;
     boolean isFollow = true;
 
     @Override
@@ -90,14 +85,39 @@ public class GoodsDetailActivity extends BaseTopActivity {
 
     @Override
     protected void initLayout() {
-        setContentView(R.layout.activity_goodsdetail);
+        setContentView(R.layout.activity_goodsdetail_list);
         ButterKnife.bind(this);
-        goodsId = getIntent().getStringExtra(CstProject.KEY.ID);
-        bannerInfo = new ArrayList<>();
+
     }
 
     @Override
     protected void initViews() {
+        goodsId = getIntent().getStringExtra(CstProject.KEY.ID);
+        bannerInfo = new ArrayList<>();
+        imgMsg = new ArrayList<>();
+        View headerView = LayoutInflater.from(mContext).inflate(R.layout.activity_goodsdetail, null);
+
+        idGoodsdetailBannerLl = (LinearLayout) headerView.findViewById(R.id.id_goodsdetail_banner_ll);
+        idGoodsdetailTitleTv = (TextView) headerView.findViewById(R.id.id_goodsdetail_title_tv);
+        idGoodsdetailDescTv = (TextView) headerView.findViewById(R.id.id_goodsdetail_desc_tv);
+        idGoodsdetailPriceTv = (TextView) headerView.findViewById(R.id.id_goodsdetail_price_tv);
+        idGoodsdetailSoldnumTv = (TextView) headerView.findViewById(R.id.id_goodsdetail_soldnum_tv);
+        idItemRemarkHeaderImg = (SimpleDraweeView) headerView.findViewById(R.id.id_item_remark_header_img);
+        idItemRemarkNameTv = (TextView) headerView.findViewById(R.id.id_item_remark_name_tv);
+        idItemRemarkDateTv = (TextView) headerView.findViewById(R.id.id_item_remark_date_tv);
+        idItemRemarkDescTv = (TextView) headerView.findViewById(R.id.id_item_remark_desc_tv);
+        skurl = (RelativeLayout) headerView.findViewById(R.id.id_goodsdetail_sku_rl);
+        skurl.setOnClickListener(this);
+        remark = (RelativeLayout) headerView.findViewById(R.id.id_layout_remark);
+        idGoodsdetailMoreTv = (TextView) headerView.findViewById(R.id.id_goodsdetail_more_tv);
+        idGoodsdetailMoreTv.setOnClickListener(this);
+        guestDetailXlistview.addHeaderView(headerView);
+        adapter = new GoodsDetailAdapter(mContext, imgMsg);
+        guestDetailXlistview.setAdapter(adapter);
+        getData();
+    }
+
+    void getData() {
         setWaitingDialog(true);
         Request<?> request = HttpUtil.getGoodsDetail(this, goodsId, new ResultListener() {
             @Override
@@ -124,6 +144,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
         idGoodsdetailDescTv.setText(data.getGoods().getGoods_desc());
         idGoodsdetailPriceTv.setText(data.getGoods().getShop_price());
         idGoodsdetailSoldnumTv.setText(data.getGoods().getWarn_number());
+        adapter.setList(data.getGoods().getImg_desc());
         if (data.getGoods_ping() != null) {
             String img = data.getGoods_ping().getImg();
             ProjectApplication.mImageLoader.loadCircleImage(idItemRemarkHeaderImg, UtilString.nullToEmpty(img));
@@ -160,8 +181,57 @@ public class GoodsDetailActivity extends BaseTopActivity {
 //        View tagView = LayoutInflater.from(this).inflate(R.layout.item_tag_goods, null);
 //    }
 
-    @OnClick({R.id.id_goodsdetail_more_tv, R.id.id_goodsdetail_sku_rl, R.id.id_goodsdetail_buynow_bt, R.id.id_goodsdetail_addcart_bt, R.id.id_goodsdetail_like_ib})
-    public void onViewClicked(View view) {
+
+    void showSkuDialog(View view, boolean justSku) {
+        if (skudialog == null) {
+            skudialog = new SkuSelectDialog(this, data, mCount, mSKU, new SkuSelectDialog.SkuSelectListener() {
+                @Override
+                public void onCountChange(int count) {
+                    mCount = count;
+                }
+
+                @Override
+                public void onCheckSKU(String sku) {
+                    mSKU = sku;
+                }
+
+                @Override
+                public void onAddCart(String sku) {
+                    setWaitingDialog(true);
+                    Request<?> request = HttpUtil.getAddCart(mContext, goodsId, UtilString.nullToString(mSKU), mCount + "", new ResultListener() {
+                        @Override
+                        public void onFail(String error) {
+                            setWaitingDialog(false);
+//                            skudialog.dismiss();
+                        }
+
+                        @Override
+                        public void onSuccess(Object obj) {
+                            setWaitingDialog(false);
+                            skudialog.dismiss();
+                            Util.toast(mContext, R.string.common_cart_add_success);
+                        }
+                    });
+                    addRequest(request);
+                }
+
+                @Override
+                public void onBuyNow(String sku) {
+                    skudialog.dismiss();
+                    ArrayList<String> list = new ArrayList<>();
+                    list.add(data.getGoods().getGoods_id());
+                    ProDispatcher.goConfirmOrderActivity(mContext, list);
+                }
+            });
+        }
+        skudialog.setDialogType(justSku);
+        skudialog.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+    }
+
+
+    @OnClick({R.id.id_goodsdetail_buynow_bt, R.id.id_goodsdetail_addcart_bt, R.id.id_goodsdetail_like_ib})
+    @Override
+    public void onClick(View view) {
         switch (view.getId()) {
             case R.id.id_goodsdetail_buynow_bt:
                 if (ProjectApplication.mUser == null) {
@@ -218,53 +288,6 @@ public class GoodsDetailActivity extends BaseTopActivity {
                 ProDispatcher.goRemarkListActivity(this, goodsId);
                 break;
         }
+
     }
-
-    void showSkuDialog(View view, boolean justSku) {
-        if (skudialog == null) {
-            skudialog = new SkuSelectDialog(this, data, mCount, mSKU, new SkuSelectDialog.SkuSelectListener() {
-                @Override
-                public void onCountChange(int count) {
-                    mCount = count;
-                }
-
-                @Override
-                public void onCheckSKU(String sku) {
-                    mSKU = sku;
-                }
-
-                @Override
-                public void onAddCart(String sku) {
-                    setWaitingDialog(true);
-                    Request<?> request = HttpUtil.getAddCart(mContext, goodsId, UtilString.nullToString(mSKU), mCount + "", new ResultListener() {
-                        @Override
-                        public void onFail(String error) {
-                            setWaitingDialog(false);
-//                            skudialog.dismiss();
-                        }
-
-                        @Override
-                        public void onSuccess(Object obj) {
-                            setWaitingDialog(false);
-                            skudialog.dismiss();
-                            Util.toast(mContext, R.string.common_cart_add_success);
-                        }
-                    });
-                    addRequest(request);
-                }
-
-                @Override
-                public void onBuyNow(String sku) {
-                    skudialog.dismiss();
-                    ArrayList<String> list = new ArrayList<>();
-                    list.add(data.getGoods().getGoods_id());
-                    ProDispatcher.goConfirmOrderActivity(mContext, list);
-                }
-            });
-        }
-        skudialog.setDialogType(justSku);
-        skudialog.showAtLocation(view, Gravity.BOTTOM, 0, 0);
-    }
-
-
 }

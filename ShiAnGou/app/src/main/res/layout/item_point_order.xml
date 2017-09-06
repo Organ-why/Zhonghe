@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/common_white"
     android:orientation="vertical">
 
@@ -24,49 +25,68 @@
             android:scaleType="fitXY"
             app:placeholderImage="@mipmap/icon_pro_default" />
 
+        <LinearLayout
+            android:id="@+id/ids_point_order_msg_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:background="@null"
+                android:id="@+id/id_point_record_del_iv"
+                android:layout_width="@dimen/view_width_lsize"
+                android:layout_height="@dimen/view_width_lsize"
+                android:src="@mipmap/icon_delete" />
+
+
+            <TextView
+                android:id="@+id/id_point_record_num_tv"
+                style="@style/home_category_item_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_m"
+                android:layout_marginTop="@dimen/margin_h"
+                android:text="288积分" />
+
+
+        </LinearLayout>
+
+
+
         <TextView
             android:id="@+id/id_home_category_item_title_tv"
-            style="@style/home_category_item_title"
+            style="@style/common_text_gray_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignTop="@id/id_home_category_item_iv"
             android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:layout_toLeftOf="@id/ids_point_order_msg_ll"
             android:layout_toRightOf="@id/id_home_category_item_iv"
             android:text="滑仔菇滑仔菇滑仔菇滑仔菇滑滑仔菇滑仔菇滑仔菇滑仔菇滑仔菇" />
-
-
-        <TextView
-            android:id="@+id/id_goods_num_tv"
-            style="@style/symbol_money_style"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/id_home_category_item_iv"
-            android:layout_marginLeft="@dimen/margin_xxlsize"
-            android:layout_toRightOf="@id/id_home_category_item_iv"
-            android:text="x3" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/id_home_category_item_iv"
-            android:layout_alignParentRight="true"
             android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:layout_toRightOf="@id/id_home_category_item_iv"
             android:orientation="horizontal">
 
             <TextView
-                style="@style/symbol_money_style"
+                android:id="@+id/id_point_record_time_tv"
+                style="@style/common_text_gray_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/prodetail_refunds_money" />
+                android:maxLines="1"
+                android:text="@string/point_record_time" />
 
-            <TextView
-                android:id="@+id/id_home_category_item_price_tv"
-                style="@style/home_category_item_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_m"
-                android:text="128.00" />
+
 
         </LinearLayout>
+
+
     </RelativeLayout>
 </LinearLayout>

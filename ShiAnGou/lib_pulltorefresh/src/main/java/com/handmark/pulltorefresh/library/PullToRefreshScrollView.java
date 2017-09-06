@@ -23,7 +23,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ScrollView;
 
-public class PullToRefreshScrollView extends PullToRefreshBase<CustomScrollView> {
+public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
 
     public PullToRefreshScrollView(Context context) {
         super(context);
@@ -47,12 +47,12 @@ public class PullToRefreshScrollView extends PullToRefreshBase<CustomScrollView>
     }
 
     @Override
-    protected CustomScrollView createRefreshableView(Context context, AttributeSet attrs) {
-        CustomScrollView scrollView;
+    protected ScrollView createRefreshableView(Context context, AttributeSet attrs) {
+        ScrollView scrollView;
         if (VERSION.SDK_INT >= VERSION_CODES.GINGERBREAD) {
             scrollView = new InternalScrollViewSDK9(context, attrs);
         } else {
-            scrollView = new CustomScrollView(context, attrs);
+            scrollView = new ScrollView(context, attrs);
         }
 
         scrollView.setId(R.id.scrollview);
@@ -74,7 +74,7 @@ public class PullToRefreshScrollView extends PullToRefreshBase<CustomScrollView>
     }
 
     @TargetApi(9)
-    final class InternalScrollViewSDK9 extends CustomScrollView {
+    final class InternalScrollViewSDK9 extends ScrollView {
 
         public InternalScrollViewSDK9(Context context, AttributeSet attrs) {
             super(context, attrs);

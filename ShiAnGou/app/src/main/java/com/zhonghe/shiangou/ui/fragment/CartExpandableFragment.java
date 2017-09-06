@@ -242,14 +242,12 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
-        Util.toast(mActivity, "down");
         curpage = 1;
         getCartData();
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
-        Util.toast(mActivity, "up");
         getCartData();
     }
 

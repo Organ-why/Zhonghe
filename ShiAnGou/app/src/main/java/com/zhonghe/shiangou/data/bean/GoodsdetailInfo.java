@@ -54,7 +54,7 @@ public class GoodsdetailInfo extends BaseBean {
         this.goods_type = goods_type;
     }
 
-    public static class GoodsBean {
+    public static class GoodsBean extends BaseBean{
         /**
          * goods_id : 115
          * cat_id : 139
@@ -158,6 +158,15 @@ public class GoodsdetailInfo extends BaseBean {
         private String brand_desc;
         private String site_url;
         private String is_show;
+        private List<String> img_desc;
+
+        public List<String> getImg_desc() {
+            return img_desc;
+        }
+
+        public void setImg_desc(List<String> img_desc) {
+            this.img_desc = img_desc;
+        }
 
         public String getGoods_id() {
             return goods_id;

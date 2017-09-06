@@ -146,8 +146,8 @@ public class PointDetailActivity extends BaseTopActivity {
         idPointDetailNameTv.setText(UtilString.nullToEmpty(mData.getGoods().getGoods_name()));
         idPointDetailStockTv.setText(String.format(getString(R.string.point_msg_stock), mData.getGoods().getGoods_number()));
         idPointDetailMsgnameTv.setText(String.format(getString(R.string.point_msg_name), UtilString.nullToEmpty(mData.getGoods().getGoods_name())));
-        idPointDetailTypeTv.setText(String.format(getString(R.string.point_msg_type), UtilString.nullToEmpty(mData.getGoods().getGoods_type())));
-        idPointDetailPhoneTv.setText(String.format(getString(R.string.point_msg_type), UtilString.nullToEmpty(mData.getGoods().getPhone_number())));
+        idPointDetailTypeTv.setText(String.format(getString(R.string.point_msg_type), UtilString.nullToEmpty(mData.getGoods().getCat_name())));
+        idPointDetailPhoneTv.setText(String.format(getString(R.string.point_msg_phone), UtilString.nullToEmpty(mData.getGoods().getPhone_number())));
 
     }
 

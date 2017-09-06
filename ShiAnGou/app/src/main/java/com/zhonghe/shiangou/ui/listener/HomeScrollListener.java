@@ -6,6 +6,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ScrollView;
 
 import com.handmark.pulltorefresh.library.CustomScrollView;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
@@ -38,7 +39,7 @@ public class HomeScrollListener implements View.OnTouchListener, CustomScrollVie
     }
 
     public void ListenScroll() {
-        mScrollView.getRefreshableView().setCustomOverScroll(this);
+//        mScrollView.getRefreshableView().setCustomOverScroll(this);
         mScrollView.getRefreshableView().setOnTouchListener(this);
 //        mScrollView.onscroll/(this);
         HomeCategoryTitleAdapter adapter = new HomeCategoryTitleAdapter(context, itemListData);
@@ -49,9 +50,9 @@ public class HomeScrollListener implements View.OnTouchListener, CustomScrollVie
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //                mScrollView.scrollTo(0, Util.dip2px(context, 300)+ScrollY*position);
-
-                ObjectAnimator xTranslate = ObjectAnimator.ofInt(mScrollView, "scrollX", 0);
-                ObjectAnimator yTranslate = ObjectAnimator.ofInt(mScrollView, "scrollY", Util.dip2px(context, 300) + ScrollY * position);
+                ScrollView scrollView = mScrollView.getRefreshableView();
+                ObjectAnimator xTranslate = ObjectAnimator.ofInt(scrollView, "scrollX", 0);
+                ObjectAnimator yTranslate = ObjectAnimator.ofInt(scrollView, "scrollY", Util.dip2px(context, 375) + ScrollY * position);
 
                 AnimatorSet animators = new AnimatorSet();
                 animators.setDuration(1000L);

@@ -77,13 +77,14 @@ public class RemarkListActivity extends BaseTopActivity implements PullToRefresh
                 idDefaultListview.onRefreshComplete();
                 setWaitingDialog(false);
                 List<RemarkInfo> list = (List<RemarkInfo>) obj;
-                if (list.size() > 0) {
-                    curpage++;
-                }
+
                 if (curpage == 1) {
                     adapter.setList(list);
                 } else {
                     adapter.addList(list);
+                }
+                if (list.size() > 0) {
+                    curpage++;
                 }
             }
         });

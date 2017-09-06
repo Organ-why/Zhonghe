@@ -16,6 +16,7 @@ import com.zhonghe.shiangou.data.bean.CharPay;
 import com.zhonghe.shiangou.data.bean.OrderInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.ui.adapter.OrderAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseFullFragment;
 import com.zhonghe.shiangou.ui.dialog.PayDialog;
@@ -95,15 +96,10 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-
-    @Override
     public void OnNegative1(int position, String orderType) {
         //退货
+        OrderInfo item = adapter.getItem(position);
+        ProDispatcher.goRefundsBeginActivity(mActivity, item.getOrder_sn(), Util.formatPrice(item.getPrice()));
     }
 
     @Override
@@ -134,6 +130,7 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
             payDialog.showAtLocation(lXlistview, Gravity.BOTTOM, 0, 0);
         } else if (orderType.equals("2")) {
             //退货
+            ProDispatcher.goRefundsBeginActivity(mActivity, item.getOrder_sn(), Util.formatPrice(item.getPrice()));
         } else if (orderType.equals("3")) {
             //确认订单
         }

@@ -90,7 +90,7 @@ public class LoginActivity extends BaseTopActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.id_login_register_ll:
-                ProDispatcher.goRegisterActivity(this);
+                ProDispatcher.goRegisterActivity(this,"注册");
                 break;
             case R.id.id_login_forgetpwd_tv:
                 ProDispatcher.goForgetPwdActivity(this);

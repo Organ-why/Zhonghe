@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
 
@@ -10,9 +10,10 @@
         android:id="@+id/id_point_gv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        app:ptrMode="both"
         android:divider="@color/common_gray_hollow"
+        android:dividerHeight="2dp"
+        android:gravity="center"
         android:listSelector="@color/res_color_transparent"
-        android:numColumns="2"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
+        android:numColumns="2"
+        app:ptrMode="both"></com.handmark.pulltorefresh.library.PullToRefreshGridView>
 </LinearLayout>

@@ -162,6 +162,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
             case R.id.id_point_num_ll:
                 break;
             case R.id.id_point_record_ll:
+                ProDispatcher.goPointExchangeRecord(mContext);
                 break;
         }
     }

@@ -68,12 +68,6 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
         getGoodsList();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
     void getGoodsList() {
         Request<?> request = HttpUtil.getSearch(mActivity, listId, listKey, cursize, curpage, orderBy, new ResultListener() {
             @Override
@@ -95,13 +89,12 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<HeaderGridView> refreshView) {
-
+        curpage = 1;
+        getGoodsList();
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<HeaderGridView> refreshView) {
-        curpage = 1;
         getGoodsList();
-
     }
 }

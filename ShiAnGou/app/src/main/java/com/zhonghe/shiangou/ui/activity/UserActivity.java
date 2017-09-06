@@ -53,9 +53,13 @@ public class UserActivity extends BaseSelectImageActivity implements BaseSelectI
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
         registerAction(CstProject.BROADCAST_ACTION.LOGIN_ACTION);
-        ProjectApplication.mImageLoader.loadCircleImage(idSetupSetheaderSv, ProjectApplication.mUser.getUser_pic());
+        registerAction(CstProject.BROADCAST_ACTION.LOGOUT_ACTION);
+        setData();
     }
 
+    void setData(){
+        ProjectApplication.mImageLoader.loadCircleImage(idSetupSetheaderSv, ProjectApplication.mUser.getUser_pic());
+    }
 
     @OnClick({R.id.id_user_header_rl, R.id.id_user_nickname_rl, R.id.id_user_address_rl, R.id.id_user_logout_bt})
     public void onViewClicked(View view) {
@@ -70,8 +74,8 @@ public class UserActivity extends BaseSelectImageActivity implements BaseSelectI
                 ProDispatcher.goSelectAddressActivity(mContext);
                 break;
             case R.id.id_user_logout_bt:
-                ProjectApplication.mUser = null;
                 ProDispatcher.sendLogoutBroadcast(mContext);
+                ProjectApplication.mUser = null;
                 finish();
                 break;
         }
@@ -113,6 +117,9 @@ public class UserActivity extends BaseSelectImageActivity implements BaseSelectI
         String action = intent.getAction();
         switch (action) {
             case CstProject.BROADCAST_ACTION.LOGIN_ACTION:
+
+                break;
+            case CstProject.BROADCAST_ACTION.LOGOUT_ACTION:
 
                 break;
         }

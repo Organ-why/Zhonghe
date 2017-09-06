@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.content.LocalBroadcastManager;
 
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.lib_base.utils.UtilString;
 
 import java.util.HashMap;
@@ -122,6 +123,7 @@ public abstract class BaseFragment extends AbsFragment {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
+                UtilLog.d(getClass().getSimpleName() + " action:" + intent.getAction());
                 BaseFragment.this.onReceive(intent);
             }
         }

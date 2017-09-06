@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import com.android.volley.Request;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
@@ -44,7 +46,10 @@ public class RegisterActivity extends BaseTopActivity {
 
     @Override
     protected void initTop() {
-        setTitle(R.string.title_register_title);
+        Intent intent = getIntent();
+        String title = intent.getStringExtra(CstProject.KEY.DATA);
+
+        setTitle(title);
         setNavigation(R.mipmap.common_nav_back);
     }
 

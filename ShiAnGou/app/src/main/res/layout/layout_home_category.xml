@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/res_color_white"
     android:layout_height="match_parent"
+    android:background="@color/res_color_white"
     android:orientation="vertical">
 
+
+    <LinearLayout
+        android:id="@+id/id_home_point_ll"
+        android:background="@color/common_gray"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleType="fitXY"
+            android:src="@mipmap/icon_home_point" />
+    </LinearLayout>
 
     <RelativeLayout
         android:id="@+id/id_user_like_rl"

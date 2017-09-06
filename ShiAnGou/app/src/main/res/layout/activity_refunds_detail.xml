@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/common_gray"
@@ -21,12 +22,14 @@
             android:paddingTop="@dimen/padding_msize">
 
             <ImageView
+                android:id="@+id/id_refund_begin_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_cb_nomal" />
 
 
             <TextView
+                android:id="@+id/id_refund_begin_ttv"
                 style="@style/common_text_user_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -35,11 +38,12 @@
                 android:text="@string/prodetail_refunds_progressbegin" />
 
             <TextView
+                android:id="@+id/id_refund_begin_tmv"
                 style="@style/common_redtime_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/margin_m"
-                android:text="2017-08-10 09:56" />
+                tools:text="2017-08-10 09:56" />
         </LinearLayout>
 
         <LinearLayout
@@ -52,12 +56,14 @@
             android:paddingTop="@dimen/padding_msize">
 
             <ImageView
+                android:id="@+id/id_refund_ing_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_cb_nomal" />
 
 
             <TextView
+                android:id="@+id/id_refund_ing_ttv"
                 style="@style/common_text_user_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,6 +72,7 @@
                 android:text="@string/prodetail_refunds_progressing" />
 
             <TextView
+                android:id="@+id/id_refund_ing_tmv"
                 style="@style/common_redtime_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -83,12 +90,14 @@
             android:paddingTop="@dimen/padding_msize">
 
             <ImageView
+                android:id="@+id/id_refund_success_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@mipmap/icon_cb_nomal" />
 
 
             <TextView
+                android:id="@+id/id_refund_success_ttv"
                 style="@style/common_text_user_order"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,6 +106,7 @@
                 android:text="@string/prodetail_refunds_progressuccess" />
 
             <TextView
+                android:id="@+id/id_refund_success_tmv"
                 style="@style/common_redtime_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -117,13 +127,14 @@
         android:background="@color/common_white"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/padding_xxlsize"
-        android:text="退款编号:123456478" />
+        tools:text="退款信息" />
 
     <View
         style="@style/common_divider_style1"
         android:layout_width="match_parent" />
 
     <TextView
+        android:id="@+id/id_refund_msg_code_tv"
         style="@style/common_text_user_order"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_ll_custom"
@@ -131,7 +142,7 @@
         android:background="@color/common_white"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/padding_xxlsize"
-        android:text="退款编辑:123121" />
+        tools:text="@string/prodetail_refunds_code_format" />
 
     <View
         style="@style/common_divider_style1"
@@ -163,13 +174,14 @@
             android:textSize="@dimen/font_xlsize" />
 
         <TextView
+            android:id="@+id/id_refund_msg_total_tv"
             style="@style/home_category_item_money"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/height_ll_custom"
             android:layout_centerVertical="true"
             android:background="@color/common_white"
             android:gravity="center_vertical"
-            android:text="256" />
+            tools:text="256" />
     </LinearLayout>
 
     <View
@@ -177,6 +189,7 @@
         android:layout_width="match_parent" />
 
     <TextView
+        android:id="@+id/id_refund_msg_explain_tv"
         style="@style/common_text_user_order"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_ll_custom"
@@ -184,13 +197,14 @@
         android:background="@color/common_white"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/padding_xxlsize"
-        android:text="退款原因: 拍错/不想要" />
+        tools:text="@string/prodetail_refunds_explain_format" />
 
     <View
         style="@style/common_divider_style1"
         android:layout_width="match_parent" />
 
     <TextView
+        android:id="@+id/id_refund_msg_date_tv"
         style="@style/common_text_user_order"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_ll_custom"
@@ -198,19 +212,5 @@
         android:background="@color/common_white"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/padding_xxlsize"
-        android:text="退款编号: 12346432" />
-
-    <View
-        style="@style/common_divider_style1"
-        android:layout_width="match_parent" />
-
-    <TextView
-        style="@style/common_text_user_order"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_ll_custom"
-        android:layout_centerVertical="true"
-        android:background="@color/common_white"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/padding_xxlsize"
-        android:text="申请时间: 2017-08-10 09:56" />
+        tools:text="@string/prodetail_refunds_date_format" />
 </LinearLayout>

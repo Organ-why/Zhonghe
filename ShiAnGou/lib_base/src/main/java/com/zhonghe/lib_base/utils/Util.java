@@ -163,6 +163,7 @@ public class Util {
     }
 
     public static String ALLDATE = "yyyy-MM-dd";
+    public static String ALLDATETIME = "yyyy-MM-dd";
     /**
      * 格式化时间
      * @param
@@ -170,6 +171,7 @@ public class Util {
      * @return
      */
     public static String formatDate(long mills, String format) {
+        mills = mills*1000;
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(new Date(mills));
     }

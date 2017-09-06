@@ -24,7 +24,7 @@ public class RefundsItemInfo extends BaseBean {
     private String order_sn;
     private String user_id;
     private String explain;
-    private String total_price;
+    private double total_price;
     private String order_id;
     private List<GoodsListBean> goods_list;
 
@@ -60,11 +60,11 @@ public class RefundsItemInfo extends BaseBean {
         this.explain = explain;
     }
 
-    public String getTotal_price() {
+    public double getTotal_price() {
         return total_price;
     }
 
-    public void setTotal_price(String total_price) {
+    public void setTotal_price(double total_price) {
         this.total_price = total_price;
     }
 
@@ -116,7 +116,7 @@ public class RefundsItemInfo extends BaseBean {
         private String product_id;
         private String goods_number;
         private String market_price;
-        private String goods_price;
+        private double goods_price;
         private String discount_fee;
         private String goods_attr;
         private String send_number;
@@ -193,11 +193,11 @@ public class RefundsItemInfo extends BaseBean {
             this.market_price = market_price;
         }
 
-        public String getGoods_price() {
+        public double getGoods_price() {
             return goods_price;
         }
 
-        public void setGoods_price(String goods_price) {
+        public void setGoods_price(double goods_price) {
             this.goods_price = goods_price;
         }
 

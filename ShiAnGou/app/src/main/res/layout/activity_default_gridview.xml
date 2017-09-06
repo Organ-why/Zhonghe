@@ -12,6 +12,8 @@
         android:gravity="center"
         android:listSelector="@color/res_color_transparent"
         android:numColumns="2"
+        android:divider="#19000000"
+        android:dividerHeight="1dp"
         app:ptrMode="both"
         android:verticalSpacing="10dp">
 
