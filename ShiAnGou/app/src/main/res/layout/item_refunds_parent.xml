@@ -10,22 +10,21 @@
         android:padding="@dimen/padding_xxlsize">
 
         <TextView
+            android:id="@+id/id_refund_code_tv"
             style="@style/common_text_deep"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:text="退款编号:123456478" />
+            android:text="@string/prodetail_refunds_code_format" />
 
 
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/id_refund_goods_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-
-        <include layout="@layout/item_refunds" />
-
     </LinearLayout>
 
     <View
@@ -49,6 +48,7 @@
             android:text="合计: ¥" />
 
         <TextView
+            android:id="@+id/id_refund_price_tv"
             style="@style/home_category_item_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,6 +59,7 @@
             android:text="188.00" />
 
         <TextView
+            android:id="@+id/id_refund_desc_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

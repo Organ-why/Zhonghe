@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.content.Intent;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -11,8 +12,10 @@ import com.android.volley.Request;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.data.bean.AddressSelectInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.AreaSelectListDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
@@ -39,6 +42,7 @@ public class ChangeAddressActivity extends BaseTopActivity {
     @Bind(R.id.id_address_confirm_bt)
     Button idAddressConfirmBt;
 
+    AddressInfo addressInfo;
     //地区选择 dialog
     AreaSelectListDialog dialog;
     //地区Id
@@ -63,7 +67,19 @@ public class ChangeAddressActivity extends BaseTopActivity {
     @Override
     protected void initViews() {
         provinceList = new AddressSelectInfo();
+        Intent intent = getIntent();
+        addressInfo = (AddressInfo) intent.getSerializableExtra(CstProject.KEY.DATA);
         getArea(mProvinceId);
+        setAddMsg();
+    }
+
+    void setAddMsg() {
+        if (addressInfo != null) {
+            idAddressmsgPersonEt.setText(addressInfo.getConsignee());
+            idAddressmsgPhoneEt.setText(addressInfo.getMobile());
+            idAddressmsgAddressmsgEt.setText(addressInfo.getAddress());
+            idAddressmsgAddressEt.setText(addressInfo.getArea_address());
+        }
     }
 
     void getArea(String areaId) {

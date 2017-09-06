@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="res_id_menu_item0"/>
+    <item type="id" name="res_id_menu_item1"/>
+    <item type="id" name="res_id_menu_item2"/>
+    <item type="id" name="res_id_menu_item3"/>
+    <item type="id" name="res_id_menu_item4"/>
+    <item type="id" name="res_id_menu_item5"/>
+    <item type="id" name="res_id_menu_item6"/>
+    <item type="id" name="res_id_menu_item7"/>
+
+    <item type="id" name="res_id_tag_viewHolder"/>
+    <item type="id" name="res_id_tag_SparseArray"/>
+
+</resources>

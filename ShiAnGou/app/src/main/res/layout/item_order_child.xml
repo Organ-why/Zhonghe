@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/common_gray"
@@ -18,17 +18,37 @@
             android:id="@+id/id_order_goods_img"
             android:layout_width="@dimen/image_width_lsize"
             android:layout_height="@dimen/image_width_lsize"
+            android:layout_centerVertical="true"
             android:scaleType="fitXY"
             app:placeholderImage="@mipmap/icon_pro_default" />
+
+        <TextView
+            android:id="@+id/id_order_remark_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:visibility="gone"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:background="@drawable/circle_orange_hollow_bg"
+            android:gravity="center"
+            android:padding="@dimen/padding_xxlsize"
+            android:text="@string/order_bt_remark"
+            android:textColor="@color/common_font_deep" />
 
         <TextView
             android:id="@+id/id_order_goods_name_tv"
             style="@style/common_order_name_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/margin_h"
+            android:layout_toLeftOf="@id/id_order_positive_tv"
+            android:layout_toRightOf="@id/id_order_goods_img"
             android:text="滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇" />
-    </LinearLayout>
+
+
+    </RelativeLayout>
 
     <View style="@style/common_divider_style" />
 </LinearLayout>

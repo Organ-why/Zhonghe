@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.fragment;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,6 +17,7 @@ import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.shiangou.data.bean.CartGoods;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.R;
@@ -80,6 +82,7 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
     @Override
     protected void initLayout() {
         setContentView(R.layout.fragment_cart_expandable);
+        registerAction(CstProject.BROADCAST_ACTION.LOGOUT_ACTION);
     }
 
     @Override
@@ -248,5 +251,15 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
     public void onPullUpToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
         Util.toast(mActivity, "up");
         getCartData();
+    }
+
+    @Override
+    protected void onReceive(Intent intent) {
+        String action = intent.getAction();
+        switch (action) {
+            case CstProject.BROADCAST_ACTION.LOGOUT_ACTION:
+                listener.removeAll();
+                break;
+        }
     }
 }

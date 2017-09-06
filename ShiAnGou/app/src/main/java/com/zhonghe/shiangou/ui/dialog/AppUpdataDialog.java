@@ -20,6 +20,8 @@ import com.zhonghe.shiangou.ui.activity.MainActivity;
 
 import java.io.File;
 
+import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
+
 /**
  * auther: whyang
  * date: 2017/8/31
@@ -29,7 +31,7 @@ import java.io.File;
 public class AppUpdataDialog extends BaseDialog {
     // 应用更新下载通知ID
     private static final int APP_DOWNLOAD_NOTIFY_ID = 0;
-    private static final String APP_DOWNLOAD_URL = "http://test.shiangou.com.cn/app/dowload/app-release.apk";
+    private static final String APP_DOWNLOAD_URL = URL_PRO+"app/dowload/app-release.apk";
 
     public AppUpdataDialog(Context context) {
         super(context);
@@ -68,7 +70,7 @@ public class AppUpdataDialog extends BaseDialog {
 
         final String filePath = UtilStorage.getFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_APK);
 //        final String filePath = UtilStorage.getFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_EXPLORER);
-//        cancel();
+        cancel();
         //上一次已经下载了该安装包，并通过校验，则直接安装
         if (new File(filePath).exists()) {
             UtilPackage.installApk(mContext, filePath);

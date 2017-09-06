@@ -5,9 +5,9 @@ package com.zhonghe.lib_base.constant;
  */
 public class CstBase {
     //项目名
-    public static String PROJECT 					= "agm";
+    public static String PROJECT 					= "zhsn";
     //项目是否处于调试模式
-    public static boolean DEBUG 					= false;
+    public static boolean DEBUG 					= true;
     //项目是否处于调试模式
     public static boolean INNER_DEBUG 				= false;
     //app ID

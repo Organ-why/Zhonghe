@@ -13,6 +13,7 @@ import com.zhonghe.shiangou.ui.fragment.CartFragment;
 import com.zhonghe.shiangou.ui.fragment.CategoryFragment;
 import com.zhonghe.shiangou.ui.fragment.HomeFragment;
 import com.zhonghe.shiangou.ui.fragment.HomeFragment1;
+import com.zhonghe.shiangou.ui.fragment.PointFragment;
 import com.zhonghe.shiangou.ui.fragment.UserFragment;
 
 public class MainActivity extends BaseNavActivity {

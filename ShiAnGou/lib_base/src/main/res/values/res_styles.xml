@@ -9,7 +9,7 @@
         <!-- toolbar背景色 -->
         <item name="colorPrimary">@color/res_color_toolbar</item>
         <!-- toolbar menu字体样式 -->
-        <item name="actionMenuTextColor">@color/res_color_white</item>
+        <item name="actionMenuTextColor">@color/res_color_toolbar</item>
         <item name="actionMenuTextAppearance">@style/res_style_toolbar_menu_text</item>
         <!-- toolbar searchView样式-->
         <item name="searchViewStyle">@style/res_style_toolbar_search_view</item>
@@ -58,7 +58,10 @@
             <!--&lt;!&ndash;分割线&ndash;&gt;-->
             <!--<item name="android:listDivider">@drawable/res_ic_list_black_divider</item>-->
     </style>
-
+    <style name="MenuTextStyle">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">14sp</item>
+    </style>
     <!-- 全屏样式-->
     <style name="res_theme_fullscreen_app" parent="res_theme_app">
         <item name="android:windowFullscreen">true</item>
@@ -137,6 +140,7 @@
     <style name="res_style_toolbar_menu_text"  >
         <item name="android:textSize">@dimen/res_font_msize</item>
         <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/res_color_primary</item>
     </style>
 
     <!-- toolbar searchView样式-->

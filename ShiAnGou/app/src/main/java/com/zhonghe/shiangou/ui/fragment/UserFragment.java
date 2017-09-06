@@ -9,12 +9,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.bean.UserInfo;
+import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
+import com.zhonghe.shiangou.ui.listener.ResultListener;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,6 +27,7 @@ import butterknife.OnClick;
 /**
  * Date: 2017/7/4.
  * Author: whyang
+ * 用户
  */
 public class UserFragment extends BaseTopFragment {
     @Bind(R.id.id_user_order_rl)
@@ -52,20 +57,6 @@ public class UserFragment extends BaseTopFragment {
     @Bind(R.id.id_user_setup_rl)
     RelativeLayout idUserSetupRl;
 
-    //    @Override
-//    public void onStart() {
-//        super.onStart();
-//        setStatusBarColor(mActivity.getResources().getColor(R.color.res_color_apptheme));
-//    }
-//    @Override
-//    public void onHiddenChanged(boolean hidden) {
-//        super.onHiddenChanged(hidden);
-////        setStatusBarColor(mActivity.getResources().getColor(R.color.res_color_apptheme));
-//        if (!hidden && ProjectApplication.mUser != null) {
-//            idUserNameTv.setText(ProjectApplication.mUser.getUser_name());
-//        }
-//    }
-
     @Override
     protected void initLayout() {
         setContentView(R.layout.fragment_user);
@@ -76,6 +67,11 @@ public class UserFragment extends BaseTopFragment {
     protected void initViews() {
         registerAction(CstProject.BROADCAST_ACTION.LOGIN_ACTION);
         registerAction(CstProject.BROADCAST_ACTION.LOGOUT_ACTION);
+        if (ProjectApplication.mUser != null) {
+            getUserMSG();
+        } else {
+            ProDispatcher.goLoginActivity(mActivity);
+        }
     }
 
     @Override
@@ -125,7 +121,7 @@ public class UserFragment extends BaseTopFragment {
                 break;
             case R.id.id_user_return_ll:
 //                ProDispatcher.goRefundsActivity(mActivity);
-                ProDispatcher.goRefundsBeginActivity(mActivity);
+//                ProDispatcher.goRefundsBeginActivity(mActivity,"188");
                 break;
             case R.id.id_user_like_rl:
                 ProDispatcher.goLikeActivity(mActivity);
@@ -136,6 +132,7 @@ public class UserFragment extends BaseTopFragment {
 //                ProDispatcher.goRemarkActivity(mActivity);
 //                break;
             case R.id.id_user_point_rl:
+                ProDispatcher.goPointActivity(mActivity);
                 break;
             case R.id.id_user_msg_rl:
                 break;
@@ -148,11 +145,40 @@ public class UserFragment extends BaseTopFragment {
         super.onReceive(intent);
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.LOGIN_ACTION:
-                idUserNameTv.setText(ProjectApplication.mUser.getUser_name());
-                ProjectApplication.mImageLoader.loadCircleImage(idUserHeaderIv, ProjectApplication.mUser.getUser_pic());
+                setUserMSG();
                 break;
             case CstProject.BROADCAST_ACTION.LOGOUT_ACTION:
+                idUserNameTv.setText("");
+                ProjectApplication.mImageLoader.loadCircleImage(idUserHeaderIv, "file://");
                 break;
         }
     }
+
+    void setUserMSG() {
+        if (ProjectApplication.mUser != null) {
+            idUserNameTv.setText(ProjectApplication.mUser.getNick_name());
+            ProjectApplication.mImageLoader.loadCircleImage(idUserHeaderIv, ProjectApplication.mUser.getUser_pic());
+        }
+    }
+
+
+    void getUserMSG() {
+        setWaitingDialog(true);
+        Request<?> request = HttpUtil.getUserMSG(mActivity, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+                setWaitingDialog(false);
+                setUserMSG();
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                ProjectApplication.mUser = (UserInfo) obj;
+                setWaitingDialog(false);
+                setUserMSG();
+            }
+        });
+        addRequest(request);
+    }
+
 }

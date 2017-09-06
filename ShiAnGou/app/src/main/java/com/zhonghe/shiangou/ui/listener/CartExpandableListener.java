@@ -58,8 +58,12 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
     }
 
     public void addmData(List<CartItemGroupBO> mData) {
-        this.mData.addAll(mData);
+        this.mData.get(0).getChildPro().addAll(mData.get(0).getChildPro());
         reFreshData();
+    }
+
+    public void removeAll() {
+        adapter.removeAll();
     }
 
     //刷新数据

@@ -13,6 +13,7 @@
         android:layout_width="@dimen/view_width_header_larg"
         android:layout_height="@dimen/view_width_header_larg"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_xh"
         android:src="@mipmap/icon_user_unlog"
         app:placeholderImage="@mipmap/res_default_header" />
 
@@ -23,5 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/id_user_header_iv"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/margin_h"
         android:text="购物达人" />
 </RelativeLayout>

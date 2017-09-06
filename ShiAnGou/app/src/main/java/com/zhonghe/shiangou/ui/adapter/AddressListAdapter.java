@@ -14,6 +14,7 @@ import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.system.constant.CstProject;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 
 import java.util.List;
 
@@ -56,6 +57,12 @@ public class AddressListAdapter extends AbsAdapter<AddressInfo> {
             @Override
             public void onClick(View view) {
                 listener.onDefault(i, info.getAddress_id());
+            }
+        });
+        holder.addressEditTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProDispatcher.goChangeAddressActivity(mContext, info);
             }
         });
         holder.addressDeleteTv.setOnClickListener(new View.OnClickListener() {

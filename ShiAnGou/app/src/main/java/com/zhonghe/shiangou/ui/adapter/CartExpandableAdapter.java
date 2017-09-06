@@ -54,6 +54,11 @@ public class CartExpandableAdapter extends BaseExpandableListAdapter {
         this.mCheckInterface = mCheckInterface;
     }
 
+    public void removeAll() {
+        data.clear();
+        notifyDataSetChanged();
+    }
+
     /**
      * 复选框接口
      */

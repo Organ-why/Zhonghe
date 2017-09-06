@@ -14,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.reflect.TypeToken;
+import com.zhonghe.lib_base.baseui.BaseActivity;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
@@ -27,6 +28,9 @@ import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.data.bean.OrderInfo;
+import com.zhonghe.shiangou.data.bean.PointDetailInfo;
+import com.zhonghe.shiangou.data.bean.PointGoodsInfo;
+import com.zhonghe.shiangou.data.bean.RemarkInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
@@ -50,6 +54,12 @@ import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
 public class HttpUtil {
     // 首页信息
     public static String URL_HomeData = URL_PRO + "app/index.php";
+    //积分
+    public static String URL_PointData = URL_PRO + "app/exchange/index.php";
+    //积分详情
+    public static String URL_PointDetail = URL_PRO + "app/exchange/goods_desc.php";
+    //积分兑换
+    public static String URL_PointExchange = URL_PRO + "app/exchange/exchange.php";
 
     //分类
     public static String URL_CategoryParent = URL_PRO + "app/type/ding.php";
@@ -60,6 +70,10 @@ public class HttpUtil {
     public static String URL_GetPhoneCode = URL_PRO + "app/user/phone.php";
     //登录
     public static String URL_Login = URL_PRO + "app/user/login.php";
+    //用户信息
+    public static String URL_UserMSG = URL_PRO + "app/private/index.php";
+    //修改昵称
+    public static String URL_ChangNickName = URL_PRO + "app/private/nickname.php";
     //商品详情
     public static String URL_GoodsDetail = URL_PRO + "app/goods/goods.php";
     //搜索搜索
@@ -80,8 +94,20 @@ public class HttpUtil {
     public static String URL_Order = URL_PRO + "app/orderindex/generate.php";
     //支付
     public static String URL_Pay = URL_PRO + "app/goods/Zhifu.php";
+    //支付
+    public static String URL_PayAli = URL_PRO + "app/alipay/index.php";
     //订单列表
     public static String URL_OrderList = URL_PRO + "app/orderindex/index.php";
+    //订单取消
+    public static String URL_OrderCancel = URL_PRO + "app/orderindex/cancel.php";
+    //订单删除
+    public static String URL_OrderDel = URL_PRO + "app/orderindex/delete.php";
+    //退货
+    public static String URL_RefundsGoods = URL_PRO + "app/aftersale/salesreturn.php";
+    //评价商品
+    public static String URL_CommentGoods = URL_PRO + "app/evaluate/comment.php";
+    //评价列表
+    public static String URL_CommentList = URL_PRO + "app/evaluate/comment_list.php";
     //地址列表
     public static String URL_Address = URL_PRO + "app/address/show.php";
     //地址 省市县选择
@@ -98,6 +124,8 @@ public class HttpUtil {
     public static String URL_Password = URL_PRO + "password.php";
     //头像
     public static String URL_HeaderUp = URL_PRO + "app/private/private.php";
+    //图片上传
+    public static String URL_IMGUp = URL_PRO + "app/evaluate/upload.php";
 
     //商品收藏
     public static String URL_GoodsUnFollow = URL_PRO + "app/collection/delete.php";
@@ -156,6 +184,40 @@ public class HttpUtil {
 //        map.put("ident", code);
 //        BaseRes<String> res = new BaseRes<>();
         Request<?> request = volleyPost(context, URL_Login, map, listener, UserInfo.class);
+        return request;
+    }
+
+    /**
+     * 修改昵称
+     *
+     * @param context
+     * @param nickName
+     * @param listener
+     * @return
+     */
+    public static Request<?> getChangeNickName(Context context, String nickName, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("nick_name", nickName);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        map.put("ident", code);
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_ChangNickName, map, listener, String.class);
+        return request;
+    }
+
+    /**
+     * 用户信息
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUserMSG(Context context, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        map.put("ident", code);
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_UserMSG, map, listener, UserInfo.class);
         return request;
     }
 
@@ -262,13 +324,16 @@ public class HttpUtil {
      * @param listener
      * @return
      */
-    public static Request<?> getFollowGoodsList(Context context, final ResultListener listener) {
+    public static Request<?> getFollowGoodsList(Context context, int curpage, int cursize, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("user_id", ProjectApplication.mUser.getUser_id());
+        map.put("curpage", String.valueOf(curpage));
+        map.put("cursize", String.valueOf(cursize));
 
 //        BaseRes<HomeData> res = new BaseRes<>();
-//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
-        Request<?> request = volleyPost(context, URL_GoodsFollowList, map, listener, null);
+        Type bean = new TypeToken<List<GoodsInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_GoodsFollowList, map, listener, bean);
         return request;
     }
 
@@ -293,30 +358,6 @@ public class HttpUtil {
         return request;
     }
 
-    /**
-     * 订单列表
-     *
-     * @param context
-     * @param type
-     * @param curpage
-     * @param cursize
-     * @param listener
-     * @return
-     */
-    public static Request<?> getOrderList(Context context, String type, int curpage, int cursize, ResultListener listener) {
-        Map<String, String> map = new HashMap<>();
-//        map.put("goods_id", goods_id);
-        map.put("curpage", String.valueOf(curpage));
-        map.put("cursize", String.valueOf(cursize));
-        map.put("type", String.valueOf(type));
-        map.put("user_id", ProjectApplication.mUser.getUser_id());
-
-//        BaseRes<HomeData> res = new BaseRes<>();
-        Type bean = new TypeToken<List<OrderInfo>>() {
-        }.getType();
-        Request<?> request = volleyPost(context, URL_OrderList, map, listener, bean);
-        return request;
-    }
 
     /**
      * 三级地址列表
@@ -572,6 +613,149 @@ public class HttpUtil {
         return request;
     }
 
+
+    /**
+     * 订单列表
+     *
+     * @param context
+     * @param type
+     * @param curpage
+     * @param cursize
+     * @param listener
+     * @return
+     */
+    public static Request<?> getOrderList(Context context, String type, int curpage, int cursize, ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("curpage", String.valueOf(curpage));
+        map.put("cursize", String.valueOf(cursize));
+        map.put("type", String.valueOf(type));
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Type bean = new TypeToken<List<OrderInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_OrderList, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 取消订单
+     *
+     * @param orderId
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getCancelOrder(Context context, String orderId, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("order_sn", orderId);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken<List<OrderInfo>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_OrderCancel, map, resultListener, null);
+        return request;
+    }
+
+    /**
+     * 删除订单
+     *
+     * @param context
+     * @param orderId
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getDelOrder(Context context, String orderId, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("order_sn", orderId);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken<List<OrderInfo>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_OrderDel, map, resultListener, null);
+        return request;
+    }
+
+    /**
+     * 退货
+     *
+     * @param context
+     * @param order_sn
+     * @param imgs
+     * @param explain
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getSubmitRefunds(Context context, String order_sn, List<String> imgs, String explain, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("order_sn", order_sn);
+        map.put("img", Util.strArrayToStr(imgs));
+        map.put("explain", explain);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken<List<OrderInfo>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_RefundsGoods, map, resultListener, null);
+        return request;
+    }
+
+    /**
+     * 评论商品
+     *
+     * @param context
+     * @param goodsId
+     * @param content
+     * @param rank
+     * @param images
+     * @param user_name
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getCommentGoods(Context context, String goodsId, String content, String rank,
+                                             List<String> images, String user_name, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("goods_id", goodsId);
+        map.put("content", content);
+        map.put("rank", rank);
+        String str = Util.strArrayToStr(images);
+        map.put("img", str);
+        map.put("user_name", user_name);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken<List<OrderInfo>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_CommentGoods, map, resultListener, null);
+        return request;
+    }
+
+    /**
+     * 评论列表
+     *
+     * @param context
+     * @param goodsId
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getCommentList(Context context, String goodsId, int curpage, int cursize, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("goods_id", goodsId);
+        map.put("cursize", cursize + "");
+        map.put("curpage", curpage + "");
+//        BaseRes<HomeData> res = new BaseRes<>();
+        Type bean = new TypeToken<List<RemarkInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_CommentList, map, resultListener, bean);
+        return request;
+    }
+
     /**
      * 支付
      *
@@ -590,6 +774,93 @@ public class HttpUtil {
         Request<?> request = volleyPost(context, URL_Pay, map, listener, CharPay.class);
         return request;
     }
+
+    /**
+     * 支付凭证ali
+     *
+     * @param context
+     * @param order_code
+     * @param listener
+     * @return
+     */
+    public static Request<?> getPayAli(Context context, String order_code, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("cart_id", Util.strArrayToStr(cat_id));
+        map.put("ordersn", order_code);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+//        Type bean = new TypeToken<List<CategoryChild>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_PayAli, map, listener, String.class);
+        return request;
+    }
+
+    /**
+     * 积分商城
+     *
+     * @param context
+     * @param curpage
+     * @param cursize
+     * @param listener
+     * @return
+     */
+    public static Request<?> getPointGoods(Context context, int curpage, int cursize, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("cart_id", Util.strArrayToStr(cat_id));
+        map.put("curpage", String.valueOf(curpage));
+        map.put("cursize", String.valueOf(cursize));
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+//        Type bean = new TypeToken<List<CategoryChild>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_PointData, map, listener, PointGoodsInfo.class);
+        return request;
+    }
+
+    /**
+     * 积分详情
+     *
+     * @param context
+     * @param goodsId
+     * @param listener
+     * @return
+     */
+    public static Request<?> getPointGoodsDetail(Context context, String goodsId, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("cart_id", Util.strArrayToStr(cat_id));
+        map.put("goods_id", goodsId);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+//        Type bean = new TypeToken<List<CategoryChild>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_PointDetail, map, listener, PointDetailInfo.class);
+        return request;
+    }
+
+    /**
+     * 积分兑换商品
+     *
+     * @param context
+     * @param goodsId
+     * @param addressId
+     * @param listener
+     * @return
+     */
+    public static Request<?> getExchangeGoods(Context context, String goodsId, String addressId, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("cart_id", Util.strArrayToStr(cat_id));
+        map.put("goods_id", goodsId);
+        map.put("address_id", addressId);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+//        Type bean = new TypeToken<List<CategoryChild>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_PointExchange, map, listener, PointDetailInfo.class);
+        return request;
+    }
+
 
 /////////////////////////////////////////////////////////网络基本请求////////////////////////////////////////////////////////////////////////
 
@@ -1049,5 +1320,6 @@ public class HttpUtil {
         request.setRetryPolicy(new DefaultRetryPolicy(5 * 1000, 1, 1.0f));// 设置超时时间,取消自动重试
         return request;
     }
+
 
 }

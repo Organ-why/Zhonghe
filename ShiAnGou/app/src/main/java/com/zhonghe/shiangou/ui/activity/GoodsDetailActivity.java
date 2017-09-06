@@ -147,7 +147,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
             View BannerView = new DynamicBanner(this, LayoutInflater.from(this), 5000).initView(bannerInfo);
 //
 //            Util.dip2px(this, 175)
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,  Util.getScreenWidth(mContext));
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.getScreenWidth(mContext));
             BannerView.setLayoutParams(layoutParams);
             idGoodsdetailBannerLl.addView(BannerView);
         }
@@ -215,7 +215,7 @@ public class GoodsDetailActivity extends BaseTopActivity {
 //                dialog.show();
                 break;
             case R.id.id_goodsdetail_more_tv:
-                ProDispatcher.goRemarkActivity(this);
+                ProDispatcher.goRemarkListActivity(this, goodsId);
                 break;
         }
     }

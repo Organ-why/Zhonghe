@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="@string/address_addressperson_text" />
+                android:text="@string/address_addressperson_title" />
 
             <EditText
                 android:id="@+id/id_addressmsg_person_et"

@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.lib_base.constant.CstScheme;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.RefundImgInfo;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseSelectImageActivity;
@@ -27,7 +29,7 @@ import butterknife.OnClick;
  * Date: 2017/8/13.
  * Author: whyang
  */
-public class UserActivity extends BaseSelectImageActivity {
+public class UserActivity extends BaseSelectImageActivity implements BaseSelectImageActivity.upLoadListener {
     @Bind(R.id.id_setup_setheader_sv)
     SimpleDraweeView idSetupSetheaderSv;
     @Bind(R.id.id_user_header_rl)
@@ -50,6 +52,7 @@ public class UserActivity extends BaseSelectImageActivity {
     protected void initLayout() {
         setContentView(R.layout.activity_user);
         ButterKnife.bind(this);
+        registerAction(CstProject.BROADCAST_ACTION.LOGIN_ACTION);
         ProjectApplication.mImageLoader.loadCircleImage(idSetupSetheaderSv, ProjectApplication.mUser.getUser_pic());
     }
 
@@ -61,6 +64,7 @@ public class UserActivity extends BaseSelectImageActivity {
                 selectPic(view);
                 break;
             case R.id.id_user_nickname_rl:
+                ProDispatcher.goChangeNameActivity(mContext);
                 break;
             case R.id.id_user_address_rl:
                 ProDispatcher.goSelectAddressActivity(mContext);
@@ -94,7 +98,24 @@ public class UserActivity extends BaseSelectImageActivity {
             mPath = url.replace(CstScheme.FILE, "");
             info.setImgUrl(url);
             files.add(new File(mPath));
-            upLowdImage(files);
+            upLowdImage(files, this);
         }
     }
+
+
+    @Override
+    public void onLoadFinish(String imgfile) {
+        ProjectApplication.mUser.setUser_pic(imgfile);
+    }
+
+    @Override
+    protected void onReceive(Intent intent) {
+        String action = intent.getAction();
+        switch (action) {
+            case CstProject.BROADCAST_ACTION.LOGIN_ACTION:
+
+                break;
+        }
+    }
+
 }

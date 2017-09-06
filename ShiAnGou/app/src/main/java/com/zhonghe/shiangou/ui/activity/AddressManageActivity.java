@@ -72,7 +72,7 @@ public class AddressManageActivity extends BaseTopActivity implements PullToRefr
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.id_addressmng_add_bt:
-                ProDispatcher.goChangeAddressActivity(this);
+                ProDispatcher.goChangeAddressActivity(this,null);
                 break;
         }
     }

@@ -8,9 +8,13 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
+import com.google.gson.reflect.TypeToken;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.baseres.BaseRes;
+import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.activity.UserActivity;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.SelectPictureDialog;
 import com.zhonghe.shiangou.utile.JSONParser;
@@ -20,7 +24,10 @@ import com.zhonghe.shiangou.utile.image.CropHandler;
 import com.zhonghe.shiangou.utile.image.CropHelper;
 import com.zhonghe.shiangou.utile.image.CropParams;
 
+import org.json.JSONObject;
+
 import java.io.File;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,22 +142,31 @@ public abstract class BaseSelectImageActivity extends BaseTopActivity
         return mCropParams;
     }
 
-    public void upLowdImage(List<File> fileList) {
+    public void upLowdImage(List<File> fileList, final upLoadListener listener) {
         setWaitingDialog(true);
-//        File files = new File(url_image);
-//        List<File> fileList = new ArrayList<>();
-//        fileList.add(files);
-        UploadImageTask uploadImage = new UploadImageTask(HttpUtil.URL_HeaderUp, ProjectApplication.mUser.getUser_id(),
+        UploadImageTask uploadImage = new UploadImageTask(HttpUtil.URL_IMGUp,
 //                PrefUtils.getString(this, Const.MEMBER_KEY, "")
-                 fileList) {
+                fileList) {
             @Override
             protected void onPostExecute(String result) {
                 super.onPostExecute(result);
                 Log.e("uploawd", result.toString());
                 setWaitingDialog(false);
                 try {
-                    if (TextUtils.isEmpty(result)) {
-
+                    if (!TextUtils.isEmpty(result)) {
+                        JSONObject json = new JSONObject(result);
+                        BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
+                        if (obj.getState() == 1) {
+//                            listener.onFail(obj.getMsg());
+                            String strdata = JSONParser.toString(obj.getDatas());
+//                            Type bean = new TypeToken<List<String>>() {
+//                            }.getType();
+                            String imsgUrl = (String) JSONParser.toObject(strdata, String.class);
+                            listener.onLoadFinish(imsgUrl);
+                        }
+//                        else {
+//                            listener.onLoadFinish(null);
+//                        }
 //                        ToastUtils.showError(activity);
 //                        dialog.dismiss();
                         return;
@@ -164,7 +180,7 @@ public abstract class BaseSelectImageActivity extends BaseTopActivity
 //                    }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Log.e("uploawd", e.toString());
+                    Log.e("uploawd_error", e.toString());
 //                    ToastUtils.showError(activity);
                 }
 
@@ -172,6 +188,10 @@ public abstract class BaseSelectImageActivity extends BaseTopActivity
             }
         };
         uploadImage.execute();
+    }
+
+    public interface upLoadListener {
+        void onLoadFinish(String imgfile);
     }
 
 

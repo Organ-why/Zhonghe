@@ -34,11 +34,12 @@
                 android:gravity="center_vertical">
 
                 <TextView
+                    android:id="@+id/id_refund_price_tv"
                     style="@style/detial_goods_money_orange"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/margin_lsize"
-                    android:text="¥258" />
+                    android:text="@string/symbol_money_format" />
 
             </LinearLayout>
         </RelativeLayout>

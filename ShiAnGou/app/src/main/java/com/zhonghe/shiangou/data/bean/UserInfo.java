@@ -9,6 +9,8 @@ import com.zhonghe.shiangou.data.db.ColumnHelper;
  */
 @DatabaseTable(tableName = "userinfo")
 public class UserInfo extends BaseBean {
+
+
     public UserInfo() {
     }
 
@@ -49,7 +51,13 @@ public class UserInfo extends BaseBean {
      * passwd_question : null
      * passwd_answer : null
      * agree : 0
+     * passwd_question : null
+     * passwd_answer : null
+     * nick_name : 的换个地方
      */
+    @DatabaseField(columnName = ColumnHelper.UserColumns.NICKNAME)
+    private String nick_name;
+
     @DatabaseField(id = true, columnName = ColumnHelper.UserColumns.USERID)
     private String user_id;
     @DatabaseField(columnName = ColumnHelper.UserColumns.PHONE)
@@ -89,9 +97,8 @@ public class UserInfo extends BaseBean {
     private String mobile_phone;
     private String is_validated;
     private String credit_line;
-    private Object passwd_question;
-    private Object passwd_answer;
     private String agree;
+
 
     public String getPhone() {
         return phone;
@@ -365,21 +372,6 @@ public class UserInfo extends BaseBean {
         this.credit_line = credit_line;
     }
 
-    public Object getPasswd_question() {
-        return passwd_question;
-    }
-
-    public void setPasswd_question(Object passwd_question) {
-        this.passwd_question = passwd_question;
-    }
-
-    public Object getPasswd_answer() {
-        return passwd_answer;
-    }
-
-    public void setPasswd_answer(Object passwd_answer) {
-        this.passwd_answer = passwd_answer;
-    }
 
     public String getAgree() {
         return agree;
@@ -387,5 +379,13 @@ public class UserInfo extends BaseBean {
 
     public void setAgree(String agree) {
         this.agree = agree;
+    }
+
+    public String getNick_name() {
+        return nick_name;
+    }
+
+    public void setNick_name(String nick_name) {
+        this.nick_name = nick_name;
     }
 }

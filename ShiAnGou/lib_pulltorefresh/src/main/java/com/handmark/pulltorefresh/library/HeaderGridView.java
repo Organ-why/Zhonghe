@@ -181,7 +181,15 @@ public class HeaderGridView extends GridView {
         public FullWidthFixedViewLayout(Context context) {
             super(context);
         }
-
+        @Override
+        protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+            int realLeft = HeaderGridView.this.getPaddingLeft() + getPaddingLeft();
+            // Try to make where it should be, from left, full width
+            if (realLeft != left) {
+                offsetLeftAndRight(realLeft - left);
+            }
+            super.onLayout(changed, left, top, right, bottom);
+        }
         @Override
         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
             int targetWidth = HeaderGridView.this.getMeasuredWidth()

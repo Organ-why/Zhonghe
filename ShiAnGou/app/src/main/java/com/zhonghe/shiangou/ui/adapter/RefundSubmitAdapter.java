@@ -12,6 +12,7 @@ import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.RefundImgInfo;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.activity.RemarkActivity;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,6 +23,7 @@ import butterknife.ButterKnife;
 
 public class RefundSubmitAdapter extends AbsAdapter<RefundImgInfo> {
     View.OnClickListener addlistener;
+    private CancelImgListener onCancelImg;
 
     public RefundSubmitAdapter(Context context) {
         super(context);
@@ -58,6 +60,7 @@ public class RefundSubmitAdapter extends AbsAdapter<RefundImgInfo> {
             @Override
             public void onClick(View view) {
                 mList.remove(position);
+                onCancelImg.OnCancelPosition(position);
                 if (getCount() < 3) {
                     RefundImgInfo infoadd = new RefundImgInfo();
                     infoadd.setAdd(true);
@@ -80,6 +83,10 @@ public class RefundSubmitAdapter extends AbsAdapter<RefundImgInfo> {
         return view;
     }
 
+    public void setOnCancelImg(CancelImgListener onCancelImg) {
+        this.onCancelImg = onCancelImg;
+    }
+
     static class ViewHolder {
         @Bind(R.id.id_refund_imgitem_img)
         SimpleDraweeView idRefundImgitemImg;
@@ -91,5 +98,9 @@ public class RefundSubmitAdapter extends AbsAdapter<RefundImgInfo> {
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    public interface CancelImgListener {
+        void OnCancelPosition(int position);
     }
 }

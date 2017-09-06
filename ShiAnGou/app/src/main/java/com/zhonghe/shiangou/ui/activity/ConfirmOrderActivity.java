@@ -161,23 +161,44 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
     //支付凭证
     void goPay(String orderCode, final int payType) {
         setWaitingDialog(true);
+        Request<?> request = null;
+        if (payType == UtilPay.PAY_TYPE_ALIPAY) {
+            request = HttpUtil.getPayAli(mContext, orderCode, new ResultListener() {
+                @Override
+                public void onFail(String error) {
+                    setWaitingDialog(false);
+                    Util.toast(mContext, error);
+                }
 
-        Request<?> request = HttpUtil.getPay(mContext, orderCode, new ResultListener() {
-            @Override
-            public void onFail(String error) {
-                setWaitingDialog(false);
-                Util.toast(mContext, error);
-            }
-            @Override
-            public void onSuccess(Object obj) {
-                CharPay charPay = (CharPay) obj;
-                orderMsg = charPay.getData();
-                setWaitingDialog(false);
-                UtilPay.sartPay(payType, orderMsg);
-            }
-        });
+                @Override
+                public void onSuccess(Object obj) {
+                    String ordermsg = (String) obj;
+                    orderMsg = new CharPay.DataBean();
+                    orderMsg.setSign(ordermsg);
+                    setWaitingDialog(false);
+                    UtilPay.sartPay(mContext, payType, orderMsg);
+                }
+            });
+        } else if (payType == UtilPay.PAY_TYPE_WECHAT) {
+            request = HttpUtil.getPay(mContext, orderCode, new ResultListener() {
+                @Override
+                public void onFail(String error) {
+                    setWaitingDialog(false);
+                    Util.toast(mContext, error);
+                }
+
+                @Override
+                public void onSuccess(Object obj) {
+                    CharPay charPay = (CharPay) obj;
+                    orderMsg = charPay.getData();
+                    setWaitingDialog(false);
+                    UtilPay.sartPay(mContext, payType, orderMsg);
+                }
+            });
+        }
         addRequest(request);
     }
+
 
     @OnClick({R.id.id_confirmorder_address_rl, R.id.id_confirm_address_ll, R.id.cart_id_tobuy_bt})
     public void onClick(View v) {
@@ -240,7 +261,7 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
     protected void onReceive(Intent intent) {
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.PAY_RESULT_ACTION:
-
+                //支付返回结果
                 break;
         }
     }

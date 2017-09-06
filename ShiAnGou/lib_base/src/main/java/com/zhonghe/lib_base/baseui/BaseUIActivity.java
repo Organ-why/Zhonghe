@@ -10,15 +10,21 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.PopupMenu;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewStub;
@@ -70,7 +76,8 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     //与appbar tab关联的fragments
     private List<FragmentTab> mAppTabs;
     private int mTabIndex;
-
+    //menu集合
+    private SparseArray<MenuBase> mMenus;
 
     //等待对话框
     private Dialog mWaitDialog;
@@ -83,6 +90,16 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     protected void init(Bundle savedInstanceState) {
         mContext = this;
         mOptions = initOptions();
+
+        mMenus = new SparseArray<>(8);
+        mMenus.put(R.id.res_id_menu_item0, null);
+        mMenus.put(R.id.res_id_menu_item1, null);
+        mMenus.put(R.id.res_id_menu_item2, null);
+        mMenus.put(R.id.res_id_menu_item3, null);
+        mMenus.put(R.id.res_id_menu_item4, null);
+        mMenus.put(R.id.res_id_menu_item5, null);
+        mMenus.put(R.id.res_id_menu_item6, null);
+        mMenus.put(R.id.res_id_menu_item7, null);
     }
 
     @Override
@@ -201,6 +218,7 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     protected void initViews() {
 
     }
+
     /**
      * 显示的tab项
      *
@@ -353,7 +371,11 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         ImageView ivIcon = (ImageView) indicator.findViewById(R.id.base_id_tab_img);
         ivIcon.setBackgroundResource(imgRes);
         TextView tvName = (TextView) indicator.findViewById(R.id.base_id_tab_text);
-        tvName.setText(title);
+        if (UtilString.isEmpty(title)) {
+            tvName.setVisibility(View.GONE);
+        } else {
+            tvName.setText(title);
+        }
         return indicator;
     }
 
@@ -403,18 +425,18 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
 //            return;
 //        }
 
-        if (UtilString.isNotBlank(title)) {
-            if (mNavTabs == null) {
-                mNavTabs = new ArrayList<>(4);
-            }
-
-            FragmentTab tab = new FragmentTab();
-            tab.setTitle(title);
-            tab.setIcon(imgRes);
-            tab.setFragmentClazz(cls);
-            tab.setBundle(bundle);
-            mNavTabs.add(tab);
+//        if (UtilString.isNotBlank(title)) {
+        if (mNavTabs == null) {
+            mNavTabs = new ArrayList<>(5);
         }
+
+        FragmentTab tab = new FragmentTab();
+        tab.setTitle(UtilString.nullToEmpty(title));
+        tab.setIcon(imgRes);
+        tab.setFragmentClazz(cls);
+        tab.setBundle(bundle);
+        mNavTabs.add(tab);
+//        }
     }
 
     /**
@@ -435,13 +457,14 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     public void addAppTab(@StringRes int txtRes, Class<? extends BaseUIFragment> cls) {
         addAppTab(getString(txtRes), cls, null);
     }
+
     /**
      * 添加appbar上的文本tab
      *
      * @param txtRes
      * @param cls
      */
-    public void addAppTab(@StringRes int txtRes, Class<? extends BaseUIFragment> cls,Bundle args) {
+    public void addAppTab(@StringRes int txtRes, Class<? extends BaseUIFragment> cls, Bundle args) {
         addAppTab(getString(txtRes), cls, args);
     }
 
@@ -525,6 +548,134 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     }
 
     /**
+     * 添加menu
+     *
+     * @param menu
+     */
+    public void addMenu(@NonNull MenuBase menu) {
+        if (!withOption(UIOptions.UI_OPTIONS_APPBAR_TOOLBAR)) {
+            return;
+        }
+
+        if (menu != null && mMenus.get(menu.getMenuId()) == null) {
+            for (int i = 0; i < mMenus.size(); i++) {
+                int key = mMenus.keyAt(i);
+                if (mMenus.get(key) == null) {
+                    menu.setMenuId(key);
+                    mMenus.put(key, menu);
+                    invalidateOptionsMenu();
+                    break;
+                }
+            }
+        }
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
+        for (int i = 0; i < mMenus.size(); i++) {
+            MenuBase value = mMenus.valueAt(i);
+            if (value != null) {
+                if (value instanceof MenuTxt) {//添加文本menu
+                    MenuTxt elem = (MenuTxt) value;
+                    MenuItem item = menu.add(Menu.NONE,
+                            elem.getMenuId(), elem.getOrder(), elem.getTitle());
+                    item.setShowAsAction(elem.getShowAsAction());
+                } else if (value instanceof MenuImg) {//添加图片menu
+                    MenuImg elem = (MenuImg) value;
+                    MenuItem item = menu.add(Menu.NONE,
+                            elem.getMenuId(), elem.getOrder(), elem.getTitle());
+                    item.setIcon(elem.getIcon());
+                    item.setShowAsAction(elem.getShowAsAction());
+                } else if (value instanceof MenuSearch) {//添加搜索menu
+                    MenuSearch elem = (MenuSearch) value;
+                    MenuItem item = menu.add(Menu.NONE,
+                            elem.getMenuId(), elem.getOrder(), elem.getTitle());
+                    SearchView svSearch = new SearchView(this);
+                    svSearch.setOnQueryTextListener(elem.getListener());
+                    item.setActionView(svSearch);
+                    item.setShowAsAction(elem.getShowAsAction());
+                } else if (value instanceof MenuPopup) {//添加popup menu
+                    MenuPopup elem = (MenuPopup) value;
+                    MenuItem item = menu.add(Menu.NONE,
+                            elem.getMenuId(), elem.getOrder(), elem.getTitle());
+                    item.setIcon(elem.getIcon());
+                    item.setShowAsAction(elem.getShowAsAction());
+                }
+            }
+        }
+
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemId = item.getItemId();
+        MenuBase value = mMenus.get(itemId);
+
+        if (android.R.id.home == itemId) {
+            if (mNavigationListener != null) {
+                mNavigationListener.onMenuItemClick(item);
+            }
+        } else {
+            if (value != null) {
+                if (value instanceof MenuTxt) {//触发点击文本menu
+                    MenuTxt elem = (MenuTxt) value;
+                    MenuItem.OnMenuItemClickListener listener = elem.getListener();
+                    if (listener != null) {
+                        listener.onMenuItemClick(item);
+                    }
+                } else if (value instanceof MenuImg) {//触发点击图片menu
+                    MenuImg elem = (MenuImg) value;
+                    MenuItem.OnMenuItemClickListener listener = elem.getListener();
+                    if (listener != null) {
+                        listener.onMenuItemClick(item);
+                    }
+                } else if (value instanceof MenuPopup) {//触发打开popupmenu
+                    MenuPopup elem = (MenuPopup) value;
+                    View view = mToolbar.findViewById(elem.getMenuId());
+                    PopupMenu popup = new PopupMenu(this, view);
+                    MenuInflater inflater = popup.getMenuInflater();
+                    inflater.inflate(elem.getMenuRes(), popup.getMenu());
+                    popup.show();
+
+                    PopupMenu.OnMenuItemClickListener listener = elem.getListener();
+                    if (listener != null) {
+                        popup.setOnMenuItemClickListener(listener);
+                    }
+                }
+            }
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 隐藏menu
+     *
+     * @param menu
+     */
+    public void hideMenu(MenuBase menu) {
+        if (menu != null) {
+            hideMenu(menu.getMenuId());
+            menu.setMenuId(0);
+        }
+    }
+
+    /**
+     * 隐藏menu
+     *
+     * @param menuId
+     */
+    public void hideMenu(int menuId) {
+        if (mMenus.get(menuId) != null) {
+            mMenus.put(menuId, null);
+            invalidateOptionsMenu();
+        }
+    }
+
+    /**
      * 显示等待对话框
      *
      * @param enabled
@@ -554,6 +705,7 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
             if (mViewTitleTop != null) mViewTitleTop.addView(view);
         }
     }
+
     /**
      * 显示空数据文本提示
      *
@@ -667,49 +819,6 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         }
 
         mNavigationListener = listener;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int itemId = item.getItemId();
-//        MenuBase value = mMenus.get(itemId);
-
-        if (android.R.id.home == itemId) {
-            if (mNavigationListener != null) {
-                mNavigationListener.onMenuItemClick(item);
-            }
-        }
-//        else {
-//            if (value != null) {
-//                if (value instanceof MenuTxt) {//触发点击文本menu
-//                    MenuTxt elem = (MenuTxt) value;
-//                    MenuItem.OnMenuItemClickListener listener = elem.getListener();
-//                    if (listener != null) {
-//                        listener.onMenuItemClick(item);
-//                    }
-//                } else if (value instanceof MenuImg) {//触发点击图片menu
-//                    MenuImg elem = (MenuImg) value;
-//                    MenuItem.OnMenuItemClickListener listener = elem.getListener();
-//                    if (listener != null) {
-//                        listener.onMenuItemClick(item);
-//                    }
-//                } else if (value instanceof MenuPopup) {//触发打开popupmenu
-//                    MenuPopup elem = (MenuPopup) value;
-//                    View view = mToolbar.findViewById(elem.getMenuId());
-//                    PopupMenu popup = new PopupMenu(this, view);
-//                    MenuInflater inflater = popup.getMenuInflater();
-//                    inflater.inflate(elem.getMenuRes(), popup.getMenu());
-//                    popup.show();
-//
-//                    PopupMenu.OnMenuItemClickListener listener = elem.getListener();
-//                    if (listener != null) {
-//                        popup.setOnMenuItemClickListener(listener);
-//                    }
-//                }
-//            }
-//        }
-
-        return super.onOptionsItemSelected(item);
     }
 
 

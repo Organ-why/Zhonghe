@@ -12,6 +12,9 @@ import android.widget.Toast;
 
 import com.zhonghe.lib_base.R;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -141,6 +144,35 @@ public class Util {
         return true;
     }
 
+
+    /**
+     * 格式化价格
+     *
+     * @param price
+     */
+    public static String formatPrice(double price) {
+        int p = (int) price;
+        if (p != 0) {
+            return new DecimalFormat("###.##").format(price);
+//            return new DecimalFormat("###.00").format(price);
+        } else {
+            return "0" + new DecimalFormat("###.00").format(price);
+//            return "0" + new DecimalFormat("###.00").format(price);
+
+        }
+    }
+
+    public static String ALLDATE = "yyyy-MM-dd";
+    /**
+     * 格式化时间
+     * @param
+     * @param format
+     * @return
+     */
+    public static String formatDate(long mills, String format) {
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        return sdf.format(new Date(mills));
+    }
 
     private static WindowManager wm;
 

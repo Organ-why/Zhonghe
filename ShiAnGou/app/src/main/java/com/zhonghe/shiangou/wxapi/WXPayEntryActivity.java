@@ -51,10 +51,11 @@ public class WXPayEntryActivity extends Activity implements IWXAPIEventHandler {
         if (resp.getType() == ConstantsAPI.COMMAND_PAY_BY_WX) {
             if (resp.errCode == 0) {
                 Util.toast(this, R.string.common_pay_success);
+                ProDispatcher.sendPayResultBroadcast(this, resp.errCode);
             } else {
                 Util.toast(this, R.string.common_pay_fail);
+                ProDispatcher.sendPayResultBroadcast(this, -1);
             }
-            ProDispatcher.sendPayResultBroadcast(this, resp.errCode);
             finish();
 //            AlertDialog.Builder builder = new AlertDialog.Builder(this);
 //            builder.setTitle(R.string.app_tip);

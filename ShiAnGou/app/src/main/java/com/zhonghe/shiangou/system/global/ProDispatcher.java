@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.constant.CstProject.BROADCAST_ACTION;
 import com.zhonghe.shiangou.ui.activity.AddressManageActivity;
 import com.zhonghe.shiangou.ui.activity.ChangeAddressActivity;
+import com.zhonghe.shiangou.ui.activity.ChangeNameActivity;
 import com.zhonghe.shiangou.ui.activity.ConfirmOrderActivity;
 import com.zhonghe.shiangou.ui.activity.ForgetPwdActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsDetailActivity;
@@ -16,10 +18,13 @@ import com.zhonghe.shiangou.ui.activity.LikeActivity;
 import com.zhonghe.shiangou.ui.activity.LoginActivity;
 import com.zhonghe.shiangou.ui.activity.MainActivity;
 import com.zhonghe.shiangou.ui.activity.OrderManageActivity;
+import com.zhonghe.shiangou.ui.activity.PointActivity;
+import com.zhonghe.shiangou.ui.activity.PointDetailActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsBeginActivity;
 import com.zhonghe.shiangou.ui.activity.RegisterActivity;
 import com.zhonghe.shiangou.ui.activity.RemarkActivity;
+import com.zhonghe.shiangou.ui.activity.RemarkListActivity;
 import com.zhonghe.shiangou.ui.activity.SearchActivity;
 import com.zhonghe.shiangou.ui.activity.SetupActivity;
 import com.zhonghe.shiangou.ui.activity.UserActivity;
@@ -160,11 +165,24 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goChangeAddressActivity(Context context) {
+    public static void goChangeAddressActivity(Context context, AddressInfo addressInfo) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, ChangeAddressActivity.class);
+        intent.putExtra(CstProject.KEY.DATA,addressInfo);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 修改昵称
+     * @param context
+     */
+    public static void goChangeNameActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, ChangeNameActivity.class);
         context.startActivity(intent);
     }
 
@@ -226,11 +244,27 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goRemarkActivity(Context context) {
+    public static void goRemarkActivity(Context context, String goodsId, String goodsImg) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, RemarkActivity.class);
+        intent.putExtra(CstProject.KEY.ID, goodsId);
+        intent.putExtra(CstProject.KEY.DATA, goodsImg);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 评论列表
+     *
+     * @param context
+     */
+    public static void goRemarkListActivity(Context context, String goodsId) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, RemarkListActivity.class);
+        intent.putExtra(CstProject.KEY.ID, goodsId);
         context.startActivity(intent);
     }
 
@@ -239,11 +273,13 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goRefundsBeginActivity(Context context) {
+    public static void goRefundsBeginActivity(Context context,String orderId,String price) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, RefundsBeginActivity.class);
+        intent.putExtra(CstProject.KEY.ID,orderId);
+        intent.putExtra(CstProject.KEY.DATA,price);
         context.startActivity(intent);
     }
 
@@ -258,6 +294,27 @@ public class ProDispatcher {
         }
         Intent intent = new Intent(context, GoodsDetailActivity.class);
         intent.putExtra(CstProject.KEY.ID, goods_id);
+        context.startActivity(intent);
+    }
+    /**
+     * 积分商品详情
+     *
+     * @param context
+     */
+    public static void goPointDetailActivity(Context context, String goods_id) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, PointDetailActivity.class);
+        intent.putExtra(CstProject.KEY.ID, goods_id);
+        context.startActivity(intent);
+    }
+    public static void goPointExchangeResutl(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, PointDetailActivity.class);
+//        intent.putExtra(CstProject.KEY.ID, goods_id);
         context.startActivity(intent);
     }
 
@@ -288,6 +345,24 @@ public class ProDispatcher {
             return;
         }
         Intent intent = new Intent(context, SearchActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 积分首页
+     *
+     * @param context
+     */
+    public static void goPointActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
+            return;
+        }
+
+        Intent intent = new Intent(context, PointActivity.class);
         context.startActivity(intent);
     }
 

@@ -31,8 +31,8 @@ public class UploadImageTask extends AsyncTask<Object, Integer, String> {
         this.files = files;
         this.memberKey = memberKey;
     }
-    public UploadImageTask(String url, String userid,  List<File> files) {
-        this.memberId = userid;
+    public UploadImageTask(String url ,List<File> files) {
+//        this.memberId = userid;
         this.url = url;
         this.files = files;
         this.memberKey = memberKey;
@@ -45,9 +45,9 @@ public class UploadImageTask extends AsyncTask<Object, Integer, String> {
         builder.setType(MultipartBody.FORM);
 //        builder.addFormDataPart("memberId", null, RequestBody.create(MediaType.parse("application/text; charset=utf-8"), memberId));
 //        builder.addFormDataPart("memberKey", null, RequestBody.create(MediaType.parse("application/text; charset=utf-8"), memberKey));
-        builder.addFormDataPart("user_id", null, RequestBody.create(MediaType.parse("application/text; charset=utf-8"), memberId));
+//        builder.addFormDataPart("user_id", null, RequestBody.create(MediaType.parse("application/text; charset=utf-8"), memberId));
         for (int i = 0; i < files.size(); i++) {
-            builder.addFormDataPart("pic", files.get(i).getName(), RequestBody.create(MEDIA_TYPE_PNG, files.get(i)));//
+            builder.addFormDataPart("file", files.get(i).getName(), RequestBody.create(MEDIA_TYPE_PNG, files.get(i)));//
         }
 
         RequestBody requestBody = builder.build();

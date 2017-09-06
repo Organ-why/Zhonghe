@@ -47,7 +47,7 @@
             app:starFill="@mipmap/icon_star_selected"
             app:starHalf="@mipmap/icon_star_half"
             app:starImageSize="16dp"
-            app:starStep="2.5"
+            app:starStep="1"
             app:stepSize="Half" />
 
     </RelativeLayout>
@@ -81,7 +81,9 @@
                 android:background="@null"
                 android:gravity="left"
                 android:hint="@string/prodetail_refunds_tip_hint"
+                android:maxLength="200"
                 android:minHeight="150dp"
+                android:padding="@dimen/padding_size"
                 android:textColorHint="@color/common_font_hint" />
 
             <GridView
@@ -89,8 +91,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:numColumns="3"
                 android:listSelector="@null"
+                android:numColumns="3"
                 android:verticalSpacing="10dp"></GridView>
         </LinearLayout>
 
@@ -104,6 +106,7 @@
         android:padding="@dimen/padding_xxlsize">
 
         <CheckBox
+            android:id="@+id/id_unname_cb"
             style="@style/common_checkbox_selector"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/id_layout_remark"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/id_layout_remark"
     android:padding="@dimen/padding_xxlsize">
 
     <com.facebook.drawee.view.SimpleDraweeView
@@ -42,5 +42,32 @@
         android:layout_marginTop="@dimen/margin_l"
         tools:text="特别新鲜，物流特别快，很喜欢！！" />
 
+    <com.zhonghe.shiangou.ui.widget.RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/id_home_category_item_iv"
+        android:layout_below="@id/id_item_remark_desc_tv"
+        android:layout_marginTop="@dimen/margin_h"
+        android:layout_toEndOf="@+id/id_home_category_item_iv"
+        android:layout_toRightOf="@+id/id_home_category_item_iv"
+        app:clickable="false"
+        app:starCount="5"
+        app:starEmpty="@mipmap/icon_star_normal"
+        app:starFill="@mipmap/icon_star_selected"
+        app:starHalf="@mipmap/icon_star_half"
+        app:starImageSize="16dp"
+        app:starStep="1"
+        app:stepSize="Half" />
 
+    <GridView
+        android:id="@+id/id_refund_submit_img_gv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ratingBar"
+        android:layout_marginTop="@dimen/margin_h"
+        android:gravity="center"
+        android:listSelector="@null"
+        android:numColumns="3"
+        android:verticalSpacing="10dp"></GridView>
 </RelativeLayout>

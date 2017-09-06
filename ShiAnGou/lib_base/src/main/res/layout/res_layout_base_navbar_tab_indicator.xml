@@ -9,7 +9,7 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerHorizontal="true"/>
-    <TextView 
+    <TextView
         android:id="@+id/base_id_tab_text"
         android:layout_width="wrap_content"
     	android:layout_height="wrap_content"
