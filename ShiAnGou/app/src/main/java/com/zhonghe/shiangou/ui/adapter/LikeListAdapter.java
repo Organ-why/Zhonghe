@@ -7,9 +7,11 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.lib_base.baseui.adapter.AbsAdapter;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.activity.LikeActivity;
 
@@ -45,7 +47,7 @@ public class LikeListAdapter extends AbsAdapter<GoodsInfo> {
         final GoodsInfo info = mList.get(i);
         ProjectApplication.mImageLoader.loadImage(holder.idHomeCategoryItemIv, info.getGoods_img());
         holder.idHomeCategoryItemTitleTv.setText(UtilString.nullToEmpty(info.getGoods_name()));
-        holder.idHomeCategoryItemPriceTv.setText(UtilString.nullToEmpty(info.getShop_price()));
+        holder.idHomeCategoryItemPriceTv.setText(UtilString.nullToEmpty(Util.formatPrice(info.getShop_price())));
         holder.idItemMoneyTypeTv.setText(mContext.getString(R.string.symbol_money));
         holder.idItemBtv.setText(mContext.getString(R.string.prodetail_collection_cancel));
         holder.idItemBtv.setBackgroundResource(R.drawable.circle_graylight_hollow_bg);
@@ -56,7 +58,12 @@ public class LikeListAdapter extends AbsAdapter<GoodsInfo> {
                 cancelListListener.onCancel(info.getGoods_id(), i);
             }
         });
-
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ProDispatcher.goGoodsDetailActivity(mContext, UtilString.nullToEmpty(info.getGoods_id()));
+            }
+        });
         return view;
     }
 

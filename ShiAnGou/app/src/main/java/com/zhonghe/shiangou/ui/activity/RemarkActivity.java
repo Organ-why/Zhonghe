@@ -93,7 +93,7 @@ public class RemarkActivity extends BaseSelectImageActivity implements BaseSelec
         Intent intent = getIntent();
         goodsId = intent.getStringExtra(CstProject.KEY.ID);
         ratingBar.setOnRatingChangeListener(this);
-        adapter = new RefundSubmitAdapter(this);
+        adapter = new RefundSubmitAdapter(this,true);
         idRefundSubmitImgGv.setAdapter(adapter);
         infoadd = new RefundImgInfo();
         infoadd.setAdd(true);
@@ -130,7 +130,7 @@ public class RemarkActivity extends BaseSelectImageActivity implements BaseSelec
             mPath = url.replace(CstScheme.FILE, "");
             List<File> files = new ArrayList<File>();
             files.add(new File(mPath));
-            upLowdImage(files, this);
+            upLowdImage(files,false, this);
 
 
             RefundImgInfo info = new RefundImgInfo();

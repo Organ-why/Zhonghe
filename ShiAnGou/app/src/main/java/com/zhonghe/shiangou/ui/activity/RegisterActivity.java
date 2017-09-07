@@ -1,6 +1,7 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -37,6 +38,8 @@ public class RegisterActivity extends BaseTopActivity {
     EditText idsRegisterPwdagEt;
     @Bind(R.id.id_register_regist_bt)
     Button idRegisterRegistBt;
+    private static int mEndTimes = 60 * 1000;
+    private CountDownTimer mDownTimer;
 
     @Override
     protected void initLayout() {
@@ -100,26 +103,61 @@ public class RegisterActivity extends BaseTopActivity {
             Util.toast(this, R.string.title_register_phone_tip);
             return;
         }
-        idRegisterGetcodeTv.setEnabled(false);
         setWaitingDialog(true);
         Request<?> request = HttpUtil.getPhoneCode(this, phone, new ResultListener() {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
-                idRegisterGetcodeTv.setEnabled(true);
                 Util.toast(RegisterActivity.this, error.toString());
-                Log.d("onfail.......", error.toString());
             }
 
             @Override
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
-                idRegisterGetcodeTv.setEnabled(true);
-//                Util.toast(RegisterActivity.this, obj.toString());
-//                Log.d("onfail.......", obj.toString());
+                String result = (String) obj;
+                Util.toast(RegisterActivity.this, result);
+                setTime();
             }
 
         });
         addRequest(request);
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mDownTimer != null) {
+            mDownTimer.cancel();
+        }
+    }
+    /**
+     * 设置获取验证码是否可用
+     *
+     * @param isClick
+     */
+    private void setTextClickable(boolean isClick) {
+        idRegisterGetcodeTv.setClickable(isClick);
+        idRegisterGetcodeTv.setEnabled(isClick);
+    }
+    // 倒计时
+    public void setTime() {
+        if (mDownTimer != null) {
+            mDownTimer.cancel();
+        }
+        setTextClickable(false);
+        mDownTimer = new CountDownTimer(mEndTimes, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                idRegisterGetcodeTv.setText(
+                        getString(R.string.title_register_code_time, millisUntilFinished / 1000 < 10 ? "0"
+                                + millisUntilFinished / 1000 : millisUntilFinished / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                //registerGetsecuritycode.setText(R.string.register_to_get_securitycode);
+                idRegisterGetcodeTv.setText(R.string.register_to_get_securitycode);
+                setTextClickable(true);
+            }
+        }.start();
     }
 }

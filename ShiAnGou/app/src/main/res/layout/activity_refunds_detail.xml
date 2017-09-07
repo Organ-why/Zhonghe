@@ -127,7 +127,7 @@
         android:background="@color/common_white"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/padding_xxlsize"
-        tools:text="退款信息" />
+        android:text="退款信息" />
 
     <View
         style="@style/common_divider_style1"

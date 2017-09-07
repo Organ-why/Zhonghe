@@ -10,23 +10,23 @@ import java.util.List;
 
 public class PointGoodsInfo extends BaseBean {
 
-    private List<String> banner;
-    private List<PointItemInfo> data;
+    private String banner;
+    private List<PointItemListInfo> list;
 
-    public List<String> getBanner() {
+    public String getBanner() {
         return banner;
     }
 
-    public void setBanner(List<String> banner) {
+    public void setBanner(String banner) {
         this.banner = banner;
     }
 
-    public List<PointItemInfo> getData() {
-        return data;
+    public List<PointItemListInfo> getData() {
+        return list;
     }
 
-    public void setData(List<PointItemInfo> data) {
-        this.data = data;
+    public void setData(List<PointItemListInfo> list) {
+        this.list = list;
     }
 
 

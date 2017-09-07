@@ -80,6 +80,10 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
     CharPay.DataBean orderMsg;
     //支付dialog
     private PayDialog dialog;
+    //单商品
+    private int typeCode;
+    private int goods_count;
+    private String attr_id;
 
     @Override
     protected void initTop() {
@@ -98,13 +102,16 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
         registerAction(CstProject.BROADCAST_ACTION.PAY_RESULT_ACTION);
         Intent intent = getIntent();
         ids = intent.getStringArrayListExtra(CstProject.KEY.ID);
+        typeCode = intent.getIntExtra(CstProject.KEY.TYPE, 0);
+        goods_count = intent.getIntExtra(CstProject.KEY.COUNT, 0);
+        attr_id = intent.getStringExtra(CstProject.KEY.ATTRID);
         getConfirmData();
     }
 
     //确认商品
     void getConfirmData() {
         setWaitingDialog(true);
-        Request<?> request = HttpUtil.getConfirmGoods(mContext, ids, new ResultListener() {
+        Request<?> request = HttpUtil.getConfirmGoods(mContext, ids, typeCode,attr_id,goods_count, new ResultListener() {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
@@ -127,6 +134,14 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
     void submitOrder() {
         if (UtilString.isEmpty(mData.getDefault_add().getArea_address())) {
             Util.toast(mContext, R.string.confirmorder_receiptmsg_text);
+            return;
+        }
+        if (UtilString.isNotEmpty(mData.getOrder_sn())) {
+            orderCode = mData.getOrder_sn();
+            if (dialog == null) {
+                dialog = new PayDialog(mContext, ConfirmOrderActivity.this);
+            }
+            dialog.showAtLocation(cartIdTobuyBt, Gravity.BOTTOM, 0, 0);
             return;
         }
         setWaitingDialog(true);

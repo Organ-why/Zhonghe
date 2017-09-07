@@ -11,7 +11,8 @@
         android:layout_height="match_parent"
         android:background="@color/common_transparent"
         android:cacheColorHint="@color/common_transparent"
-        android:divider="@null"
+        android:divider="@color/common_gray_hollow"
+        android:dividerHeight="1dp"
         android:fadingEdge="none"
         android:listSelector="@color/common_transparent" />
 </LinearLayout>

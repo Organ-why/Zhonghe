@@ -54,14 +54,14 @@ public class LoginActivity extends BaseTopActivity {
         String phone = idLoginNameEt.getText().toString();
         String pwd = idLoginPwdEt.getText().toString();
 
-//        if (!Util.isPhone(phone)) {
-//            Util.toast(this, R.string.title_register_phone_tip);
-//            return;
-//        }
-//        if (!Util.isPwd(pwd)) {
-//            Util.toast(this, R.string.title_register_pwd_tip);
-//            return;
-//        }
+        if (!Util.isPhone(phone)) {
+            Util.toast(this, R.string.title_register_phone_tip);
+            return;
+        }
+        if (!Util.isPwd(pwd)) {
+            Util.toast(this, R.string.title_register_pwd_tip);
+            return;
+        }
 
         setWaitingDialog(true);
         Request<?> request = HttpUtil.getLogin(this, phone, pwd, new ResultListener() {

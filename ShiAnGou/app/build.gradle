@@ -49,6 +49,8 @@ dependencies {
     })
     compile project(':lib_base')
     compile project(':lib_pulltorefresh')
+    compile project(':lib_httpok')
+    compile files('libs/alipaySdk-20170725.jar')
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support:design:26.0.0-alpha1'
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -56,8 +58,6 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:support-v4:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile project(':lib_httpok')
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-    compile files('libs/alipaySdk-20170725.jar')
+    testCompile 'junit:junit:4.12'
 }

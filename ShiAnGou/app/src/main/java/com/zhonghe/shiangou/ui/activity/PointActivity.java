@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,7 +19,9 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.PointGoodsInfo;
 import com.zhonghe.shiangou.data.bean.PointItemInfo;
+import com.zhonghe.shiangou.data.bean.PointItemListInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.PointAdapter;
@@ -42,7 +45,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
     @Bind(R.id.id_point_gv)
     PullToRefreshGridView idPointGv;
     PointAdapter adapter;
-    List<PointItemInfo> goodsInfos;
+    List<PointItemListInfo> goodsInfos;
     int curpage = 1;
     int cursize = 10;
     LinearLayout idPointBannerLl;
@@ -69,6 +72,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
 
     @Override
     protected void initViews() {
+        registerAction(CstProject.BROADCAST_ACTION.POINT_EXCHANGE_ACTION);
         goodsInfos = new ArrayList<>();
         bannerInfo = new ArrayList<>();
         idPointGv.setOnRefreshListener(this);
@@ -85,8 +89,11 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
         idPointZeroTv = (TextView) header.findViewById(R.id.id_point_zero_tv);
         idPointZeroTv.setOnClickListener(this);
         idPointTodayTv = (TextView) header.findViewById(R.id.id_point_today_tv);
+        idPointTodayTv.setOnClickListener(this);
         idPointCommonTv = (TextView) header.findViewById(R.id.id_point_common_tv);
+        idPointCommonTv.setOnClickListener(this);
         idPointAllTv = (TextView) header.findViewById(R.id.id_point_all_tv);
+        idPointAllTv.setOnClickListener(this);
         idPointnumTv = (TextView) header.findViewById(R.id.id_point_num_tv);
         idPointnumTv.setText(UtilString.nullToEmpty(ProjectApplication.mUser.getRank_points()));
         getPointGoodsMsg();
@@ -94,7 +101,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
 
     void getPointGoodsMsg() {
         setWaitingDialog(true);
-        Request<?> request = HttpUtil.getPointGoods(mContext, curpage, cursize, new ResultListener() {
+        Request<?> request = HttpUtil.getPointGoods(mContext, 0, curpage, cursize, new ResultListener() {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
@@ -110,12 +117,12 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
                 if (curpage == 1) {
                     adapter.setList(goodsInfos);
                     bannerInfo.clear();
-                    for (String imgurl : pointGoodsInfo.getBanner()) {
-                        BaseBannerInfo info = new BaseBannerInfo();
-                        info.setBanner_images(imgurl);
-                        bannerInfo.add(info);
-                        showBanner();
-                    }
+//                    for (String imgurl : pointGoodsInfo.getBanner()) {
+                    BaseBannerInfo info = new BaseBannerInfo();
+                    info.setBanner_images(pointGoodsInfo.getBanner());
+                    bannerInfo.add(info);
+                    showBanner();
+//                    }
                 } else {
                     adapter.addList(goodsInfos);
                 }
@@ -151,18 +158,30 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
+//            type 四种值  0 ：首页列表 ，1：零元购，  2：日常家居， 3 新品  4 所有商品
             case R.id.id_point_zero_tv:
+                ProDispatcher.goPointExcangeListActivity(mContext, 1);
                 break;
             case R.id.id_point_today_tv:
+                ProDispatcher.goPointExcangeListActivity(mContext, 3);
                 break;
             case R.id.id_point_common_tv:
+                ProDispatcher.goPointExcangeListActivity(mContext, 2);
                 break;
             case R.id.id_point_all_tv:
-                break;
-            case R.id.id_point_num_ll:
+                ProDispatcher.goPointExcangeListActivity(mContext, 4);
                 break;
             case R.id.id_point_record_ll:
                 ProDispatcher.goPointExchangeRecord(mContext);
+                break;
+        }
+    }
+
+    @Override
+    protected void onReceive(Intent intent) {
+        switch (intent.getAction()) {
+            case CstProject.BROADCAST_ACTION.POINT_EXCHANGE_ACTION:
+                idPointnumTv.setText(UtilString.nullToEmpty(ProjectApplication.mUser.getRank_points()));
                 break;
         }
     }

@@ -72,7 +72,10 @@
     <string name="title_register_code_hint">请输入您的验证码</string>
     <string name="title_register_pwd_hint">请设定您的密码（限6-16个字母、数字，区分大小写）</string>
     <string name="title_register_pwdag_hint">请再次输入您的密码</string>
+    <string name="title_register_pwdold_hint">请输入您的原密码</string>
     <string name="title_register_phone_tip">请输入正确的手机号</string>
+    <string name="title_register_code_time">%s秒后可重发</string>
+    <string name="register_to_get_securitycode">重新获取</string>
 
     <!--设置-->
     <string name="setup_title_text">设置</string>
@@ -193,7 +196,10 @@
     <string name="common_user_nickname">昵称</string>
     <string name="common_user_nickname_change">点击编辑昵称</string>
     <string name="common_user_addressmng">地址管理</string>
-
+    <!--关于-->
+    <string name="about_title">关于我们</string>
+    <string name="about_link">联系我们</string>
+    <string name="about_phone">010-58527646</string>
     <!--我的订单-->
     <string name="order_bt_cancel">取消订单</string>
     <string name="order_bt_tipsend">提醒发货</string>
@@ -210,7 +216,10 @@
     <string name="order_detail_paytime">付款时间:%s</string>
     <string name="order_detail_sendtime">发货时间:%s</string>
     <string name="order_detail_title">订单详情</string>
-
+    <!--物流-->
+    <string name="logistics_status">物流状态:</string>
+    <string name="logistics_type">承运来源:%s</string>
+    <string name="logistics_code">运单编号:%s</string>
 
     <!--评论-->
     <string name="remark_title">评论</string>
@@ -226,6 +235,7 @@
     <string name="point_record_str">兑换记录</string>
     <string name="point_record_time">兑换时间: %s</string>
     <string name="point_record_num_format">-%s积分</string>
+    <string name="point_record_price_format">%s积分</string>
     <string name="point_zero_str">0元换购</string>
     <string name="point_today_str">今日新品</string>
     <string name="point_common_str">日常家居</string>

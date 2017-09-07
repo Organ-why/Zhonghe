@@ -49,14 +49,6 @@ public class LikeActivity extends BaseTopActivity implements PullToRefreshBase.O
         adapter = new LikeListAdapter(mContext, goodsInfos);
         adapter.setCancelListListener(this);
         idDefaultListview.setOnRefreshListener(this);
-        idDefaultListview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                ProDispatcher.goGoodsDetailActivity(mContext, adapter.getItem(i).getGoods_id());
-            }
-        });
-
-
         idDefaultListview.setAdapter(adapter);
         setWaitingDialog(true);
         getGoodsList();

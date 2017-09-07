@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:background="@color/common_gray"
+    android:orientation="vertical"
+    tools:context="com.zhonghe.shiangou.ui.activity.AboutActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xh"
+        android:src="@mipmap/res_logo_text" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_xh"
+        android:src="@mipmap/res_zxing_code" />
+
+    <TextView
+        style="@style/common_text_gray_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_h"
+        android:text="扫描二维码 关注微信公众号" />
+
+
+
+    <RelativeLayout
+        android:id="@+id/id_user_point_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_item_height"
+        android:layout_marginTop="@dimen/margin_h"
+        android:background="@color/common_white"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize">
+
+
+        <TextView
+            style="@style/common_text_user_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/margin_lsize"
+            android:text="@string/about_link" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/icon_next" />
+
+    </RelativeLayout>
+
+</LinearLayout>

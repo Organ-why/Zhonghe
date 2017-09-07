@@ -26,7 +26,7 @@
             style="@style/common_edittext_style"
             android:layout_marginLeft="@dimen/margin_h"
             android:layout_toRightOf="@id/ids_icon_input4"
-            android:hint="@string/title_register_pwdag_hint"
+            android:hint="@string/title_register_pwdold_hint"
             android:inputType="textPassword"
             android:maxLength="18" />
     </RelativeLayout>
@@ -51,7 +51,8 @@
             style="@style/common_edittext_style"
             android:layout_marginLeft="@dimen/margin_h"
             android:layout_toRightOf="@id/ids_icon_input2"
-            android:hint="@string/title_register_code_hint" />
+            android:hint="@string/title_register_pwd_hint"
+            android:inputType="textPassword" />
     </RelativeLayout>
 
     <TextView
@@ -67,5 +68,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_hsize"
-        android:text="@string/title_register_title" />
+        android:text="@string/common_confirm" />
 </LinearLayout>

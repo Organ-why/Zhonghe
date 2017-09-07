@@ -24,9 +24,11 @@ import butterknife.ButterKnife;
 public class RefundSubmitAdapter extends AbsAdapter<RefundImgInfo> {
     View.OnClickListener addlistener;
     private CancelImgListener onCancelImg;
+    boolean isCancel = false;
 
-    public RefundSubmitAdapter(Context context) {
+    public RefundSubmitAdapter(Context context, boolean isCancel) {
         super(context);
+        this.isCancel = isCancel;
     }
 
     public void setAddListener(View.OnClickListener addlistener) {
@@ -54,6 +56,11 @@ public class RefundSubmitAdapter extends AbsAdapter<RefundImgInfo> {
         }
         if (UtilString.isNotBlank(info.getImgUrl())) {
             ProjectApplication.mImageLoader.loadImage(holder.idRefundImgitemImg, info.getImgUrl());
+        }
+        if (!isCancel) {
+            holder.idRefundCancelImgIb.setVisibility(View.INVISIBLE);
+        }else {
+            holder.idRefundCancelImgIb.setVisibility(View.VISIBLE);
         }
 
         holder.idRefundCancelImgIb.setOnClickListener(new View.OnClickListener() {

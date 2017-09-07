@@ -5,6 +5,7 @@ import android.content.Context;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.data.db.dao.UserDao;
 
@@ -34,7 +35,7 @@ public class DaoFactory {
      */
     public void clear() {
         try {
-//            UtilLog.e("drop user table");
+            UtilLog.e("drop user table");
             TableUtils.dropTable(mSource, UserInfo.class, true);
 //            UtilLog.e("create user table");
 //            TableUtils.createTable(mSource, MemberInfo.class);UtilLog.e("drop user table");

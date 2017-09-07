@@ -85,7 +85,7 @@ public class RefundsBeginActivity extends BaseSelectImageActivity implements Bas
     @Override
     protected void initViews() {
         imgs = new ArrayList<>();
-        adapter = new RefundSubmitAdapter(this);
+        adapter = new RefundSubmitAdapter(this,true);
         idRefundSubmitImgGv.setAdapter(adapter);
 
         idRefundPriceTv.setText(String.format(getString(R.string.symbol_money_format), orderPrice));
@@ -128,7 +128,7 @@ public class RefundsBeginActivity extends BaseSelectImageActivity implements Bas
             mPath = url.replace(CstScheme.FILE, "");
             List<File> files = new ArrayList<File>();
             files.add(new File(mPath));
-            upLowdImage(files, this);
+            upLowdImage(files,false, this);
             info.setImgUrl(url);
             if (adapter.getCount() == 3) {
                 adapter.getData().set(adapter.getCount() - 1, info);

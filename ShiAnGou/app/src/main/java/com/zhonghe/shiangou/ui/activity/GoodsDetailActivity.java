@@ -40,7 +40,7 @@ import butterknife.OnClick;
  * Created by a on 2017/8/15.
  */
 
-public class GoodsDetailActivity extends BaseTopActivity implements View.OnClickListener{
+public class GoodsDetailActivity extends BaseTopActivity implements View.OnClickListener {
     LinearLayout idGoodsdetailBannerLl;
     TextView idGoodsdetailTitleTv;
     TextView idGoodsdetailDescTv;
@@ -92,6 +92,8 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
 
     @Override
     protected void initViews() {
+        guestDetailXlistview.setPullLoadEnable(false);
+        guestDetailXlistview.setPullRefreshEnable(false);
         goodsId = getIntent().getStringExtra(CstProject.KEY.ID);
         bannerInfo = new ArrayList<>();
         imgMsg = new ArrayList<>();
@@ -141,7 +143,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
     //商品信息
     void setShowMsg() {
         idGoodsdetailTitleTv.setText(data.getGoods().getGoods_name());
-        idGoodsdetailDescTv.setText(data.getGoods().getGoods_desc());
+        idGoodsdetailDescTv.setText(data.getGoods().getGoods_brief());
         idGoodsdetailPriceTv.setText(data.getGoods().getShop_price());
         idGoodsdetailSoldnumTv.setText(data.getGoods().getWarn_number());
         adapter.setList(data.getGoods().getImg_desc());
@@ -153,6 +155,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
             idItemRemarkDescTv.setText(UtilString.nullToEmpty(data.getGoods_ping().getContent()));
         } else {
             remark.setVisibility(View.GONE);
+            idGoodsdetailMoreTv.setVisibility(View.GONE);
         }
     }
 
@@ -197,6 +200,10 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
 
                 @Override
                 public void onAddCart(String sku) {
+                    if (ProjectApplication.mUser == null) {
+                        ProDispatcher.goLoginActivity(mContext);
+                        return;
+                    }
                     setWaitingDialog(true);
                     Request<?> request = HttpUtil.getAddCart(mContext, goodsId, UtilString.nullToString(mSKU), mCount + "", new ResultListener() {
                         @Override
@@ -209,6 +216,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
                         public void onSuccess(Object obj) {
                             setWaitingDialog(false);
                             skudialog.dismiss();
+                            ProDispatcher.sendAddCardBroadcast(mContext, goodsId);
                             Util.toast(mContext, R.string.common_cart_add_success);
                         }
                     });
@@ -217,10 +225,14 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
 
                 @Override
                 public void onBuyNow(String sku) {
+                    if (ProjectApplication.mUser == null) {
+                        ProDispatcher.goLoginActivity(mContext);
+                        return;
+                    }
                     skudialog.dismiss();
                     ArrayList<String> list = new ArrayList<>();
                     list.add(data.getGoods().getGoods_id());
-                    ProDispatcher.goConfirmOrderActivity(mContext, list);
+                    ProDispatcher.goConfirmOrderActivity(mContext, list, 1,sku,mCount);
                 }
             });
         }

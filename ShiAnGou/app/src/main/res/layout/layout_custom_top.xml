@@ -9,7 +9,6 @@
         android:id="@+id/title_user_ivb"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/height_title_custom"
-        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:background="@null"
         android:paddingLeft="@dimen/margin_h"
@@ -20,17 +19,22 @@
         android:id="@+id/title_msg_ivb"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/height_title_custom"
+        android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:background="@null"
         android:paddingLeft="@dimen/margin_h"
         android:paddingRight="@dimen/margin_h"
-        android:src="@mipmap/icon_msg" />
+        android:src="@mipmap/icon_msg"
+        android:visibility="gone" />
 
     <TextView
+        android:layout_toRightOf="@id/title_user_ivb"
+        android:layout_toLeftOf="@id/title_msg_ivb"
         android:id="@+id/id_category_title_tv"
         style="@style/hint_search_style"
-        android:layout_width="@dimen/width_search_custom"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/height_search_custom"
+        android:layout_marginRight="@dimen/margin_xh"
         android:layout_centerInParent="true"
         android:background="@drawable/circle_search_white_bg"
         android:drawableLeft="@mipmap/icon_search"

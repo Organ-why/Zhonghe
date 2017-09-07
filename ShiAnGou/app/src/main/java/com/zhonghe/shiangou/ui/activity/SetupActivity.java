@@ -62,13 +62,14 @@ public class SetupActivity extends BaseTopActivity {
                 ProDispatcher.goSelectAddressActivity(mContext);
                 break;
             case R.id.id_setup_changepwd_rl:
-                ProDispatcher.goRegisterActivity(mContext, "修改密码");
+                ProDispatcher.goChangePwdActivity(mContext);
                 break;
             case R.id.id_setup_fgvpwd_rl:
                 ProDispatcher.goForgetPwdActivity(mContext);
                 break;
             case R.id.id_logout_bt:
                 ProjectApplication.mUser = null;
+                ProjectApplication.mPrefrence.setUserId(null);
                 ProDispatcher.sendLogoutBroadcast(mContext);
                 ProDispatcher.goLoginActivity(mContext);
                 finish();

@@ -7,11 +7,13 @@ import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 import com.zhonghe.lib_base.R;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.lib_base.utils.UtilString;
 
 import java.util.HashMap;
@@ -36,8 +38,8 @@ public abstract class BaseActivity extends AbsActivity {
         //取消广播监听
         if (mReceiverMap != null) {
             for (String key : mReceiverMap.keySet()) {
-//                LocalBroadcastManager.getInstance(this)
-//                        .unregisterReceiver(mReceiverMap.get(key));
+                LocalBroadcastManager.getInstance(this)
+                        .unregisterReceiver(mReceiverMap.get(key));
                 unregisterReceiver(mReceiverMap.get(key));
 
             }
@@ -65,8 +67,8 @@ public abstract class BaseActivity extends AbsActivity {
             IntentFilter filter = new IntentFilter();
             filter.addAction(action);
             //自定义广播接收器，只接收自定义广播
-//            LocalBroadcastManager.getInstance(this)
-//                    .registerReceiver(receiver, filter);
+            LocalBroadcastManager.getInstance(this)
+                    .registerReceiver(receiver, filter);
             //系统广播接收器，能接受系统广播
             registerReceiver(receiver, filter);
             mReceiverMap.put(action, receiver);
@@ -85,8 +87,8 @@ public abstract class BaseActivity extends AbsActivity {
 
         if (mReceiverMap.containsKey(action)) {
             //自定义广播接收器，只取消绑定自定义广播
-//            LocalBroadcastManager.getInstance(this)
-//                    .unregisterReceiver(mReceiverMap.get(action));
+            LocalBroadcastManager.getInstance(this)
+                    .unregisterReceiver(mReceiverMap.get(action));
             //系统广播接收器，取消绑定所有广播
             unregisterReceiver(mReceiverMap.get(action));
             mReceiverMap.remove(action);
@@ -110,7 +112,7 @@ public abstract class BaseActivity extends AbsActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             if (intent != null) {
-//                UtilLog.d(getClass().getSimpleName() + " action:" + intent.getAction());
+                UtilLog.d(getClass().getSimpleName() + " action:" + intent.getAction());
                 BaseActivity.this.onReceive(intent);
             }
         }

@@ -35,7 +35,7 @@ public class RefundsAdapter extends AbsAdapter<RefundsItemInfo> {
 
     public RefundsAdapter(Context context, List<RefundsItemInfo> addlist) {
         super(context, addlist);
-        adapter = new RefundSubmitAdapter(context);
+        adapter = new RefundSubmitAdapter(context,true);
     }
 
     @Override

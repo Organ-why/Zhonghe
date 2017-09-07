@@ -11,15 +11,43 @@ import java.util.List;
  */
 
 public class OrderInfo extends BaseBean {
-
-    String  order_sn, pay_status;
+    //    运单号：number
+//    快递公司代码：type
+//    快递公司名 ： express
+    String order_sn, pay_status, number, type, express;
     double price;
     int count;
     List<GoodsInfo> goods_list;
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getExpress() {
+        return express;
+    }
+
+    public void setExpress(String express) {
+        this.express = express;
+    }
+
     /**
      * goods_list : {"goods_name":"欧华 肉馅  肉片","goods_thumb":"images/201708/thumb_img/128_thumb_G_1503997923403.png","goods_desc":"<p><img src=\"/images/upload/Image/%E7%8C%AA%E8%82%89%E8%AF%A6%E6%83%85.png\" width=\"790\" height=\"7140\" alt=\"\" />&nbsp;<\/p>","goods_img":"images/201708/goods_img/128_G_1503640974997.jpg","goods_id":"128","goods_attr_id":null,"shop_price":"77.00","goods_count":"1"}
      * price : 0
      */
+
 
     private GoodsListBean goods_listX;
 

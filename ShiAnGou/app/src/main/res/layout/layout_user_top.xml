@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -20,8 +21,10 @@
             android:layout_width="@dimen/view_width_header_larg"
             android:layout_height="@dimen/view_width_header_larg"
             android:layout_centerHorizontal="true"
-            android:src="@mipmap/icon_user_unlog"
-            app:placeholderImage="@mipmap/res_default_header" />
+            app:actualImageScaleType="fitXY"
+            app:failureImage="@mipmap/res_default_header"
+            app:placeholderImage="@mipmap/res_default_header"
+            app:roundAsCircle="true" />
 
         <TextView
             android:id="@+id/id_user_name_tv"

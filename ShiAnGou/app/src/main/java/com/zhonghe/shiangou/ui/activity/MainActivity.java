@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.android.volley.Request;
 import com.zhonghe.lib_base.baseui.activity.BaseNavActivity;
+import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.dialog.AppUpdataDialog;
 import com.zhonghe.shiangou.ui.fragment.CartExpandableFragment;
@@ -15,6 +19,7 @@ import com.zhonghe.shiangou.ui.fragment.HomeFragment;
 import com.zhonghe.shiangou.ui.fragment.HomeFragment1;
 import com.zhonghe.shiangou.ui.fragment.PointFragment;
 import com.zhonghe.shiangou.ui.fragment.UserFragment;
+import com.zhonghe.shiangou.ui.listener.ResultListener;
 
 public class MainActivity extends BaseNavActivity {
 
@@ -29,10 +34,9 @@ public class MainActivity extends BaseNavActivity {
         //我的
         addNavTab(R.string.main_tabs_user, R.drawable.main_tab_user, UserFragment.class);
 
-        AppUpdataDialog dialog = new AppUpdataDialog(MainActivity.this);
-        dialog.show();
 
     }
+
 
     @Override
     protected void initViews() {

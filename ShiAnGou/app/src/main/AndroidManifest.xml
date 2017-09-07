@@ -3,15 +3,14 @@
     package="com.zhonghe.shiangou">
 
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-
-    <!--微信支付-->
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <!-- 微信支付 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-
 
     <application
         android:name=".system.global.ProjectApplication"
@@ -33,31 +32,31 @@
             </intent-filter>
         </activity>
 
-        <!--微信支付-->
+        <!-- 微信支付 -->
         <activity
             android:name=".wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop">
 
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.VIEW" />-->
-            <!--<category android:name="android.intent.category.DEFAULT" />-->
-            <!--<data android:scheme="ade964807819601cbdd95508c83fae8b" />-->
-            <!--</intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.VIEW" /> -->
+            <!-- <category android:name="android.intent.category.DEFAULT" /> -->
+            <!-- <data android:scheme="ade964807819601cbdd95508c83fae8b" /> -->
+            <!-- </intent-filter> -->
         </activity>
-        <!--支付宝支付-->
+        <!-- 支付宝支付 -->
         <activity
             android:name="com.alipay.sdk.app.H5PayActivity"
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <activity
             android:name="com.alipay.sdk.app.H5AuthActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:windowSoftInputMode="adjustResize|stateHidden"></activity>
+            android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- 主界面 -->
         <activity
             android:name=".ui.activity.MainActivity"
@@ -126,69 +125,78 @@
         <activity
             android:name=".ui.activity.RemarkActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 评论列表 -->
         <activity
             android:name=".ui.activity.RemarkListActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 忘记密码 -->
         <activity
             android:name=".ui.activity.ForgetPwdActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--退款退货 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 修改密码 -->
+        <activity
+            android:name=".ui.activity.ChangePwdActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 退款退货 -->
         <activity
             android:name=".ui.activity.RefundsBeginActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--商品详情 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 商品详情 -->
         <activity
             android:name=".ui.activity.GoodsDetailActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--退货详情 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 退货详情 -->
         <activity
             android:name=".ui.activity.RefundsDetailActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--积分兑换 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 积分兑换 -->
         <activity
             android:name=".ui.activity.PointActivity"
+            android:launchMode="singleTask"
             android:screenOrientation="portrait"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--积分详情 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 积分详情 -->
         <activity
             android:name=".ui.activity.PointDetailActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--积分兑换结果返回 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 积分兑换结果返回 -->
         <activity
             android:name=".ui.activity.PointExchangeResultActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--积分兑换列表 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 积分兑换列表 -->
         <activity
             android:name=".ui.activity.PointExcangeListActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--积分兑换记录 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 积分兑换记录 -->
         <activity
             android:name=".ui.activity.PointExcangeRecordActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--搜索 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 搜索 -->
         <activity
             android:name=".ui.activity.SearchActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--商品列表 -->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 商品列表 -->
         <activity
             android:name=".ui.activity.GoodsListActivity"
             android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--关于-->
+        <activity
+            android:name=".ui.activity.AboutActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-
     </application>
 
 </manifest>

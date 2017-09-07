@@ -19,6 +19,7 @@ import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.SelectPictureDialog;
 import com.zhonghe.shiangou.utile.JSONParser;
 import com.zhonghe.shiangou.utile.PrefUtils;
+import com.zhonghe.shiangou.utile.UploadHeaderTask;
 import com.zhonghe.shiangou.utile.UploadImageTask;
 import com.zhonghe.shiangou.utile.image.CropHandler;
 import com.zhonghe.shiangou.utile.image.CropHelper;
@@ -142,35 +143,36 @@ public abstract class BaseSelectImageActivity extends BaseTopActivity
         return mCropParams;
     }
 
-    public void upLowdImage(List<File> fileList, final upLoadListener listener) {
+    public void upLowdImage(List<File> fileList, boolean isHeader, final upLoadListener listener) {
         setWaitingDialog(true);
-        UploadImageTask uploadImage = new UploadImageTask(HttpUtil.URL_IMGUp,
+        if (isHeader) {
+            UploadHeaderTask uploadImage = new UploadHeaderTask(HttpUtil.URL_HeaderUp,
 //                PrefUtils.getString(this, Const.MEMBER_KEY, "")
-                fileList) {
-            @Override
-            protected void onPostExecute(String result) {
-                super.onPostExecute(result);
-                Log.e("uploawd", result.toString());
-                setWaitingDialog(false);
-                try {
-                    if (!TextUtils.isEmpty(result)) {
-                        JSONObject json = new JSONObject(result);
-                        BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
-                        if (obj.getState() == 1) {
+                    fileList) {
+                @Override
+                protected void onPostExecute(String result) {
+                    super.onPostExecute(result);
+                    Log.e("uploawd", result.toString());
+                    setWaitingDialog(false);
+                    try {
+                        if (!TextUtils.isEmpty(result)) {
+                            JSONObject json = new JSONObject(result);
+                            BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
+                            if (obj.getState() == 1) {
 //                            listener.onFail(obj.getMsg());
-                            String strdata = JSONParser.toString(obj.getDatas());
+                                String strdata = JSONParser.toString(obj.getDatas());
 //                            Type bean = new TypeToken<List<String>>() {
 //                            }.getType();
-                            String imsgUrl = (String) JSONParser.toObject(strdata, String.class);
-                            listener.onLoadFinish(imsgUrl);
-                        }
+                                String imsgUrl = (String) JSONParser.toObject(strdata, String.class);
+                                listener.onLoadFinish(imsgUrl);
+                            }
 //                        else {
 //                            listener.onLoadFinish(null);
 //                        }
 //                        ToastUtils.showError(activity);
 //                        dialog.dismiss();
-                        return;
-                    }
+                            return;
+                        }
 //                    AddPhotoResponse response = (AddPhotoResponse) JSONParser.toObject(result, AddPhotoResponse.class);
 //                    if (response.getCode() == 0) {
 //                        CommentPhoto commentPhoto = new CommentPhoto();
@@ -178,16 +180,60 @@ public abstract class BaseSelectImageActivity extends BaseTopActivity
 //                    } else {
 //                        ToastUtils.showError(activity, response.getMsg());
 //                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    Log.e("uploawd_error", e.toString());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("uploawd_error", e.toString());
 //                    ToastUtils.showError(activity);
-                }
+                    }
 
-//                dialog.dismiss();
-            }
-        };
-        uploadImage.execute();
+                }
+            };
+            uploadImage.execute();
+        } else {
+            UploadImageTask uploadImage = new UploadImageTask(HttpUtil.URL_IMGUp,
+//                PrefUtils.getString(this, Const.MEMBER_KEY, "")
+                    fileList) {
+                @Override
+                protected void onPostExecute(String result) {
+                    super.onPostExecute(result);
+                    Log.e("uploawd", result.toString());
+                    setWaitingDialog(false);
+                    try {
+                        if (!TextUtils.isEmpty(result)) {
+                            JSONObject json = new JSONObject(result);
+                            BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
+                            if (obj.getState() == 1) {
+//                            listener.onFail(obj.getMsg());
+                                String strdata = JSONParser.toString(obj.getDatas());
+//                            Type bean = new TypeToken<List<String>>() {
+//                            }.getType();
+                                String imsgUrl = (String) JSONParser.toObject(strdata, String.class);
+                                listener.onLoadFinish(imsgUrl);
+                            }
+//                        else {
+//                            listener.onLoadFinish(null);
+//                        }
+//                        ToastUtils.showError(activity);
+//                        dialog.dismiss();
+                            return;
+                        }
+//                    AddPhotoResponse response = (AddPhotoResponse) JSONParser.toObject(result, AddPhotoResponse.class);
+//                    if (response.getCode() == 0) {
+//                        CommentPhoto commentPhoto = new CommentPhoto();
+//                        commentPhoto.setImgUrl(response.getUrls().get(0).getUrl());
+//                    } else {
+//                        ToastUtils.showError(activity, response.getMsg());
+//                    }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        Log.e("uploawd_error", e.toString());
+//                    ToastUtils.showError(activity);
+                    }
+
+                }
+            };
+            uploadImage.execute();
+        }
     }
 
     public interface upLoadListener {

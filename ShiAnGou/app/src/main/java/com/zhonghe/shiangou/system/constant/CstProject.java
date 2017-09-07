@@ -31,6 +31,12 @@ public class CstProject {
         public final static String DATA = "_data";
         public final static String CODE = "_code";
         public final static String INDEX = "_index";
+        public final static String TYPE = "_type";
+        public final static String COUNT = "_count";
+        public final static String ATTRID = "_attrid";
+        public final static String VALUES1 = "_values1";
+        public final static String VALUES2 = "_values2";
+        public final static String VALUES3 = "_values3";
     }
 
     /**
@@ -52,6 +58,7 @@ public class CstProject {
         //购物车商品
         public static final String CART_DEL_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.CART_DEL_ACTION";
         public static final String CART_ADD_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.CAET_ADD_ACTION";
+        public static final String POINT_EXCHANGE_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.POINT_EXCHANGE_ACTION";
 
     }
 

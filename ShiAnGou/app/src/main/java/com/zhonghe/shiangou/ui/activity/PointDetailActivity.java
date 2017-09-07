@@ -15,6 +15,7 @@ import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
+import com.zhonghe.shiangou.data.bean.ExchangeResultInfo;
 import com.zhonghe.shiangou.data.bean.PointDetailInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
@@ -103,7 +104,7 @@ public class PointDetailActivity extends BaseTopActivity {
     }
 
     void getExchangeGoods() {
-        if (UtilString.isEmpty(mData.getAddress().getAddress_id())) {
+        if (mData.getAddress()==null||UtilString.isEmpty(mData.getAddress().getAddress_id())) {
             Util.toast(mContext, R.string.confirmorder_receiptmsg_text);
             return;
         }
@@ -118,7 +119,10 @@ public class PointDetailActivity extends BaseTopActivity {
             @Override
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
+                ExchangeResultInfo info = (ExchangeResultInfo) obj;
+                ProjectApplication.mUser.setRank_points(info.getRank());
                 ProDispatcher.goPointExchangeResutl(mContext);
+                ProDispatcher.sendExchangeBroadcast(mContext);
                 finish();
             }
         });
@@ -127,21 +131,21 @@ public class PointDetailActivity extends BaseTopActivity {
 
     //    设置地址显示
     void setAddressShow(AddressInfo default_add) {
-        if (UtilString.isEmpty(default_add.getAddress_id())) {
+        if (default_add == null || UtilString.isEmpty(default_add.getAddress_id())) {
             idUserAddressRl.setVisibility(View.VISIBLE);
             idConfirmAddressLl.setVisibility(View.GONE);
         } else {
             idUserAddressRl.setVisibility(View.GONE);
             idConfirmAddressLl.setVisibility(View.VISIBLE);
-            idConfirmAddressNameTv.setText(String.format(getResources().getString(R.string.confirmorder_name), default_add.getConsignee()));
-            idConfirmAddressAreaTv.setText(String.format(getResources().getString(R.string.confirmorder_addre), default_add.getArea_address() + default_add.getAddress()));
-            idConfirmAddressPhoneTv.setText(String.format(getResources().getString(R.string.confirmorder_phone), default_add.getMobile()));
+            idConfirmAddressNameTv.setText(String.format(getResources().getString(R.string.confirmorder_name), UtilString.nullToEmpty(default_add.getConsignee())));
+            idConfirmAddressAreaTv.setText(String.format(getResources().getString(R.string.confirmorder_addre), UtilString.nullToEmpty(default_add.getArea_address()) + UtilString.nullToEmpty(default_add.getAddress())));
+            idConfirmAddressPhoneTv.setText(String.format(getResources().getString(R.string.confirmorder_phone), UtilString.nullToEmpty(default_add.getMobile())));
         }
     }
 
     void setDataShow() {
         setAddressShow(mData.getAddress());
-        ProjectApplication.mImageLoader.loadImage(idPointIv, mData.getGoods().getGoods_img());
+        ProjectApplication.mImageLoader.loadImage(idPointIv, mData.getGoods().getGoods_thumb());
         idPointDetailPointTv.setText(Util.formatPrice(mData.getGoods().getExchange_integral()));
         idPointDetailNameTv.setText(UtilString.nullToEmpty(mData.getGoods().getGoods_name()));
         idPointDetailStockTv.setText(String.format(getString(R.string.point_msg_stock), mData.getGoods().getGoods_number()));

@@ -5,7 +5,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -21,8 +20,8 @@ import com.zhonghe.shiangou.ui.adapter.OrderAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseFullFragment;
 import com.zhonghe.shiangou.ui.dialog.PayDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
-import com.zhonghe.shiangou.utile.UtilPay;
 import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
+import com.zhonghe.shiangou.utile.UtilPay;
 
 import java.util.List;
 
@@ -33,19 +32,19 @@ import butterknife.ButterKnife;
  * Date: 2017/8/13.
  * Author: whyang
  */
-public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.IXListViewListener, OrderAdapter.orderOperateListener, PayDialog.payClickListener {
+public class OrderAllFragment extends BaseFullFragment implements PullToRefreshBase.OnRefreshListener2, OrderAdapter.orderOperateListener, PayDialog.payClickListener {
     String orderBy;
     OrderAdapter adapter;
     int curpage = 1;
     int cursize = 10;
     List<OrderInfo> newData;
-    @Bind(R.id.guest_detail_xlistview)
-    NXListViewNO lXlistview;
+    @Bind(R.id.id_default_listview)
+    PullToRefreshListView idDefaultListview;
     private PayDialog payDialog;
 
     @Override
     protected void initLayout() {
-        setContentView(R.layout.activity_default_xlistview);
+        setContentView(R.layout.activity_default_listview);
         ButterKnife.bind(this, getView());
     }
 
@@ -60,10 +59,12 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
         adapter.setOrderOpreatListener(this);
         Bundle bundle = getArguments();
         orderBy = bundle.getString(CstProject.KEY.ORDERBY);
-        lXlistview.setPullLoadEnable(true);
-        lXlistview.setPullRefreshEnable(true);
-        lXlistview.setXListViewListener(this);
-        lXlistview.setAdapter(adapter);
+//        lXlistview.setPullLoadEnable(true);
+//        lXlistview.setPullRefreshEnable(true);
+//        lXlistview.setXListViewListener(this);
+//        lXlistview.setAdapter(adapter);
+        idDefaultListview.setOnRefreshListener(this);
+        idDefaultListview.setAdapter(adapter);
         getGoodsList();
     }
 
@@ -74,7 +75,7 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
             public void onFail(String error) {
                 Util.toast(mActivity, error);
                 setWaitingDialog(false);
-                lXlistview.stopLoadMore();
+                idDefaultListview.onRefreshComplete();
             }
 
             @Override
@@ -89,7 +90,7 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
                 if (list.size() > 0) {
                     curpage++;
                 }
-                lXlistview.stopLoadMore();
+                idDefaultListview.onRefreshComplete();
             }
         });
         addRequest(request);
@@ -108,8 +109,12 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
         OrderInfo item = adapter.getItem(position);
         if (orderType.equals("1")) {
             CancelOrder(position, item.getOrder_sn(), orderType);
-        } else if (orderType.equals("2") || orderType.equals("3")) {
+        } else if (orderType.equals("2")) {
+            //提醒发货
+            OrderRemind(item.getOrder_sn(),1);
+        } else if (orderType.equals("3")) {
             //查看物流
+            ProDispatcher.goLogisticsActivity(mActivity, item.getNumber(), item.getType(), item.getExpress());
         } else {
             //删除订单
             DelOrder(position, item.getOrder_sn(), orderType);
@@ -127,12 +132,13 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
             if (payDialog == null) {
                 payDialog = new PayDialog(mActivity, this);
             }
-            payDialog.showAtLocation(lXlistview, Gravity.BOTTOM, 0, 0);
+            payDialog.showAtLocation(idDefaultListview, Gravity.BOTTOM, 0, 0);
         } else if (orderType.equals("2")) {
             //退货
             ProDispatcher.goRefundsBeginActivity(mActivity, item.getOrder_sn(), Util.formatPrice(item.getPrice()));
         } else if (orderType.equals("3")) {
-            //确认订单
+            //确认收货
+            OrderRemind(item.getOrder_sn(),2);
         }
     }
 
@@ -174,6 +180,27 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
         addRequest(request);
     }
 
+    //提醒发货
+    void OrderRemind(String orderId,int remindType) {
+//        1 提醒发货 2 确认收货
+        setWaitingDialog(true);
+        Request<?> request = HttpUtil.getOrderRemind(mActivity, orderId, remindType, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+                Util.toast(mActivity, error);
+                setWaitingDialog(false);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                setWaitingDialog(false);
+                String result = (String) obj;
+                Util.toast(mActivity, result);
+            }
+        });
+        addRequest(request);
+    }
+
     //支付凭证
     void goPay(String orderCode, final int payType) {
         setWaitingDialog(true);
@@ -203,13 +230,13 @@ public class OrderAllFragment extends BaseFullFragment implements NXListViewNO.I
 
 
     @Override
-    public void onRefresh() {
+    public void onPullDownToRefresh(PullToRefreshBase refreshView) {
         curpage = 1;
         getGoodsList();
     }
 
     @Override
-    public void onLoadMore() {
+    public void onPullUpToRefresh(PullToRefreshBase refreshView) {
         getGoodsList();
     }
 }

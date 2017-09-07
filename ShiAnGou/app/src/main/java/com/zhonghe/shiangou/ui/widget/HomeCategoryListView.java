@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
@@ -60,9 +61,9 @@ public class HomeCategoryListView {
                     TextView tvtitle = (TextView) itemView.findViewById(R.id.id_home_category_item_title_tv);
                     tvtitle.setText(UtilString.nullToEmpty(itemInfo.getGoods_name()));
                     TextView tvprice = (TextView) itemView.findViewById(R.id.id_home_category_item_price_tv);
-                    tvprice.setText(UtilString.nullToEmpty(itemInfo.getShop_price()));
+                    tvprice.setText(UtilString.nullToEmpty(Util.formatPrice(itemInfo.getShop_price())));
                     TextView tvmarketprice = (TextView) itemView.findViewById(R.id.id_home_category_item_oldprice_tv);
-                    tvmarketprice.setText(UtilString.nullToEmpty(itemInfo.getMarket_price()));
+                    tvmarketprice.setText(UtilString.nullToEmpty(Util.formatPrice(itemInfo.getMarket_price())));
                     tvmarketprice.getPaint().setFlags(Paint.STRIKE_THRU_TEXT_FLAG);//中划线
                     itemView.setOnClickListener(new View.OnClickListener() {
                         @Override

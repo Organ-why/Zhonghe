@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.lib_base.baseui.adapter.AbsAdapter;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
@@ -42,7 +43,7 @@ public class GoodsListAdapter extends AbsAdapter<GoodsInfo> {
         GoodsInfo info = mList.get(i);
         ProjectApplication.mImageLoader.loadImage(holder.idGoodsImg, info.getGoods_img());
         holder.idHomeCategoryItemTitleTv.setText(UtilString.nullToEmpty(info.getGoods_name()));
-        holder.idHomeCategoryItemPriceTv.setText(UtilString.nullToEmpty(info.getShop_price()));
+        holder.idHomeCategoryItemPriceTv.setText(UtilString.nullToEmpty(Util.formatPrice(info.getShop_price())));
         return view;
     }
 

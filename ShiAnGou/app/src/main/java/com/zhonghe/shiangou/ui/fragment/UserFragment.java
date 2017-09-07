@@ -128,6 +128,7 @@ public class UserFragment extends BaseTopFragment {
                 ProDispatcher.goLikeActivity(mActivity);
                 break;
             case R.id.id_user_contactus_rl:
+                ProDispatcher.goAboutActivity(mActivity);
                 break;
 //            case R.id.id_user_help_rl:
 //                ProDispatcher.goRemarkActivity(mActivity);

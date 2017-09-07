@@ -31,10 +31,12 @@ import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
 public class AppUpdataDialog extends BaseDialog {
     // 应用更新下载通知ID
     private static final int APP_DOWNLOAD_NOTIFY_ID = 0;
-    private static final String APP_DOWNLOAD_URL = URL_PRO+"app/dowload/app-release.apk";
+    private static final String APP_DOWNLOAD_URL = URL_PRO + "app/dowload/app-release.apk";
+    String versionName;
 
-    public AppUpdataDialog(Context context) {
+    public AppUpdataDialog(Context context, String versionName) {
         super(context);
+        this.versionName = versionName;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class AppUpdataDialog extends BaseDialog {
     @Override
     protected void initViews() {
         setTitle(R.string.upgrade_update_title);
-        setMessage(R.string.upgrade_update_title);
+        setMessage("新版本:" + versionName);
        /* setSingle(R.string.upgrade_update);*/
         setDouble(R.string.upgrade_cancel, R.string.upgrade_update);
         setOnDoubleListener(new OnLeftListener() {
@@ -94,7 +96,7 @@ public class AppUpdataDialog extends BaseDialog {
 
     private void downloadApp() {
 //        final String filePath = UtilStorage.createFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_EXPLORER );
-        final String filePath = UtilStorage.createFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_APK );
+        final String filePath = UtilStorage.createFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_APK);
         //开始
         nofityAppDownload(mContext, 0);
         new DownloadUtil().download(APP_DOWNLOAD_URL, filePath, new DownloadUtil.OnDownloadListener() {

@@ -71,7 +71,7 @@ public class CartGoods extends BaseBean {
     private String goods_weight;
     private String market_price;
     private String virtual_sales;
-    private String shop_price;
+    private double shop_price;
     private String promote_price;
     private String promote_start_date;
     private String promote_end_date;
@@ -240,11 +240,11 @@ public class CartGoods extends BaseBean {
         this.virtual_sales = virtual_sales;
     }
 
-    public String getShop_price() {
+    public double getShop_price() {
         return shop_price;
     }
 
-    public void setShop_price(String shop_price) {
+    public void setShop_price(double shop_price) {
         this.shop_price = shop_price;
     }
 

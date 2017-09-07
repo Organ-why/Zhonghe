@@ -70,7 +70,6 @@
                     style="@style/common_content_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:text="0" />
                 <!--android:layout_toRightOf="@id/prodetail_id_symbol_tv"-->
 

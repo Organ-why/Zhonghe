@@ -13,8 +13,18 @@ public class ConfirmRspInfo extends BaseBean {
     List<CartGoods> com_goods;
     double total;
     int com_count;
+    String order_sn;
 
     public ConfirmRspInfo() {
+
+    }
+
+    public String getOrder_sn() {
+        return order_sn;
+    }
+
+    public void setOrder_sn(String order_sn) {
+        this.order_sn = order_sn;
     }
 
     public double getTotal() {

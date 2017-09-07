@@ -87,6 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:text="@string/prodetail_refunds_money" />
 
             <TextView
@@ -95,7 +96,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_m"
-                android:text="288积分" />
+                android:text="@string/point_record_price_format" />
 
 
         </LinearLayout>

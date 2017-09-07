@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.CartGoods;
@@ -41,9 +42,9 @@ public class ConfirmGoodsList {
             ViewHolder holder = new ViewHolder(view);
             holder.skuSelectTitleTv.setText(UtilString.nullToEmpty(info.getGoods_name()));
             ProjectApplication.mImageLoader.loadImage(holder.skuSelectImg, info.getGoods_thumb());
-            holder.itemSkuSelectPriceTv.setText(UtilString.nullToEmpty(info.getShop_price()));
+            holder.itemSkuSelectPriceTv.setText(UtilString.nullToEmpty(Util.formatPrice(info.getShop_price())));
             holder.numTv.setVisibility(View.VISIBLE);
-            holder.numTv.setText(String.format(mContext.getResources().getString(R.string.confirmorder_num), info.getGoods_count()));
+            holder.numTv.setText(String.format(mContext.getResources().getString(R.string.confirmorder_num), UtilString.nullToEmpty(info.getGoods_count())));
             viewGroup.addView(view);
         }
     }

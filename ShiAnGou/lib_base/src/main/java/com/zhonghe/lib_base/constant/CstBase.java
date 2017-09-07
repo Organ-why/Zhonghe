@@ -7,7 +7,7 @@ public class CstBase {
     //项目名
     public static String PROJECT 					= "zhsn";
     //项目是否处于调试模式
-    public static boolean DEBUG 					= true;
+    public static boolean DEBUG 					= false;
     //项目是否处于调试模式
     public static boolean INNER_DEBUG 				= false;
     //app ID

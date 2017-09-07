@@ -109,8 +109,7 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
     public void checkChild(int groupPosition, int childPosition, boolean isChecked) {
         mData.get(groupPosition).getChildPro().get(childPosition).setCheck(isChecked);
         int childSelectCount = 0;
-        for (CartGoods itemBo : mData.get(groupPosition).getChildPro()
-                ) {
+        for (CartGoods itemBo : mData.get(groupPosition).getChildPro()) {
             if (!itemBo.isCheck()) {
                 break;
             }
@@ -143,6 +142,7 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
             public void onSuccess(Object obj) {
                 mData.get(groupPosition).getChildPro().get(childPosition).setGoods_count(String.valueOf(finalAmount));
                 reFreshData();
+                setTotal(getSelectGoodsList());
             }
         });
         ProjectApplication.proReqestQueue.addRequest(request, mContext);
@@ -165,9 +165,11 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
             public void onSuccess(Object obj) {
                 mData.get(groupPosition).getChildPro().get(childPosition).setGoods_count(String.valueOf(finalAmount));
                 reFreshData();
+                setTotal(getSelectGoodsList());
             }
         });
         ProjectApplication.proReqestQueue.addRequest(request, mContext);
+
     }
 
 //    //本地删除
@@ -187,6 +189,8 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
     public void deleteGoods() {
         if (mSelectData.size() > 0) {
             mData.removeAll(mSelectData);
+//            List<CartGoods> childPro = mData.get(0).getChildPro();
+//            childPro.removeAll(mSelectData.get(0).getChildPro());
             adapter.notifyDataSetChanged();
         }
     }
@@ -233,6 +237,29 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
 
         return selectlist;
     }
+    //获取选中商品
+    public  double  getSelectGoodsList() {
+        if (selectlist == null) selectlist = new ArrayList<>();
+        selectlist.clear();
+        mSelectData.clear();
+        List<CartGoods> childlist = new ArrayList<>();
+        double total = 0;
+        for (CartItemGroupBO parentinfo : mData) {
+            for (CartGoods childinfo : parentinfo.getChildPro()) {
+                if (childinfo.isCheck()) {
+                    childlist.add(childinfo);
+                    selectlist.add(childinfo.getGoods_id());
+                    total+=childinfo.getShop_price()*Integer.valueOf(childinfo.getGoods_count());
+                }
+            }
 
+        }
+
+        return total;
+    }
+
+    public void setTotal(double total){
+
+    };
 
 }

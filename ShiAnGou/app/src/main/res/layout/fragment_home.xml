@@ -16,11 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <LinearLayout
                 android:id="@+id/ll_content_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"></LinearLayout>
+
             <LinearLayout
                 android:id="@+id/ll_content_list"
                 android:layout_width="match_parent"
@@ -35,7 +37,7 @@
     <com.zhonghe.shiangou.ui.widget.HorizontalListView
         android:id="@+id/id_home_category_horizontal_title_hl"
         android:layout_width="match_parent"
-        android:background="@color/res_color_white"
         android:layout_height="@dimen/home_category_title_height"
+        android:background="@color/res_color_white"
         android:visibility="gone"></com.zhonghe.shiangou.ui.widget.HorizontalListView>
 </RelativeLayout>

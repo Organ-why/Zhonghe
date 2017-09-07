@@ -83,6 +83,8 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
     protected void initLayout() {
         setContentView(R.layout.fragment_cart_expandable);
         registerAction(CstProject.BROADCAST_ACTION.LOGOUT_ACTION);
+        registerAction(CstProject.BROADCAST_ACTION.CART_ADD_ACTION);
+        registerAction(CstProject.BROADCAST_ACTION.CART_DEL_ACTION);
     }
 
     @Override
@@ -106,6 +108,7 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
                 super.checkGroup(groupPosition, isChecked);
                 if (!isChecked)
                     cartIdAllCb.setChecked(false);
+                setTotal(getSelectGoodsList());
             }
 
             @Override
@@ -113,11 +116,17 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
                 super.checkChild(groupPosition, childPosition, isChecked);
                 if (!isChecked)
                     cartIdAllCb.setChecked(false);
+                setTotal(getSelectGoodsList());
             }
 
             @Override
             public void onSeletAll() {
                 cartIdAllCb.setChecked(true);
+            }
+
+            @Override
+            public void setTotal(double total) {
+                setTotalNum(total);
             }
         };
 //        listener.addmData(data);
@@ -199,6 +208,12 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
         listener.selectAll(cartIdAllCb.isChecked());
     }
 
+    void setTotalNum(double total) {
+        cartIdTotalpayTv.setText(Util.formatPrice(total));
+//        = listener.getSelectGoods();
+//        for
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -214,7 +229,7 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
                     Util.toast(mActivity, R.string.common_cart_noselect);
                     break;
                 }
-                ProDispatcher.goConfirmOrderActivity(mActivity, list);
+                ProDispatcher.goConfirmOrderActivity(mActivity, list, 0,"",0);
                 break;
             case R.id.cart_id_del_bt:
                 List<String> delist = listener.getSelectGoods();
@@ -232,6 +247,9 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
                         public void onSuccess(Object obj) {
                             setWaitingDialog(false);
                             listener.deleteGoods();
+                            curpage = 1;
+                            getCartData();
+                            setTotalNum(0);
                         }
                     });
                     addRequest(request);
@@ -244,6 +262,8 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
     public void onPullDownToRefresh(PullToRefreshBase<ExpandableListView> refreshView) {
         curpage = 1;
         getCartData();
+        setTotalNum(0);
+        cartIdAllCb.setChecked(false);
     }
 
     @Override
@@ -257,6 +277,14 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
         switch (action) {
             case CstProject.BROADCAST_ACTION.LOGOUT_ACTION:
                 listener.removeAll();
+                break;
+            case CstProject.BROADCAST_ACTION.CART_ADD_ACTION:
+                curpage = 1;
+                getCartData();
+                break;
+            case CstProject.BROADCAST_ACTION.CART_DEL_ACTION:
+                curpage = 1;
+                getCartData();
                 break;
         }
     }

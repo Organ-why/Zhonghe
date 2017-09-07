@@ -15,6 +15,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.reflect.TypeToken;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.data.bean.AddressSelectInfo;
@@ -23,9 +24,11 @@ import com.zhonghe.shiangou.data.bean.CategoryChild;
 import com.zhonghe.shiangou.data.bean.CategoryParent;
 import com.zhonghe.shiangou.data.bean.CharPay;
 import com.zhonghe.shiangou.data.bean.ConfirmRspInfo;
+import com.zhonghe.shiangou.data.bean.ExchangeResultInfo;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
+import com.zhonghe.shiangou.data.bean.LogisticsInfo;
 import com.zhonghe.shiangou.data.bean.OrderInfo;
 import com.zhonghe.shiangou.data.bean.PointDetailInfo;
 import com.zhonghe.shiangou.data.bean.PointGoodsInfo;
@@ -34,6 +37,7 @@ import com.zhonghe.shiangou.data.bean.RefundsDetailInfo;
 import com.zhonghe.shiangou.data.bean.RefundsItemInfo;
 import com.zhonghe.shiangou.data.bean.RemarkInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.utile.JSONParser;
@@ -56,6 +60,8 @@ import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
 public class HttpUtil {
     // 首页信息
     public static String URL_HomeData = URL_PRO + "app/index.php";
+    //
+    public static String URL_VersionCode = URL_PRO + "app/edition/index.php";
     //积分
     public static String URL_PointData = URL_PRO + "app/exchange/index.php";
     //积分详情
@@ -72,6 +78,10 @@ public class HttpUtil {
     public static String URL_CategoryChild = URL_PRO + "app/type/children.php";
     //注册
     public static String URL_Register = URL_PRO + "app/user/register.php";
+    //忘记密码
+    public static String URL_Forget = URL_PRO + "app/password/forget.php";
+    //修改密码
+    public static String URL_ChangePWD = URL_PRO + "app/password/update.php";
     //手机验证码
     public static String URL_GetPhoneCode = URL_PRO + "app/user/phone.php";
     //登录
@@ -108,6 +118,10 @@ public class HttpUtil {
     public static String URL_OrderCancel = URL_PRO + "app/orderindex/cancel.php";
     //订单删除
     public static String URL_OrderDel = URL_PRO + "app/orderindex/delete.php";
+    //提醒发货
+    public static String URL_OrderRemind = URL_PRO + "app/aftersale/remind.php";
+    //物流
+    public static String URL_LogisticsDetail = URL_PRO + "app/logistics/alideliver.php";
     //退货
     public static String URL_RefundsGoods = URL_PRO + "app/aftersale/salesreturn.php";
     //退货列表
@@ -153,7 +167,19 @@ public class HttpUtil {
     public static Request<?> getPhoneCode(Context context, String phone, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("phone", phone);
-        Request<?> request = volleyPost(context, URL_GetPhoneCode, map, listener, null);
+        Request<?> request = volleyPost(context, URL_GetPhoneCode, map, listener, String.class);
+        return request;
+    }
+
+    /**
+     * getVersionCode
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getVersionCode(Context context, final ResultListener listener) {
+        Request<?> request = volleyGet(context, URL_VersionCode, listener, String.class);
         return request;
     }
 
@@ -175,6 +201,62 @@ public class HttpUtil {
         map.put("ident", code);
 //        BaseRes<String> res = new BaseRes<>();
         Request<?> request = volleyPost(context, URL_Register, map, listener, null);
+        return request;
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param context
+     * @param oldpwd
+     * @param newpwd
+     * @param listener
+     * @return
+     */
+    public static Request<?> getChangePWD(Context context, String oldpwd, String newpwd, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("password", newpwd);
+        map.put("upassword", newpwd);
+        map.put("oldpassword", oldpwd);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_ChangePWD, map, listener, null);
+        return request;
+    }
+
+    /**
+     * 忘记密码
+     *
+     * @param context
+     * @param phone
+     * @param code
+     * @param pwd
+     * @param listener
+     * @return
+     */
+    public static Request<?> getForgetPWD(Context context, String phone, String code, String pwd, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("phone", phone);
+        map.put("password", pwd);
+        map.put("upassword", pwd);
+        map.put("ident", code);
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_Forget, map, listener, null);
+        return request;
+    }
+
+    /**
+     * @param context
+     * @param url
+     * @param listener
+     * @return
+     */
+    public static Request<?> getHeaderUp(Context context, String url, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("pic", url);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_HeaderUp, map, listener, null);
         return request;
     }
 
@@ -207,7 +289,7 @@ public class HttpUtil {
      */
     public static Request<?> getChangeNickName(Context context, String nickName, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
-        map.put("nick_name", nickName);
+        map.put("nickname", nickName);
         map.put("user_id", ProjectApplication.mUser.getUser_id());
 //        map.put("ident", code);
 //        BaseRes<String> res = new BaseRes<>();
@@ -495,6 +577,7 @@ public class HttpUtil {
      * @return
      */
     public static Request<?> getAddCart(Context context, String goodsId, String attr_id, String goodsCount, final ResultListener listener) {
+
         Map<String, String> map = new HashMap<>();
         map.put("goods_id", goodsId);
         map.put("user_id", ProjectApplication.mUser.getUser_id());
@@ -591,8 +674,11 @@ public class HttpUtil {
      * @param listener
      * @return
      */
-    public static Request<?> getConfirmGoods(Context context, List<String> cat_id, final ResultListener listener) {
+    public static Request<?> getConfirmGoods(Context context, List<String> cat_id, int type, String goods_attr_id, int goods_count, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
+        map.put("type", type + "");
+        map.put("goods_attr_id", goods_attr_id + "");
+        map.put("goods_count", goods_count + "");
         map.put("cart_id", Util.strArrayToStr(cat_id));
         map.put("user_id", ProjectApplication.mUser.getUser_id());
 //        BaseRes<HomeData> res = new BaseRes<>();
@@ -687,6 +773,55 @@ public class HttpUtil {
 //        Type bean = new TypeToken<List<OrderInfo>>() {
 //        }.getType();
         Request<?> request = volleyPost(context, URL_OrderDel, map, resultListener, null);
+        return request;
+    }
+
+    /**
+     * @param context
+     * @param orderId
+     * @param type           1 提醒发货 2 确认收货
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getOrderRemind(Context context, String orderId, int type, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+        map.put("type", type + "");
+        map.put("order_sn", orderId);
+        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken<List<OrderInfo>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_OrderRemind, map, resultListener, String.class);
+        return request;
+    }
+
+    /**
+     * 物流
+     *
+     * @param context
+     * @param number
+     * @param type
+     * @param express
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getLogisticsDetail(Context context, String number, String type, String express, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("goods_id", goods_id);
+//        运单号：number
+//        快递公司代码：type
+//        快递公司名 ： express
+        map.put("number", number + "");
+        map.put("type", type + "");
+        map.put("express", express + "");
+//        map.put("user_id", ProjectApplication.mUser.getUser_id());
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken<List<OrderInfo>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_LogisticsDetail, map, resultListener, LogisticsInfo.class);
         return request;
     }
 
@@ -848,6 +983,7 @@ public class HttpUtil {
 
     /**
      * 积分商城
+     * type 四种值  0 ：首页列表 ，1：零元购，  2：日常家居， 3 新品  4 所有商品
      *
      * @param context
      * @param curpage
@@ -855,9 +991,10 @@ public class HttpUtil {
      * @param listener
      * @return
      */
-    public static Request<?> getPointGoods(Context context, int curpage, int cursize, final ResultListener listener) {
+    public static Request<?> getPointGoods(Context context, int type, int curpage, int cursize, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
 //        map.put("cart_id", Util.strArrayToStr(cat_id));
+        map.put("type", String.valueOf(type));
         map.put("curpage", String.valueOf(curpage));
         map.put("cursize", String.valueOf(cursize));
 //        BaseRes<HomeData> res = new BaseRes<>();
@@ -951,7 +1088,7 @@ public class HttpUtil {
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
 //        Type bean = new TypeToken<List<CategoryChild>>() {
 //        }.getType();
-        Request<?> request = volleyPost(context, URL_PointExchange, map, listener, null);
+        Request<?> request = volleyPost(context, URL_PointExchange, map, listener, ExchangeResultInfo.class);
         return request;
     }
 
@@ -1002,9 +1139,9 @@ public class HttpUtil {
                     if (s.indexOf("null{") >= 0) {
                         s = s.replace("null{", "{");
                     }
-                    Log.d("resp-url", url);
-                    Log.d("resp-map", map.toString());
-                    Log.d("resp-str", s);
+                    UtilLog.d("resp-url:" + url);
+                    UtilLog.d("resp-map:" + map.toString());
+                    UtilLog.d("resp-str:" + s);
                     JSONObject json = new JSONObject(s);
                     BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
                     if (obj.getState() != 1) {
@@ -1025,9 +1162,9 @@ public class HttpUtil {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 String errorMsg = VolleyErrorHelper.getMessage(volleyError, context);
-                Log.d("resp-url", url);
-                Log.d("resp-map", map.toString());
-                Log.d("resp-errorMsg", errorMsg);
+                UtilLog.d("resp-url:" + url);
+                UtilLog.d("resp-map:" + map.toString());
+                UtilLog.d("resp-errorMsg:" + errorMsg);
                 listener.onFail(errorMsg);
             }
         }) {
@@ -1368,8 +1505,8 @@ public class HttpUtil {
             @Override
             public void onResponse(String s) {
                 try {
-                    Log.d("resp-url", url);
-                    Log.d("resp-str", s);
+                    UtilLog.d("resp-url:" + url);
+                    UtilLog.d("resp-str:" + s);
 //                    JSONObject json = new JSONObject(s);
 //                    Object obj = JSONParser.toObject(json.toString(), bean);
 //                    listener.onSuccess(obj);
@@ -1393,8 +1530,8 @@ public class HttpUtil {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 String errorMsg = VolleyErrorHelper.getMessage(volleyError, context);
-                Log.d("resp-url", url);
-                Log.d("resp-errorMsg", errorMsg);
+                UtilLog.d("resp-url:" + url);
+                UtilLog.d("resp-errorMsg:" + errorMsg);
                 listener.onFail(errorMsg);
             }
         }) {

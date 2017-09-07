@@ -1,9 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.zhonghe.shiangou.ui.activity.LogisticsActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <RelativeLayout
+                android:id="@+id/id_user_point_rl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/common_white"
+                android:padding="@dimen/padding_xxlsize">
+
+                <ImageView
+                    android:id="@+id/ids_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:src="@mipmap/icon_logistics_detail" />
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_h"
+                    android:layout_toRightOf="@id/ids_point"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:id="@+id/ids_status"
+                        style="@style/common_content_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_lsize"
+                        android:text="@string/logistics_status" />
+
+                    <TextView
+                        android:id="@+id/id_logistics_progress_tv"
+                        style="@style/common_address_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/margin_lsize"
+                        android:layout_toRightOf="@id/ids_status"
+                        android:text="@string/common_pointtitle_str" />
+
+                    <TextView
+                        android:id="@+id/id_logistics_type_tv"
+                        style="@style/common_content_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ids_status"
+                        android:layout_marginLeft="@dimen/margin_lsize"
+                        android:layout_marginTop="@dimen/margin_m"
+                        tools:text="@string/logistics_type" />
+
+                    <TextView
+                        android:id="@+id/id_logistics_code_tv"
+                        style="@style/common_content_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/id_logistics_type_tv"
+                        android:layout_marginLeft="@dimen/margin_lsize"
+                        android:layout_marginTop="@dimen/margin_m"
+                        tools:text="@string/logistics_code" />
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <View style="@style/common_divider_view_style10" />
+
+            <LinearLayout
+                android:id="@+id/id_logistics_progress_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"></LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

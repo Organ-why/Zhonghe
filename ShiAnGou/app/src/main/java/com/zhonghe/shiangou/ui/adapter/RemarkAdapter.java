@@ -34,7 +34,7 @@ public class RemarkAdapter extends AbsAdapter<RemarkInfo> {
 
     public RemarkAdapter(Context context, List<RemarkInfo> addlist) {
         super(context, addlist);
-        adapter = new RefundSubmitAdapter(context);
+        adapter = new RefundSubmitAdapter(context,false);
     }
 
     @Override

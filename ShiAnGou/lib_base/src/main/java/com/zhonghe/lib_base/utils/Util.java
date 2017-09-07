@@ -2,6 +2,7 @@ package com.zhonghe.lib_base.utils;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.support.annotation.StringRes;
 import android.util.Patterns;
@@ -153,7 +154,7 @@ public class Util {
     public static String formatPrice(double price) {
         int p = (int) price;
         if (p != 0) {
-            return new DecimalFormat("###.##").format(price);
+            return new DecimalFormat("###.00").format(price);
 //            return new DecimalFormat("###.00").format(price);
         } else {
             return "0" + new DecimalFormat("###.00").format(price);
@@ -224,7 +225,7 @@ public class Util {
      * @param
      */
     public static void toast(Context context, int resId) {
-//        toast(context, context.getString(resId), Toast.LENGTH_SHORT);
+        toast(context, context.getString(resId), Toast.LENGTH_SHORT);
     }
 
     /**
@@ -269,7 +270,41 @@ public class Util {
         return (int) (pxValue / scale + 0.5f);
     }
 
+    /**
+     * 获取版本号
+     *
+     * @return
+     */
+    public static int getVersionCode(Context context) {
+        int code = 0;
+        try {
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            code = pi.versionCode;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
+        return code;
+    }
+
+    /**
+     * 获取版本名
+     *
+     * @return
+     */
+    public static String getVersionName(Context context) {
+        String name = "";
+        try {
+            PackageManager pm = context.getPackageManager();
+            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+            name = pi.versionName;
+        } catch (Exception ex) {
+            name = "unknown";
+        }
+
+        return name;
+    }
 
 
 

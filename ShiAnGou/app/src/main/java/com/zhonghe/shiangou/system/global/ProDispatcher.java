@@ -10,19 +10,23 @@ import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.data.bean.RefundsDetailInfo;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.constant.CstProject.BROADCAST_ACTION;
+import com.zhonghe.shiangou.ui.activity.AboutActivity;
 import com.zhonghe.shiangou.ui.activity.AddressManageActivity;
 import com.zhonghe.shiangou.ui.activity.ChangeAddressActivity;
 import com.zhonghe.shiangou.ui.activity.ChangeNameActivity;
+import com.zhonghe.shiangou.ui.activity.ChangePwdActivity;
 import com.zhonghe.shiangou.ui.activity.ConfirmOrderActivity;
 import com.zhonghe.shiangou.ui.activity.ForgetPwdActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsDetailActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsListActivity;
 import com.zhonghe.shiangou.ui.activity.LikeActivity;
 import com.zhonghe.shiangou.ui.activity.LoginActivity;
+import com.zhonghe.shiangou.ui.activity.LogisticsActivity;
 import com.zhonghe.shiangou.ui.activity.MainActivity;
 import com.zhonghe.shiangou.ui.activity.OrderManageActivity;
 import com.zhonghe.shiangou.ui.activity.PointActivity;
 import com.zhonghe.shiangou.ui.activity.PointDetailActivity;
+import com.zhonghe.shiangou.ui.activity.PointExcangeListActivity;
 import com.zhonghe.shiangou.ui.activity.PointExcangeRecordActivity;
 import com.zhonghe.shiangou.ui.activity.PointExchangeResultActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsActivity;
@@ -102,6 +106,18 @@ public class ProDispatcher {
     }
 
     /**
+     * 修改密码
+     * @param context
+     */
+    public static void goChangePwdActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, ChangePwdActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
      * 用户
      *
      * @param context
@@ -136,7 +152,23 @@ public class ProDispatcher {
         if (context == null) {
             return;
         }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
+            return;
+        }
         Intent intent = new Intent(context, SetupActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 关于我们
+     * @param context
+     */
+    public static void goAboutActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, AboutActivity.class);
         context.startActivity(intent);
     }
 
@@ -199,12 +231,19 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goConfirmOrderActivity(Context context, ArrayList<String> ids) {
+    public static void goConfirmOrderActivity(Context context, ArrayList<String> ids,int typeCode,String goods_attr_id, int goods_count) {
         if (context == null) {
+            return;
+        }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
             return;
         }
         Intent intent = new Intent(context, ConfirmOrderActivity.class);
         intent.putStringArrayListExtra(CstProject.KEY.ID, ids);
+        intent.putExtra(CstProject.KEY.TYPE, typeCode);
+        intent.putExtra(CstProject.KEY.COUNT, goods_count);
+        intent.putExtra(CstProject.KEY.ATTRID, goods_attr_id);
         context.startActivity(intent);
     }
 
@@ -217,8 +256,28 @@ public class ProDispatcher {
         if (context == null) {
             return;
         }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
+            return;
+        }
         Intent intent = new Intent(context, OrderManageActivity.class);
         intent.putExtra(CstProject.KEY.INDEX, indexId);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 物流
+     *
+     * @param context
+     */
+    public static void goLogisticsActivity(Context context, String num, String type, String express) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, LogisticsActivity.class);
+        intent.putExtra(CstProject.KEY.VALUES1, num);
+        intent.putExtra(CstProject.KEY.VALUES2, type);
+        intent.putExtra(CstProject.KEY.VALUES3, express);
         context.startActivity(intent);
     }
 
@@ -229,6 +288,10 @@ public class ProDispatcher {
      */
     public static void goRefundsActivity(Context context) {
         if (context == null) {
+            return;
+        }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
             return;
         }
         Intent intent = new Intent(context, RefundsActivity.class);
@@ -256,6 +319,10 @@ public class ProDispatcher {
      */
     public static void goLikeActivity(Context context) {
         if (context == null) {
+            return;
+        }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
             return;
         }
         Intent intent = new Intent(context, LikeActivity.class);
@@ -363,6 +430,21 @@ public class ProDispatcher {
     }
 
     /**
+     * 积分商品列表
+     *
+     * @param context
+     * @param Type type 四种值  0 ：首页列表 ，1：零元购，  2：日常家居， 3 新品  4 所有商品
+     */
+    public static void goPointExcangeListActivity(Context context, int Type) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, PointExcangeListActivity.class);
+        intent.putExtra(CstProject.KEY.TYPE, Type);
+        context.startActivity(intent);
+    }
+
+    /**
      * 商品列表
      *
      * @param context
@@ -424,7 +506,8 @@ public class ProDispatcher {
         }
         Intent intent = new Intent();
         intent.setAction(BROADCAST_ACTION.LOGIN_ACTION);
-        context.sendBroadcast(intent);
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
+        manager.sendBroadcast(intent);
     }
 
     /**
@@ -441,6 +524,20 @@ public class ProDispatcher {
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
         manager.sendBroadcast(intent);
     }
+    /**
+     * 兑换
+     *
+     * @param context
+     */
+    public static void sendExchangeBroadcast(@NonNull Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setAction(BROADCAST_ACTION.POINT_EXCHANGE_ACTION);
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
+        manager.sendBroadcast(intent);
+    }
 
     /**
      * 支付返回
@@ -450,6 +547,10 @@ public class ProDispatcher {
      */
     public static void sendPayResultBroadcast(Context context, int resultCode) {
         if (context == null) {
+            return;
+        }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
             return;
         }
         Intent intent = new Intent();

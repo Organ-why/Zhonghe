@@ -97,6 +97,7 @@
 
 
     <Button
+        android:visibility="gone"
         android:id="@+id/id_refund_submit_bt"
         style="@style/button_graycirc_bg_style"
         android:layout_width="match_parent"

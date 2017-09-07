@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
@@ -22,7 +24,9 @@ import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.activity.MainActivity;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
+import com.zhonghe.shiangou.ui.dialog.AppUpdataDialog;
 import com.zhonghe.shiangou.ui.listener.HomeScrollListener;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.DynamicBanner;
@@ -40,7 +44,7 @@ import butterknife.OnClick;
  * Date: 2017/7/4.
  * Author: whyang
  */
-public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListView.addCartListener {
+public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListView.addCartListener, PullToRefreshBase.OnRefreshListener2 {
     @Bind(R.id.cart_id_lv)
     PullToRefreshScrollView cartIdLv;
     @Bind(R.id.id_home_category_horizontal_title_hl)
@@ -69,7 +73,6 @@ public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListVi
     protected void initLayout() {
         setContentView(R.layout.fragment_home);
         ButterKnife.bind(this, getView());
-
     }
 
 //    @Override
@@ -86,7 +89,9 @@ public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListVi
 
     @Override
     protected void initViews() {
+        cartIdLv.setOnRefreshListener(this);
         getHomeData();
+        getVersionName();
     }
 
     void getHomeData() {
@@ -97,18 +102,18 @@ public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListVi
             public void onFail(String error) {
                 setWaitingDialog(false);
                 Util.toast(mActivity, error);
-                Log.i("onFial", error);
             }
 
             @Override
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
                 HomeData homeData = (HomeData) obj;
+                cartIdLv.onRefreshComplete();
+                llContentTitle.removeAllViews();
                 bannerInfo = homeData.getBannerX();
                 categoryInfo = homeData.getCategoryX();
                 showBanner();
                 showCategory();
-                Log.i("onSuccess", obj.toString());
             }
         });
         addRequest(request);
@@ -194,12 +199,6 @@ public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListVi
 
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-    @Override
     protected void initTop() {
     }
 
@@ -225,6 +224,10 @@ public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListVi
 
     @Override
     public void OnAddCart(final String goods_id) {
+        if (ProjectApplication.mUser == null) {
+            ProDispatcher.goLoginActivity(mActivity);
+            return;
+        }
         setWaitingDialog(true);
         Request<?> request = HttpUtil.getAddCart(mActivity, goods_id, "", "1", new ResultListener() {
 
@@ -245,5 +248,37 @@ public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListVi
             }
         });
         addRequest(request);
+    }
+
+    void getVersionName() {
+        Request<?> request = HttpUtil.getVersionCode(mActivity, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                String version = (String) obj;
+                String versionName = Util.getVersionName(mActivity);
+                UtilLog.d(versionName + "..................");
+                if (!version.equals(versionName)) {
+                    AppUpdataDialog dialog = new AppUpdataDialog(mActivity, version);
+                    dialog.show();
+                }
+
+            }
+        });
+        addRequest(request);
+    }
+
+    @Override
+    public void onPullDownToRefresh(PullToRefreshBase refreshView) {
+        getHomeData();
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase refreshView) {
+
     }
 }

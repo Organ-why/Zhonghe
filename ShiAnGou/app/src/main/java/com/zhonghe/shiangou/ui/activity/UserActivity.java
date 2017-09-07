@@ -7,14 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
+import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.lib_base.constant.CstScheme;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.RefundImgInfo;
+import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseSelectImageActivity;
+import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.utile.image.CropParams;
 
 import java.io.File;
@@ -57,7 +61,7 @@ public class UserActivity extends BaseSelectImageActivity implements BaseSelectI
         setData();
     }
 
-    void setData(){
+    void setData() {
         ProjectApplication.mImageLoader.loadCircleImage(idSetupSetheaderSv, ProjectApplication.mUser.getUser_pic());
     }
 
@@ -76,6 +80,7 @@ public class UserActivity extends BaseSelectImageActivity implements BaseSelectI
             case R.id.id_user_logout_bt:
                 ProDispatcher.sendLogoutBroadcast(mContext);
                 ProjectApplication.mUser = null;
+                ProjectApplication.mPrefrence.setUserId(null);
                 finish();
                 break;
         }
@@ -102,14 +107,17 @@ public class UserActivity extends BaseSelectImageActivity implements BaseSelectI
             mPath = url.replace(CstScheme.FILE, "");
             info.setImgUrl(url);
             files.add(new File(mPath));
-            upLowdImage(files, this);
+            upLowdImage(files, true, this);
         }
     }
 
 
     @Override
-    public void onLoadFinish(String imgfile) {
+    public void onLoadFinish(final String imgfile) {
+        setWaitingDialog(false);
+        ProDispatcher.sendLoginBroadcast(mContext);
         ProjectApplication.mUser.setUser_pic(imgfile);
+        setData();
     }
 
     @Override

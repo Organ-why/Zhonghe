@@ -238,6 +238,7 @@ public class SkuSelectDialog extends PopupWindow implements View.OnClickListener
                 skuSelectListener.onAddCart(mSkuId);
                 break;
             case R.id.id_goodsdetail_buynow_bt:
+                skuSelectListener.onBuyNow(mSkuId);
                 break;
             case R.id.sku_select_close_iv:
                 dismiss();

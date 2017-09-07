@@ -269,11 +269,13 @@
     </RelativeLayout>
 
     <View
+        android:visibility="gone"
         style="@style/common_divider_style1"/>
     <RelativeLayout
         android:id="@+id/id_user_msg_rl"
         android:layout_width="match_parent"
         android:layout_height="@dimen/user_item_height"
+        android:visibility="gone"
         android:background="@color/common_white"
         android:paddingLeft="@dimen/padding_xxlsize"
         android:paddingRight="@dimen/padding_xxlsize">
