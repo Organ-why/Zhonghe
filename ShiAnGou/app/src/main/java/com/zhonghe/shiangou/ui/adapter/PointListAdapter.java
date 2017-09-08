@@ -11,7 +11,6 @@ import com.zhonghe.lib_base.baseui.adapter.AbsAdapter;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.PointItemInfo;
-import com.zhonghe.shiangou.data.bean.PointItemListInfo;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 
@@ -26,8 +25,8 @@ import butterknife.ButterKnife;
  * desc:
  */
 
-public class PointListAdapter extends AbsAdapter<PointItemListInfo> {
-    public PointListAdapter(Context context, List<PointItemListInfo> datas) {
+public class PointListAdapter extends AbsAdapter<PointItemInfo> {
+    public PointListAdapter(Context context, List<PointItemInfo> datas) {
         super(context, datas);
     }
 
@@ -41,7 +40,7 @@ public class PointListAdapter extends AbsAdapter<PointItemListInfo> {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        final PointItemListInfo info = mList.get(i);
+        final PointItemInfo info = mList.get(i);
         ProjectApplication.mImageLoader.loadImage(holder.idHomeCategoryItemIv, info.getGoods_thumb());
         holder.idPointZeroSubmitBt.setOnClickListener(new View.OnClickListener() {
             @Override

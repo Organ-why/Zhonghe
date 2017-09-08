@@ -11,7 +11,7 @@ import java.util.List;
 public class PointGoodsInfo extends BaseBean {
 
     private String banner;
-    private List<PointItemListInfo> list;
+    private List<PointItemInfo> list;
 
     public String getBanner() {
         return banner;
@@ -21,11 +21,11 @@ public class PointGoodsInfo extends BaseBean {
         this.banner = banner;
     }
 
-    public List<PointItemListInfo> getData() {
+    public List<PointItemInfo> getData() {
         return list;
     }
 
-    public void setData(List<PointItemListInfo> list) {
+    public void setData(List<PointItemInfo> list) {
         this.list = list;
     }
 

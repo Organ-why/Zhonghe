@@ -29,8 +29,19 @@ public class RefundsDetailInfo extends BaseBean {
     private String return_sn;
     private String datetime;
     private String order_id;
-    private String total_price;
+    private double total_price;
+    private int pay_class;
+
+    //    pay_class 付款类型 0为金钱， 1为积分
     private List<SalesStateBean> sales_state;
+
+    public int getPay_class() {
+        return pay_class;
+    }
+
+    public void setPay_class(int pay_class) {
+        this.pay_class = pay_class;
+    }
 
     public String getReturn_id() {
         return return_id;
@@ -88,11 +99,11 @@ public class RefundsDetailInfo extends BaseBean {
         this.order_id = order_id;
     }
 
-    public String getTotal_price() {
+    public double getTotal_price() {
         return total_price;
     }
 
-    public void setTotal_price(String total_price) {
+    public void setTotal_price(double total_price) {
         this.total_price = total_price;
     }
 

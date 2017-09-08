@@ -15,6 +15,7 @@ import com.zhonghe.lib_base.utils.UtilPackage;
 import com.zhonghe.lib_base.utils.UtilStorage;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.http.DownloadUtil;
+import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.activity.MainActivity;
 
@@ -31,7 +32,7 @@ import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
 public class AppUpdataDialog extends BaseDialog {
     // 应用更新下载通知ID
     private static final int APP_DOWNLOAD_NOTIFY_ID = 0;
-    private static final String APP_DOWNLOAD_URL = URL_PRO + "app/dowload/app-release.apk";
+
     String versionName;
 
     public AppUpdataDialog(Context context, String versionName) {
@@ -99,7 +100,7 @@ public class AppUpdataDialog extends BaseDialog {
         final String filePath = UtilStorage.createFilePath(mContext, CstProject.PROJECT + CstFile.SUFFIX_APK);
         //开始
         nofityAppDownload(mContext, 0);
-        new DownloadUtil().download(APP_DOWNLOAD_URL, filePath, new DownloadUtil.OnDownloadListener() {
+        new DownloadUtil().download(HttpUtil.APP_DOWNLOAD_URL, filePath, new DownloadUtil.OnDownloadListener() {
             @Override
             public void onDownloadSuccess(String name) {
                 cancelAppDownload(mContext);

@@ -1,17 +1,14 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
-import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.PointGoodsInfo;
 import com.zhonghe.shiangou.data.bean.PointItemInfo;
-import com.zhonghe.shiangou.data.bean.PointItemListInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.adapter.PointListAdapter;
@@ -34,7 +31,7 @@ public class PointExcangeListActivity extends BaseTopActivity implements PullToR
     PullToRefreshListView idDefaultListview;
     PointListAdapter adapter;
     private int type;
-    List<PointItemListInfo> goodsInfos;
+    List<PointItemInfo> goodsInfos;
     int curpage = 1;
     int cursize = 10;
 

@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.RefundsDetailInfo;
@@ -112,10 +113,15 @@ public class RefundsDetailActivity extends BaseTopActivity {
                     idRefundSuccessTmv.setText(salesInfo.getDatetime());
                     break;
             }
-            idRefundMsgCodeTv.setText(String.format(mContext.getString(R.string.prodetail_refunds_code_format), mData.getOrder_sn()));
-            idRefundMsgExplainTv.setText(String.format(mContext.getString(R.string.prodetail_refunds_explain_format), mData.getExplain()));
-            idRefundMsgTotalTv.setText(UtilString.nullToEmpty(mData.getTotal_price()));
+        }
+        idRefundMsgCodeTv.setText(String.format(mContext.getString(R.string.prodetail_refunds_code_format), mData.getOrder_sn()));
+        idRefundMsgExplainTv.setText(String.format(mContext.getString(R.string.prodetail_refunds_explain_format), mData.getExplain()));
 
+        int childClass = mData.getPay_class();
+        if (childClass == 0) {
+            idRefundMsgTotalTv.setText(Util.formatPoint(mData.getTotal_price()));
+        } else {
+            idRefundMsgTotalTv.setText(Util.formatPrice(mData.getTotal_price()));
         }
     }
 

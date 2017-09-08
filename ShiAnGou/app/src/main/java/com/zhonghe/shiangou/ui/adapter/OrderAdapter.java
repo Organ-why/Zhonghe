@@ -95,8 +95,15 @@ public class OrderAdapter extends AbsAdapter<OrderInfo> {
             holder.idOrderNegativeTv2.setText(mContext.getString(R.string.order_bt_del));
             holder.idOrderPositiveTv.setVisibility(View.GONE);
         }
+        //    pay_class 付款类型 0为金钱， 1为积分
+        int pay_class = item.getPay_class();
+        if (pay_class == 0) {
+            holder.idOrderTotalTv.setText(UtilString.nullToEmpty(Util.formatPrice(item.getPrice())));
+        } else {
+            holder.idOrderTotalTv.setText(UtilString.nullToEmpty(Util.formatPoint(item.getPrice())));
+        }
         holder.idOrderTypeTv.setText(status);
-        holder.idOrderTotalTv.setText(UtilString.nullToEmpty(Util.formatPrice(item.getPrice())));
+
         holder.idOrderNumTv.setText(String.format(mContext.getResources().getString(R.string.order_item_count), item.getCount()));
 
         holder.goodslist_ll.removeAllViews();
@@ -105,13 +112,21 @@ public class OrderAdapter extends AbsAdapter<OrderInfo> {
                 View orderItem = mInflater.inflate(R.layout.item_order_child, null);
                 SimpleDraweeView img = (SimpleDraweeView) orderItem.findViewById(R.id.id_order_goods_img);
                 TextView goodsname = (TextView) orderItem.findViewById(R.id.id_order_goods_name_tv);
+                TextView goodsprice = (TextView) orderItem.findViewById(R.id.id_order_goods_price_tv);
+
+                int payClass = goodsInfo.getPay_class();
+                if (payClass == 0) {
+                    goodsprice.setText(UtilString.nullToEmpty(Util.formatPrice(item.getPrice())));
+                } else {
+                    goodsprice.setText(UtilString.nullToEmpty(Util.formatPoint(item.getPrice())));
+                }
                 if (pay_status.equals("4")) {
                     TextView remarkTv = (TextView) orderItem.findViewById(R.id.id_order_remark_tv);
                     remarkTv.setVisibility(View.VISIBLE);
                     remarkTv.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            ProDispatcher.goRemarkActivity(mContext, goodsInfo.getGoods_id(),goodsInfo.getGoods_img());
+                            ProDispatcher.goRemarkActivity(mContext, goodsInfo.getGoods_id(), goodsInfo.getGoods_img());
                         }
                     });
                 }

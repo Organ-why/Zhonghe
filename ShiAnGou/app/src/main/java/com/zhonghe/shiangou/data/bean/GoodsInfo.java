@@ -5,7 +5,7 @@ package com.zhonghe.shiangou.data.bean;
  * 列表商品信息
  */
 
-public class GoodsInfo extends BaseBean{
+public class GoodsInfo extends BaseBean {
 
     /**
      * goods_id : 105
@@ -67,6 +67,8 @@ public class GoodsInfo extends BaseBean{
     private double market_price;
     private String virtual_sales;
     private double shop_price;
+    private double goods_price;
+    private String goods_count;
     private String promote_price;
     private String promote_start_date;
     private String promote_end_date;
@@ -98,6 +100,32 @@ public class GoodsInfo extends BaseBean{
     private String rank_integral;
     private String suppliers_id;
     private String is_check;
+    private int pay_class;
+
+    //    pay_class 付款类型 0为金钱， 1为积分
+    public int getPay_class() {
+        return pay_class;
+    }
+
+    public double getGoods_price() {
+        return goods_price;
+    }
+
+    public void setGoods_price(double goods_price) {
+        this.goods_price = goods_price;
+    }
+
+    public String getGoods_count() {
+        return goods_count;
+    }
+
+    public void setGoods_count(String goods_count) {
+        this.goods_count = goods_count;
+    }
+
+    public void setPay_class(int pay_class) {
+        this.pay_class = pay_class;
+    }
 
     public String getGoods_id() {
         return goods_id;

@@ -58,6 +58,7 @@ import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
  */
 
 public class HttpUtil {
+    public static String APP_DOWNLOAD_URL =  "http://www.shiangou.com.cn/Android/app-release.apk";
     // 首页信息
     public static String URL_HomeData = URL_PRO + "app/index.php";
     //

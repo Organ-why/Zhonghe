@@ -104,7 +104,7 @@ public class PointDetailActivity extends BaseTopActivity {
     }
 
     void getExchangeGoods() {
-        if (mData.getAddress()==null||UtilString.isEmpty(mData.getAddress().getAddress_id())) {
+        if (mData.getAddress() == null || UtilString.isEmpty(mData.getAddress().getAddress_id())) {
             Util.toast(mContext, R.string.confirmorder_receiptmsg_text);
             return;
         }
@@ -146,7 +146,7 @@ public class PointDetailActivity extends BaseTopActivity {
     void setDataShow() {
         setAddressShow(mData.getAddress());
         ProjectApplication.mImageLoader.loadImage(idPointIv, mData.getGoods().getGoods_thumb());
-        idPointDetailPointTv.setText(Util.formatPrice(mData.getGoods().getExchange_integral()));
+        idPointDetailPointTv.setText(UtilString.nullToEmpty(Util.formatPrice(mData.getGoods().getExchange_integral())));
         idPointDetailNameTv.setText(UtilString.nullToEmpty(mData.getGoods().getGoods_name()));
         idPointDetailStockTv.setText(String.format(getString(R.string.point_msg_stock), mData.getGoods().getGoods_number()));
         idPointDetailMsgnameTv.setText(String.format(getString(R.string.point_msg_name), UtilString.nullToEmpty(mData.getGoods().getGoods_name())));

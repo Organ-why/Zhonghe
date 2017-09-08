@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -28,26 +29,35 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:visibility="gone"
             android:layout_marginLeft="@dimen/margin_h"
             android:background="@drawable/circle_orange_hollow_bg"
             android:gravity="center"
             android:padding="@dimen/padding_xxlsize"
             android:text="@string/order_bt_remark"
-            android:textColor="@color/common_font_deep" />
+            android:textColor="@color/common_font_deep"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/id_order_goods_name_tv"
             style="@style/common_order_name_style"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
+            android:layout_alignTop="@id/id_order_goods_img"
             android:layout_marginLeft="@dimen/margin_h"
             android:layout_toLeftOf="@id/id_order_positive_tv"
             android:layout_toRightOf="@id/id_order_goods_img"
             android:text="滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇滑子菇" />
 
-
+        <TextView
+            android:id="@+id/id_order_goods_price_tv"
+            style="@style/home_category_item_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/id_order_goods_name_tv"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:layout_marginTop="@dimen/margin_h"
+            android:layout_toRightOf="@id/id_order_goods_img"
+            tools:text="288积分" />
     </RelativeLayout>
 
     <View style="@style/common_divider_style" />

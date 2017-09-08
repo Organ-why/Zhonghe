@@ -108,6 +108,17 @@ public class PointItemInfo extends BaseBean {
     private String is_exchange;
     private String cat_name;
     private String phone_number;
+    private int pay_class;
+
+    //    pay_class 付款类型 0为金钱， 1为积分
+
+    public int getPay_class() {
+        return pay_class;
+    }
+
+    public void setPay_class(int pay_class) {
+        this.pay_class = pay_class;
+    }
 
     public String getPhone_number() {
         return phone_number;

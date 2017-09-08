@@ -49,8 +49,13 @@ public class RefundsAdapter extends AbsAdapter<RefundsItemInfo> {
             holder = (ViewHolder) view.getTag();
         }
         final RefundsItemInfo info = mList.get(i);
+        int payClass = info.getPay_class();
+        if (payClass == 0) {
+            holder.idRefundPriceTv.setText(UtilString.nullToEmpty(Util.formatPoint(info.getTotal_price())));
+        } else {
+            holder.idRefundPriceTv.setText(UtilString.nullToEmpty(Util.formatPrice(info.getTotal_price())));
+        }
         holder.idsTotalMoney.setText(String.format(mContext.getString(R.string.prodetail_refunds_code_format), info.getOrder_sn()));
-        holder.idRefundPriceTv.setText(Util.formatPrice(info.getTotal_price()));
         holder.idRefundDescTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,15 +64,21 @@ public class RefundsAdapter extends AbsAdapter<RefundsItemInfo> {
         });
         holder.idRefundGoodsLl.removeAllViews();
         if (UtilList.isNotEmpty(info.getGoods_list())) {
-            for (final RefundsItemInfo.GoodsListBean goodsInfo : info.getGoods_list()) {
+            for (final GoodsInfo goodsInfo : info.getGoods_list()) {
                 View orderItem = mInflater.inflate(R.layout.item_refunds, null);
                 SimpleDraweeView img = (SimpleDraweeView) orderItem.findViewById(R.id.id_home_category_item_iv);
                 TextView goodsname = (TextView) orderItem.findViewById(R.id.id_home_category_item_title_tv);
                 TextView goodsprice = (TextView) orderItem.findViewById(R.id.id_home_category_item_price_tv);
                 TextView goodsnum = (TextView) orderItem.findViewById(R.id.id_goods_num_tv);
+                int childClass = goodsInfo.getPay_class();
+                if (childClass == 0) {
+                    goodsprice.setText(Util.formatPoint(goodsInfo.getGoods_price()));
+                } else {
+                    goodsprice.setText(Util.formatPrice(goodsInfo.getGoods_price()));
+                }
                 ProjectApplication.mImageLoader.loadImage(img, goodsInfo.getGoods_thumb());
                 goodsname.setText(UtilString.nullToEmpty(goodsInfo.getGoods_name()));
-                goodsprice.setText(Util.formatPrice(goodsInfo.getGoods_price()));
+
                 goodsnum.setText(String.format(mContext.getString(R.string.confirmorder_num), goodsInfo.getGoods_count()));
                 holder.idRefundGoodsLl.addView(orderItem);
             }

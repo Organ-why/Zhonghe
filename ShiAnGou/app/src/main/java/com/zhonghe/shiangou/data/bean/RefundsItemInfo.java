@@ -26,7 +26,17 @@ public class RefundsItemInfo extends BaseBean {
     private String explain;
     private double total_price;
     private String order_id;
-    private List<GoodsListBean> goods_list;
+    private int pay_class;
+    //    pay_class 付款类型 0为金钱， 1为积分
+    private List<GoodsInfo> goods_list;
+
+    public int getPay_class() {
+        return pay_class;
+    }
+
+    public void setPay_class(int pay_class) {
+        this.pay_class = pay_class;
+    }
 
     public String getReturn_id() {
         return return_id;
@@ -76,11 +86,11 @@ public class RefundsItemInfo extends BaseBean {
         this.order_id = order_id;
     }
 
-    public List<GoodsListBean> getGoods_list() {
+    public List<GoodsInfo> getGoods_list() {
         return goods_list;
     }
 
-    public void setGoods_list(List<GoodsListBean> goods_list) {
+    public void setGoods_list(List<GoodsInfo> goods_list) {
         this.goods_list = goods_list;
     }
 

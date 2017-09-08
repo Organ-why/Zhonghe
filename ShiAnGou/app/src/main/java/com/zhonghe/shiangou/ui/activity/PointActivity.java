@@ -1,11 +1,9 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,7 +17,6 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.PointGoodsInfo;
 import com.zhonghe.shiangou.data.bean.PointItemInfo;
-import com.zhonghe.shiangou.data.bean.PointItemListInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
@@ -45,7 +42,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
     @Bind(R.id.id_point_gv)
     PullToRefreshGridView idPointGv;
     PointAdapter adapter;
-    List<PointItemListInfo> goodsInfos;
+    List<PointItemInfo> goodsInfos;
     int curpage = 1;
     int cursize = 10;
     LinearLayout idPointBannerLl;

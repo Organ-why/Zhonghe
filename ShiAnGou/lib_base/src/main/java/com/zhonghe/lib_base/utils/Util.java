@@ -163,16 +163,36 @@ public class Util {
         }
     }
 
+    /**
+     * 格式积分
+     *
+     * @param price
+     * @return
+     */
+    public static String formatPoint(double price) {
+        int p = (int) price;
+        if (p != 0) {
+            return new DecimalFormat("###.00").format(price) + "积分";
+//            return new DecimalFormat("###.00").format(price);
+        } else {
+            return "0" + new DecimalFormat("###.00").format(price) + "积分";
+//            return "0" + new DecimalFormat("###.00").format(price);
+
+        }
+    }
+
     public static String ALLDATE = "yyyy-MM-dd";
     public static String ALLDATETIME = "yyyy-MM-dd";
+
     /**
      * 格式化时间
+     *
      * @param
      * @param format
      * @return
      */
     public static String formatDate(long mills, String format) {
-        mills = mills*1000;
+        mills = mills * 1000;
         SimpleDateFormat sdf = new SimpleDateFormat(format);
         return sdf.format(new Date(mills));
     }
@@ -181,6 +201,7 @@ public class Util {
 
     /**
      * 屏幕宽
+     *
      * @param context
      * @return
      */
@@ -305,7 +326,6 @@ public class Util {
 
         return name;
     }
-
 
 
 }

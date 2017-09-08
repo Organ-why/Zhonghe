@@ -17,7 +17,17 @@ public class OrderInfo extends BaseBean {
     String order_sn, pay_status, number, type, express;
     double price;
     int count;
+//    pay_class 付款类型 0为金钱， 1为积分
+    private int pay_class;
     List<GoodsInfo> goods_list;
+
+    public int getPay_class() {
+        return pay_class;
+    }
+
+    public void setPay_class(int pay_class) {
+        this.pay_class = pay_class;
+    }
 
     public String getNumber() {
         return number;
