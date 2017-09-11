@@ -116,9 +116,9 @@ public class OrderAdapter extends AbsAdapter<OrderInfo> {
 
                 int payClass = goodsInfo.getPay_class();
                 if (payClass == 0) {
-                    goodsprice.setText(UtilString.nullToEmpty(Util.formatPrice(item.getPrice())));
+                    goodsprice.setText(UtilString.nullToEmpty(Util.formatPrice(goodsInfo.getGoods_price())));
                 } else {
-                    goodsprice.setText(UtilString.nullToEmpty(Util.formatPoint(item.getPrice())));
+                    goodsprice.setText(UtilString.nullToEmpty(Util.formatPoint(goodsInfo.getGoods_price())));
                 }
                 if (pay_status.equals("4")) {
                     TextView remarkTv = (TextView) orderItem.findViewById(R.id.id_order_remark_tv);
