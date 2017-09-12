@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,4 +10,11 @@
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
-</LinearLayout>
+
+    <com.zhonghe.shiangou.ui.widget.HorizontalListView
+        android:id="@+id/id_home_category_horizontal_title_hl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_category_title_height"
+        android:background="@color/res_color_white"
+        android:visibility="gone"></com.zhonghe.shiangou.ui.widget.HorizontalListView>
+</RelativeLayout>

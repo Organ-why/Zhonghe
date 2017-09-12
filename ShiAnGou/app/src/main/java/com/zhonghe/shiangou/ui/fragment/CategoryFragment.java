@@ -70,7 +70,7 @@ public class CategoryFragment extends BaseTopFragment {
     protected void initViews() {
         rl_bg.setBackgroundResource(R.color.res_color_white);
         titleUserIvb.setImageResource(R.mipmap.icon_user_black);
-        titleMsgIvb.setImageResource(R.mipmap.icon_msg_black);
+        titleMsgIvb.setImageResource(R.mipmap.icon_zxing_black);
         idCategoryTitleTv.setBackgroundResource(R.drawable.circle_search_gray_bg);
 
         categoryParents = new ArrayList<>();

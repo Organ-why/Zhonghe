@@ -29,6 +29,8 @@ import com.zhonghe.shiangou.ui.activity.PointDetailActivity;
 import com.zhonghe.shiangou.ui.activity.PointExcangeListActivity;
 import com.zhonghe.shiangou.ui.activity.PointExcangeRecordActivity;
 import com.zhonghe.shiangou.ui.activity.PointExchangeResultActivity;
+import com.zhonghe.shiangou.ui.activity.PointUnlineActivity;
+import com.zhonghe.shiangou.ui.activity.PointUnlineDetailActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsBeginActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsDetailActivity;
@@ -398,6 +400,28 @@ public class ProDispatcher {
         }
         Intent intent = new Intent(context, PointDetailActivity.class);
         intent.putExtra(CstProject.KEY.ID, goods_id);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 积分线下
+     * @param context
+     */
+    public static void goPointUnlineActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, PointUnlineActivity.class);
+//        intent.putExtra(CstProject.KEY.ID, goods_id);
+        context.startActivity(intent);
+    }
+
+    public static void goPointUnlineDetailActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, PointUnlineDetailActivity.class);
+//        intent.putExtra(CstProject.KEY.ID, goods_id);
         context.startActivity(intent);
     }
 

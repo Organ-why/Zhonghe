@@ -1,7 +1,5 @@
 package com.zhonghe.shiangou.ui.fragment;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,14 +22,16 @@ import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.adapter.HomeCategoryTitleAdapter;
 import com.zhonghe.shiangou.ui.adapter.RecyAdapter;
+import com.zhonghe.shiangou.ui.adapter.RecyHeaderAdapter;
+import com.zhonghe.shiangou.ui.adapter.ViewHolder;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.ui.dialog.AppUpdataDialog;
-import com.zhonghe.shiangou.ui.listener.HomeScrollListener;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.DynamicBanner;
 import com.zhonghe.shiangou.ui.widget.FlowLayout;
-import com.zhonghe.shiangou.ui.widget.HomeCategoryListView;
+import com.zhonghe.shiangou.ui.widget.HorizontalListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +52,12 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
 
     List<HomeCategoryInfo> categoryInfo;
     List<BaseBannerInfo> bannerInfo;
+    @Bind(R.id.id_home_category_horizontal_title_hl)
+    HorizontalListView horizontalListView;
     private RecyAdapter adapter;
+    private LinearLayoutManager layoutManager;
+    private boolean mShouldScroll;
+    private int mToPosition;
 
 
     @Override
@@ -67,7 +73,8 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
         llContentList = (LinearLayout) header.findViewById(R.id.ll_content_list);
 
         categoryInfo = new ArrayList<>();
-        idRecyclerview.setLayoutManager(new LinearLayoutManager(mActivity));//这里用线性显示 类似于listview
+        layoutManager = new LinearLayoutManager(mActivity);
+        idRecyclerview.setLayoutManager(layoutManager);//这里用线性显示 类似于listview
 //        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));//这里用线性宫格显示 类似于grid view
 //        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL));//这里用线性宫格显示 类似于瀑布流
         idRecyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -79,13 +86,36 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
+                // 第一个可见位置
+                int firstItem = recyclerView.getChildLayoutPosition(recyclerView.getChildAt(0));
+                if (firstItem > 0) {
+                    horizontalListView.setVisibility(View.VISIBLE);
+                } else {
+                    horizontalListView.setVisibility(View.GONE);
+                }
+
+                //在这里进行第二次滚动（最后的100米！）
+//                if (mShouldScroll ){
+//                    mShouldScroll = false;
+//                    //获取要置顶的项在当前屏幕的位置，mIndex是记录的要置顶项在RecyclerView中的位置
+//                    int first =layoutManager.findFirstVisibleItemPosition();
+//                    int last = layoutManager.findLastVisibleItemPosition();
+//                    if ( 0 <= first && first < recyclerView.getChildCount()){
+//                        //获取要置顶的项顶部离RecyclerView顶部的距离
+////                        int top = recyclerView.getChildAt(first).getTop();
+//                        int top = idRecyclerview.getChildAt(last - first).getTop();
+//                        idRecyclerview.smoothScrollBy(0, top);
+//                        //最后的移动
+////                        recyclerView.scrollBy(0, top);
+//                    }
+//                }
             }
         });
 
-//        idRecyclerview.scrollToPosition();
         adapter = new RecyAdapter(mActivity, categoryInfo, this);
-        idRecyclerview.setAdapter(adapter);
-//        idRecyclerview.addView(header);
+        RecyHeaderAdapter<ViewHolder> headerAdapter = new RecyHeaderAdapter<>(adapter);
+        headerAdapter.addHeaderView(header);
+        idRecyclerview.setAdapter(headerAdapter);
         getHomeData();
         getVersionName();
     }
@@ -106,8 +136,8 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
                 bannerInfo = homeData.getBannerX();
                 categoryInfo = homeData.getCategoryX();
                 adapter.setData(categoryInfo);
-                showCategory();
                 showBanner();
+                showCategory();
 
             }
         });
@@ -116,6 +146,14 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
 
 
     void showCategory() {
+        HomeCategoryTitleAdapter horadapter = new HomeCategoryTitleAdapter(mActivity, categoryInfo);
+        horizontalListView.setAdapter(horadapter);
+        horizontalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                RecyScrollTo(i);
+            }
+        });
         int screenWidth = Util.getScreenWidth(mActivity);
         //分类icon部分
         View viewCategoryTitle = LayoutInflater.from(mActivity).inflate(R.layout.layout_home_category, null);
@@ -124,6 +162,7 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
             @Override
             public void onClick(View view) {
                 ProDispatcher.goPointActivity(mActivity);
+//                ProDispatcher.goPointUnlineDetailActivity(mActivity);
             }
         });
         llContentTitle.addView(viewCategoryTitle);
@@ -161,20 +200,7 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
             item.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //属性动态   自动滑行到指定位置
-//                    ObjectAnimator xTranslate = ObjectAnimator.ofInt(refreshableView, "scrollX", 0);
-//                    ObjectAnimator yTranslate = ObjectAnimator.ofInt(refreshableView, "scrollY", Util.dip2px(mActivity, 375) + finalChildHeight * finalI);
-//
-//                    AnimatorSet animators = new AnimatorSet();
-//                    animators.setDuration(1000L);
-//                    animators.playTogether(xTranslate, yTranslate);
-//                    animators.start();
-////                    refreshableView.scrollTo(0, Util.dip2px(mActivity, 300)+ finalChildHeight * finalI);
-//                    if (finalI > 0) {
-//                        horizontalListView.setVisibility(View.VISIBLE);
-//                    } else {
-//                        horizontalListView.setVisibility(View.GONE);
-//                    }
+                    RecyScrollTo(finalI);
                 }
             });
             cp.addView(item);
@@ -187,6 +213,22 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(mActivity, 175));
         BannerView.setLayoutParams(layoutParams);
         llContentTitle.addView(BannerView);
+    }
+
+    void RecyScrollTo(int posi) {
+        int position = adapter.getPosition(posi);
+        int firstItem = layoutManager.findFirstVisibleItemPosition();
+        int lastItem = layoutManager.findLastVisibleItemPosition();
+        if (position <= firstItem) {
+            idRecyclerview.smoothScrollToPosition(position);
+        } else if (position <= lastItem) {
+            int top = idRecyclerview.getChildAt(position - firstItem).getTop();
+            idRecyclerview.smoothScrollBy(0, top);
+        } else {
+            idRecyclerview.smoothScrollToPosition(position);
+            mToPosition = position;
+            mShouldScroll = true;
+        }
     }
 
     @Override
@@ -263,17 +305,11 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
         addRequest(request);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
 }

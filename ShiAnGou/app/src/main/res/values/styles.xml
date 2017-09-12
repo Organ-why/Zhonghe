@@ -1,74 +1,53 @@
 <resources>
 
-    <!-- Base application theme. -->
-    <!--<style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">-->
-    <!--&lt;!&ndash; 窗口的背景颜色 &ndash;&gt;-->
-    <!--<item name="android:windowBackground">@color/res_color_window_background</item>-->
-    <!--&lt;!&ndash; toolbar相关样式 &ndash;&gt;-->
-    <!--&lt;!&ndash; toolbar背景色 &ndash;&gt;-->
-    <!--<item name="colorPrimary">@color/common_white</item>-->
-    <!--&lt;!&ndash; toolbar menu字体样式 &ndash;&gt;-->
-    <!--<item name="actionMenuTextColor">@color/common_font_brown</item>-->
-    <!--<item name="actionMenuTextAppearance">@style/res_style_toolbar_menu_text</item>-->
-    <!--&lt;!&ndash; toolbar searchView样式&ndash;&gt;-->
-    <!--<item name="searchViewStyle">@style/res_style_toolbar_search_view</item>-->
-    <!--&lt;!&ndash; toolbar overflow样式&ndash;&gt;-->
-    <!--<item name="actionOverflowButtonStyle">@style/res_style_toolbar_overflow_button</item>-->
+    <style name="res_theme_app" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- 窗口的背景颜色 -->
+        <item name="android:windowBackground">@color/res_color_window_background</item>
+        <!-- toolbar相关样式 -->
+        <!-- toolbar背景色 -->
+        <item name="colorPrimary">@color/res_color_toolbar</item>
+        <!-- toolbar menu字体样式 -->
+        <item name="actionMenuTextColor">@color/res_color_toolbar</item>
+        <item name="actionMenuTextAppearance">@style/res_style_toolbar_menu_text</item>
+        <!-- toolbar searchView样式-->
+        <item name="searchViewStyle">@style/res_style_toolbar_search_view</item>
+        <!-- toolbar overflow样式-->
+        <item name="actionOverflowButtonStyle">@style/res_style_toolbar_overflow_button</item>
 
-    <!--&lt;!&ndash;popup menu样式&ndash;&gt;-->
-    <!--<item name="popupMenuStyle">@style/res_style_popup_menu</item>-->
-    <!--<item name="textAppearanceLargePopupMenu">@style/res_style_popup_menu_text_large</item>-->
-    <!--<item name="textAppearanceSmallPopupMenu">@style/res_style_popup_menu_text_small</item>-->
+        <!--popup menu样式-->
+        <item name="popupMenuStyle">@style/res_style_popup_menu</item>
+        <item name="textAppearanceLargePopupMenu">@style/res_style_popup_menu_text_large</item>
+        <item name="textAppearanceSmallPopupMenu">@style/res_style_popup_menu_text_small</item>
 
-    <!--&lt;!&ndash;alert dialog样式&ndash;&gt;-->
-    <!--<item name="alertDialogTheme">@style/res_theme_dialog_normal</item>-->
+        <!--alert dialog样式-->
+        <item name="alertDialogTheme">@style/res_theme_dialog_normal</item>
 
 
-    <!--&lt;!&ndash;分割线&ndash;&gt;-->
-    <!--<item name="android:listDivider">@drawable/res_ic_list_black_divider</item>-->
-    <!--<item name="android:windowContentOverlay">@null</item>-->
-    <!--<item name="elevation">0dp</item>-->
-    <!--Customize your theme here.-->
-    <!--&lt;!&ndash;Appbar背景色，应用的主要色调，actionBar默认使用该颜色&ndash;&gt;-->
-    <!--<item name="colorPrimary">@color/res_color_apptheme</item>-->
-    <!--&lt;!&ndash;&lt;!&ndash;状态栏颜色，应用的主要暗色调，statusBarColor默认使用该颜色&ndash;&gt;&ndash;&gt;-->
-    <!--<item name="colorPrimaryDark">@color/res_color_apptheme</item>-->
-    <!--&lt;!&ndash;&lt;!&ndash;一般控件的选种效果默认采用该颜色&ndash;&gt;&ndash;&gt;-->
-    <!--<item name="colorAccent">@color/res_color_apptheme</item>-->
+        <!--分割线-->
+        <item name="android:listDivider">@drawable/res_ic_list_black_divider</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="elevation">0dp</item>
 
-    <!--&lt;!&ndash;Appbar背景色，应用的主要色调，actionBar默认使用该颜色&ndash;&gt;-->
-    <!--<item name="android:colorPrimary">@color/material_animations_primary</item>-->
-    <!--&lt;!&ndash;状态栏颜色，应用的主要暗色调，statusBarColor默认使用该颜色&ndash;&gt;-->
-    <!--<item name="android:colorPrimaryDark">@color/material_animations_primary_dark</item>-->
-    <!--&lt;!&ndash;状态栏颜色，默认使用colorPrimaryDark&ndash;&gt;-->
-    <!--<item name="android:statusBarColor">@color/material_animations_primary_dark</item>-->
-    <!--&lt;!&ndash;页面背景色&ndash;&gt;-->
-    <!--<item name="android:windowBackground">@color/light_grey</item>-->
-    <!--&lt;!&ndash;底部导航栏颜色&ndash;&gt;-->
-    <!--<item name="android:navigationBarColor">@color/navigationColor</item>-->
-    <!--&lt;!&ndash;应用的主要文字颜色，actionBar的标题文字默认使用该颜色&ndash;&gt;-->
-    <!--<item name="android:textColorPrimary">@android:color/black</item>-->
-    <!--&lt;!&ndash;ToolBar上的Title颜色&ndash;&gt;-->
-    <!--<item name="android:textColorPrimaryInverse">@color/text_light</item>-->
-    <!--&lt;!&ndash;应用的前景色，ListView的分割线，switch滑动区默认使用该颜色&ndash;&gt;-->
-    <!--<item name="android:colorForeground">@color/colorForeground</item>-->
-    <!--&lt;!&ndash;应用的背景色，popMenu的背景默认使用该颜色&ndash;&gt;-->
-    <!--<item name="android:colorBackground">@color/colorForeground</item>-->
-    <!--&lt;!&ndash;一般控件的选种效果默认采用该颜色&ndash;&gt;-->
-    <!--<item name="android:colorAccent">@color/colorAccent</item>-->
-    <!--&lt;!&ndash;控件选中时的颜色，默认使用colorAccent&ndash;&gt;-->
-    <!--<item name="android:colorControlActivated">@color/colorControlActivated</item>-->
-    <!--&lt;!&ndash;各个控制控件的默认颜色&ndash;&gt;-->
-    <!--<item name="android:colorControlNormal">@color/colorControlNormal</item>-->
-    <!--&lt;!&ndash;Button，textView的文字颜色&ndash;&gt;-->
-    <!--<item name="android:textColor">@color/text_dark</item>-->
-    <!--&lt;!&ndash;RadioButton checkbox等控件的文字&ndash;&gt;-->
-    <!--<item name="android:textColorPrimaryDisableOnly">@color/text_dark</item>-->
-    <!--&lt;!&ndash;默认按钮的背景颜色&ndash;&gt;-->
-    <!--<item name="android:colorButtonNormal">@color/text_dark</item>-->
-    <!--&lt;!&ndash;控件按压时的色调&ndash;&gt;-->
-    <!--<item name="android:colorControlHighlight">@color/colorControlHighlight</item>-->
+        <!-- 加入toolbar溢出【弹出】菜单的风格 -->
+        <item name="actionOverflowMenuStyle">@style/OverflowMenuStyle</item>
+    </style>
 
+
+    <!--溢出[弹出]菜单样式 parent相当于继承【可以不要parent】-->
+    <style name="OverflowMenuStyle" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+        <!-- 是否覆盖锚点，默认为true，即盖住Toolbar -->
+        <item name="overlapAnchor">false</item>
+        <item name="android:dropDownWidth">wrap_content</item>
+        <item name="android:paddingRight">5dp</item>
+        <!-- 弹出层背景颜色 -->
+        <item name="android:popupBackground">@drawable/res_ic_popup_background_mtrl_mult</item>
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">5dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <item name="android:dropDownHorizontalOffset">0dp</item>
+        <!-- 设置弹出菜单文字颜色 -->
+        <item name="android:textColor">@color/common_white</item>
+    </style>
 
     <!-- Navigation Header -->
     <style name="NavPage">
@@ -79,6 +58,7 @@
         <!-- <item name="android:background">@drawable/nav_page</item> -->
         <item name="android:background">@color/navpage</item>
     </style>
+
     <style name="TitleText">
         <item name="android:layout_width">fill_parent</item>
         <item name="android:layout_height">wrap_content</item>

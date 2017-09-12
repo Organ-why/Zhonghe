@@ -28,8 +28,9 @@ public class MenuPopup extends MenuBase {
         return icon;
     }
 
-    public void setIcon(int icon) {
+    public MenuPopup setIcon(int icon) {
         this.icon = icon;
+        return null;
     }
 
     public int getMenuRes() {

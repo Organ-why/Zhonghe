@@ -2,6 +2,7 @@ package com.zhonghe.shiangou.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Paint;
+import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.zhonghe.shiangou.data.bean.ItemStatus;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -35,7 +37,10 @@ import butterknife.ButterKnife;
 public class RecyAdapter extends RecyclerView.Adapter {
     Context context;
     List<HomeCategoryInfo> mData;
+    //组的position
+    private SparseArrayCompat<Integer> groupPosition = new SparseArrayCompat<>();
     addCartListener addCartListener;
+
 
     public RecyAdapter(Context context, List<HomeCategoryInfo> mData, addCartListener addCartListener) {
         this.context = context;
@@ -58,7 +63,6 @@ public class RecyAdapter extends RecyclerView.Adapter {
 
             v = LayoutInflater.from(parent.getContext()).inflate(R.layout
                     .layout_home_category_item, parent, false);
-
             viewHolder = new GroupItemViewHolder(v);
 
         } else if (viewType == ItemStatus.VIEW_TYPE_SUBITEM) {
@@ -71,10 +75,6 @@ public class RecyAdapter extends RecyclerView.Adapter {
         return viewHolder;
     }
 
-    @Override
-    public void onViewDetachedFromWindow(RecyclerView.ViewHolder holder) {
-        super.onViewDetachedFromWindow(holder);
-    }
 
     //    onBindViewHolder() 处理每个 item
     @Override
@@ -127,9 +127,14 @@ public class RecyAdapter extends RecyclerView.Adapter {
         if (UtilList.getCount(mData) == 0)
             return itemCount;
         for (int i = 0; i < mData.size(); i++) {
+            groupPosition.put(itemCount,itemCount);
             itemCount += UtilList.getCount(mData.get(i).getList()) + 1;
         }
         return itemCount;
+    }
+
+    public int getPosition(int posi) {
+        return groupPosition.size() > posi ? groupPosition.keyAt(posi)+1 : 1;
     }
 
     //    getItemViewType() 在 onCreateViewHolder 前调用，返回 item 类型
@@ -216,7 +221,6 @@ public class RecyAdapter extends RecyclerView.Adapter {
             itemStatus.setViewType(ItemStatus.VIEW_TYPE_SUBITEM);
             itemStatus.setSubItemIndex(position - (count - UtilList.getCount(mData.get(i - 1).getList())));
         }
-
         return itemStatus;
     }
 

@@ -6,6 +6,8 @@ import com.zhonghe.lib_base.baseui.UIOptions;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 
+import static com.zhonghe.lib_base.baseui.UIOptions.UI_OPTIONS_CONTENT_CUSTOM;
+
 /**
  * Date: 2017/8/12.
  * Author: whyang
@@ -25,7 +27,7 @@ public abstract class BaseTopActivity extends BaseUIActivity {
 
     @Override
     protected long initOptions() {
-        return UIOptions.UI_OPTIONS_APPBAR_TOOLBAR | UIOptions.UI_OPTIONS_CONTENT_CUSTOM;
+        return UIOptions.UI_OPTIONS_APPBAR_TOOLBAR | UI_OPTIONS_CONTENT_CUSTOM|UI_OPTIONS_CONTENT_CUSTOM;
     }
     protected void addRequest(Request request) {
         ProjectApplication.proReqestQueue.addRequest( request, this);

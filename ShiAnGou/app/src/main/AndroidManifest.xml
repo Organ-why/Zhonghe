@@ -162,6 +162,18 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 积分线下 -->
+        <activity
+            android:name=".ui.activity.PointUnlineActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 积分线下详情 -->
+        <activity
+            android:name=".ui.activity.PointUnlineDetailActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 积分详情 -->
         <activity
             android:name=".ui.activity.PointDetailActivity"

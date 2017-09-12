@@ -109,9 +109,9 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         ViewStub appbarStub = (ViewStub) findViewById(R.id.base_id_appbar_stub);
 
 
+        appbarStub.setLayoutResource(R.layout.res_layout_base_appbar);
+        appbarStub.inflate();
         if (withOption(UIOptions.UI_OPTIONS_APPBAR_TOOLBAR)) {
-            appbarStub.setLayoutResource(R.layout.res_layout_base_appbar);
-            appbarStub.inflate();
 
             ViewStub toolbarStub = (ViewStub) findViewById(R.id.base_id_appbar_toolbar_stub);
 
@@ -128,9 +128,9 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         if (withOption(UIOptions.UI_OPTIONS_APPBAR_CUSTIOM)) {
             initAppCustom();
             if (mAppCustomLayoutRes > 0) {
-//                ViewStub customStub = (ViewStub) findViewById(R.id.base_id_appbar_custom_stub);
-                appbarStub.setLayoutResource(mAppCustomLayoutRes);
-                appbarStub.inflate();
+                ViewStub customStub = (ViewStub) findViewById(R.id.base_id_appbar_custom_stub);
+                customStub.setLayoutResource(mAppCustomLayoutRes);
+                customStub.inflate();
             }
         }
 

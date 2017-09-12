@@ -24,8 +24,8 @@
         android:background="@null"
         android:paddingLeft="@dimen/margin_h"
         android:paddingRight="@dimen/margin_h"
-        android:src="@mipmap/icon_msg"
-        android:visibility="gone" />
+        android:src="@mipmap/icon_zxing_white"
+        android:visibility="visible" />
 
     <TextView
         android:layout_toRightOf="@id/title_user_ivb"
@@ -34,7 +34,6 @@
         style="@style/hint_search_style"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_search_custom"
-        android:layout_marginRight="@dimen/margin_xh"
         android:layout_centerInParent="true"
         android:background="@drawable/circle_search_white_bg"
         android:drawableLeft="@mipmap/icon_search"

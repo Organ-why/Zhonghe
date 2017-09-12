@@ -264,6 +264,7 @@
     <string name="search_title_hot">热门搜索</string>
     <string name="search_title_history">历史搜索</string>
     <string name="search_search_tip">请输入商品名称</string>
+    <string name="search_unline_tip">请输入商户名称、地点或菜品</string>
     <string name="pro_list_title">商品列表</string>
     <string name="pro_list_tag_default">默认</string>
     <string name="pro_list_tag_sales">销量</string>

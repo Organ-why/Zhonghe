@@ -13,6 +13,7 @@ package com.zhonghe.shiangou.data.bean;
 public class ItemStatus extends BaseBean {
     public static final int VIEW_TYPE_GROUPITEM = 0;
     public static final int VIEW_TYPE_SUBITEM = 1;
+    public static final int VIEW_TYPE_HEADER = 3;
 
     private int viewType;
     private int groupItemIndex = 0;
