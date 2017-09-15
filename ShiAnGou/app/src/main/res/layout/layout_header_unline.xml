@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_hight_xhsize"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/id_unline_food"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_transparent"
+            android:drawablePadding="@dimen/padding_xlsize"
+            android:drawableTop="@mipmap/icon_unline_food"
+            android:gravity="center"
+            android:onClick="onViewClicked"
+            android:text="@string/unline_food" />
+
+        <TextView
+            android:id="@+id/id_unline_play"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_transparent"
+            android:drawablePadding="@dimen/padding_xlsize"
+            android:drawableTop="@mipmap/icon_unline_play"
+            android:gravity="center"
+            android:onClick="onViewClicked"
+            android:text="@string/unline_play" />
+
+        <TextView
+            android:id="@+id/id_unline_live"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/common_transparent"
+            android:drawablePadding="@dimen/padding_xlsize"
+            android:drawableTop="@mipmap/icon_unline_live"
+            android:gravity="center"
+            android:onClick="onViewClicked"
+            android:text="@string/unline_live" />
+    </LinearLayout>
+
+    <View style="@style/common_divider_view_style10" />
+
+    <TextView
+        style="@style/TitleText_style"
+        android:text="@string/about_link" />
+
+    <View style="@style/common_divider_style1" />
+</LinearLayout>

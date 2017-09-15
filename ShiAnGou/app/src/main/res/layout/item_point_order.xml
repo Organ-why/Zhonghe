@@ -65,7 +65,7 @@
             android:layout_marginLeft="@dimen/margin_xxlsize"
             android:layout_toLeftOf="@id/ids_point_order_msg_ll"
             android:layout_toRightOf="@id/id_home_category_item_iv"
-            android:text="滑仔菇滑仔菇滑仔菇滑仔菇滑滑仔菇滑仔菇滑仔菇滑仔菇滑仔菇" />
+            tools:text="@string/str_home_category_title" />
 
         <LinearLayout
             android:layout_width="wrap_content"

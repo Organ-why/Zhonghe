@@ -8,6 +8,7 @@
 
     <!--公共颜色-->
     <color name="common_gray">#F4F4F4</color>
+    <color name="common_gray_light">#aadcdcdc</color>
     <color name="common_gray_hollow">#dcdcdc</color>
     <color name="common_white">#FFFFFF</color>
     <color name="common_white_dialog">#FFFFFE</color>

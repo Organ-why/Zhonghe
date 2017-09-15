@@ -11,6 +11,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:drawableLeft="@mipmap/icon_cb_redright"
-        android:drawablePadding="2dp"
+        android:drawablePadding="5dp"
         android:text="农场直销" />
 </LinearLayout>

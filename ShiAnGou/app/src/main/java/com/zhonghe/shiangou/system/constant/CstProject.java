@@ -51,7 +51,9 @@ public class CstProject {
         public static final String LOGIN_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGIN_ACTION";
         // 登出广播
         public static final String LOGOUT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGOUT_ACTION";
-        // 登出广播
+        //位置
+        public static final String LOCATION_ACTION = PACKAGE_NAME+"android.intent.action.LOCATION_ACTION";
+        // 支付返回
         public static final String PAY_RESULT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.PAY_RESULT_ACTION";
         //tab 选中
         public static final String MAINTAB_CHECK_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.MAINTAB_CHECK_ACTION";

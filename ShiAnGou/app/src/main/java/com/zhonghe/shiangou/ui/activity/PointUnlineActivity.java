@@ -1,23 +1,32 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.zhonghe.lib_base.baseui.MenuPopup;
-import com.zhonghe.lib_base.baseui.MenuTxt;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.journeyapps.barcodescanner.CaptureActivity;
 import com.zhonghe.lib_base.baseui.UIOptions;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilList;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
@@ -30,6 +39,7 @@ import com.zhonghe.shiangou.ui.adapter.RecyHeaderAdapter;
 import com.zhonghe.shiangou.ui.adapter.ViewHolder;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
+import com.zhonghe.shiangou.ui.widget.BannerPresenter;
 import com.zhonghe.shiangou.ui.widget.DynamicBanner;
 import com.zhonghe.shiangou.ui.widget.FlowLayout;
 
@@ -38,6 +48,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * auther: whyang
@@ -95,8 +106,15 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
         idCategoryTitleTv.setBackgroundResource(R.drawable.circle_search_gray_bg);
 
         View header = LayoutInflater.from(mContext).inflate(R.layout.layout_home_header, null);
+        View headerdesc = LayoutInflater.from(mContext).inflate(R.layout.layout_header_unline, null);
         llContentTitle = (LinearLayout) header.findViewById(R.id.ll_content_title);
         llContentList = (LinearLayout) header.findViewById(R.id.ll_content_list);
+        llContentList.addView(headerdesc);
+
+        TextView foodTv = (TextView) headerdesc.findViewById(R.id.id_unline_food);
+        TextView liveTv = (TextView) headerdesc.findViewById(R.id.id_unline_live);
+        TextView playTv = (TextView) headerdesc.findViewById(R.id.id_unline_play);
+
 
         categoryInfo = new ArrayList<>();
         layoutManager = new LinearLayoutManager(mContext);
@@ -128,78 +146,19 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
                 categoryInfo = homeData.getCategoryX();
                 adapter.setData(categoryInfo);
                 showBanner();
-                showCategory();
 
             }
         });
         addRequest(request);
     }
 
-
-    void showCategory() {
-//        HomeCategoryTitleAdapter horadapter = new HomeCategoryTitleAdapter(mContext, categoryInfo);
-//        horizontalListView.setAdapter(horadapter);
-//        horizontalListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-////                RecyScrollTo(i);
-//            }
-//        });
-        int screenWidth = Util.getScreenWidth(mContext);
-        //分类icon部分
-        View viewCategoryTitle = LayoutInflater.from(mContext).inflate(R.layout.layout_home_category, null);
-        LinearLayout viewPoint = (LinearLayout) viewCategoryTitle.findViewById(R.id.id_home_point_ll);
-        viewPoint.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ProDispatcher.goPointActivity(mContext);
-            }
-        });
-        llContentTitle.addView(viewCategoryTitle);
-        //每次类别商品列表所占高度
-        int childWidth = 0;
-        int childHeight = 0;
-        int childCount = llContentList.getChildCount();
-        if (childCount > 0) {
-            View childView = llContentList.getChildAt(0);
-
-            int w = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-            int h = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED);
-            childView.measure(w, h);
-            childHeight = childView.getMeasuredHeight();
-            childWidth = childView.getMeasuredWidth();
-        }
-        //首页内Title
-        FlowLayout cp = (FlowLayout) viewCategoryTitle.findViewById(R.id.id_home_categroy_title_cp);
-        LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(screenWidth / 4, Util.dip2px(mContext, 75));
-
-
-        //悬浮Title
-//        new HomeScrollListener(cartIdLv, mContext, horizontalListView, categoryInfo, childHeight).ListenScroll();
-
-        for (int i = 0; i < categoryInfo.size(); i++) {
-            HomeCategoryInfo categoryInfo = this.categoryInfo.get(i);
-            View item = LayoutInflater.from(mContext).inflate(R.layout.item_home_category_title, null);
-            SimpleDraweeView iconimg = (SimpleDraweeView) item.findViewById(R.id.id_item_home_category_title_iv);
-            TextView icontv = (TextView) item.findViewById(R.id.id_item_home_category_title_name);
-            ProjectApplication.mImageLoader.loadImage(iconimg, categoryInfo.getCat_thumb());
-            icontv.setText(categoryInfo.getCat_name());
-            item.setLayoutParams(categoryParams);
-            final int finalChildHeight = childHeight;
-            final int finalI = i;
-            item.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    RecyScrollTo(finalI);
-                }
-            });
-            cp.addView(item);
-        }
-
-    }
-
     void showBanner() {
-        View BannerView = new DynamicBanner(mContext, LayoutInflater.from(mContext), 5000).initView(bannerInfo);
+        View BannerView = new BannerPresenter(mContext, 5000, new BannerPresenter.OnItemVpClick() {
+            @Override
+            public void OnVpClick(int position) {
+
+            }
+        }).initView(bannerInfo);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(mContext, 175));
         BannerView.setLayoutParams(layoutParams);
         llContentTitle.addView(BannerView);
@@ -208,5 +167,50 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
     @Override
     public void OnAddCart(String goods_id) {
 
+    }
+
+
+    @OnClick({R.id.title_user_ivb, R.id.title_msg_ivb, R.id.id_category_title_tv})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.title_user_ivb:
+//                Bitmap bitmap = EncodingUtils.createQRCode("http://blog.csdn.net/a_zhon/", 500, 500, logo);
+                break;
+            case R.id.title_msg_ivb:
+                //需要以带返回结果的方式启动扫描界面
+                new IntentIntegrator(this)
+                        .setOrientationLocked(false)
+                        .setCaptureActivity(CustomScanActivity.class) // 设置自定义的activity是CustomActivity
+                        .initiateScan(); // 初始化扫描
+                break;
+            case R.id.id_category_title_tv:
+                break;
+            case R.id.id_unline_food:
+                ProDispatcher.goPointUnlineListActivity(mContext, "");
+                break;
+            case R.id.id_unline_live:
+                ProDispatcher.goPointUnlineListActivity(mContext, "");
+                break;
+            case R.id.id_unline_play:
+                ProDispatcher.goPointUnlineListActivity(mContext, "");
+                break;
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (intentResult != null) {
+            if (intentResult.getContents() == null) {
+                Toast.makeText(this, "内容为空", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "扫描成功", Toast.LENGTH_LONG).show();
+                // ScanResult 为 获取到的字符串
+                String ScanResult = intentResult.getContents();
+                UtilLog.d(ScanResult);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

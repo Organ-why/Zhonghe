@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
-import com.zhonghe.shiangou.ui.adapter.DynamicBannerAdapter;
+import com.zhonghe.shiangou.ui.adapter.BannerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public class DynamicBanner implements ViewPager.OnPageChangeListener {
         }
         initDots(view, ll);
 
-        DynamicBannerAdapter adapter = new DynamicBannerAdapter(context, views, advertiseArray);
+        BannerAdapter adapter = new BannerAdapter(context, views, advertiseArray);
         vpAdvertise.setAdapter(adapter);
 //        vpAdvertise.setCurrentItem(Integer.MAX_VALUE / 2);
         vpAdvertise.setOffscreenPageLimit(5);

@@ -34,6 +34,7 @@
     <string name="common_updata">更新</string>
     <string name="common_pay_success">支付成功</string>
     <string name="common_pay_fail">支付失败</string>
+    <string name="common_smart_orderby">智能排序</string>
 
     <!--升级功能-->
     <string name="upgrade_cancel">取消</string>
@@ -259,7 +260,13 @@
     <string name="point_msg_type">商品类型：%s</string>
     <string name="point_msg_phone">客服电话：%s</string>
     <string name="point_msg_exchange">商品兑换：点击立即兑换-填写地址可兑换成功，兑换之后积分会相应得扣除</string>
-
+    <!--线下商城-->
+    <string name="unline_maybe_like">猜你喜欢</string>
+    <string name="unline_food">美食</string>
+    <string name="unline_play">休闲娱乐</string>
+    <string name="unline_live">生活服务</string>
+    <string name="unline_pupular">人气:</string>
+    <string name="unline_gonow">立刻前往</string>
     <!--搜索-->
     <string name="search_title_hot">热门搜索</string>
     <string name="search_title_history">历史搜索</string>

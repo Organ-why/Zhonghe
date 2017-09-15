@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * 广告轮播adapter
  */
-public class DynamicBannerAdapter extends PagerAdapter {
+public class BannerAdapter extends PagerAdapter {
 
     private Context context;
     private List<View> views;
@@ -31,13 +31,13 @@ public class DynamicBannerAdapter extends PagerAdapter {
     List<? extends BaseBannerInfo> advertiseArray;
 
 
-    public DynamicBannerAdapter(Context context, List<View> views, List<? extends BaseBannerInfo> advertiseArray) {
+    public BannerAdapter(Context context, List<View> views, List<? extends BaseBannerInfo> advertiseArray) {
         this.context = context;
         this.views = views;
         this.advertiseArray = advertiseArray;
     }
 
-    public DynamicBannerAdapter(Context context, List<View> views, ArrayList<? extends BaseBannerInfo> advertiseArray, OnClickListener listener) {
+    public BannerAdapter(Context context, List<View> views, ArrayList<? extends BaseBannerInfo> advertiseArray, OnClickListener listener) {
         this.context = context;
         this.views = views;
         this.advertiseArray = advertiseArray;
@@ -68,16 +68,6 @@ public class DynamicBannerAdapter extends PagerAdapter {
         if (mPOSITION < 0) {
             mPOSITION = advertiseArray.size() + position;
         }
-//        View view = views.get(mPOSITION);
-        //如果View已经在之前添加到了一个父组件，则必须先remove，否则会抛出IllegalStateException。
-//        ViewParent vp =view.getParent();
-//        if (vp!=null){
-//            ViewGroup parent = (ViewGroup)vp;
-//            parent.removeView(view);
-//        }
-//        String head_img = advertiseArray.get(mPOSITION).getImgUrl();
-//        ImageView ivAdvertise = (ImageView) view.findViewById(R.id.ivAdvertise);
-//        Picasso.with(context).load(R.mipmap.banner).into(ivAdvertise);
 
         View itemView;
         if (views.size() == 0) {

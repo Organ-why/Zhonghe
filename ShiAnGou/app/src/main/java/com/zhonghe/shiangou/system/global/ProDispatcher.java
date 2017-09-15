@@ -20,6 +20,7 @@ import com.zhonghe.shiangou.ui.activity.ForgetPwdActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsDetailActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsListActivity;
 import com.zhonghe.shiangou.ui.activity.LikeActivity;
+import com.zhonghe.shiangou.ui.activity.LocationActivity;
 import com.zhonghe.shiangou.ui.activity.LoginActivity;
 import com.zhonghe.shiangou.ui.activity.LogisticsActivity;
 import com.zhonghe.shiangou.ui.activity.MainActivity;
@@ -31,6 +32,7 @@ import com.zhonghe.shiangou.ui.activity.PointExcangeRecordActivity;
 import com.zhonghe.shiangou.ui.activity.PointExchangeResultActivity;
 import com.zhonghe.shiangou.ui.activity.PointUnlineActivity;
 import com.zhonghe.shiangou.ui.activity.PointUnlineDetailActivity;
+import com.zhonghe.shiangou.ui.activity.PointUnlineListActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsBeginActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsDetailActivity;
@@ -109,6 +111,7 @@ public class ProDispatcher {
 
     /**
      * 修改密码
+     *
      * @param context
      */
     public static void goChangePwdActivity(Context context) {
@@ -164,6 +167,7 @@ public class ProDispatcher {
 
     /**
      * 关于我们
+     *
      * @param context
      */
     public static void goAboutActivity(Context context) {
@@ -233,7 +237,7 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goConfirmOrderActivity(Context context, ArrayList<String> ids,int typeCode,String goods_attr_id, int goods_count) {
+    public static void goConfirmOrderActivity(Context context, ArrayList<String> ids, int typeCode, String goods_attr_id, int goods_count) {
         if (context == null) {
             return;
         }
@@ -405,6 +409,7 @@ public class ProDispatcher {
 
     /**
      * 积分线下
+     *
      * @param context
      */
     public static void goPointUnlineActivity(Context context) {
@@ -416,11 +421,44 @@ public class ProDispatcher {
         context.startActivity(intent);
     }
 
+    /**
+     * 线下商城列表
+     *
+     * @param context
+     */
+    public static void goPointUnlineListActivity(Context context, String type) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, PointUnlineListActivity.class);
+        intent.putExtra(CstProject.KEY.TYPE, type);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 线下积分详情
+     *
+     * @param context
+     */
     public static void goPointUnlineDetailActivity(Context context) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, PointUnlineDetailActivity.class);
+//        intent.putExtra(CstProject.KEY.ID, goods_id);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 地图
+     *
+     * @param context
+     */
+    public static void goLocationActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, LocationActivity.class);
 //        intent.putExtra(CstProject.KEY.ID, goods_id);
         context.startActivity(intent);
     }
@@ -457,7 +495,7 @@ public class ProDispatcher {
      * 积分商品列表
      *
      * @param context
-     * @param Type type 四种值  0 ：首页列表 ，1：零元购，  2：日常家居， 3 新品  4 所有商品
+     * @param Type    type 四种值  0 ：首页列表 ，1：零元购，  2：日常家居， 3 新品  4 所有商品
      */
     public static void goPointExcangeListActivity(Context context, int Type) {
         if (context == null) {
@@ -548,6 +586,24 @@ public class ProDispatcher {
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
         manager.sendBroadcast(intent);
     }
+
+    /**
+     * 位置
+     *
+     * @param context
+     * @param resultCode
+     */
+    public static void sendLocationBroadcast(@NonNull Context context, int resultCode) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setAction(BROADCAST_ACTION.LOCATION_ACTION);
+        intent.putExtra(CstProject.KEY.CODE, resultCode);
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
+        manager.sendBroadcast(intent);
+    }
+
     /**
      * 兑换
      *

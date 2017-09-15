@@ -65,6 +65,16 @@
         <item name="android:textSize">@dimen/font_msize</item>
         <item name="android:textColor">#ff000000</item>
     </style>
+    <!--标题text-->
+    <style name="TitleText_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/height_ll_item</item>
+        <item name="android:textSize">@dimen/font_msize</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/margin_h</item>
+        <item name="android:background">@color/common_white</item>
+        <item name="android:textColor">@color/common_font_normal</item>
+    </style>
 
     <!--</style>-->
 
@@ -268,6 +278,7 @@
 
     <style name="button_orangecirc_selector_style">
         <item name="android:button">@null</item>
+        <item name="android:padding">@dimen/padding_size</item>
         <item name="android:background">@drawable/circle_bt_orange_bg</item>
         <item name="android:textColor">@color/common_white</item>
         <item name="android:textSize">@dimen/font_lsize</item>
@@ -275,6 +286,7 @@
 
     <style name="button_orangecirc_bg_style">
         <item name="android:button">@null</item>
+        <item name="android:padding">@dimen/padding_size</item>
         <item name="android:background">@drawable/circle_bt_orange_bg</item>
         <item name="android:textColor">@color/common_white</item>
         <item name="android:textSize">@dimen/font_xxxlsize</item>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_msize"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize"
+        android:paddingTop="@dimen/padding_msize">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/id_home_category_item_iv"
+            android:layout_width="@dimen/home_category_item_img_width"
+            android:layout_height="@dimen/home_category_item_img_height"
+            android:scaleType="fitXY"
+            app:placeholderImage="@mipmap/icon_pro_default" />
+
+
+        <TextView
+            android:id="@+id/id_goods_rigthtop_tv"
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:text="288积分" />
+        <TextView
+            android:id="@+id/id_goods_rigthtbt_bt"
+            style="@style/button_orangecirc_selector_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/font_xlsize"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@id/id_home_category_item_iv"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:text="@string/unline_gonow" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/id_home_category_item_iv"
+            android:layout_alignTop="@id/id_home_category_item_iv"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:layout_toLeftOf="@id/id_goods_rigthtop_tv"
+            android:layout_toRightOf="@id/id_home_category_item_iv"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/id_goods_title_tv"
+                style="@style/common_text_gray_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                tools:text="goodsname" />
+
+
+            <TextView
+                android:id="@+id/id_goods_address_tv"
+                style="@style/common_text_gray_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@string/confirmorder_addre" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/id_goods_popular_tv"
+                    style="@style/common_text_gray_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="@string/unline_pupular" />
+
+                <com.zhonghe.shiangou.ui.widget.RatingBar
+                    android:id="@+id/ratingBar"
+                    style="@style/symbol_money_style"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_h"
+                    app:clickable="false"
+                    app:starCount="5"
+                    app:starEmpty="@mipmap/icon_star_normal_m"
+                    app:starFill="@mipmap/icon_star_selected_m"
+                    app:starHalf="@mipmap/icon_star_half_mgray"
+                    app:starImageSize="14dp"
+                    app:starStep="4.5"
+                    app:stepSize="Half"></com.zhonghe.shiangou.ui.widget.RatingBar>
+
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

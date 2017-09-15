@@ -161,8 +161,9 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
         viewPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ProDispatcher.goPointActivity(mActivity);
-//                ProDispatcher.goPointUnlineDetailActivity(mActivity);
+//                ProDispatcher.goPointActivity(mActivity);
+//                ProDispatcher.goLocationActivity(mActivity);
+                ProDispatcher.goPointUnlineActivity(mActivity);
             }
         });
         llContentTitle.addView(viewCategoryTitle);
