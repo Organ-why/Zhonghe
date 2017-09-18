@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/id_unline_detail_name"
+        style="@style/common_text_gray_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/margin_h"
+        tools:text="老家顶戴顶替苦" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="@dimen/margin_h">
+
+        <TextView
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unline_popular" />
+
+        <com.zhonghe.shiangou.ui.widget.RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/id_home_category_item_iv"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:layout_toEndOf="@+id/id_home_category_item_iv"
+            android:layout_toRightOf="@+id/id_home_category_item_iv"
+            app:starCount="5"
+            app:starEmpty="@mipmap/icon_star_normal"
+            app:starFill="@mipmap/icon_star_selected"
+            app:starHalf="@mipmap/icon_star_half"
+            app:starImageSize="16dp"
+            app:starStep="4.5"
+            app:stepSize="Half" />
+    </LinearLayout>
+
+    <View style="@style/common_divider_style1" />
+
+    <TextView
+        android:id="@+id/id_unline_detail_addre"
+        style="@style/TitleText_gray_style"
+        android:drawableLeft="@mipmap/icon_location"
+        android:drawablePadding="@dimen/margin_h"
+        android:drawableRight="@mipmap/icon_phone"
+        android:text="@string/address_addressperson_addr" />
+
+    <View style="@style/common_divider_view_style10" />
+
+    <TextView
+        android:id="@+id/id_unline_detail_remarknum"
+        style="@style/TitleText_style"
+        android:drawableRight="@mipmap/icon_next"
+        android:text="@string/unline_remark" />
+
+    <View style="@style/common_divider_style1" />
+</LinearLayout>

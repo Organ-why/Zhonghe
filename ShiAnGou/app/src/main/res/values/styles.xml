@@ -75,6 +75,17 @@
         <item name="android:background">@color/common_white</item>
         <item name="android:textColor">@color/common_font_normal</item>
     </style>
+    <!--标题gray-->
+    <style name="TitleText_gray_style">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/height_ll_item</item>
+        <item name="android:textSize">@dimen/font_xxxlsize</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingLeft">@dimen/margin_h</item>
+        <item name="android:paddingRight">@dimen/margin_h</item>
+        <item name="android:background">@color/common_white</item>
+        <item name="android:textColor">@color/common_font_deep</item>
+    </style>
 
     <!--</style>-->
 

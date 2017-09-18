@@ -163,7 +163,8 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
             public void onClick(View view) {
 //                ProDispatcher.goPointActivity(mActivity);
 //                ProDispatcher.goLocationActivity(mActivity);
-                ProDispatcher.goPointUnlineActivity(mActivity);
+//                ProDispatcher.goPointUnlineActivity(mActivity);
+                ProDispatcher.goPointUnlineDetailActivity(mActivity);
             }
         });
         llContentTitle.addView(viewCategoryTitle);

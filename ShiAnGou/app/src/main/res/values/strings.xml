@@ -265,8 +265,9 @@
     <string name="unline_food">美食</string>
     <string name="unline_play">休闲娱乐</string>
     <string name="unline_live">生活服务</string>
-    <string name="unline_pupular">人气:</string>
+    <string name="unline_popular">人气 :</string>
     <string name="unline_gonow">立刻前往</string>
+    <string name="unline_remark">网友点评(%d)</string>
     <!--搜索-->
     <string name="search_title_hot">热门搜索</string>
     <string name="search_title_history">历史搜索</string>
