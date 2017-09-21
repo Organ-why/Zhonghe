@@ -11,6 +11,8 @@ import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
+import com.zhonghe.shiangou.data.bean.ShopInfo;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.widget.RatingBar;
 
@@ -25,8 +27,8 @@ import butterknife.ButterKnife;
  * desc: 线下商品
  */
 
-public class UnlineGoodsAdapter extends AbsAdapter<GoodsInfo> {
-    public UnlineGoodsAdapter(Context context, List datas) {
+public class UnlineShopAdapter extends AbsAdapter<ShopInfo> {
+    public UnlineShopAdapter(Context context, List datas) {
         super(context, datas);
     }
 
@@ -41,16 +43,20 @@ public class UnlineGoodsAdapter extends AbsAdapter<GoodsInfo> {
             holder = (ViewHolder) view.getTag();
         }
 
-//        GoodsInfo info = mList.get(i);
-//        ProjectApplication.mImageLoader.loadImage(holder.idHomeCategoryItemIv, info.getGoods_img());
-//        holder.idHomeCategoryItemTitleTv.setText(UtilString.nullToEmpty(info.getGoods_name()));
-//        holder.idHomeCategoryItemPriceTv.setText(UtilString.nullToEmpty(Util.formatPrice(info.getShop_price())));
-        return view;
-    }
+        final ShopInfo info = mList.get(i);
 
-    @Override
-    public int getCount() {
-        return 20;
+        ProjectApplication.mImageLoader.loadRoundedImage(holder.idHomeCategoryItemIv, info.getMerchant_thumb());
+        holder.idGoodsAddressTv.setText(String.format(mContext.getString(R.string.confirmorder_addre), info.getAddress()));
+        holder.idGoodsTitleTv.setText(UtilString.nullToEmpty(info.getMerchant_name()));
+        holder.ratingBar.setStar(info.getGrade());
+        holder.idGoodsRigthtopTv.setText(Util.formatMetre(info.getBetween()));
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ProDispatcher.goPointUnlineDetailActivity(mContext, info.getMerchant_id());
+            }
+        });
+        return view;
     }
 
     static class ViewHolder {

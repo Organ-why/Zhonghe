@@ -136,8 +136,34 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
         mSearch.setOnGetRoutePlanResultListener(this);
 
 //开始定位
-        ProjectApplication.mLocationService.registerListener(new ProLocationListener(mContext));
-        ProjectApplication.mLocationService.start();
+//        ProjectApplication.mLocationService.registerListener(new ProLocationListener(mContext));
+//        ProjectApplication.mLocationService.start();
+        BDLocation location = ProjectApplication.mLocation;
+        // 构造定位数据
+        MyLocationData locData = new MyLocationData.Builder()
+                .accuracy(location.getRadius())
+                // 此处设置开发者获取到的方向信息，顺时针0-360
+                .direction(100).latitude(location.getLatitude())
+                .longitude(location.getLongitude()).build();
+// 设置定位数据
+        mBaiduMap.setMyLocationData(locData);
+// 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
+//                    BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
+//                            .fromResource(R.mipmap.icon_logo);
+//                    MyLocationConfiguration.LocationMode mCurrentMode = FOLLOWING;
+//                    MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
+//                    mBaiduMap.setMyLocationConfiguration(config);
+// 当不需要定位图层时关闭定位图层
+//                    mBaiduMap.setMyLocationEnabled(false);
+
+        LatLng startPoint = new LatLng(location.getLatitude(), location.getLongitude());
+        LatLng endPoint = new LatLng(39.963175, 116.400244);
+        PlanNode stNode = PlanNode.withLocation(startPoint);
+        PlanNode enNode = PlanNode.withLocation(endPoint);
+//                    PlanNode enNode = PlanNode.withCityNameAndPlaceName("北京", "天安门");
+
+        mSearch.drivingSearch((new DrivingRoutePlanOption())
+                .from(stNode).to(enNode));
     }
 
     @Override

@@ -203,13 +203,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <!-- 积分线下 -->
+        <!-- 线下首页 -->
         <activity
             android:name=".ui.activity.PointUnlineActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <!-- 积分线下详情 -->
+        <!-- 线下商户详情 -->
         <activity
             android:name=".ui.activity.PointUnlineDetailActivity"
             android:launchMode="singleTask"
@@ -245,6 +245,11 @@
             android:name=".ui.activity.GoodsListActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--分类过去的商品列表-->
+        <activity
+            android:name=".ui.activity.GoodsCategoryListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 关于 -->
         <activity
             android:name=".ui.activity.AboutActivity"
@@ -255,6 +260,7 @@
             android:name=".ui.activity.LocationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--二维码-->
         <activity
             android:name=".ui.activity.CustomScanActivity"
             android:screenOrientation="portrait"
@@ -264,9 +270,14 @@
         <!-- android:screenOrientation="portrait" -->
         <!-- android:windowSoftInputMode="adjustPan|stateHidden"> -->
         <!-- </activity> -->
-
+        <!---->
         <activity
             android:name=".ui.activity.PointUnlineListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <!--商户评论列表-->
+        <activity
+            android:name=".ui.activity.PointUnlineShopReamrkActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
     </application>

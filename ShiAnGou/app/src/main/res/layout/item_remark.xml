@@ -67,7 +67,7 @@
         android:layout_below="@id/ratingBar"
         android:layout_marginTop="@dimen/margin_h"
         android:gravity="center"
-        android:listSelector="@null"
+        android:listSelector="@color/common_transparent"
         android:numColumns="3"
         android:verticalSpacing="10dp"></GridView>
 </RelativeLayout>

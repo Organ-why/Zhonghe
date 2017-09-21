@@ -8,7 +8,7 @@ import com.zhonghe.shiangou.data.db.ColumnHelper;
  * Created by a on 2017/8/18.
  */
 @DatabaseTable(tableName = "userinfo")
-public class UserInfo extends BaseBean {
+public class  UserInfo extends BaseBean {
 
 
     public UserInfo() {
@@ -54,6 +54,7 @@ public class UserInfo extends BaseBean {
      * passwd_question : null
      * passwd_answer : null
      * nick_name : 的换个地方
+     * token_secret
      */
     @DatabaseField(columnName = ColumnHelper.UserColumns.NICKNAME)
     private String nick_name;
@@ -98,7 +99,25 @@ public class UserInfo extends BaseBean {
     private String is_validated;
     private String credit_line;
     private String agree;
+    @DatabaseField(columnName = ColumnHelper.UserColumns.SECRET)
+    private String token_secret;
+    private String token_time;
 
+    public String getToken_time() {
+        return token_time;
+    }
+
+    public void setToken_time(String token_time) {
+        this.token_time = token_time;
+    }
+
+    public String getToken_secret() {
+        return token_secret;
+    }
+
+    public void setToken_secret(String token_secret) {
+        this.token_secret = token_secret;
+    }
 
     public String getPhone() {
         return phone;

@@ -17,8 +17,12 @@ public class CstProject {
     public static final int DB_VERSION = 1;
     // CHANNEL META
     public static final String CHANNEL_META = "InstallChannel";
+    //
+    public static final String DEFAULT_SECRET = "v09axxacse30bcf009";
 
     public static String URL_PRO = "http://test.shiangou.com.cn/";
+    //线下商城
+    public static String URL_PRO_UNLINE = "http://test.shiangou.com.cn/merchant/api.php/";
 
 
     /**
@@ -52,11 +56,13 @@ public class CstProject {
         // 登出广播
         public static final String LOGOUT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGOUT_ACTION";
         //位置
-        public static final String LOCATION_ACTION = PACKAGE_NAME+"android.intent.action.LOCATION_ACTION";
+        public static final String LOCATION_ACTION = PACKAGE_NAME + "android.intent.action.LOCATION_ACTION";
         // 支付返回
         public static final String PAY_RESULT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.PAY_RESULT_ACTION";
         //tab 选中
         public static final String MAINTAB_CHECK_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.MAINTAB_CHECK_ACTION";
+        //可选分类分类列表 选择了分类
+        public static final String CATEGORY_CHANGE_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.CATEGORY_CHANGE_ACTION";
         //购物车商品
         public static final String CART_DEL_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.CART_DEL_ACTION";
         public static final String CART_ADD_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.CAET_ADD_ACTION";

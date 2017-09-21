@@ -84,7 +84,8 @@ public class RecyHeaderAdapter<T> extends RecyclerView.Adapter<RecyclerView.View
         return mInnerAdapter.getItemViewType(position - getHeadersCount());
     }
 
-    private int getRealItemCount() {
+    public int getRealItemCount() {
+        if (mInnerAdapter == null) return 0;
         return mInnerAdapter.getItemCount();
     }
 

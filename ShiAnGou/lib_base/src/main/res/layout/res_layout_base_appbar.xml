@@ -14,6 +14,10 @@
         android:id="@+id/base_id_appbar_custom_stub"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#dcdcdc" />
     <!-- app tabs -->
     <ViewStub
         android:id="@+id/base_id_appbar_tabs_stub"

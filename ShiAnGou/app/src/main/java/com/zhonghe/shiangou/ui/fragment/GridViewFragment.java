@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +50,7 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
     protected void initLayout() {
         setContentView(R.layout.activity_default_gridview);
         ButterKnife.bind(this, getView());
+        registerAction(CstProject.BROADCAST_ACTION.CATEGORY_CHANGE_ACTION);
         Bundle bundle = getArguments();
         listId = bundle.getString(CstProject.KEY.ID);
         listKey = bundle.getString(CstProject.KEY.KEY);
@@ -65,7 +67,8 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
             }
         });
 
-        getGoodsList();
+        if (!listId.equals("-1"))
+            getGoodsList();
     }
 
     void getGoodsList() {
@@ -79,7 +82,11 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
             @Override
             public void onSuccess(Object obj) {
                 List<GoodsInfo> list = (List<GoodsInfo>) obj;
-                adapter.addList(list);
+                if (curpage == 1) {
+                    adapter.setList(list);
+                } else {
+                    adapter.addList(list);
+                }
                 idDefaultGridview.onRefreshComplete();
             }
         });
@@ -96,5 +103,16 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<HeaderGridView> refreshView) {
         getGoodsList();
+    }
+
+    @Override
+    protected void onReceive(Intent intent) {
+        switch (intent.getAction()) {
+            case CstProject.BROADCAST_ACTION.CATEGORY_CHANGE_ACTION:
+                listId = intent.getStringExtra(CstProject.KEY.ID);
+                adapter.clearAll();
+                onPullDownToRefresh(null);
+                break;
+        }
     }
 }

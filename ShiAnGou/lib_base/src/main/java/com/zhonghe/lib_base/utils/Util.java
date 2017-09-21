@@ -181,6 +181,24 @@ public class Util {
         }
     }
 
+    /**
+     * 格式化距离  千米->米
+     *
+     * @param metre
+     * @return
+     */
+    public static String formatMetre(double metre) {
+        int p = (int) metre;
+        if (p != 0) {
+            return new DecimalFormat("###.000").format(metre) + "千米";
+//            return new DecimalFormat("###.00").format(price);
+        } else {
+            return new DecimalFormat("###").format(metre * 1000) + "米";
+//            return "0" + new DecimalFormat("###.00").format(price);
+
+        }
+    }
+
     public static String ALLDATE = "yyyy-MM-dd";
     public static String ALLDATETIME = "yyyy-MM-dd";
 

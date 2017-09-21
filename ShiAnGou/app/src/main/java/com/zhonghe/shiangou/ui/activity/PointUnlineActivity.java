@@ -1,12 +1,11 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -15,35 +14,24 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.journeyapps.barcodescanner.BarcodeEncoder;
-import com.journeyapps.barcodescanner.CaptureActivity;
 import com.zhonghe.lib_base.baseui.UIOptions;
 import com.zhonghe.lib_base.utils.Util;
-import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
-import com.zhonghe.shiangou.data.bean.HomeData;
+import com.zhonghe.shiangou.data.bean.UnlineHomeInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
-import com.zhonghe.shiangou.ui.adapter.RecyAdapter;
-import com.zhonghe.shiangou.ui.adapter.RecyHeaderAdapter;
-import com.zhonghe.shiangou.ui.adapter.ViewHolder;
+import com.zhonghe.shiangou.ui.adapter.UnlineShopAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
-import com.zhonghe.shiangou.ui.widget.BannerPresenter;
-import com.zhonghe.shiangou.ui.widget.DynamicBanner;
-import com.zhonghe.shiangou.ui.widget.FlowLayout;
+import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -56,7 +44,7 @@ import butterknife.OnClick;
  * desc:积分线下
  */
 
-public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.addCartListener {
+public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO.IXListViewListener {
     @Bind(R.id.title_user_ivb)
     ImageButton titleUserIvb;
     @Bind(R.id.title_msg_ivb)
@@ -65,16 +53,17 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
     TextView idCategoryTitleTv;
     @Bind(R.id.rl_title)
     RelativeLayout rlTitle;
-    @Bind(R.id.id_recyclerview)
-    RecyclerView mRecyclerview;
+    @Bind(R.id.xlistview)
+    NXListViewNO xlistview;
 
 
     List<HomeCategoryInfo> categoryInfo;
     List<BaseBannerInfo> bannerInfo;
-    private RecyAdapter adapter;
+    private UnlineShopAdapter adapter;
     private LinearLayoutManager layoutManager;
     private LinearLayout llContentTitle;
     private LinearLayout llContentList;
+    private int curpage = 1;
 
     @Override
     protected void initTop() {
@@ -93,7 +82,7 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
 
     @Override
     protected void initLayout() {
-        setContentView(R.layout.layout_recyclerview);
+        setContentView(R.layout.activity_default_xlistview);
         ButterKnife.bind(this);
     }
 
@@ -115,23 +104,22 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
         TextView liveTv = (TextView) headerdesc.findViewById(R.id.id_unline_live);
         TextView playTv = (TextView) headerdesc.findViewById(R.id.id_unline_play);
 
-
-        categoryInfo = new ArrayList<>();
-        layoutManager = new LinearLayoutManager(mContext);
-        mRecyclerview.setLayoutManager(layoutManager);//这里用线性显示 类似于listview
-//        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));//这里用线性宫格显示 类似于grid view
-//        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, OrientationHelper.VERTICAL));//这里用线性宫格显示 类似于瀑布流
-
-        adapter = new RecyAdapter(mContext, categoryInfo, this);
-        RecyHeaderAdapter<ViewHolder> headerAdapter = new RecyHeaderAdapter<>(adapter);
-        headerAdapter.addHeaderView(header);
-        mRecyclerview.setAdapter(headerAdapter);
+        xlistview.setPullRefreshEnable(false);
+        xlistview.setPullLoadEnable(false);
+        xlistview.setXListViewListener(this);
+        xlistview.addHeaderView(header);
+        adapter = new UnlineShopAdapter(mContext, null);
+        xlistview.setAdapter(adapter);
         getHomeData();
     }
 
     void getHomeData() {
         setWaitingDialog(true);
-        Request<?> request = HttpUtil.getHomeData(mContext, new ResultListener() {
+        if (ProjectApplication.mLocation == null) {
+            ProjectApplication.mLocationService.start();
+            return;
+        }
+        Request<?> request = HttpUtil.getUnlineHome(mContext, curpage, ProjectApplication.mLocation.getLongitude(), ProjectApplication.mLocation.getLatitude(), new ResultListener() {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
@@ -141,32 +129,30 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
             @Override
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
-                HomeData homeData = (HomeData) obj;
-                bannerInfo = homeData.getBannerX();
-                categoryInfo = homeData.getCategoryX();
-                adapter.setData(categoryInfo);
-                showBanner();
-
+                UnlineHomeInfo homeData = (UnlineHomeInfo) obj;
+                if (curpage == 1) {
+                    showBanner(homeData.getBanner());
+                    adapter.setList(homeData.getList());
+                } else {
+                    adapter.addList(homeData.getList());
+                }
             }
         });
         addRequest(request);
     }
 
-    void showBanner() {
-        View BannerView = new BannerPresenter(mContext, 5000, new BannerPresenter.OnItemVpClick() {
-            @Override
-            public void OnVpClick(int position) {
-
-            }
-        }).initView(bannerInfo);
+    void showBanner(String imgUrl) {
+//        View BannerView = new BannerPresenter(mContext, 5000, new BannerPresenter.OnItemVpClick() {
+//            @Override
+//            public void OnVpClick(int position) {
+//
+//            }
+//        }).initView(bannerInfo);
+        SimpleDraweeView imageView = new SimpleDraweeView(mContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(mContext, 175));
-        BannerView.setLayoutParams(layoutParams);
-        llContentTitle.addView(BannerView);
-    }
-
-    @Override
-    public void OnAddCart(String goods_id) {
-
+        imageView.setLayoutParams(layoutParams);
+        ProjectApplication.mImageLoader.loadImage(imageView, imgUrl);
+        llContentTitle.addView(imageView);
     }
 
 
@@ -174,6 +160,7 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_user_ivb:
+                finish();
 //                Bitmap bitmap = EncodingUtils.createQRCode("http://blog.csdn.net/a_zhon/", 500, 500, logo);
                 break;
             case R.id.title_msg_ivb:
@@ -211,6 +198,27 @@ public class PointUnlineActivity extends BaseTopActivity implements RecyAdapter.
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+
+    }
+
+    @Override
+    protected void onReceive(Intent intent) {
+        super.onReceive(intent);
+        switch (intent.getAction()) {
+            case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
+                ProjectApplication.mLocationService.stop();
+                getHomeData();
+                break;
         }
     }
 }

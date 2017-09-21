@@ -10,7 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <LinearLayout
             android:id="@+id/id_goodsdetail_banner_ll"
@@ -139,7 +142,8 @@
             style="@style/common_light_divider_style5"
             android:layout_width="match_parent" />
 
-        <include layout="@layout/item_remark" />
+        <include layout="@layout/item_remark"
+            android:visibility="visible"/>
 
         <View
             style="@style/common_divider_style1"

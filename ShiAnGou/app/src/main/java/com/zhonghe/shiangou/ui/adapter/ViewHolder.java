@@ -22,7 +22,7 @@ import android.widget.TextView;
 /**
  * auther: whyang
  * date: 2017/9/12
- * desc:
+ * desc:通用holder
  */
 
 public class ViewHolder extends RecyclerView.ViewHolder {

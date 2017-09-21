@@ -28,6 +28,7 @@ public class ProLocationListener implements BDLocationListener {
     @Override
     public void onReceiveLocation(BDLocation location) {
         int resultCode = BDLocation.TypeServerError;
+        ProDispatcher.sendLocationBroadcast(context,null != location? location.getLocType():-1);
         if (null != location && location.getLocType() != BDLocation.TypeServerError) {
             ProjectApplication.mLocation = location;
             StringBuffer sb = new StringBuffer(256);
@@ -112,7 +113,7 @@ public class ProLocationListener implements BDLocationListener {
                 sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
             }
 //            logMsg(sb.toString());
-            ProDispatcher.sendLocationBroadcast(context, resultCode);
+
         }
     }
 }

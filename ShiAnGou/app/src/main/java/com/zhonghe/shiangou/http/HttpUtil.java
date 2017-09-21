@@ -36,7 +36,11 @@ import com.zhonghe.shiangou.data.bean.PointOrderInfo;
 import com.zhonghe.shiangou.data.bean.RefundsDetailInfo;
 import com.zhonghe.shiangou.data.bean.RefundsItemInfo;
 import com.zhonghe.shiangou.data.bean.RemarkInfo;
+import com.zhonghe.shiangou.data.bean.ShopRemarkInfo;
+import com.zhonghe.shiangou.data.bean.UnlineHomeInfo;
+import com.zhonghe.shiangou.data.bean.UnlineShopDetailInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
@@ -52,13 +56,14 @@ import java.util.List;
 import java.util.Map;
 
 import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO;
+import static com.zhonghe.shiangou.system.constant.CstProject.URL_PRO_UNLINE;
 
 /**
  * Created by whyang on 2017/8/10.
  */
 
 public class HttpUtil {
-    public static String APP_DOWNLOAD_URL =  "http://www.shiangou.com.cn/Android/app-release.apk";
+    public static String APP_DOWNLOAD_URL = "http://www.shiangou.com.cn/Android/app-release.apk";
     // 首页信息
     public static String URL_HomeData = URL_PRO + "app/index.php";
     //
@@ -73,6 +78,12 @@ public class HttpUtil {
     public static String URL_PointRecordList = URL_PRO + "app/exchange/read.php";
     //删除兑换记录
     public static String URL_PointDel = URL_PRO + "app/exchange/delete.php";
+    //线下商城首页
+    public static String URL_UnlineHome = URL_PRO_UNLINE + "Home/index";
+    //商户详情
+    public static String URL_UnlineShopDetail = URL_PRO_UNLINE + "Details/show/";
+    //商户所有评论列表
+    public static String URL_UnlineShopRemarkList = URL_PRO_UNLINE + "Comment/getlist";
 
     //分类
     public static String URL_CategoryParent = URL_PRO + "app/type/ding.php";
@@ -1093,8 +1104,75 @@ public class HttpUtil {
         return request;
     }
 
+    /**
+     * 线下商城 周边商户
+     *
+     * @param context
+     * @param curpage
+     * @param lon
+     * @param lat
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUnlineHome(Context context, int curpage, double lon, double lat, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("curpage", curpage + "");
+        map.put("grade", "5");
+        map.put("lon", String.valueOf(lon));
+        map.put("lat", String.valueOf(lat));
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+//        Type bean = new TypeToken<List<CategoryChild>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineHome, map, listener, UnlineHomeInfo.class);
+        return request;
+    }
+
+    /**
+     * 商户详情
+     *
+     * @param context
+     * @param merchant_id
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUnlineShopDetail(Context context, String merchant_id, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("merchant_id", merchant_id);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+//        Type bean = new TypeToken<List<CategoryChild>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineShopDetail, map, listener, UnlineShopDetailInfo.class);
+        return request;
+    }
 
 /////////////////////////////////////////////////////////网络基本请求////////////////////////////////////////////////////////////////////////
+
+
+    /**
+     *
+     * 商户评论列表
+     *
+     * @param context
+     * @param merchant_id
+     * @param curpage
+     * @param cursize
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUnlineShopRemarkList(Context context, String merchant_id, int curpage, int cursize, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("merchant_id", merchant_id);
+        map.put("curpage ", curpage + "");
+        map.put("cursize", cursize + "");
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Type bean = new TypeToken<List<ShopRemarkInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineShopRemarkList, map, listener, bean);
+        return request;
+    }
 
     public static final String CHAR_SET = "utf-8";
 
@@ -1127,6 +1205,9 @@ public class HttpUtil {
 //        map.put("pubversion", Device.getCurrentAppVersionName(context) + "");
 //        map.put("pubdevice", Device.getDeviceId(context));
 //        map.put("pubplatform", "android");
+//        map.put("secret","97ccf08eba886673de8e3a378de8d6b3");
+        String secret = ProjectApplication.mUser.getToken_secret();
+        map.put("uid", ProjectApplication.mUser != null ? ProjectApplication.mUser.getUser_id() : "0");
 
 //        String memberKey = PrefUtils.getString(context, Const.MEMBER_KEY, "");
 //        if (!TextUtils.isEmpty(memberKey)) {
@@ -1135,17 +1216,18 @@ public class HttpUtil {
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
-
                 try {
-                    if (s.indexOf("null{") >= 0) {
-                        s = s.replace("null{", "{");
-                    }
                     UtilLog.d("resp-url:" + url);
                     UtilLog.d("resp-map:" + map.toString());
                     UtilLog.d("resp-str:" + s);
                     JSONObject json = new JSONObject(s);
                     BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
                     if (obj.getState() != 1) {
+                        switch (obj.getState()) {
+                            case 14:
+                                ProDispatcher.goLoginActivity(context);
+                                break;
+                        }
                         listener.onFail(obj.getMsg());
                     } else if (bean != null) {
                         String strdata = JSONParser.toString(obj.getDatas());

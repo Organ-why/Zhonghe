@@ -175,7 +175,7 @@ public class UserFragment extends BaseTopFragment {
 
             @Override
             public void onSuccess(Object obj) {
-                ProjectApplication.mUser = (UserInfo) obj;
+//                ProjectApplication.mUser = (UserInfo) obj;
                 setWaitingDialog(false);
                 setUserMSG();
             }

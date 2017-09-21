@@ -37,6 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_xlsize"
+            android:visibility="gone"
             android:layout_alignParentRight="true"
             android:layout_alignBottom="@id/id_home_category_item_iv"
             android:layout_marginLeft="@dimen/margin_h"

@@ -7,43 +7,81 @@
     android:orientation="vertical">
 
 
-    <TextView
-        android:id="@+id/id_unline_detail_name"
-        style="@style/common_text_gray_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/margin_h"
-        tools:text="老家顶戴顶替苦" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="@dimen/margin_h">
+        android:padding="@dimen/padding_xxlsize">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/id_shop_iv"
+            android:layout_width="125dp"
+            android:layout_height="95dp"
+            app:placeholderImage="@mipmap/res_default_goods" />
 
         <TextView
-            style="@style/common_text_gray_desc"
+            android:id="@+id/id_img_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/id_shop_iv"
+            android:layout_alignRight="@id/id_shop_iv"
+            android:layout_margin="@dimen/margin_h"
+            android:background="@drawable/circle_gray_bg"
+            android:paddingBottom="2dp"
+            android:paddingLeft="@dimen/padding_lsize"
+            android:paddingRight="@dimen/padding_lsize"
+            android:paddingTop="2dp"
+            android:text="888" />
+
+
+        <TextView
+            android:id="@+id/id_shop_title"
+            style="@style/TitleText_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/id_shop_iv"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="喜鹊顶戴枯无可奈何花落去 夺夺回协调叶落归根压力回蓝中田吉日吉日基本国策戈进戈时" />
+
+        <TextView
+            android:id="@+id/ids_popular_tv"
+            style="@style/common_text_gray_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/id_shop_title"
+            android:layout_below="@id/id_shop_title"
+            android:layout_marginTop="@dimen/margin_m"
             android:text="@string/unline_popular" />
 
         <com.zhonghe.shiangou.ui.widget.RatingBar
             android:id="@+id/ratingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/id_home_category_item_iv"
+            android:layout_below="@id/id_shop_title"
             android:layout_marginLeft="@dimen/margin_h"
-            android:layout_toEndOf="@+id/id_home_category_item_iv"
-            android:layout_toRightOf="@+id/id_home_category_item_iv"
+            android:layout_marginTop="@dimen/margin_m"
+            android:layout_toRightOf="@+id/ids_popular_tv"
             app:starCount="5"
+            app:clickable="false"
             app:starEmpty="@mipmap/icon_star_normal"
             app:starFill="@mipmap/icon_star_selected"
             app:starHalf="@mipmap/icon_star_half"
             app:starImageSize="16dp"
             app:starStep="4.5"
             app:stepSize="Half" />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/id_shopmsg_tv"
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/id_shop_title"
+            android:layout_below="@id/ratingBar"
+            android:layout_marginTop="@dimen/margin_m"
+            android:text="@string/unline_shop_msg" />
+    </RelativeLayout>
+
 
     <View style="@style/common_divider_style1" />
 
@@ -53,7 +91,7 @@
         android:drawableLeft="@mipmap/icon_location"
         android:drawablePadding="@dimen/margin_h"
         android:drawableRight="@mipmap/icon_phone"
-        android:text="@string/address_addressperson_addr" />
+        tools:text="@string/address_addressperson_addr" />
 
     <View style="@style/common_divider_view_style10" />
 

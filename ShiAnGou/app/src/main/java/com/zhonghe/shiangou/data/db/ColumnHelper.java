@@ -15,5 +15,6 @@ public class ColumnHelper {
         public static final String NICKNAME = "_nickName";
         public static final String HEADER = "_header";
         public static final String POINT = "_point";
+        public static final String SECRET = "_secret";
     }
 }

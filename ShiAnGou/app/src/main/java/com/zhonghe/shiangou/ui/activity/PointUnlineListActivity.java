@@ -1,13 +1,8 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.animation.ObjectAnimator;
-import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.AbsListView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,15 +14,16 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.zhonghe.lib_base.baseui.UIOptions;
 import com.zhonghe.shiangou.R;
-import com.zhonghe.shiangou.ui.adapter.UnlineGoodsAdapter;
+import com.zhonghe.shiangou.ui.adapter.UnlineShopAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
-import com.zhonghe.shiangou.ui.dialog.UnlineTypePop;
+import com.zhonghe.shiangou.ui.widget.PopListPresenter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-import static com.zhonghe.shiangou.R.id.view;
 
 public class PointUnlineListActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2<ListView> {
     @Bind(R.id.id_default_listview)
@@ -47,6 +43,10 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
 
     private int lastIndex;
     float mRotation = 180f;
+    private PopListPresenter typePresenter;
+    private PopListPresenter orderByPresenter;
+    private TextView typeTv;
+    private TextView orderByTv;
 
     @Override
     protected void initAppCustom() {
@@ -80,47 +80,34 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
         View floatView = LayoutInflater.from(mContext).inflate(R.layout.layout_unline_list_float, null);
         typeIv = (ImageView) floatView.findViewById(R.id.id_type_iv);
         orderbyIv = (ImageView) floatView.findViewById(R.id.id_orderby_iv);
+        typeTv = (TextView) floatView.findViewById(R.id.id_type_tv);
+        orderByTv = (TextView) floatView.findViewById(R.id.id_orderby_tv);
         floatLl.addView(floatView);
         idDefaultListview.setOnRefreshListener(this);
-        UnlineGoodsAdapter adapter = new UnlineGoodsAdapter(mContext, null);
+        UnlineShopAdapter adapter = new UnlineShopAdapter(mContext, null);
         idDefaultListview.setAdapter(adapter);
-        ListView listView = idDefaultListview.getRefreshableView();
-        listView.setOnScrollListener(new AbsListView.OnScrollListener() {
+
+        final List<String> list = new ArrayList<>();
+        list.add("水果1");
+        list.add("水果2");
+        list.add("水果3");
+        list.add("水果4");
+        list.add("水果5");
+        typePresenter = new PopListPresenter(mContext, list, floatView, typeIv, new PopListPresenter.OnPopItemClickListener() {
             @Override
-            public void onScrollStateChanged(AbsListView absListView, int scrollState) {
-                // TODO 自动生成的方法存根
-                switch (scrollState) {
-
-                    // 滚动之前,手还在屏幕上 记录滚动前的下标
-                    case AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL:
-                        // view.getLastVisiblePosition()得到当前屏幕可见的第一个item在整个listview中的下标
-                        lastIndex = absListView.getLastVisiblePosition();
-                        break;
-
-                    // 滚动停止
-                    case AbsListView.OnScrollListener.SCROLL_STATE_IDLE:
-                        // 记录滚动停止后 记录当前item的位置
-                        int scrolled = absListView.getLastVisiblePosition();
-                        // 滚动后下标大于滚动前 向下滚动了
-                        if (scrolled > lastIndex) {
-                            // scroll = false;
-                            // UIHelper.ToastMessage(VideoMain.this,"菜单收起");
-                            floatLl.setVisibility(View.GONE);
-                        }
-                        // 向上滚动了
-                        else {
-                            floatLl.setVisibility(View.VISIBLE);
-                            // UIHelper.ToastMessage(VideoMain.this,"菜单弹出");
-                            // scroll = true;
-                        }
-                        break;
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView absListView, int firstItem, int i1, int i2) {
+            public void OnClickItem(String t, int position) {
+                typeTv.setText(t);
+//                ProDispatcher.sendChangeCategoryBroadcast(mContext, list.get(position));
             }
         });
+        orderByPresenter = new PopListPresenter(mContext, list, floatView, orderbyIv, new PopListPresenter.OnPopItemClickListener() {
+            @Override
+            public void OnClickItem(String t, int position) {
+                orderByTv.setText(t);
+//                ProDispatcher.sendChangeCategoryBroadcast(mContext, list.get(position));
+            }
+        });
+        ListView listView = idDefaultListview.getRefreshableView();
     }
 
     @OnClick({R.id.title_user_ivb, R.id.title_msg_ivb, R.id.id_category_title_tv})
@@ -136,18 +123,10 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
 
                 break;
             case R.id.id_type_ll:
-                TypeIconRotate();
-                UnlineTypePop pop = new UnlineTypePop(mContext, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        TypeIconRotate();
-                    }
-                });
-                pop.showAsDropDown(floatLl);
-//                pop.showAsDropDown(floatLl, 0, 0);
-//                pop.showAtLocation(view, Gravity.TOP, 0, 0);
+                typePresenter.show();
                 break;
             case R.id.id_orderby_ll:
+                orderByPresenter.show();
                 break;
         }
     }

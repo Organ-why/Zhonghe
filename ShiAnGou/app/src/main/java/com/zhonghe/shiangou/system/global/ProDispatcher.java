@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.LocalBroadcastManager;
 
 import com.zhonghe.shiangou.data.bean.AddressInfo;
-import com.zhonghe.shiangou.data.bean.RefundsDetailInfo;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.constant.CstProject.BROADCAST_ACTION;
 import com.zhonghe.shiangou.ui.activity.AboutActivity;
@@ -17,6 +16,7 @@ import com.zhonghe.shiangou.ui.activity.ChangeNameActivity;
 import com.zhonghe.shiangou.ui.activity.ChangePwdActivity;
 import com.zhonghe.shiangou.ui.activity.ConfirmOrderActivity;
 import com.zhonghe.shiangou.ui.activity.ForgetPwdActivity;
+import com.zhonghe.shiangou.ui.activity.GoodsCategoryListActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsDetailActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsListActivity;
 import com.zhonghe.shiangou.ui.activity.LikeActivity;
@@ -33,6 +33,7 @@ import com.zhonghe.shiangou.ui.activity.PointExchangeResultActivity;
 import com.zhonghe.shiangou.ui.activity.PointUnlineActivity;
 import com.zhonghe.shiangou.ui.activity.PointUnlineDetailActivity;
 import com.zhonghe.shiangou.ui.activity.PointUnlineListActivity;
+import com.zhonghe.shiangou.ui.activity.PointUnlineShopReamrkActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsBeginActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsDetailActivity;
@@ -42,10 +43,8 @@ import com.zhonghe.shiangou.ui.activity.RemarkListActivity;
 import com.zhonghe.shiangou.ui.activity.SearchActivity;
 import com.zhonghe.shiangou.ui.activity.SetupActivity;
 import com.zhonghe.shiangou.ui.activity.UserActivity;
-import com.zhonghe.shiangou.ui.fragment.UserFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Date: 2017/8/12.
@@ -439,13 +438,28 @@ public class ProDispatcher {
      * 线下积分详情
      *
      * @param context
+     * @param merchant_id
      */
-    public static void goPointUnlineDetailActivity(Context context) {
+    public static void goPointUnlineDetailActivity(Context context, String merchant_id) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, PointUnlineDetailActivity.class);
-//        intent.putExtra(CstProject.KEY.ID, goods_id);
+        intent.putExtra(CstProject.KEY.ID, merchant_id);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 商户 id
+     * @param context
+     * @param merchant_id
+     */
+    public static void goPointUnlineShopReamrk(Context context, String merchant_id) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, PointUnlineShopReamrkActivity.class);
+        intent.putExtra(CstProject.KEY.ID, merchant_id);
         context.startActivity(intent);
     }
 
@@ -518,6 +532,22 @@ public class ProDispatcher {
             return;
         }
         Intent intent = new Intent(context, GoodsListActivity.class);
+        intent.putExtra(CstProject.KEY.ID, cat_id);
+        intent.putExtra(CstProject.KEY.KEY, keywords);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 分类商品列表
+     * @param context
+     * @param cat_id
+     * @param keywords
+     */
+    public static void goGoodsCategoryListActivity(Context context, String cat_id, String keywords) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, GoodsCategoryListActivity.class);
         intent.putExtra(CstProject.KEY.ID, cat_id);
         intent.putExtra(CstProject.KEY.KEY, keywords);
         context.startActivity(intent);
@@ -670,6 +700,22 @@ public class ProDispatcher {
         Intent intent = new Intent();
         intent.putExtra(CstProject.KEY.ID, goodsId);
         intent.setAction(BROADCAST_ACTION.CART_ADD_ACTION);
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
+        manager.sendBroadcast(intent);
+    }
+
+    /**
+     * 修改分类
+     * @param context
+     * @param goodsId
+     */
+    public static void sendChangeCategoryBroadcast(Context context, String goodsId) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.putExtra(CstProject.KEY.ID, goodsId);
+        intent.setAction(BROADCAST_ACTION.CATEGORY_CHANGE_ACTION);
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
         manager.sendBroadcast(intent);
     }

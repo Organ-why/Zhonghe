@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/padding_xxlsize">
+
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/id_item_remark_header_img"
+        android:layout_width="@dimen/layout_hight_xxxlsize"
+        android:layout_height="@dimen/layout_hight_xxxlsize"
+        app:placeholderImage="@mipmap/res_default_header" />
+
+    <TextView
+        android:id="@+id/id_item_remark_name_tv"
+        style="@style/TitleText_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_xxlsize"
+        android:layout_toRightOf="@id/id_item_remark_header_img"
+        tools:text="183****5366" />
+
+    <TextView
+        android:id="@+id/ids_popular_tv"
+        style="@style/common_text_gray_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/id_item_remark_name_tv"
+        android:layout_below="@id/id_item_remark_name_tv"
+        android:layout_marginTop="@dimen/margin_h"
+        android:text="@string/unline_popular" />
+
+    <com.zhonghe.shiangou.ui.widget.RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_item_remark_name_tv"
+        android:layout_marginLeft="@dimen/margin_h"
+        android:layout_marginTop="@dimen/margin_h"
+        android:layout_toRightOf="@+id/ids_popular_tv"
+        app:starCount="5"
+        app:starEmpty="@mipmap/icon_star_normal"
+        app:starFill="@mipmap/icon_star_selected"
+        app:starHalf="@mipmap/icon_star_half"
+        app:starImageSize="16dp"
+        app:clickable="false"
+        app:starStep="4.5"
+        app:stepSize="Half" />
+
+    <TextView
+        android:id="@+id/id_item_remark_date_tv"
+        style="@style/common_remark_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/ratingBar"
+        android:layout_alignParentRight="true"
+        android:layout_marginLeft="@dimen/margin_xxlsize"
+        tools:text="2017-08-01" />
+
+    <TextView
+        android:id="@+id/id_item_remark_desc_tv"
+        style="@style/common_remark_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/ids_popular_tv"
+        android:layout_below="@id/ids_popular_tv"
+        android:layout_marginTop="@dimen/margin_h"
+        android:ellipsize="end"
+        android:maxLines="2"
+        tools:text="特别新鲜，物流特别快，很喜欢！！特别新鲜，物流特别快，很喜欢！！特别新鲜，物流特别快，很喜欢！！特别新鲜，物流特别快，很喜欢！！" />
+
+
+    <GridView
+        android:id="@+id/id_refund_submit_img_gv"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/id_item_remark_desc_tv"
+        android:layout_below="@id/id_item_remark_desc_tv"
+        android:layout_marginTop="@dimen/margin_h"
+        android:gravity="center"
+        android:listSelector="@color/common_transparent"
+        android:numColumns="3"
+        android:verticalSpacing="10dp"></GridView>
+
+    <View style="@style/common_divider_style1"
+        android:layout_marginTop="@dimen/margin_h"
+        android:layout_below="@id/id_refund_submit_img_gv"
+        android:layout_alignLeft="@id/id_refund_submit_img_gv"/>
+</RelativeLayout>

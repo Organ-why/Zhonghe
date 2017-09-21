@@ -11,6 +11,7 @@ import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
+import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.dialog.AppUpdataDialog;
 import com.zhonghe.shiangou.ui.fragment.CartExpandableFragment;
 import com.zhonghe.shiangou.ui.fragment.CartFragment;
@@ -51,6 +52,10 @@ public class MainActivity extends BaseNavActivity {
             case CstProject.BROADCAST_ACTION.MAINTAB_CHECK_ACTION:
                 int index = intent.getIntExtra(CstProject.KEY.INDEX, 0);
                 setOnTabChanged(index);
+                break;
+            case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
+                ProjectApplication.mLocationService.stop();
+                UtilLog.d("location successedlocation successedlocation successedlocation successed");
                 break;
         }
     }

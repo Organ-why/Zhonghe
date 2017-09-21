@@ -51,7 +51,7 @@
 
     <TextView
         style="@style/TitleText_style"
-        android:text="@string/about_link" />
+        android:text="@string/unline_maybe_like" />
 
     <View style="@style/common_divider_style1" />
 </LinearLayout>

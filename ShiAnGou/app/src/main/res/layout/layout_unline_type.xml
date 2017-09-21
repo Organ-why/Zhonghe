@@ -5,19 +5,10 @@
     android:background="@color/common_white"
     android:orientation="vertical">
 
-    <TextView
-        style="@style/TitleText_style"
-        android:text="@string/unline_food" />
+    <ListView
+        android:id="@+id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        style="@style/TitleText_style"
-        android:text="@string/unline_food" />
-
-    <TextView
-        style="@style/TitleText_style"
-        android:text="@string/unline_food" />
-
-    <TextView
-        style="@style/TitleText_style"
-        android:text="@string/unline_food" />
+    </ListView>
 </LinearLayout>

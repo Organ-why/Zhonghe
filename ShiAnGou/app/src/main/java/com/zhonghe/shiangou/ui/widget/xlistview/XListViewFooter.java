@@ -84,6 +84,7 @@ public class XListViewFooter extends LinearLayout {
     public void show() {
         LayoutParams lp = (LayoutParams) mContentView.getLayoutParams();
         lp.height = LayoutParams.WRAP_CONTENT;
+        lp.weight = LayoutParams.MATCH_PARENT;
         mContentView.setLayoutParams(lp);
     }
 

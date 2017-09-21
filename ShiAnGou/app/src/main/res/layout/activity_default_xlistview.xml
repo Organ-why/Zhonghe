@@ -6,13 +6,14 @@
 
     <!--<com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO-->
     <com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO
-        android:id="@+id/guest_detail_xlistview"
+        android:id="@+id/xlistview"
         android:layout_width="match_parent"
+        android:scrollbars="none"
         android:layout_height="match_parent"
         android:background="@color/common_transparent"
         android:cacheColorHint="@color/common_transparent"
         android:divider="@color/common_gray_hollow"
-        android:dividerHeight="1dp"
+        android:dividerHeight="0.5dp"
         android:fadingEdge="none"
         android:listSelector="@color/common_transparent" />
 </LinearLayout>

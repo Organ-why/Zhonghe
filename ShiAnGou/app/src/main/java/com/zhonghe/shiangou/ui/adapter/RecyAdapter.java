@@ -31,7 +31,7 @@ import butterknife.ButterKnife;
 /**
  * auther: whyang
  * date: 2017/9/8
- * desc:
+ * desc:首页
  */
 
 public class RecyAdapter extends RecyclerView.Adapter {
@@ -42,9 +42,17 @@ public class RecyAdapter extends RecyclerView.Adapter {
     addCartListener addCartListener;
 
 
-    public RecyAdapter(Context context, List<HomeCategoryInfo> mData, addCartListener addCartListener) {
+    public RecyAdapter(Context context) {
+        this.context = context;
+    }
+
+    public RecyAdapter(Context context, List<HomeCategoryInfo> mData) {
         this.context = context;
         this.mData = mData;
+
+    }
+
+    public void setAddCartListener(addCartListener addCartListener) {
         this.addCartListener = addCartListener;
     }
 
@@ -82,17 +90,20 @@ public class RecyAdapter extends RecyclerView.Adapter {
         final ItemStatus itemStatus = getItemStatusByPosition(position);
 
 //        final DataTree<Album, Track> dt = dataTrees.get(itemStatus.getGroupItemIndex());
-        HomeCategoryInfo childIndo = mData.get(itemStatus.getGroupItemIndex());
+        final HomeCategoryInfo childIndo = mData.get(itemStatus.getGroupItemIndex());
         if (itemStatus.getViewType() == ItemStatus.VIEW_TYPE_GROUPITEM) {
             final GroupItemViewHolder groupItemVh = (GroupItemViewHolder) holder;
             //加载groupItem，处理groupItem控件
             ProjectApplication.mImageLoader.loadImage(groupItemVh.idHomeCategoryItemTitleIv, childIndo.getCat_images());
-//            groupItemVh.itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
+            groupItemVh.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 //                    int groupItemIndex = itemStatus.getGroupItemIndex();
-//                }
-//            });
+
+                    ProDispatcher.goGoodsCategoryListActivity(context, childIndo.getCat_id(),
+                            UtilList.isNotEmpty(childIndo.getList()) ? childIndo.getList().get(0).getCat_id() : "33");
+                }
+            });
 
         } else if (itemStatus.getViewType() == ItemStatus.VIEW_TYPE_SUBITEM) {
             final GoodsInfo goodsInfo = childIndo.getList().get(itemStatus.getSubItemIndex());
@@ -102,7 +113,8 @@ public class RecyAdapter extends RecyclerView.Adapter {
             subItemVh.idHomeCategoryItemCartIv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    addCartListener.OnAddCart(goodsInfo.getGoods_id());
+                    if (addCartListener != null)
+                        addCartListener.OnAddCart(goodsInfo.getGoods_id());
                 }
             });
             ProjectApplication.mImageLoader.loadImage(subItemVh.idHomeCategoryItemIv, goodsInfo.getGoods_img());
@@ -127,14 +139,14 @@ public class RecyAdapter extends RecyclerView.Adapter {
         if (UtilList.getCount(mData) == 0)
             return itemCount;
         for (int i = 0; i < mData.size(); i++) {
-            groupPosition.put(itemCount,itemCount);
+            groupPosition.put(itemCount, itemCount);
             itemCount += UtilList.getCount(mData.get(i).getList()) + 1;
         }
         return itemCount;
     }
 
     public int getPosition(int posi) {
-        return groupPosition.size() > posi ? groupPosition.keyAt(posi)+1 : 1;
+        return groupPosition.size() > posi ? groupPosition.keyAt(posi) + 1 : 1;
     }
 
     //    getItemViewType() 在 onCreateViewHolder 前调用，返回 item 类型
