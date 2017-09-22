@@ -4,11 +4,17 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <com.zhonghe.shiangou.ui.widget.FlowLayout
+        android:id="@+id/id_home_categroy_title_cp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.zhonghe.shiangou.ui.widget.FlowLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/layout_hight_xhsize"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@+id/id_unline_food"

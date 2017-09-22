@@ -15,6 +15,7 @@ import com.zhonghe.shiangou.data.bean.ShopInfo;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.widget.RatingBar;
+import com.zhonghe.shiangou.utile.UtilPro;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class UnlineShopAdapter extends AbsAdapter<ShopInfo> {
 
         final ShopInfo info = mList.get(i);
 
-        ProjectApplication.mImageLoader.loadRoundedImage(holder.idHomeCategoryItemIv, info.getMerchant_thumb());
+        ProjectApplication.mImageLoader.loadRoundedImage(holder.idHomeCategoryItemIv, UtilPro.getImgHttpUrl(info.getMerchant_thumb()));
         holder.idGoodsAddressTv.setText(String.format(mContext.getString(R.string.confirmorder_addre), info.getAddress()));
         holder.idGoodsTitleTv.setText(UtilString.nullToEmpty(info.getMerchant_name()));
         holder.ratingBar.setStar(info.getGrade());

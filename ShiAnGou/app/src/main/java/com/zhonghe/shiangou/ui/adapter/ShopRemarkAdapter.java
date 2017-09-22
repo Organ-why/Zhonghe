@@ -15,6 +15,7 @@ import com.zhonghe.shiangou.data.bean.RefundImgInfo;
 import com.zhonghe.shiangou.data.bean.ShopRemarkInfo;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.widget.RatingBar;
+import com.zhonghe.shiangou.utile.UtilPro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +48,7 @@ public class ShopRemarkAdapter extends AbsAdapter<ShopRemarkInfo> {
             holder = (ViewHolder) view.getTag();
         }
         ShopRemarkInfo info = mList.get(position);
-        ProjectApplication.mImageLoader.loadCircleImage(holder.idItemRemarkHeaderImg,info.getUser_pic());
+        ProjectApplication.mImageLoader.loadCircleImage(holder.idItemRemarkHeaderImg, UtilPro.getImgHttpUrl(info.getUser_pic()));
         holder.idItemRemarkNameTv.setText(UtilString.nullToEmpty(info.getNick_name()));
         holder.ratingBar.setStar(info.getGrade());
         holder.idItemRemarkDescTv.setText(UtilString.nullToEmpty(info.getDetails()));

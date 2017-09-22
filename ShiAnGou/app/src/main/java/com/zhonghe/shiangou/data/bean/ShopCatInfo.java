@@ -19,6 +19,15 @@ public class ShopCatInfo extends BaseBean {
     private String type_name;
     private String type_parent;
     private String type_menus;
+    private String type_img;
+
+    public String getType_img() {
+        return type_img;
+    }
+
+    public void setType_img(String type_img) {
+        this.type_img = type_img;
+    }
 
     public String getType_id() {
         return type_id;

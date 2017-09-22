@@ -22,6 +22,7 @@ import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
+import com.zhonghe.shiangou.data.bean.ShopCatInfo;
 import com.zhonghe.shiangou.data.bean.UnlineHomeInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
@@ -30,6 +31,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.UnlineShopAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
+import com.zhonghe.shiangou.ui.widget.FlowLayout;
 import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
 
 import java.util.List;
@@ -57,13 +59,12 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
     NXListViewNO xlistview;
 
 
-    List<HomeCategoryInfo> categoryInfo;
-    List<BaseBannerInfo> bannerInfo;
     private UnlineShopAdapter adapter;
-    private LinearLayoutManager layoutManager;
     private LinearLayout llContentTitle;
     private LinearLayout llContentList;
     private int curpage = 1;
+    private FlowLayout flowLayout;
+    private UnlineHomeInfo homeData;
 
     @Override
     protected void initTop() {
@@ -100,9 +101,10 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         llContentList = (LinearLayout) header.findViewById(R.id.ll_content_list);
         llContentList.addView(headerdesc);
 
-        TextView foodTv = (TextView) headerdesc.findViewById(R.id.id_unline_food);
-        TextView liveTv = (TextView) headerdesc.findViewById(R.id.id_unline_live);
-        TextView playTv = (TextView) headerdesc.findViewById(R.id.id_unline_play);
+//        TextView foodTv = (TextView) headerdesc.findViewById(R.id.id_unline_food);
+//        TextView liveTv = (TextView) headerdesc.findViewById(R.id.id_unline_live);
+//        TextView playTv = (TextView) headerdesc.findViewById(R.id.id_unline_play);
+        flowLayout = (FlowLayout) headerdesc.findViewById(R.id.id_home_categroy_title_cp);
 
         xlistview.setPullRefreshEnable(false);
         xlistview.setPullLoadEnable(false);
@@ -111,6 +113,28 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         adapter = new UnlineShopAdapter(mContext, null);
         xlistview.setAdapter(adapter);
         getHomeData();
+    }
+
+    void setShopCat() {
+        int screenWidth = Util.getScreenWidth(mContext);
+        LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(screenWidth / 3, Util.dip2px(mContext, 95));
+//        for (int i = 0; i < homeData.getCat().size(); i++) {
+        for (final ShopCatInfo cat : homeData.getCat()) {
+            View item = LayoutInflater.from(mContext).inflate(R.layout.item_unlin_type, null);
+            SimpleDraweeView iconimg = (SimpleDraweeView) item.findViewById(R.id.id_item_home_category_title_iv);
+            TextView icontv = (TextView) item.findViewById(R.id.id_item_home_category_title_name);
+            ProjectApplication.mImageLoader.loadImage(iconimg, cat.getType_img());
+            icontv.setText(cat.getType_name());
+            item.setLayoutParams(categoryParams);
+            item.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ProDispatcher.goPointUnlineListActivity(mContext, cat.getType_id());
+                }
+            });
+            flowLayout.addView(item);
+        }
+
     }
 
     void getHomeData() {
@@ -129,9 +153,10 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
             @Override
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
-                UnlineHomeInfo homeData = (UnlineHomeInfo) obj;
+                homeData = (UnlineHomeInfo) obj;
                 if (curpage == 1) {
                     showBanner(homeData.getBanner());
+                    setShopCat();
                     adapter.setList(homeData.getList());
                 } else {
                     adapter.addList(homeData.getList());
@@ -142,12 +167,6 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
     }
 
     void showBanner(String imgUrl) {
-//        View BannerView = new BannerPresenter(mContext, 5000, new BannerPresenter.OnItemVpClick() {
-//            @Override
-//            public void OnVpClick(int position) {
-//
-//            }
-//        }).initView(bannerInfo);
         SimpleDraweeView imageView = new SimpleDraweeView(mContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(mContext, 175));
         imageView.setLayoutParams(layoutParams);

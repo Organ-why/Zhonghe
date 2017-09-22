@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.ui.adapter.BannerAdapter;
@@ -62,6 +63,7 @@ public class DynamicBanner implements ViewPager.OnPageChangeListener {
     };
 
     public View initView(final List<? extends BaseBannerInfo> advertiseArray) {
+        if (UtilList.getCount(advertiseArray) == 0) return new View(context);
         this.advertiseArray = advertiseArray;
 //        return super.initView(advertiseArray);
         View view = inflater.inflate(R.layout.advertisement_board, null);

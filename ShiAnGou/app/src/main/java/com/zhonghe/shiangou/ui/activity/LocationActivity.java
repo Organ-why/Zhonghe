@@ -13,6 +13,8 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
+import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
 import com.baidu.mapapi.map.MarkerOptions;
@@ -57,6 +59,11 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
     RoutePlanSearch mSearch = null;    // 搜索模块，也可去掉地图模块独立使用
     private DrivingRouteLine route;
     private DrivingRouteOverlay routeOverlay;
+    //商户位置
+    private double lon, lat;
+    private BDLocation location;
+    private MyLocationConfiguration.LocationMode mCurrentMode;
+    private com.baidu.mapapi.map.BitmapDescriptor mCurrentMarker;
 
     @Override
     protected void initLayout() {
@@ -73,6 +80,9 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 
     @Override
     protected void initViews() {
+        Intent intent = getIntent();
+        lon = intent.getDoubleExtra(CstProject.KEY.LON, lon);
+        lat = intent.getDoubleExtra(CstProject.KEY.LAT, lat);
         mBaiduMap = mMapView.getMap();
 //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
@@ -137,16 +147,8 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 
 //开始定位
 //        ProjectApplication.mLocationService.registerListener(new ProLocationListener(mContext));
-//        ProjectApplication.mLocationService.start();
-        BDLocation location = ProjectApplication.mLocation;
-        // 构造定位数据
-        MyLocationData locData = new MyLocationData.Builder()
-                .accuracy(location.getRadius())
-                // 此处设置开发者获取到的方向信息，顺时针0-360
-                .direction(100).latitude(location.getLatitude())
-                .longitude(location.getLongitude()).build();
-// 设置定位数据
-        mBaiduMap.setMyLocationData(locData);
+        ProjectApplication.mLocationService.start();
+
 // 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
 //                    BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
 //                            .fromResource(R.mipmap.icon_logo);
@@ -155,9 +157,39 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 //                    mBaiduMap.setMyLocationConfiguration(config);
 // 当不需要定位图层时关闭定位图层
 //                    mBaiduMap.setMyLocationEnabled(false);
+        mCurrentMarker = null;
+        mCurrentMode = MyLocationConfiguration.LocationMode.FOLLOWING;
+        mBaiduMap.setMyLocationConfiguration(new MyLocationConfiguration(
+                mCurrentMode, true, mCurrentMarker));
+        MapStatus.Builder builder = new MapStatus.Builder();
+        builder.overlook(0);
 
+        mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+
+        location = ProjectApplication.mLocation;
+        setLocation();
+        drivingSearch();
+    }
+
+    //当前位置
+    void setLocation() {
+        location = ProjectApplication.mLocation;
+//        mCurrentMarker = BitmapDescriptorFactory
+//                            .fromResource(R.mipmap.icon_logo);
+
+        // 构造定位数据
+        MyLocationData locData = new MyLocationData.Builder()
+                .accuracy(location.getRadius())
+                // 此处设置开发者获取到的方向信息，顺时针0-360
+                .direction(100).latitude(location.getLatitude())
+                .longitude(location.getLongitude()).build();
+// 设置定位数据
+        mBaiduMap.setMyLocationData(locData);
+    }
+
+    void drivingSearch() {
         LatLng startPoint = new LatLng(location.getLatitude(), location.getLongitude());
-        LatLng endPoint = new LatLng(39.963175, 116.400244);
+        LatLng endPoint = new LatLng(lat, lon);
         PlanNode stNode = PlanNode.withLocation(startPoint);
         PlanNode enNode = PlanNode.withLocation(endPoint);
 //                    PlanNode enNode = PlanNode.withCityNameAndPlaceName("北京", "天安门");
@@ -170,35 +202,10 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
     protected void onReceive(Intent intent) {
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
-                ProjectApplication.mLocationService.stop();
+//                ProjectApplication.mLocationService.stop();
                 int code = intent.getIntExtra(CstProject.KEY.CODE, BDLocation.TypeServerError);
                 if (code != BDLocation.TypeServerError) {
-                    BDLocation location = ProjectApplication.mLocation;
-                    // 构造定位数据
-                    MyLocationData locData = new MyLocationData.Builder()
-                            .accuracy(location.getRadius())
-                            // 此处设置开发者获取到的方向信息，顺时针0-360
-                            .direction(100).latitude(location.getLatitude())
-                            .longitude(location.getLongitude()).build();
-// 设置定位数据
-                    mBaiduMap.setMyLocationData(locData);
-// 设置定位图层的配置（定位模式，是否允许方向信息，用户自定义定位图标）
-//                    BitmapDescriptor mCurrentMarker = BitmapDescriptorFactory
-//                            .fromResource(R.mipmap.icon_logo);
-//                    MyLocationConfiguration.LocationMode mCurrentMode = FOLLOWING;
-//                    MyLocationConfiguration config = new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker);
-//                    mBaiduMap.setMyLocationConfiguration(config);
-// 当不需要定位图层时关闭定位图层
-//                    mBaiduMap.setMyLocationEnabled(false);
-
-                    LatLng startPoint = new LatLng(location.getLatitude(), location.getLongitude());
-                    LatLng endPoint = new LatLng(39.963175, 116.400244);
-                    PlanNode stNode = PlanNode.withLocation(startPoint);
-                    PlanNode enNode = PlanNode.withLocation(endPoint);
-//                    PlanNode enNode = PlanNode.withCityNameAndPlaceName("北京", "天安门");
-
-                    mSearch.drivingSearch((new DrivingRoutePlanOption())
-                            .from(stNode).to(enNode));
+                    setLocation();
                 }
                 break;
         }

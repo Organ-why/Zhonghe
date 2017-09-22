@@ -8,6 +8,7 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.lib_base.baseui.adapter.AbsAdapter;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.utile.UtilPro;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class GoodsDetailAdapter extends AbsAdapter<String> {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        ProjectApplication.mImageLoader.loadImage(holder.idGoodsImg, getItem(i));
+        ProjectApplication.mImageLoader.loadImage(holder.idGoodsImg, UtilPro.getImgHttpUrl(getItem(i)));
 
         return view;
     }

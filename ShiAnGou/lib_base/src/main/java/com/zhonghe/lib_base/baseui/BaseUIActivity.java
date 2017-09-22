@@ -50,7 +50,7 @@ import java.util.List;
  * Date: 2017/8/3.
  * Author: whyang
  */
-public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeListener {
+public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeListener, View.OnClickListener {
     //系统栏背景颜色管理器
     private SystemBarTintManager mSbtManager;
     //界面构选项
@@ -85,6 +85,8 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     private TextView mTvEmpty;
     //自定义title
     private LinearLayout mViewTitleTop;
+    private TextView mTvRetry;
+    private OnRetryListener mRetryListener;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -160,6 +162,8 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
             contentStub.inflate();
             mViewTitleTop = (LinearLayout) findViewById(R.id.base_id_title_top);
             mTvEmpty = (TextView) findViewById(R.id.base_id_content_empty);
+            mTvRetry = (TextView) findViewById(R.id.base_id_content_retry);
+            mTvRetry.setOnClickListener(this);
         }
 
 
@@ -821,5 +825,62 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         mNavigationListener = listener;
     }
 
+    /**
+     * 重试
+     *
+     * @param enabled
+     */
+    public void setRetry(boolean enabled) {
+        if (enabled) {
+            if (mTvRetry != null) mTvRetry.setVisibility(View.VISIBLE);
+        } else {
+            if (mTvRetry != null) mTvRetry.setVisibility(View.GONE);
+        }
+    }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.base_id_content_retry) {
+            retry();
+        }
+    }
+
+    /**
+     * 网络请求重试监听器
+     */
+    public interface OnRetryListener {
+        //重试
+        public void onRetry();
+    }
+
+    /**
+     * 设置重试事件
+     *
+     * @param listener
+     */
+    public void setOnRetryListener(OnRetryListener listener) {
+        this.mRetryListener = listener;
+    }
+
+    public void setRetryText(@StringRes int txtRes, @Nullable Drawable top) {
+        setEmptyText(getString(txtRes), null, top, null, null);
+    }
+
+    public void setRetryText(String text, @Nullable Drawable start, @Nullable Drawable top,
+                             @Nullable Drawable end, @Nullable Drawable bottom) {
+        if (mTvRetry != null) {
+            mTvRetry.setVisibility(View.VISIBLE);
+            mTvRetry.setText(text);
+            mTvRetry.setCompoundDrawables(start, top, end, bottom);
+        }
+    }
+
+    /**
+     * 调用重试
+     */
+    private void retry() {
+        if (mRetryListener != null) {
+            mRetryListener.onRetry();
+        }
+    }
 }

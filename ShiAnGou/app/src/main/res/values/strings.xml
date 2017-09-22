@@ -270,6 +270,7 @@
     <string name="unline_gonow">立刻前往</string>
     <string name="unline_remark">网友点评(%s)</string>
     <string name="unline_shop_msg">¥%1$s/人  %2$s %3$s</string>
+    <string name="unline_shop_img">商家图片</string>
     <!--搜索-->
     <string name="search_title_hot">热门搜索</string>
     <string name="search_title_history">历史搜索</string>

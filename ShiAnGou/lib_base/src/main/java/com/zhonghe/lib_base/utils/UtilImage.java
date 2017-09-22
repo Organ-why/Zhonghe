@@ -277,4 +277,5 @@ public class UtilImage {
         }
         return bitmap;
     }
+
 }

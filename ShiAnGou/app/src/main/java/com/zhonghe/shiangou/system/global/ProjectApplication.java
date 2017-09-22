@@ -64,7 +64,6 @@ public class ProjectApplication extends Application {
         proReqestQueue = ProReqestQueue.getInstance(this);
 
         mDaoFactory = DaoFactory.getInstance(this);
-//        mDaoFactory.clear();
         mPrefrence = new ProPrefrences(this);
 
         //获取当前用户信息

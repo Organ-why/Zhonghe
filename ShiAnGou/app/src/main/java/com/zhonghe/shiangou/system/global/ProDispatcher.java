@@ -19,6 +19,7 @@ import com.zhonghe.shiangou.ui.activity.ForgetPwdActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsCategoryListActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsDetailActivity;
 import com.zhonghe.shiangou.ui.activity.GoodsListActivity;
+import com.zhonghe.shiangou.ui.activity.GridRemarkActivity;
 import com.zhonghe.shiangou.ui.activity.LikeActivity;
 import com.zhonghe.shiangou.ui.activity.LocationActivity;
 import com.zhonghe.shiangou.ui.activity.LoginActivity;
@@ -425,12 +426,12 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goPointUnlineListActivity(Context context, String type) {
+    public static void goPointUnlineListActivity(Context context, String typeId) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, PointUnlineListActivity.class);
-        intent.putExtra(CstProject.KEY.TYPE, type);
+        intent.putExtra(CstProject.KEY.ID, typeId);
         context.startActivity(intent);
     }
 
@@ -451,6 +452,7 @@ public class ProDispatcher {
 
     /**
      * 商户 id
+     *
      * @param context
      * @param merchant_id
      */
@@ -468,12 +470,13 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goLocationActivity(Context context) {
+    public static void goLocationActivity(Context context,double lon,double lat) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, LocationActivity.class);
-//        intent.putExtra(CstProject.KEY.ID, goods_id);
+        intent.putExtra(CstProject.KEY.LON, lon);
+        intent.putExtra(CstProject.KEY.LAT, lat);
         context.startActivity(intent);
     }
 
@@ -539,6 +542,7 @@ public class ProDispatcher {
 
     /**
      * 分类商品列表
+     *
      * @param context
      * @param cat_id
      * @param keywords
@@ -584,6 +588,21 @@ public class ProDispatcher {
         context.startActivity(intent);
     }
 
+    /**
+     * 商户图片页面
+     *
+     * @param context
+     * @param shopId
+     */
+    public static void goShopImgActivity(Context context, String shopId) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, GridRemarkActivity.class);
+        intent.putExtra(CstProject.KEY.ID, shopId);
+        context.startActivity(intent);
+    }
+
 
     //////////////////////////////////////////Sendbroadcast////////////////////////////////////////////////
 
@@ -613,6 +632,21 @@ public class ProDispatcher {
         }
         Intent intent = new Intent();
         intent.setAction(BROADCAST_ACTION.LOGOUT_ACTION);
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
+        manager.sendBroadcast(intent);
+    }
+
+    /**
+     * 需要登录
+     *
+     * @param context
+     */
+    public static void sendNeedLoginBroadcast(@NonNull Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setAction(BROADCAST_ACTION.NEEDLOG_ACTION);
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
         manager.sendBroadcast(intent);
     }
@@ -706,6 +740,7 @@ public class ProDispatcher {
 
     /**
      * 修改分类
+     *
      * @param context
      * @param goodsId
      */

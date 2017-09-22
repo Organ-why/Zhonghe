@@ -41,6 +41,8 @@ public class CstProject {
         public final static String VALUES1 = "_values1";
         public final static String VALUES2 = "_values2";
         public final static String VALUES3 = "_values3";
+        public final static String LAT = "_lat";
+        public final static String LON = "_lon";
     }
 
     /**
@@ -55,6 +57,8 @@ public class CstProject {
         public static final String LOGIN_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGIN_ACTION";
         // 登出广播
         public static final String LOGOUT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.LOGOUT_ACTION";
+        // 需要重新登录
+        public static final String NEEDLOG_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.NEEDLOG_ACTION";
         //位置
         public static final String LOCATION_ACTION = PACKAGE_NAME + "android.intent.action.LOCATION_ACTION";
         // 支付返回

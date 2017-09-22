@@ -1,5 +1,7 @@
 package com.zhonghe.shiangou.ui.baseui;
 
+import android.view.View;
+
 import com.android.volley.Request;
 import com.zhonghe.lib_base.baseui.BaseUIActivity;
 import com.zhonghe.lib_base.baseui.UIOptions;
@@ -12,7 +14,7 @@ import static com.zhonghe.lib_base.baseui.UIOptions.UI_OPTIONS_CONTENT_CUSTOM;
  * Date: 2017/8/12.
  * Author: whyang
  */
-public abstract class BaseTopActivity extends BaseUIActivity {
+public abstract class BaseTopActivity extends BaseUIActivity implements View.OnClickListener{
     protected abstract void initTop();
 
     @Override
@@ -27,7 +29,7 @@ public abstract class BaseTopActivity extends BaseUIActivity {
 
     @Override
     protected long initOptions() {
-        return UIOptions.UI_OPTIONS_APPBAR_TOOLBAR | UI_OPTIONS_CONTENT_CUSTOM|UI_OPTIONS_CONTENT_CUSTOM;
+        return UIOptions.UI_OPTIONS_APPBAR_TOOLBAR | UI_OPTIONS_CONTENT_CUSTOM;
     }
     protected void addRequest(Request request) {
         ProjectApplication.proReqestQueue.addRequest( request, this);
@@ -37,5 +39,10 @@ public abstract class BaseTopActivity extends BaseUIActivity {
     protected void onDestroy() {
         super.onDestroy();
         ProjectApplication.proReqestQueue.cancleRequest(  this);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

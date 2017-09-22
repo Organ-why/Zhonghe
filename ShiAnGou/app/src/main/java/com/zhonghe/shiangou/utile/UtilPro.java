@@ -16,6 +16,14 @@ import com.zhonghe.shiangou.system.constant.CstProject;
 
 public class UtilPro {
 
+
+    public static String getImgHttpUrl(String url) {
+        if (url.indexOf("http") == 0) {
+            return url;
+        }
+        return CstProject.URL_PRO + url;
+    }
+
     /**
      * 获取清单指定meta key的值
      *

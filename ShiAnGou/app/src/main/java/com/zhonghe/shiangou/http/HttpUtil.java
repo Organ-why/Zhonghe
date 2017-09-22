@@ -36,7 +36,10 @@ import com.zhonghe.shiangou.data.bean.PointOrderInfo;
 import com.zhonghe.shiangou.data.bean.RefundsDetailInfo;
 import com.zhonghe.shiangou.data.bean.RefundsItemInfo;
 import com.zhonghe.shiangou.data.bean.RemarkInfo;
+import com.zhonghe.shiangou.data.bean.ShopImgInfo;
+import com.zhonghe.shiangou.data.bean.ShopInfo;
 import com.zhonghe.shiangou.data.bean.ShopRemarkInfo;
+import com.zhonghe.shiangou.data.bean.ShopTypeInfo;
 import com.zhonghe.shiangou.data.bean.UnlineHomeInfo;
 import com.zhonghe.shiangou.data.bean.UnlineShopDetailInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
@@ -84,6 +87,12 @@ public class HttpUtil {
     public static String URL_UnlineShopDetail = URL_PRO_UNLINE + "Details/show/";
     //商户所有评论列表
     public static String URL_UnlineShopRemarkList = URL_PRO_UNLINE + "Comment/getlist";
+    //商户列表
+    public static String URL_UnlineShopList = URL_PRO_UNLINE + "Home/fication";
+    //商户列表 -子分类
+    public static String URL_UnlineShopListCategory = URL_PRO_UNLINE + "Home/category";
+    //商户图片
+    public static String URL_UnlineShopImg = URL_PRO_UNLINE + "Details/photolist";
 
     //分类
     public static String URL_CategoryParent = URL_PRO + "app/type/ding.php";
@@ -1147,11 +1156,86 @@ public class HttpUtil {
         return request;
     }
 
+    /**
+     * 商户列表
+     *
+     * @param context
+     * @param type_id
+     * @param cat_id
+     * @param lat
+     * @param lon
+     * @param grade    1 评分 0 位置
+     * @param curpage
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUnlineShopList(Context context, String type_id,
+                                               String cat_id, double lat, double lon, int grade, int curpage,
+                                               final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type_id", type_id);
+        map.put("cat_id", cat_id);
+        map.put("lat", String.valueOf(lat));
+        map.put("lon", String.valueOf(lon));
+        //1 评分 0 位置
+        map.put("grade", String.valueOf(grade));
+        map.put("curpage", String.valueOf(curpage));
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Type bean = new TypeToken<List<ShopInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineShopList, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 商户分类
+     *
+     * @param context
+     * @param type_id
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUnlineShopType(Context context, String type_id,
+                                               final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type_id", type_id);
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Type bean = new TypeToken<List<ShopTypeInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineShopListCategory, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 商户图片
+     *
+     * @param context
+     * @param merchant_id
+     * @param listener
+     * @param curpage
+     * @param cursize
+     * @return
+     */
+    public static Request<?> getUnlineShopImg(Context context, String merchant_id, int curpage, int cursize,
+                                              final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("merchant_id", merchant_id);
+        map.put("curpage", curpage + "");
+        map.put("cursize", cursize + "");
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Type bean = new TypeToken<List<ShopImgInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineShopImg, map, listener, bean);
+        return request;
+    }
+
 /////////////////////////////////////////////////////////网络基本请求////////////////////////////////////////////////////////////////////////
 
 
     /**
-     *
      * 商户评论列表
      *
      * @param context
@@ -1206,8 +1290,9 @@ public class HttpUtil {
 //        map.put("pubdevice", Device.getDeviceId(context));
 //        map.put("pubplatform", "android");
 //        map.put("secret","97ccf08eba886673de8e3a378de8d6b3");
-        String secret = ProjectApplication.mUser.getToken_secret();
+//        String secret = ProjectApplication.mUser.getToken_secret();
         map.put("uid", ProjectApplication.mUser != null ? ProjectApplication.mUser.getUser_id() : "0");
+        map.put("secret", ProjectApplication.mUser != null ? ProjectApplication.mUser.getToken_secret() : CstProject.DEFAULT_SECRET);
 
 //        String memberKey = PrefUtils.getString(context, Const.MEMBER_KEY, "");
 //        if (!TextUtils.isEmpty(memberKey)) {
@@ -1225,10 +1310,13 @@ public class HttpUtil {
                     if (obj.getState() != 1) {
                         switch (obj.getState()) {
                             case 14:
-                                ProDispatcher.goLoginActivity(context);
+//                                ProDispatcher.goLoginActivity(context);
+                                ProDispatcher.sendNeedLoginBroadcast(context);
+                                listener.onFail(obj.getMsg());
                                 break;
+                            default:
+                                listener.onFail(obj.getMsg());
                         }
-                        listener.onFail(obj.getMsg());
                     } else if (bean != null) {
                         String strdata = JSONParser.toString(obj.getDatas());
                         Object data = JSONParser.toObject(strdata, bean);
