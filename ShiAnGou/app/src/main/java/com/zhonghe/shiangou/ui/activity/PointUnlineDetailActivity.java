@@ -2,18 +2,13 @@ package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.zhonghe.lib_base.baseui.MenuPopup;
-import com.zhonghe.lib_base.baseui.MenuTxt;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilString;
@@ -24,7 +19,6 @@ import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.ShopRemarkAdapter;
-import com.zhonghe.shiangou.ui.adapter.UnlineShopAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.RatingBar;
@@ -33,6 +27,7 @@ import com.zhonghe.shiangou.utile.UtilPro;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * auther: whyang
@@ -52,6 +47,12 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
     TextView idUnlineDetailName;
     TextView idUnlineDetailAddre;
     TextView idUnlineDetailRemarknum;
+    @Bind(R.id.id_shop_share)
+    LinearLayout idShopShare;
+    @Bind(R.id.id_shop_reamrk)
+    LinearLayout idShopReamrk;
+    @Bind(R.id.id_shop_pay)
+    TextView idShopPay;
     private String shopId;
     private LinearLayout llContentTitle;
     private LinearLayout llContentList;
@@ -94,7 +95,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
 
     @Override
     protected void initLayout() {
-        setContentView(R.layout.activity_default_xlistview);
+        setContentView(R.layout.activity_unline_shop_detail);
         ButterKnife.bind(this);
     }
 
@@ -176,7 +177,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
     public void onLoadMore() {
 
     }
-
+    @OnClick({R.id.id_shop_share, R.id.id_shop_reamrk, R.id.id_shop_pay})
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -194,8 +195,18 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
                 break;
             case R.id.id_unline_detail_addre:
                 if (info != null)
-                    ProDispatcher.goLocationActivity(mContext, info.getLongitude(),info.getLatitude());
+                    ProDispatcher.goLocationActivity(mContext, info.getLongitude(), info.getLatitude());
+                break;
+            case R.id.id_shop_pay:
+                    ProDispatcher.goUnlinePayActivity(mContext, shopId);
+                break;
+            case R.id.id_shop_share:
+                break;
+            case R.id.id_shop_reamrk:
+                ProDispatcher.goShopRemarkActivity(mContext,shopId);
                 break;
         }
     }
+
+
 }

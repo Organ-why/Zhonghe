@@ -91,7 +91,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
     protected void initViews() {
         rlTitle.setBackgroundResource(R.color.res_color_white);
         titleUserIvb.setImageResource(R.mipmap.common_nav_back);
-        titleMsgIvb.setImageResource(R.mipmap.icon_zxing_black);
+        titleMsgIvb.setImageResource(R.mipmap.icon_exchange_record);
         idCategoryTitleTv.setText(R.string.search_unline_tip);
         idCategoryTitleTv.setBackgroundResource(R.drawable.circle_search_gray_bg);
 
@@ -190,6 +190,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
                         .initiateScan(); // 初始化扫描
                 break;
             case R.id.id_category_title_tv:
+                ProDispatcher.goSearchShopActivity(mContext);
                 break;
             case R.id.id_unline_food:
                 ProDispatcher.goPointUnlineListActivity(mContext, "");

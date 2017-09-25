@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <!--<com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO-->
+    <com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO
+        android:id="@+id/xlistview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/common_transparent"
+        android:cacheColorHint="@color/common_transparent"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        android:divider="@color/common_gray_hollow"
+        android:dividerHeight="0.5dp"
+        android:fadingEdge="none"
+        android:listSelector="@color/common_transparent"
+        android:paddingBottom="@dimen/height_title_custom"
+        android:scrollbars="none" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_title_custom"
+        android:layout_alignParentBottom="true"
+        android:background="@color/common_gray_light"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/id_shop_share"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/common_text_gray_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_share"
+                android:drawablePadding="@dimen/padding_xxxlsize"
+                android:gravity="center"
+                android:text="@string/common_share" />
+        </LinearLayout>
+
+        <View
+            style="@style/common_divider_vertical_style"
+            android:layout_marginBottom="@dimen/margin_h"
+            android:layout_marginTop="@dimen/margin_h" />
+
+        <LinearLayout
+            android:id="@+id/id_shop_reamrk"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/common_text_gray_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableLeft="@mipmap/icon_remark"
+                android:drawablePadding="@dimen/padding_xxxlsize"
+                android:gravity="center"
+                android:text="@string/remark_title" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/id_shop_pay"
+            style="@style/button_orange_selector_style"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:text="@string/unline_pay_title" />
+    </LinearLayout>
+
+</RelativeLayout>

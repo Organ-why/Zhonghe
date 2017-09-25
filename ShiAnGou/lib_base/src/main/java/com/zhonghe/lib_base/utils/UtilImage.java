@@ -62,7 +62,8 @@ public class UtilImage {
         mRoundedHierarchyBuilder = new GenericDraweeHierarchyBuilder(res)
                 .setFadeDuration(300)
                 .setActualImageScaleType(ScaleType.CENTER_CROP)
-                .setRoundingParams(roundedParams);
+                .setRoundingParams(roundedParams)
+                .setPlaceholderImage(defaultPlaceholderDrawable);
 
         //圆形图片配置
         BitmapDrawable defaultPlaceholderDrawableheader = new BitmapDrawable(res,

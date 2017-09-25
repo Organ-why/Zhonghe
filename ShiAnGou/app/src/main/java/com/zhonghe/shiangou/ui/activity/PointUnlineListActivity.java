@@ -24,6 +24,7 @@ import com.zhonghe.shiangou.data.bean.ShopInfo;
 import com.zhonghe.shiangou.data.bean.ShopTypeInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.UnlineShopAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
@@ -101,7 +102,7 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
         shopId = intent.getStringExtra(CstProject.KEY.ID);
         rlTitle.setBackgroundResource(R.color.res_color_white);
         titleUserIvb.setImageResource(R.mipmap.common_nav_back);
-        titleMsgIvb.setImageResource(R.mipmap.icon_zxing_black);
+        titleMsgIvb.setImageResource(R.mipmap.icon_exchange_record);
         idCategoryTitleTv.setText(R.string.search_unline_tip);
         idCategoryTitleTv.setBackgroundResource(R.drawable.circle_search_gray_bg);
 
@@ -127,7 +128,7 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
             public void OnClickItem(String t, int position) {
                 orderByTv.setText(t);
                 orderBy = position;
-                curpage=1;
+                curpage = 1;
                 getShopList(catId, ProjectApplication.mLocation.getLatitude(), ProjectApplication.mLocation.getLongitude(), orderBy);
             }
         });
@@ -141,8 +142,11 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
                 finish();
                 break;
             case R.id.title_msg_ivb:
+                //兑换记录
+                ProDispatcher.goSearchShopActivity(mContext);
                 break;
             case R.id.id_category_title_tv:
+                ProDispatcher.goSearchShopActivity(mContext);
                 break;
             case R.id.id_default_tv:
 
@@ -189,7 +193,7 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
                     public void OnClickItem(String t, int position) {
                         typeTv.setText(t);
                         catId = typeList.get(position).getCat_id();
-                        curpage=1;
+                        curpage = 1;
                         getShopList(catId, ProjectApplication.mLocation.getLatitude(), ProjectApplication.mLocation.getLongitude(), orderBy);
 //                ProDispatcher.sendChangeCategoryBroadcast(mContext, list.get(position));
                     }

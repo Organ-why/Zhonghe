@@ -11,7 +11,7 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.ShopImgInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
-import com.zhonghe.shiangou.ui.adapter.GoodsDetailAdapter;
+import com.zhonghe.shiangou.ui.adapter.ImgRoundedAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
@@ -25,7 +25,7 @@ public class GridRemarkActivity extends BaseTopActivity implements PullToRefresh
 
     @Bind(R.id.id_default_gridview)
     PullToRefreshGridView idDefaultGridview;
-    private GoodsDetailAdapter adapter;
+    private ImgRoundedAdapter adapter;
     private List<String> imgList;
     private String shopId;
     private int curpage = 1;
@@ -51,7 +51,7 @@ public class GridRemarkActivity extends BaseTopActivity implements PullToRefresh
         idDefaultGridview.setOnRefreshListener(this);
 
         imgList = new ArrayList<>();
-        adapter = new GoodsDetailAdapter(mContext, imgList);
+        adapter = new ImgRoundedAdapter(mContext, imgList);
         idDefaultGridview.setAdapter(adapter);
         getImgList();
     }

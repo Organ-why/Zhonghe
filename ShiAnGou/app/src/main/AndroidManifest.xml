@@ -280,8 +280,24 @@
             android:name=".ui.activity.PointUnlineShopReamrkActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 商户图片 -->
         <activity
             android:name=".ui.activity.GridRemarkActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 线下支付 -->
+        <activity
+            android:name=".ui.activity.UnlinePayActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--搜索商户-->
+        <activity
+            android:name=".ui.activity.SearchShopActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+        <!--评论商户-->
+        <activity
+            android:name=".ui.activity.ShopRemarkActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden"></activity>
     </application>

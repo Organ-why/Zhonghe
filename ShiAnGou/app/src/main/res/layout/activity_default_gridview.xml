@@ -16,7 +16,6 @@
         android:dividerHeight="1dp"
         android:horizontalSpacing="20dp"
         app:ptrMode="both"
-        android:padding="20dp"
         android:verticalSpacing="20dp">
 
     </com.handmark.pulltorefresh.library.PullToRefreshGridView>

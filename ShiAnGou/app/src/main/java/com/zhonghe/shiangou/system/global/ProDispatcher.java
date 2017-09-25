@@ -42,7 +42,10 @@ import com.zhonghe.shiangou.ui.activity.RegisterActivity;
 import com.zhonghe.shiangou.ui.activity.RemarkActivity;
 import com.zhonghe.shiangou.ui.activity.RemarkListActivity;
 import com.zhonghe.shiangou.ui.activity.SearchActivity;
+import com.zhonghe.shiangou.ui.activity.SearchShopActivity;
 import com.zhonghe.shiangou.ui.activity.SetupActivity;
+import com.zhonghe.shiangou.ui.activity.ShopRemarkActivity;
+import com.zhonghe.shiangou.ui.activity.UnlinePayActivity;
 import com.zhonghe.shiangou.ui.activity.UserActivity;
 
 import java.util.ArrayList;
@@ -436,7 +439,7 @@ public class ProDispatcher {
     }
 
     /**
-     * 线下积分详情
+     * 线下商户详情
      *
      * @param context
      * @param merchant_id
@@ -446,6 +449,21 @@ public class ProDispatcher {
             return;
         }
         Intent intent = new Intent(context, PointUnlineDetailActivity.class);
+        intent.putExtra(CstProject.KEY.ID, merchant_id);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 线下支付
+     *
+     * @param context
+     * @param merchant_id
+     */
+    public static void goUnlinePayActivity(Context context, String merchant_id) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, UnlinePayActivity.class);
         intent.putExtra(CstProject.KEY.ID, merchant_id);
         context.startActivity(intent);
     }
@@ -466,11 +484,38 @@ public class ProDispatcher {
     }
 
     /**
+     * 搜索商户
+     *
+     * @param context
+     */
+    public static void goSearchShopActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, SearchShopActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 评论商户
+     *
+     * @param context
+     */
+    public static void goShopRemarkActivity(Context context, String merchant_id) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent(context, ShopRemarkActivity.class);
+        intent.putExtra(CstProject.KEY.ID, merchant_id);
+        context.startActivity(intent);
+    }
+
+    /**
      * 地图
      *
      * @param context
      */
-    public static void goLocationActivity(Context context,double lon,double lat) {
+    public static void goLocationActivity(Context context, double lon, double lat) {
         if (context == null) {
             return;
         }

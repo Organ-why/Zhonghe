@@ -19,8 +19,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:scaleType="fitXY"
-            android:src="@mipmap/icon_home_point" />
+            android:scaleType="fitCenter"
+            android:src="@mipmap/icon_point_online_in" />
 
         <ImageView
             android:visibility="visible"
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="fitCenter"
-            android:src="@mipmap/icon_home_point" />
+            android:src="@mipmap/icon_point_unline_in" />
     </LinearLayout>
 
     <RelativeLayout

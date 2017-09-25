@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.zhonghe.shiangou.ui.activity.RemarkActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/common_white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding_msize"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize"
+        android:paddingTop="@dimen/padding_msize">
+
+        <TextView
+            android:id="@+id/id_home_category_item_title_tv"
+            style="@style/home_category_item_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:text="总体" />
+
+        <com.zhonghe.shiangou.ui.widget.RatingBar
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            app:starCount="5"
+            app:starEmpty="@mipmap/icon_star_normal"
+            app:starFill="@mipmap/icon_star_selected"
+            app:starHalf="@mipmap/icon_star_half"
+            app:starImageSize="16dp"
+            app:starStep="1"
+            app:stepSize="Half" />
+
+        <TextView
+            android:id="@+id/id_start_num"
+            style="@style/common_text_gray_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:text="总体" />
+
+    </LinearLayout>
+
+    <View
+        style="@style/common_divider_style1"
+        android:layout_width="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <View
+            style="@style/common_divider_style10"
+            android:layout_width="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/common_white"
+            android:orientation="vertical">
+
+            <EditText
+
+                android:id="@+id/id_refund_submit_desc_et"
+                style="@style/common_text_user_order"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="left"
+                android:hint="@string/prodetail_refunds_tip_hint"
+                android:maxLength="200"
+                android:minHeight="150dp"
+                android:padding="@dimen/padding_xxlsize"
+                android:textColorHint="@color/common_font_hint" />
+
+            <View
+                style="@style/common_divider_style10"
+                android:layout_width="match_parent" />
+
+            <GridView
+                android:id="@+id/id_refund_submit_img_gv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_h"
+                android:gravity="center"
+                android:listSelector="@null"
+                android:numColumns="3"
+                android:scrollbars="none"
+                android:verticalSpacing="10dp"></GridView>
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_ll_custom"
+        android:gravity="center_vertical"
+        android:padding="@dimen/padding_xxlsize">
+
+        <CheckBox
+            android:id="@+id/id_unname_cb"
+            style="@style/common_checkbox_selector"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="匿名" />
+
+        <TextView
+            android:id="@+id/id_item_remark_desc_tv"
+            style="@style/common_remark_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="@string/remark_Anonymous" />
+    </RelativeLayout>
+</LinearLayout>

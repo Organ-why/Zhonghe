@@ -87,8 +87,12 @@ public class HttpUtil {
     public static String URL_UnlineShopDetail = URL_PRO_UNLINE + "Details/show/";
     //商户所有评论列表
     public static String URL_UnlineShopRemarkList = URL_PRO_UNLINE + "Comment/getlist";
+    //商户提交评论
+    public static String URL_UnlineShopSubmitRemark = URL_PRO_UNLINE + "Comment/postinfo";
     //商户列表
     public static String URL_UnlineShopList = URL_PRO_UNLINE + "Home/fication";
+    //商户搜索
+    public static String URL_UnlineShopSearch = URL_PRO_UNLINE + "Home/searchShop";
     //商户列表 -子分类
     public static String URL_UnlineShopListCategory = URL_PRO_UNLINE + "Home/category";
     //商户图片
@@ -1126,7 +1130,7 @@ public class HttpUtil {
     public static Request<?> getUnlineHome(Context context, int curpage, double lon, double lat, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("curpage", curpage + "");
-        map.put("grade", "5");
+        map.put("grade", "0");
         map.put("lon", String.valueOf(lon));
         map.put("lat", String.valueOf(lat));
 //        BaseRes<HomeData> res = new BaseRes<>();
@@ -1185,6 +1189,58 @@ public class HttpUtil {
         Type bean = new TypeToken<List<ShopInfo>>() {
         }.getType();
         Request<?> request = volleyPost(context, URL_UnlineShopList, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 搜索商户
+     *
+     * @param context
+     * @param keywords
+     * @param lat
+     * @param lon
+     * @param curpage
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUnlineShopSearch(Context context, String keywords,
+                                                 double lat, double lon, int curpage,
+                                                 final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("keywords", keywords);
+        map.put("lat", String.valueOf(lat));
+        map.put("lon", String.valueOf(lon));
+        map.put("curpage", String.valueOf(curpage));
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
+        Type bean = new TypeToken<List<ShopInfo>>() {
+        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineShopSearch, map, listener, bean);
+        return request;
+    }
+
+    /**
+     * 评论商户
+     *
+     * @param context
+     * @param merchant_id
+     * @param grade
+     * @param imgs
+     * @param details
+     * @param resultListener
+     * @return
+     */
+    public static Request<?> getSubmitShopRemark(Context context, String merchant_id, float grade, List<String> imgs, String details, ResultListener resultListener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("grade", String.valueOf(grade));
+        map.put("merchant_id", merchant_id);
+        map.put("photo", Util.strArrayToStr(imgs));
+        map.put("details", details);
+
+//        BaseRes<HomeData> res = new BaseRes<>();
+//        Type bean = new TypeToken<List<OrderInfo>>() {
+//        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineShopSubmitRemark, map, resultListener, null);
         return request;
     }
 

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_ll_item"
+                android:gravity="center"
+                android:text="@string/common_share" />
+
+            <View style="@style/common_divider_style1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_xxlsize">
+
+                <TextView
+                    android:id="@+id/id_share_qq"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/padding_size"
+                    android:drawableTop="@mipmap/icon_share_qq"
+                    android:gravity="center"
+                    android:text="@string/share_qq" />
+
+                <TextView
+                    android:id="@+id/id_share_qzone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/padding_size"
+                    android:drawableTop="@mipmap/icon_share_qzone"
+                    android:gravity="center"
+                    android:text="@string/share_qzone" />
+
+                <TextView
+                    android:id="@+id/id_share_wechat"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/padding_size"
+                    android:drawableTop="@mipmap/icon_share_wechat"
+                    android:gravity="center"
+                    android:text="@string/share_wechat" />
+
+                <TextView
+                    android:id="@+id/id_share_moments"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/padding_size"
+                    android:drawableTop="@mipmap/icon_share_moments"
+                    android:gravity="center"
+                    android:text="@string/share_moments" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_xxlsize">
+
+                <TextView
+                    android:id="@+id/id_share_sina"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/padding_size"
+                    android:drawableTop="@mipmap/icon_share_sina"
+                    android:gravity="center"
+                    android:text="@string/share_sina" />
+
+                <TextView
+                    android:id="@+id/id_share_email"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/padding_size"
+                    android:drawableTop="@mipmap/icon_share_email"
+                    android:gravity="center"
+                    android:text="@string/share_email" />
+
+                <TextView
+                    android:id="@+id/id_share_msg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/padding_size"
+                    android:drawableTop="@mipmap/icon_share_msg"
+                    android:gravity="center"
+                    android:text="@string/share_msg" />
+
+                <TextView
+                    android:id="@+id/id_share_link"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:drawablePadding="@dimen/padding_size"
+                    android:drawableTop="@mipmap/icon_share_link"
+                    android:gravity="center"
+                    android:text="@string/share_link" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
