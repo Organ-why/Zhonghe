@@ -35,6 +35,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 评论商家
+ */
 public class ShopRemarkActivity extends BaseSelectImageActivity implements BaseSelectImageActivity.upLoadListener, RefundSubmitAdapter.CancelImgListener, RatingBar.OnRatingChangeListener {
 
 
@@ -57,7 +60,7 @@ public class ShopRemarkActivity extends BaseSelectImageActivity implements BaseS
     private List<String> imgs;
     RefundSubmitAdapter adapter;
     RefundImgInfo infoadd;
-    float startCout = 1;
+    float startCout = 5;
     private String merchantId;
     private MenuTxt mMeunManager;
 
@@ -89,6 +92,7 @@ public class ShopRemarkActivity extends BaseSelectImageActivity implements BaseS
         Intent intent = getIntent();
         merchantId = intent.getStringExtra(CstProject.KEY.ID);
         ratingBar.setOnRatingChangeListener(this);
+        ratingBar.setStar(startCout);
         adapter = new RefundSubmitAdapter(this, true);
         idRefundSubmitImgGv.setAdapter(adapter);
         infoadd = new RefundImgInfo();

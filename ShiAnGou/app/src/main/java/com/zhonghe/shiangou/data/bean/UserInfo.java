@@ -77,7 +77,7 @@ public class  UserInfo extends BaseBean {
     private String frozen_money;
     @DatabaseField(columnName = ColumnHelper.UserColumns.POINT)
     private String pay_points;
-    private String rank_points;
+    private double rank_points;
     private String address_id;
     private String reg_time;
     private String last_login;
@@ -223,11 +223,11 @@ public class  UserInfo extends BaseBean {
         this.pay_points = pay_points;
     }
 
-    public String getRank_points() {
+    public double getRank_points() {
         return rank_points;
     }
 
-    public void setRank_points(String rank_points) {
+    public void setRank_points(double rank_points) {
         this.rank_points = rank_points;
     }
 

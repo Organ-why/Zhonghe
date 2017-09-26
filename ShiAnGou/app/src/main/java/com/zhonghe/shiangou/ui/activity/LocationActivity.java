@@ -3,6 +3,10 @@ package com.zhonghe.shiangou.ui.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -14,6 +18,7 @@ import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
 import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatus;
+import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
@@ -49,7 +54,7 @@ import butterknife.ButterKnife;
 import static com.baidu.mapapi.map.MyLocationConfiguration.LocationMode.FOLLOWING;
 
 
-public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanResultListener {
+public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanResultListener, SensorEventListener {
 
     @Bind(R.id.bmapView)
     MapView mMapView;
@@ -64,6 +69,11 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
     private BDLocation location;
     private MyLocationConfiguration.LocationMode mCurrentMode;
     private com.baidu.mapapi.map.BitmapDescriptor mCurrentMarker;
+    private SensorManager mSensorManager;
+    private double lastX = 0.0;
+    private int mCurrentDirection = 0;
+    private MyLocationData locData;
+    private boolean isFirstLoc;//首次定位
 
     @Override
     protected void initLayout() {
@@ -83,6 +93,10 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
         Intent intent = getIntent();
         lon = intent.getDoubleExtra(CstProject.KEY.LON, lon);
         lat = intent.getDoubleExtra(CstProject.KEY.LAT, lat);
+        mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);//获取传感器管理服务
+        //为系统的方向传感器注册监听器
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+                SensorManager.SENSOR_DELAY_UI);
         mBaiduMap = mMapView.getMap();
 //普通地图
         mBaiduMap.setMapType(BaiduMap.MAP_TYPE_NORMAL);
@@ -168,6 +182,17 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 
         location = ProjectApplication.mLocation;
         setLocation();
+        //        mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
+        // 设置缩放比例,更新地图状态
+//        float f = mBaiduMap.getMaxZoomLevel();// 19.0
+//        LatLng ll = new LatLng(location.getLatitude(),
+//                location.getLongitude());
+//        //float m = mBaiduMap.getMinZoomLevel();//3.0 最大比例尺
+//        MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll,
+//                f);
+//        mBaiduMap.animateMapStatus(u);
+
+
         drivingSearch();
     }
 
@@ -178,13 +203,29 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 //                            .fromResource(R.mipmap.icon_logo);
 
         // 构造定位数据
-        MyLocationData locData = new MyLocationData.Builder()
+//        MyLocationData locData = new MyLocationData.Builder()
+//                .accuracy(location.getRadius())
+//                // 此处设置开发者获取到的方向信息，顺时针0-360
+//                .direction(100).latitude(location.getLatitude())
+//                .longitude(location.getLongitude()).build();
+
+        locData = new MyLocationData.Builder()
                 .accuracy(location.getRadius())
                 // 此处设置开发者获取到的方向信息，顺时针0-360
-                .direction(100).latitude(location.getLatitude())
+                .direction(mCurrentDirection).latitude(location.getLatitude())
                 .longitude(location.getLongitude()).build();
 // 设置定位数据
         mBaiduMap.setMyLocationData(locData);
+
+        if (isFirstLoc) {
+            isFirstLoc = false;
+            LatLng ll = new LatLng(location.getLatitude(),
+                    location.getLongitude());
+            MapStatus.Builder builder = new MapStatus.Builder();
+            builder.target(ll).zoom(18.0f);
+            mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+        }
+
     }
 
     void drivingSearch() {
@@ -238,7 +279,7 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
             return;
         }
         if (result.error == SearchResult.ERRORNO.NO_ERROR) {
-
+            location = ProjectApplication.mLocation;
 //            if (result.getRouteLines().size() > 1) {
             route = result.getRouteLines().get(0);
             DrivingRouteOverlay overlay = new MyDrivingRouteOverlay(mBaiduMap);
@@ -303,6 +344,27 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 
     }
 
+    @Override
+    public void onSensorChanged(SensorEvent sensorEvent) {
+        double x = sensorEvent.values[SensorManager.DATA_X];
+        if (Math.abs(x - lastX) > 1.0) {
+            mCurrentDirection = (int) x;
+            setLocation();
+//            locData = new MyLocationData.Builder()
+//                    .accuracy(location.getRadius())
+//                    // 此处设置开发者获取到的方向信息，顺时针0-360
+//                    .direction(mCurrentDirection).latitude(location.getLatitude())
+//                    .longitude(location.getLongitude()).build();
+//            mBaiduMap.setMyLocationData(locData);
+        }
+        lastX = x;
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
 
     // 定制RouteOverly
     private class MyDrivingRouteOverlay extends DrivingRouteOverlay {
@@ -331,6 +393,11 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mBaiduMap.setMyLocationEnabled(false);
+        mMapView.onDestroy();
+        mMapView = null;
+        //取消注册传感器监听
+        mSensorManager.unregisterListener(this);
         ProjectApplication.mLocationService.stop();
     }
 }

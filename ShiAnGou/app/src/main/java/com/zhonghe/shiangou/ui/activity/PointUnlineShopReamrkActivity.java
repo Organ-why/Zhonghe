@@ -65,11 +65,15 @@ public class PointUnlineShopReamrkActivity extends BaseTopActivity implements NX
             public void onFail(String error) {
                 setWaitingDialog(false);
                 Util.toast(mContext, error);
+                xlistview.stopLoadMore();
+                xlistview.stopRefresh();
             }
 
             @Override
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
+                xlistview.stopLoadMore();
+                xlistview.stopRefresh();
                 mData = (List<ShopRemarkInfo>) obj;
                 if (curpage == 1) {
                     adapter.setList(mData);

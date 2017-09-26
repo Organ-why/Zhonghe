@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,9 +13,12 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
@@ -24,6 +28,7 @@ import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
+import com.zhonghe.shiangou.ui.activity.CustomScanActivity;
 import com.zhonghe.shiangou.ui.adapter.HomeCategoryTitleAdapter;
 import com.zhonghe.shiangou.ui.adapter.RecyAdapter;
 import com.zhonghe.shiangou.ui.adapter.RecyHeaderAdapter;
@@ -224,6 +229,14 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
                 ProDispatcher.sendMainTabBroadcast(mActivity, 3);
                 break;
             case R.id.title_msg_ivb:
+                int REQUEST_CODE = 0x0000c0de; // Only use bottom 16 bits
+                Intent intent = new Intent(mActivity, CustomScanActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
+                //需要以带返回结果的方式启动扫描界面
+//                new IntentIntegrator(getActivity())
+//                        .setOrientationLocked(false)
+//                        .setCaptureActivity(CustomScanActivity.class) // 设置自定义的activity是CustomActivity
+//                        .initiateScan(); // 初始化扫描
                 break;
             case R.id.id_category_title_tv:
                 ProDispatcher.goSearchActivity(mActivity);
@@ -328,5 +341,21 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
     @Override
     public void OnLoadMore() {
 //        presenter.LoadMoreComplet();
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (intentResult != null) {
+            if (intentResult.getContents() == null) {
+                Toast.makeText(mActivity, "内容为空", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(mActivity, "扫描成功", Toast.LENGTH_LONG).show();
+                // ScanResult 为 获取到的字符串
+                String ScanResult = intentResult.getContents();
+                UtilLog.d(ScanResult);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
     }
 }

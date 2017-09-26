@@ -97,6 +97,13 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
     protected void initLayout() {
         setContentView(R.layout.activity_unline_shop_detail);
         ButterKnife.bind(this);
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                getDetail();
+                setRetry(false);
+            }
+        });
     }
 
     @Override
@@ -142,6 +149,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
             public void onFail(String error) {
                 setWaitingDialog(false);
                 Util.toast(mContext, error);
+                setRetryText(R.string.res_string_retry);
             }
 
             @Override
@@ -158,7 +166,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
         adapter.setList(data.getCommentlist());
         if (UtilList.getCount(data.getCommentlist()) == 0)
             footer.setVisibility(View.GONE);
-        ProjectApplication.mImageLoader.loadImage(idShopIv, UtilPro.getImgHttpUrl(data.getMerchant_thumb()));
+        ProjectApplication.mImageLoader.loadRoundedImage(idShopIv, UtilPro.getImgHttpUrl(UtilString.nullToEmpty(data.getMerchant_thumb())));
         idShopTitle.setText(UtilString.nullToEmpty(data.getMerchant_name()));
         idImgNum.setText(UtilString.nullToEmpty(data.getPhoto_num()));
         ratingBar.setStar(data.getGrade());
@@ -177,6 +185,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
     public void onLoadMore() {
 
     }
+
     @OnClick({R.id.id_shop_share, R.id.id_shop_reamrk, R.id.id_shop_pay})
     @Override
     public void onClick(View v) {
@@ -198,12 +207,12 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
                     ProDispatcher.goLocationActivity(mContext, info.getLongitude(), info.getLatitude());
                 break;
             case R.id.id_shop_pay:
-                    ProDispatcher.goUnlinePayActivity(mContext, shopId);
+                ProDispatcher.goUnlinePayActivity(mContext, shopId);
                 break;
             case R.id.id_shop_share:
                 break;
             case R.id.id_shop_reamrk:
-                ProDispatcher.goShopRemarkActivity(mContext,shopId);
+                ProDispatcher.goShopRemarkActivity(mContext, shopId);
                 break;
         }
     }

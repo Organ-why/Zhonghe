@@ -82,8 +82,12 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
             @Override
             public void onSuccess(Object obj) {
                 List<GoodsInfo> list = (List<GoodsInfo>) obj;
+                setRetry(false);
                 if (curpage == 1) {
                     adapter.setList(list);
+                    if (adapter.getCount() == 0) {
+                        setRetryText(R.string.search_search_goods_empty, R.mipmap.icon_empty_search);
+                    }
                 } else {
                     adapter.addList(list);
                 }

@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,14 +14,19 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.CategoryChild;
 import com.zhonghe.shiangou.data.bean.CategoryParent;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
+import com.zhonghe.shiangou.ui.activity.CustomScanActivity;
 import com.zhonghe.shiangou.ui.adapter.CategoryChildAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
@@ -174,13 +180,38 @@ public class CategoryFragment extends BaseTopFragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.title_user_ivb:
-                ProDispatcher.sendMainTabBroadcast(mActivity,3);
+                ProDispatcher.sendMainTabBroadcast(mActivity, 3);
                 break;
             case R.id.title_msg_ivb:
+                //需要以带返回结果的方式启动扫描界面
+//                new IntentIntegrator(mActivity)
+//                        .setOrientationLocked(false)
+//                        .setCaptureActivity(CustomScanActivity.class) // 设置自定义的activity是CustomActivity
+//                        .initiateScan(); // 初始化扫描
+                int REQUEST_CODE = 0x0000c0de; // Only use bottom 16 bits
+                Intent intent = new Intent(mActivity, CustomScanActivity.class);
+                startActivityForResult(intent,REQUEST_CODE);
                 break;
             case R.id.id_category_title_tv:
                 ProDispatcher.goSearchActivity(mActivity);
                 break;
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (intentResult != null) {
+            if (intentResult.getContents() == null) {
+                Toast.makeText(mActivity, "内容为空", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(mActivity, "扫描成功", Toast.LENGTH_LONG).show();
+                // ScanResult 为 获取到的字符串
+                String ScanResult = intentResult.getContents();
+                UtilLog.d(ScanResult);
+            }
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 }

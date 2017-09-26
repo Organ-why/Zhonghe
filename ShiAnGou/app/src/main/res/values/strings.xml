@@ -19,6 +19,7 @@
     <string name="main_tabs_user">我</string>
 
     <string name="common_confirm">确认</string>
+    <string name="common_confirm_pay">确认支付</string>
     <string name="common_cancel">取消</string>
     <string name="common_finish">完成</string>
     <string name="common_camera">拍照</string>
@@ -291,6 +292,7 @@
     <string name="search_title_hot">热门搜索</string>
     <string name="search_title_history">历史搜索</string>
     <string name="search_search_tip">请输入商品名称</string>
+    <string name="search_search_goods_empty">您搜索的内容没有结果\n换个关键词试试吧</string>
     <string name="search_search_shop_tip">请输入商户名称</string>
     <string name="search_unline_tip">请输入商户名称、地点或菜品</string>
     <string name="pro_list_title">商品列表</string>

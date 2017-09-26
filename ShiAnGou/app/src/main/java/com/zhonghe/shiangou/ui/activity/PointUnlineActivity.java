@@ -89,6 +89,12 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
 
     @Override
     protected void initViews() {
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                getHomeData();
+            }
+        });
         rlTitle.setBackgroundResource(R.color.res_color_white);
         titleUserIvb.setImageResource(R.mipmap.common_nav_back);
         titleMsgIvb.setImageResource(R.mipmap.icon_exchange_record);
@@ -101,13 +107,10 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         llContentList = (LinearLayout) header.findViewById(R.id.ll_content_list);
         llContentList.addView(headerdesc);
 
-//        TextView foodTv = (TextView) headerdesc.findViewById(R.id.id_unline_food);
-//        TextView liveTv = (TextView) headerdesc.findViewById(R.id.id_unline_live);
-//        TextView playTv = (TextView) headerdesc.findViewById(R.id.id_unline_play);
         flowLayout = (FlowLayout) headerdesc.findViewById(R.id.id_home_categroy_title_cp);
 
         xlistview.setPullRefreshEnable(false);
-        xlistview.setPullLoadEnable(false);
+        xlistview.setPullLoadEnable(true);
         xlistview.setXListViewListener(this);
         xlistview.addHeaderView(header);
         adapter = new UnlineShopAdapter(mContext, null);
@@ -141,6 +144,10 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         setWaitingDialog(true);
         if (ProjectApplication.mLocation == null) {
             ProjectApplication.mLocationService.start();
+            setWaitingDialog(false);
+            xlistview.stopRefresh();
+            xlistview.stopLoadMore();
+            setRetryText(R.string.res_string_retry);
             return;
         }
         Request<?> request = HttpUtil.getUnlineHome(mContext, curpage, ProjectApplication.mLocation.getLongitude(), ProjectApplication.mLocation.getLatitude(), new ResultListener() {
@@ -148,11 +155,15 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
             public void onFail(String error) {
                 setWaitingDialog(false);
                 Util.toast(mContext, error);
+                xlistview.stopRefresh();
+                xlistview.stopLoadMore();
             }
 
             @Override
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
+                xlistview.stopRefresh();
+                xlistview.stopLoadMore();
                 homeData = (UnlineHomeInfo) obj;
                 if (curpage == 1) {
                     showBanner(homeData.getBanner());
@@ -161,6 +172,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
                 } else {
                     adapter.addList(homeData.getList());
                 }
+                curpage++;
             }
         });
         addRequest(request);
@@ -183,11 +195,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
 //                Bitmap bitmap = EncodingUtils.createQRCode("http://blog.csdn.net/a_zhon/", 500, 500, logo);
                 break;
             case R.id.title_msg_ivb:
-                //需要以带返回结果的方式启动扫描界面
-                new IntentIntegrator(this)
-                        .setOrientationLocked(false)
-                        .setCaptureActivity(CustomScanActivity.class) // 设置自定义的activity是CustomActivity
-                        .initiateScan(); // 初始化扫描
+
                 break;
             case R.id.id_category_title_tv:
                 ProDispatcher.goSearchShopActivity(mContext);
@@ -204,22 +212,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
-        if (intentResult != null) {
-            if (intentResult.getContents() == null) {
-                Toast.makeText(this, "内容为空", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "扫描成功", Toast.LENGTH_LONG).show();
-                // ScanResult 为 获取到的字符串
-                String ScanResult = intentResult.getContents();
-                UtilLog.d(ScanResult);
-            }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
+
 
     @Override
     public void onRefresh() {
@@ -228,7 +221,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
 
     @Override
     public void onLoadMore() {
-
+        getHomeData();
     }
 
     @Override
@@ -237,7 +230,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
                 ProjectApplication.mLocationService.stop();
-                getHomeData();
+//                getHomeData();
                 break;
         }
     }

@@ -13,14 +13,14 @@ public class ExchangeResultInfo extends BaseBean {
      * order_sn : 1504756537841600752
      */
 
-    private String rank;
+    private double rank;
     private String order_sn;
 
-    public String getRank() {
+    public double getRank() {
         return rank;
     }
 
-    public void setRank(String rank) {
+    public void setRank(double rank) {
         this.rank = rank;
     }
 

@@ -92,7 +92,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
         idPointAllTv = (TextView) header.findViewById(R.id.id_point_all_tv);
         idPointAllTv.setOnClickListener(this);
         idPointnumTv = (TextView) header.findViewById(R.id.id_point_num_tv);
-        idPointnumTv.setText(UtilString.nullToEmpty(ProjectApplication.mUser.getRank_points()));
+        idPointnumTv.setText(UtilString.nullToEmpty(Util.formatPrice(ProjectApplication.mUser.getRank_points())));
         getPointGoodsMsg();
     }
 
@@ -178,7 +178,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
     protected void onReceive(Intent intent) {
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.POINT_EXCHANGE_ACTION:
-                idPointnumTv.setText(UtilString.nullToEmpty(ProjectApplication.mUser.getRank_points()));
+                idPointnumTv.setText(UtilString.nullToEmpty(Util.formatPrice(ProjectApplication.mUser.getRank_points())));
                 break;
         }
     }

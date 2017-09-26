@@ -42,11 +42,14 @@ public class UtilImage {
 
         Resources res = ctx.getResources();
 
+        RoundingParams defroundedParams = new RoundingParams();
+        defroundedParams.setRoundAsCircle(false);
         //默认图片配置
         BitmapDrawable defaultPlaceholderDrawable = new BitmapDrawable(res,
                 BitmapFactory.decodeResource(res, R.mipmap.common_image_goods));
         mDefaultHierarchyBuilder = new GenericDraweeHierarchyBuilder(res)
                 .setFadeDuration(300)
+                .setRoundingParams(defroundedParams)
                 .setActualImageScaleType(ScaleType.FIT_XY)
                 .setPlaceholderImage(defaultPlaceholderDrawable);
         mDefaultCropHierarchyBuilder = new GenericDraweeHierarchyBuilder(res)

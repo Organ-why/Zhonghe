@@ -97,6 +97,10 @@ public class HttpUtil {
     public static String URL_UnlineShopListCategory = URL_PRO_UNLINE + "Home/category";
     //商户图片
     public static String URL_UnlineShopImg = URL_PRO_UNLINE + "Details/photolist";
+    //用户信息---积分
+    public static String URL_UserMSGPoint = URL_PRO_UNLINE + "UserInfo/getbase";
+    //线下支付---alipay
+    public static String URL_UNLINEPAY_ALI = URL_PRO_UNLINE + "Payment/index";
 
     //分类
     public static String URL_CategoryParent = URL_PRO + "app/type/ding.php";
@@ -335,6 +339,48 @@ public class HttpUtil {
 //        map.put("ident", code);
 //        BaseRes<String> res = new BaseRes<>();
         Request<?> request = volleyPost(context, URL_UserMSG, map, listener, UserInfo.class);
+        return request;
+    }
+
+    /**
+     * 用户信息---积分
+     *
+     * @param context
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUserMSGPoint(Context context, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+//        map.put("user_id", ProjectApplication.mUser.getUser_id());
+//        map.put("ident", code);
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_UserMSGPoint, map, listener, UserInfo.class);
+        return request;
+    }
+
+    /**
+     * 线下支付 ali
+     * @param context
+     * @param total_money
+     * @param actual_money
+     * @param actual_points
+     * @param merchant_id
+     * @param pay_type 付款类型 1为支付宝，2为微信，3为现金(即只消费积分)
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUNLINEPAY_ALI(Context context, String total_money, String actual_money, String actual_points,
+                                              String merchant_id, String pay_type, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("total_money", total_money);
+        map.put("actual_money", actual_money);
+        map.put("actual_points", actual_points);
+        map.put("merchant_id", merchant_id);
+        map.put("pay_type", pay_type);
+
+//        map.put("ident", code);
+//        BaseRes<String> res = new BaseRes<>();
+        Request<?> request = volleyPost(context, URL_UNLINEPAY_ALI, map, listener, UserInfo.class);
         return request;
     }
 

@@ -16,15 +16,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
-            android:gravity="center"
             android:layout_centerVertical="true"
+            android:gravity="center"
             android:paddingLeft="@dimen/padding_xxlsize"
             android:text="@string/common_cancel" />
 
         <EditText
-            android:singleLine="true"
             android:id="@+id/id_category_title_tv"
-            android:imeOptions="actionSearch"
             style="@style/hint_search_style"
             android:layout_width="match_parent"
             android:layout_height="@dimen/height_search_custom"
@@ -35,6 +33,8 @@
             android:drawablePadding="@dimen/margin_h"
             android:gravity="center_vertical"
             android:hint="@string/str_home_search_tip"
-            android:paddingLeft="@dimen/margin_h" />
+            android:imeOptions="actionSearch"
+            android:paddingLeft="@dimen/margin_h"
+            android:singleLine="true" />
     </RelativeLayout>
 </LinearLayout>

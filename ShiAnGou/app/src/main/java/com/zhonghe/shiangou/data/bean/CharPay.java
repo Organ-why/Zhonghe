@@ -34,7 +34,7 @@ public class CharPay extends BaseBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean extends BaseBean{
         /**
          * appid : wx91470ddde903ce11
          * noncestr : yUcBZVQogw22kyx3vDxYi1G0DebWj2ii

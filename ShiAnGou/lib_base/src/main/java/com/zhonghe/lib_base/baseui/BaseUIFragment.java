@@ -2,10 +2,14 @@ package com.zhonghe.lib_base.baseui;
 
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -46,6 +50,7 @@ public class BaseUIFragment extends BaseFragment implements View.OnClickListener
     //标题
     private TextView mTvTitle;
     private AlertDialog mWaitDialog;
+    private OnRetryListener mRetryListener;
 
     @Override
     protected void init(Bundle savedInstanceState) {
@@ -105,7 +110,6 @@ public class BaseUIFragment extends BaseFragment implements View.OnClickListener
         mPwLoading = (ProgressWheel) view.findViewById(R.id.base_id_content_progress);
         mTvEmpty = (TextView) view.findViewById(R.id.base_id_content_empty);
         mTvRetry = (TextView) view.findViewById(R.id.base_id_content_retry);
-
         mTvRetry.setOnClickListener(this);
         return view;
     }
@@ -146,6 +150,7 @@ public class BaseUIFragment extends BaseFragment implements View.OnClickListener
 
         }
     }
+
     /**
      * 显示等待对话框
      *
@@ -168,6 +173,7 @@ public class BaseUIFragment extends BaseFragment implements View.OnClickListener
             }
         }
     }
+
     /**
      * 设置状态栏背景颜色,支持api>=19
      *
@@ -284,8 +290,165 @@ public class BaseUIFragment extends BaseFragment implements View.OnClickListener
         this.mAppCustomLayoutRes = layoutRes;
     }
 
+
+    /**
+     * 显示空数据文本提示
+     *
+     * @param txtRes
+     */
+    public void setEmptyText(@StringRes int txtRes) {
+        setEmptyText(getString(txtRes));
+    }
+
+    /**
+     * 显示空数据文本提示
+     *
+     * @param emptyText
+     */
+    public void setEmptyText(String emptyText) {
+        if (withOption(UIOptions.UI_OPTIONS_APPBAR_TABS
+                | UIOptions.UI_OPTIONS_NAVBAR_TABS)) {
+            return;
+        }
+
+        if (mFlContent != null) mFlContent.setVisibility(View.GONE);
+//        if (mPwLoading != null) mPwLoading.setVisibility(View.GONE);
+//        if (mTvRetry != null) mTvRetry.setVisibility(View.GONE);
+        if (mTvEmpty != null) {
+            mTvEmpty.setVisibility(View.VISIBLE);
+            mTvEmpty.setText(emptyText);
+        }
+    }
+
+    /**
+     * 显示空数据图片文本提示
+     *
+     * @param txtRes
+     */
+    public void setEmptyText(@StringRes int txtRes, @Nullable Drawable top) {
+        setEmptyText(getString(txtRes), null, top, null, null);
+    }
+
+    /**
+     * 显示空数据图片文本提示
+     *
+     * @param emptyText
+     */
+    public void setEmptyText(String emptyText, @Nullable Drawable start, @Nullable Drawable top,
+                             @Nullable Drawable end, @Nullable Drawable bottom) {
+        if (mFlContent != null) mFlContent.setVisibility(View.GONE);
+//        if (mPwLoading != null) mPwLoading.setVisibility(View.GONE);
+//        if (mTvRetry != null) mTvRetry.setVisibility(View.GONE);
+        if (mTvEmpty != null) {
+            mTvEmpty.setVisibility(View.VISIBLE);
+            mTvEmpty.setText(emptyText);
+            mTvEmpty.setCompoundDrawables(start, top, end, bottom);
+        }
+    }
+
+
+    /**
+     * 显示空数据图片文本提示
+     *
+     * @param txtRes
+     */
+    public void setEmptyText(@StringRes int txtRes, int top) {
+        setEmptyText(getString(txtRes), 0, top, 0, 0);
+    }
+
+    /**
+     * 显示空数据图片文本提示
+     *
+     * @param emptyText
+     */
+    public void setEmptyText(String emptyText, int left, int top,
+                             int right, int bottom) {
+        if (mFlContent != null) mFlContent.setVisibility(View.GONE);
+//        if (mPwLoading != null) mPwLoading.setVisibility(View.GONE);
+//        if (mTvRetry != null) mTvRetry.setVisibility(View.GONE);
+        if (mTvEmpty != null) {
+            mTvEmpty.setVisibility(View.VISIBLE);
+            mTvEmpty.setText(emptyText);
+            mTvEmpty.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom);
+        }
+    }
+
+    /**
+     * 隐藏空数据文本提示
+     */
+    public void hideEmptyText() {
+        if (withOption(UIOptions.UI_OPTIONS_APPBAR_TABS
+                | UIOptions.UI_OPTIONS_NAVBAR_TABS)) {
+            return;
+        }
+
+        if (mFlContent != null) mFlContent.setVisibility(View.VISIBLE);
+        if (mTvEmpty != null) mTvEmpty.setVisibility(View.GONE);
+    }
+
+    /**
+     * 重试
+     *
+     * @param enabled
+     */
+    public void setRetry(boolean enabled) {
+        if (enabled) {
+            if (mTvRetry != null) mTvRetry.setVisibility(View.VISIBLE);
+        } else {
+            if (mTvRetry != null) mTvRetry.setVisibility(View.GONE);
+        }
+    }
+
+    /**
+     * 网络请求重试监听器
+     */
+    public interface OnRetryListener {
+        //重试
+        public void onRetry();
+    }
+
+    /**
+     * 设置重试事件
+     *
+     * @param listener
+     */
+    public void setOnRetryListener(OnRetryListener listener) {
+        this.mRetryListener = listener;
+    }
+
+    public void setRetryText(@StringRes int txtRes) {
+        Drawable drawable = ContextCompat.getDrawable(mActivity, R.mipmap.res_ic_retry);
+        setRetryText(getString(txtRes), null, drawable, null, null);
+    }
+
+    public void setRetryText(@StringRes int txtRes, @DrawableRes int DabRes) {
+        Drawable drawable = ContextCompat.getDrawable(mActivity, DabRes);
+        setRetryText(getString(txtRes), null, drawable, null, null);
+    }
+
+    public void setRetryText(String text, @Nullable Drawable start, @Nullable Drawable top,
+                             @Nullable Drawable end, @Nullable Drawable bottom) {
+        if (mTvRetry != null) {
+            mTvRetry.setVisibility(View.VISIBLE);
+            mTvRetry.setText(text);
+//            mTvRetry.setCompoundDrawables(start, top, end, bottom);
+            mTvRetry.setCompoundDrawablesWithIntrinsicBounds(start, top, end, bottom);
+        }
+    }
+
+    /**
+     * 调用重试
+     */
+    private void retry() {
+        if (mRetryListener != null) {
+            mRetryListener.onRetry();
+        }
+    }
+
     @Override
     public void onClick(View v) {
-
+        if (v.getId() == R.id.base_id_content_retry) {
+            retry();
+        }
     }
 }

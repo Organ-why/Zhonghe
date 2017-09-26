@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.android.volley.Request;
+import com.handmark.pulltorefresh.library.HeaderGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.ShopImgInfo;
@@ -47,7 +49,11 @@ public class GridRemarkActivity extends BaseTopActivity implements PullToRefresh
     protected void initViews() {
         Intent intent = getIntent();
         shopId = intent.getStringExtra(CstProject.KEY.ID);
-
+        HeaderGridView gridView = idDefaultGridview.getRefreshableView();
+        int padin = Util.dip2px(mContext, 10);
+        gridView.setHorizontalSpacing(padin);
+        gridView.setVerticalSpacing(padin);
+        gridView.setPadding(padin, padin, padin, padin);
         idDefaultGridview.setOnRefreshListener(this);
 
         imgList = new ArrayList<>();
@@ -62,10 +68,12 @@ public class GridRemarkActivity extends BaseTopActivity implements PullToRefresh
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
+                idDefaultGridview.onRefreshComplete();
             }
 
             @Override
             public void onSuccess(Object obj) {
+                idDefaultGridview.onRefreshComplete();
                 setWaitingDialog(false);
                 List<ShopImgInfo> imgs = (List<ShopImgInfo>) obj;
                 imgList.clear();

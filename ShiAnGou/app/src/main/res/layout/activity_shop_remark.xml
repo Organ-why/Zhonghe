@@ -105,6 +105,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_ll_custom"
+        android:visibility="gone"
         android:gravity="center_vertical"
         android:padding="@dimen/padding_xxlsize">
 

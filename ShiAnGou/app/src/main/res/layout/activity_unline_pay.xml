@@ -1,125 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="173dp"
-        android:background="@mipmap/res_unline_pay_banner"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/id_pay_pointnum_tv"
-            style="@style/TitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/unline_pay_pointnum" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_ll_item"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            style="@style/TitleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/margin_l"
-            android:text="@string/unline_pay_total" />
-
-        <EditText
-            android:id="@+id/id_pay_total_ev"
-            style="@style/detial_goods_money_orange"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="@dimen/margin_l"
-            android:layout_marginRight="@dimen/margin_l"
-            android:background="@color/common_transparent"
-            android:gravity="right|center_vertical"
-            android:hint="@string/unline_pay_total_tip"
-            android:maxLines="1" />
+            android:layout_height="173dp"
+            android:background="@mipmap/res_unline_pay_banner"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/id_pay_pointnum_tv"
+                style="@style/TitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unline_pay_pointnum" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/height_ll_item"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/TitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/margin_l"
+                android:text="@string/unline_pay_total" />
+
+            <EditText
+                android:id="@+id/id_pay_total_ev"
+                style="@style/detial_goods_money_orange"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/margin_l"
+                android:layout_marginRight="@dimen/margin_l"
+                android:background="@color/common_transparent"
+                android:gravity="right|center_vertical"
+                android:hint="@string/unline_pay_total_tip"
+                android:inputType="numberDecimal"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:maxLines="1" />
+        </LinearLayout>
+
+        <View style="@style/common_divider_view_style10" />
+
+        <LinearLayout
+            android:id="@+id/money_pay_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/id_pay_lack_tv"
+                style="@style/common_text_gray_title"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/height_ll_item"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/padding_xxlsize"
+                android:text="@string/unline_pay_lack" />
+
+            <View style="@style/common_divider_style1" />
+
+            <RadioGroup
+                android:id="@+id/radiogroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    style="@style/common_text_user_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_ll_item"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_h"
+                    android:background="@color/common_transparent"
+                    android:button="@null"
+                    android:drawableLeft="@mipmap/icon_pay_wechat_m"
+                    android:drawablePadding="@dimen/padding_xxlsize"
+                    android:drawableRight="@drawable/common_selectall_cb_selector"
+                    android:gravity="center_vertical"
+                    android:paddingRight="@dimen/padding_xxlsize"
+                    android:text="@string/common_pointtitle_str" />
+
+                <RadioButton
+                    style="@style/common_text_user_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_ll_item"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/margin_h"
+                    android:background="@color/common_transparent"
+                    android:button="@null"
+                    android:drawableLeft="@mipmap/icon_pay_alipay_m"
+                    android:drawablePadding="@dimen/padding_xxlsize"
+                    android:drawableRight="@drawable/common_selectall_cb_selector"
+                    android:gravity="center_vertical"
+                    android:paddingRight="@dimen/padding_xxlsize"
+                    android:text="@string/common_pointtitle_str" />
+            </RadioGroup>
+        </LinearLayout>
     </LinearLayout>
-
-    <View style="@style/common_divider_view_style10" />
-
-    <TextView
-        android:id="@+id/id_pay_lack_tv"
-        style="@style/common_text_gray_title"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_ll_item"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/padding_xxlsize"
-        android:text="@string/unline_pay_lack" />
-
-    <View style="@style/common_divider_style1" />
-
-    <RelativeLayout
-        android:id="@+id/id_user_point_rl"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/user_item_height"
-        android:background="@color/common_white"
-        android:paddingLeft="@dimen/padding_xxlsize"
-        android:paddingRight="@dimen/padding_xxlsize">
-
-
-        <TextView
-            style="@style/common_text_user_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_lsize"
-            android:drawableLeft="@mipmap/icon_point_item"
-            android:gravity="center_vertical"
-            android:text="@string/common_pointtitle_str" />
-
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/icon_cb_redcircle" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/user_item_height"
-        android:background="@color/common_white"
-        android:paddingLeft="@dimen/padding_xxlsize"
-        android:paddingRight="@dimen/padding_xxlsize">
-
-
-        <TextView
-            style="@style/common_text_user_item"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="@dimen/margin_lsize"
-            android:drawableLeft="@mipmap/icon_point_item"
-            android:gravity="center_vertical"
-            android:text="@string/common_pointtitle_str" />
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/icon_cb_nomal" />
-
-    </RelativeLayout>
 
     <Button
-        style="@style/button_graycirc_bg_style"
-        android:layout_width="wrap_content"
+        android:id="@+id/confirm_pay"
+        style="@style/button_orange_selector_style"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
-        android:text="@string/unline_pay_title" />
+        android:layout_margin="@dimen/margin_xh"
+        android:text="@string/common_confirm_pay" />
 
-</LinearLayout>
+
+</RelativeLayout>

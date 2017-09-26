@@ -84,7 +84,7 @@ public class SearchActivity extends BaseSystemActivity {
                     ProDispatcher.goGoodsListActivity(mContext, "", s);
                     searchList.add(s);
                     ProjectApplication.mPrefrence.setSearch(searchList.toString());
-                    addItem(s,idSearchHistoryFl);
+                    addItem(s, idSearchHistoryFl);
                     return false;
                 }
                 return true;
@@ -142,7 +142,7 @@ public class SearchActivity extends BaseSystemActivity {
 
     void setIdSearchHistory() {
         for (final String info : searchList) {
-            addItem(info,idSearchHistoryFl);
+            addItem(info, idSearchHistoryFl);
         }
     }
 

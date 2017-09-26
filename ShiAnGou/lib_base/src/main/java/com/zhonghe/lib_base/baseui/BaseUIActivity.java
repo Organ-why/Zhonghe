@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.PopupMenu;
@@ -862,8 +863,14 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         this.mRetryListener = listener;
     }
 
-    public void setRetryText(@StringRes int txtRes, @Nullable Drawable top) {
-        setEmptyText(getString(txtRes), null, top, null, null);
+    public void setRetryText(@StringRes int txtRes) {
+        Drawable drawable = ContextCompat.getDrawable(mContext, R.mipmap.res_ic_retry);
+        setRetryText(getString(txtRes), null, drawable, null, null);
+    }
+
+    public void setRetryText(@StringRes int txtRes, @DrawableRes int DabRes) {
+        Drawable drawable = ContextCompat.getDrawable(mContext, DabRes);
+        setRetryText(getString(txtRes), null, drawable, null, null);
     }
 
     public void setRetryText(String text, @Nullable Drawable start, @Nullable Drawable top,
@@ -871,7 +878,8 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
         if (mTvRetry != null) {
             mTvRetry.setVisibility(View.VISIBLE);
             mTvRetry.setText(text);
-            mTvRetry.setCompoundDrawables(start, top, end, bottom);
+//            mTvRetry.setCompoundDrawables(start, top, end, bottom);
+            mTvRetry.setCompoundDrawablesWithIntrinsicBounds(start, top, end, bottom);
         }
     }
 

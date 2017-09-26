@@ -60,7 +60,6 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
     ImageView orderbyIv;
 
     private int lastIndex;
-    float mRotation = 180f;
     private PopListPresenter typePresenter;
     private PopListPresenter orderByPresenter;
     private TextView typeTv;
@@ -149,7 +148,9 @@ public class PointUnlineListActivity extends BaseTopActivity implements PullToRe
                 ProDispatcher.goSearchShopActivity(mContext);
                 break;
             case R.id.id_default_tv:
-
+                catId = typeList.get(0).getCat_id();
+                getShopList(catId, ProjectApplication.mLocation.getLatitude(), ProjectApplication.mLocation.getLongitude(), orderBy);
+                typeTv.setText(typeList.get(0).getCat_name());
                 break;
             case R.id.id_type_ll:
                 if (typePresenter != null)

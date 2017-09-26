@@ -14,18 +14,19 @@
             android:id="@+id/id_default_listview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#19000000"
             android:clipToPadding="true"
-            android:paddingTop="50dp"
+            android:divider="#19000000"
             android:dividerHeight="0.5dp"
             android:listSelector="@color/res_color_transparent"
+            android:paddingTop="50dp"
+            android:scrollbars="none"
             app:ptrMode="both"></com.handmark.pulltorefresh.library.PullToRefreshListView>
 
         <LinearLayout
             android:id="@+id/float_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:orientation="vertical"></LinearLayout>
+            android:orientation="vertical"
+            android:visibility="visible"></LinearLayout>
     </FrameLayout>
 </RelativeLayout>
