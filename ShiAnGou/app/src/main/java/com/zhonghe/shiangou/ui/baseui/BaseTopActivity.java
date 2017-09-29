@@ -14,7 +14,7 @@ import static com.zhonghe.lib_base.baseui.UIOptions.UI_OPTIONS_CONTENT_CUSTOM;
  * Date: 2017/8/12.
  * Author: whyang
  */
-public abstract class BaseTopActivity extends BaseUIActivity implements View.OnClickListener{
+public abstract class BaseTopActivity extends BaseUIActivity {
     protected abstract void initTop();
 
     @Override
@@ -41,8 +41,5 @@ public abstract class BaseTopActivity extends BaseUIActivity implements View.OnC
         ProjectApplication.proReqestQueue.cancleRequest(  this);
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }

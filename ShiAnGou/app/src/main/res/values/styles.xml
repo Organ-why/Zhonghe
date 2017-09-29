@@ -160,7 +160,7 @@
     <!--商品列表title-->
     <style name="home_category_item_title">
         <item name="android:textColor">@color/common_font_normal</item>
-        <item name="android:textSize">@dimen/font_xxxlsize</item>
+        <item name="android:textSize">@dimen/font_xmsize</item>
         <item name="android:maxLines">2</item>
     </style>
     <!--金额符号-->
@@ -171,7 +171,7 @@
     <!--金额-->
     <style name="home_category_item_money">
         <item name="android:textColor">@color/common_font_red</item>
-        <item name="android:textSize">@dimen/font_msize</item>
+        <item name="android:textSize">@dimen/font_xxmsize</item>
     </style>
     <!--金额-->
     <style name="detial_goods_money">
@@ -300,7 +300,7 @@
         <item name="android:padding">@dimen/padding_size</item>
         <item name="android:background">@drawable/circle_bt_orange_bg</item>
         <item name="android:textColor">@color/common_white</item>
-        <item name="android:textSize">@dimen/font_xxxlsize</item>
+        <item name="android:textSize">@dimen/font_xxmsize</item>
     </style>
 
     <style name="button_graycirc_bg_style">
@@ -417,9 +417,9 @@
     <!--remark 日期字体样式-->
     <style name="common_remark_date">
         <item name="android:textColor">@color/common_font_shallow</item>
-        <item name="android:textSize">@dimen/album_font_msize</item>
+        <item name="android:textSize">@dimen/font_xlsize</item>
     </style>
-    <!--remark 日期字体样式-->
+    <!---->
     <style name="common_remark_desc">
         <item name="android:textColor">@color/common_font_shallow</item>
         <item name="android:textSize">@dimen/font_msize</item>

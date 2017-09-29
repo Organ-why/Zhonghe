@@ -45,6 +45,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:numColumns="3"
+            android:listSelector="@color/res_color_transparent"
             android:verticalSpacing="10dp"></GridView>
 
     </LinearLayout>

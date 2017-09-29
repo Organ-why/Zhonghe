@@ -34,7 +34,7 @@ public class CharPay extends BaseBean {
         this.data = data;
     }
 
-    public static class DataBean extends BaseBean{
+    public static class DataBean extends BaseBean {
         /**
          * appid : wx91470ddde903ce11
          * noncestr : yUcBZVQogw22kyx3vDxYi1G0DebWj2ii
@@ -54,6 +54,25 @@ public class CharPay extends BaseBean {
         private int timestamp;
         private String sign;
         private String out_trade_no;
+        //支付宝
+        String ali_secret;
+        int pay_type;
+
+        public int getPay_type() {
+            return pay_type;
+        }
+
+        public void setPay_type(int pay_type) {
+            this.pay_type = pay_type;
+        }
+
+        public String getAli_secret() {
+            return ali_secret;
+        }
+
+        public void setAli_secret(String ali_secret) {
+            this.ali_secret = ali_secret;
+        }
 
         public String getAppid() {
             return appid;

@@ -111,7 +111,7 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
     //确认商品
     void getConfirmData() {
         setWaitingDialog(true);
-        Request<?> request = HttpUtil.getConfirmGoods(mContext, ids, typeCode,attr_id,goods_count, new ResultListener() {
+        Request<?> request = HttpUtil.getConfirmGoods(mContext, ids, typeCode, attr_id, goods_count, new ResultListener() {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
@@ -132,7 +132,7 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
 
     //生成订单
     void submitOrder() {
-        if (UtilString.isEmpty(mData.getDefault_add().getArea_address())) {
+        if (mData.getDefault_add() == null|| UtilString.isEmpty(mData.getDefault_add().getArea_address())) {
             Util.toast(mContext, R.string.confirmorder_receiptmsg_text);
             return;
         }
@@ -242,15 +242,15 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
 
     //    设置地址显示
     void setAddressShow(AddressInfo default_add) {
-        if (UtilString.isEmpty(default_add.getAddress_id())) {
+        if (default_add == null || UtilString.isEmpty(default_add.getAddress_id())) {
             idConfirmorderAddressRl.setVisibility(View.VISIBLE);
             idConfirmAddressLl.setVisibility(View.GONE);
         } else {
             idConfirmorderAddressRl.setVisibility(View.GONE);
             idConfirmAddressLl.setVisibility(View.VISIBLE);
-            idConfirmAddressNameTv.setText(String.format(getResources().getString(R.string.confirmorder_name), default_add.getConsignee()));
-            idConfirmAddressAreaTv.setText(String.format(getResources().getString(R.string.confirmorder_addre), default_add.getArea_address() + default_add.getAddress()));
-            idConfirmAddressPhoneTv.setText(String.format(getResources().getString(R.string.confirmorder_phone), default_add.getMobile()));
+            idConfirmAddressNameTv.setText(String.format(getResources().getString(R.string.confirmorder_name), UtilString.nullToEmpty(default_add.getConsignee())));
+            idConfirmAddressAreaTv.setText(String.format(getResources().getString(R.string.confirmorder_addre), UtilString.nullToEmpty(default_add.getArea_address()) + UtilString.nullToEmpty(default_add.getAddress())));
+            idConfirmAddressPhoneTv.setText(String.format(getResources().getString(R.string.confirmorder_phone), UtilString.nullToEmpty(default_add.getMobile())));
         }
     }
 
@@ -276,7 +276,11 @@ public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.p
     protected void onReceive(Intent intent) {
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.PAY_RESULT_ACTION:
+                ProDispatcher.sendAddCardBroadcast(mContext, "-1");
                 //支付返回结果
+                int intExtra = intent.getIntExtra(CstProject.KEY.CODE, -1);
+                if (intExtra == 0)
+                    finish();
                 break;
         }
     }

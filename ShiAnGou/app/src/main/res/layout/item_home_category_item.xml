@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:apptool="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <View style="@style/common_divider_style1" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,8 +22,7 @@
             android:layout_width="@dimen/home_category_item_img_width"
             android:layout_height="@dimen/home_category_item_img_height"
             android:scaleType="fitXY"
-            app:placeholderImage="@mipmap/icon_pro_default"
-            />
+            app:placeholderImage="@mipmap/icon_pro_default" />
 
         <TextView
             android:id="@+id/id_home_category_item_title_tv"

@@ -95,11 +95,11 @@ public class RemarkListActivity extends BaseTopActivity implements PullToRefresh
     @Override
     public void onPullDownToRefresh(PullToRefreshBase refreshView) {
         curpage = 1;
-        setWaitingDialog(true);
+        getRemarkList();
     }
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase refreshView) {
-        setWaitingDialog(true);
+        getRemarkList();
     }
 }

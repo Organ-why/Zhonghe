@@ -6,8 +6,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.lib_httpok.OkHttp3Stack;
-import com.zhonghe.lib_base.utils.UtilImage;
-import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import okhttp3.OkHttpClient;
 

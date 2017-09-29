@@ -22,9 +22,14 @@ import butterknife.ButterKnife;
  */
 
 public class GoodsDetailAdapter extends AbsAdapter<String> {
+    float AspectRatio = 1;
 
     public GoodsDetailAdapter(Context context, List<String> datas) {
         super(context, datas);
+    }
+
+    public void setAspectRatio(float aspectRatio) {
+        this.AspectRatio = aspectRatio;
     }
 
     @Override
@@ -37,7 +42,8 @@ public class GoodsDetailAdapter extends AbsAdapter<String> {
         } else {
             holder = (ViewHolder) view.getTag();
         }
-        ProjectApplication.mImageLoader.loadImage(holder.idGoodsImg, UtilPro.getImgHttpUrl(getItem(i)));
+        holder.idGoodsImg.setAspectRatio(AspectRatio);
+        ProjectApplication.mImageLoader.loadImagegray(holder.idGoodsImg, UtilPro.getImgHttpUrl(getItem(i)));
 
         return view;
     }

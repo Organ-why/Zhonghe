@@ -90,15 +90,16 @@ public class CategoryFragment extends BaseTopFragment {
                 ProDispatcher.goGoodsListActivity(mActivity, childAdapter.getData().get(i).getCat_id(), "");
             }
         });
-
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                setRetry(false);
+                getCategoryParent();
+            }
+        });
         getCategoryParent();
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
     @Override
     protected void initTop() {
@@ -116,6 +117,7 @@ public class CategoryFragment extends BaseTopFragment {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
+                setRetry(true);
                 Util.toast(mActivity, error);
             }
 
@@ -190,7 +192,7 @@ public class CategoryFragment extends BaseTopFragment {
 //                        .initiateScan(); // 初始化扫描
                 int REQUEST_CODE = 0x0000c0de; // Only use bottom 16 bits
                 Intent intent = new Intent(mActivity, CustomScanActivity.class);
-                startActivityForResult(intent,REQUEST_CODE);
+                startActivityForResult(intent, REQUEST_CODE);
                 break;
             case R.id.id_category_title_tv:
                 ProDispatcher.goSearchActivity(mActivity);

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/padding_msize"
+        android:paddingLeft="@dimen/padding_xxlsize"
+        android:paddingRight="@dimen/padding_xxlsize"
+        android:paddingTop="@dimen/padding_msize">
+
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/id_home_category_item_iv"
+            android:layout_width="@dimen/layout_hight_ehmsize"
+            android:layout_height="@dimen/layout_hight_ehmsize"
+            android:scaleType="fitXY"
+            app:placeholderImage="@mipmap/icon_pro_default" />
+
+
+        <TextView
+            android:id="@+id/id_goods_rigthtbt_bt"
+            style="@style/button_orangecirc_selector_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/id_home_category_item_iv"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="@dimen/margin_h"
+            android:text="@string/unline_gonow"
+            android:textSize="@dimen/font_xlsize"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/id_home_category_item_iv"
+            android:layout_alignTop="@id/id_home_category_item_iv"
+            android:layout_marginLeft="@dimen/margin_xxlsize"
+            android:layout_toRightOf="@id/id_home_category_item_iv"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            `
+
+            <TextView
+                android:id="@+id/id_shop_name_tv"
+                style="@style/TitleText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                tools:text="goodsname" />
+
+
+            <TextView
+                android:id="@+id/id_total_money_tv"
+                style="@style/common_text_gray_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="@string/order_unline_consume" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    style="@style/common_text_gray_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="@string/order_unline_actualMoney" />
+
+
+                <TextView
+                    android:id="@+id/id_actual_money_tv"
+                    style="@style/detial_goods_money"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:textSize="@dimen/font_xxxlsize"
+                    tools:text="10000" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/id_data_tv"
+                style="@style/common_text_gray_desc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                tools:text="20151231313" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>

@@ -61,6 +61,8 @@ public class CstProject {
         public static final String NEEDLOG_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.NEEDLOG_ACTION";
         //位置
         public static final String LOCATION_ACTION = PACKAGE_NAME + "android.intent.action.LOCATION_ACTION";
+        //评论
+        public static final String REMARK_ACTION = PACKAGE_NAME + "android.intent.action.REMARK_ACTION";
         // 支付返回
         public static final String PAY_RESULT_ACTION = PACKAGE_NAME + ".BROADCAST_ACTION.PAY_RESULT_ACTION";
         //tab 选中

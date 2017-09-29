@@ -21,6 +21,16 @@ public class GoodsdetailInfo extends BaseBean {
     private GoodsPingBean goods_ping;
     private List<String> goods_img;
     private List<GoodsTypeBean> goods_type;
+    //1收藏 0 未收藏
+    private int collect;
+
+    public int getCollect() {
+        return collect;
+    }
+
+    public void setCollect(int collect) {
+        this.collect = collect;
+    }
 
     public GoodsBean getGoods() {
         return goods;
@@ -54,7 +64,7 @@ public class GoodsdetailInfo extends BaseBean {
         this.goods_type = goods_type;
     }
 
-    public static class GoodsBean extends BaseBean{
+    public static class GoodsBean extends BaseBean {
         /**
          * goods_id : 115
          * cat_id : 139
@@ -106,8 +116,11 @@ public class GoodsdetailInfo extends BaseBean {
          * brand_desc : null
          * site_url : null
          * is_show : null
+         * img_width": 790,
+         * "img_height": 560
          */
 
+        private float img_width, img_height;
         private String goods_id;
         private String cat_id;
         private String goods_sn;
@@ -159,6 +172,22 @@ public class GoodsdetailInfo extends BaseBean {
         private String site_url;
         private String is_show;
         private List<String> img_desc;
+
+        public float getImg_width() {
+            return img_width;
+        }
+
+        public void setImg_width(float img_width) {
+            this.img_width = img_width;
+        }
+
+        public float getImg_height() {
+            return img_height;
+        }
+
+        public void setImg_height(float img_height) {
+            this.img_height = img_height;
+        }
 
         public List<String> getImg_desc() {
             return img_desc;
@@ -568,8 +597,6 @@ public class GoodsdetailInfo extends BaseBean {
             this.is_show = is_show;
         }
     }
-
-
 
 
 }

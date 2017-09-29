@@ -72,6 +72,7 @@ public class CartExpandableListener implements CartExpandableAdapter.CheckInterf
             this.mListView.expandGroup(i);
         }
         adapter.notifyDataSetChanged();
+        mListView.expandGroup(0);
     }
 
     public void selectAll(boolean isAllSelect) {

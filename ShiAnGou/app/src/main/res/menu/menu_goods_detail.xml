@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <item
+        android:id="@+id/id_menu_home"
+        android:icon="@mipmap/icon_home_menu"
+        android:title="@string/main_tabs_home" />
+    <item
+        android:id="@+id/id_menu_search"
+        android:icon="@mipmap/icon_search_menu"
+        android:title="@string/common_search" />
+    <item
+        android:id="@+id/id_menu_follow"
+        android:icon="@mipmap/icon_follow_menu"
+        android:title="@string/prodetail_buy_cellection" />
+</menu>

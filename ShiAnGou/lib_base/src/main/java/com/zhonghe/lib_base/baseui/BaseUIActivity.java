@@ -12,12 +12,14 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.annotation.StringRes;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.view.menu.MenuPopupHelper;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -44,6 +46,7 @@ import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.lib_base.widget.FragmentTabHost;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -614,6 +617,7 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int itemId = item.getItemId();
@@ -638,17 +642,29 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
                         listener.onMenuItemClick(item);
                     }
                 } else if (value instanceof MenuPopup) {//触发打开popupmenu
+
+
                     MenuPopup elem = (MenuPopup) value;
                     View view = mToolbar.findViewById(elem.getMenuId());
                     PopupMenu popup = new PopupMenu(this, view);
+
+                    try {
+                        Field field = popup.getClass().getDeclaredField("mPopup");
+                        field.setAccessible(true);
+                        MenuPopupHelper mHelper = (MenuPopupHelper) field.get(popup);
+                        mHelper.setForceShowIcon(true);
+                    } catch (IllegalAccessException | NoSuchFieldException e) {
+                        e.printStackTrace();
+                    }
+
                     MenuInflater inflater = popup.getMenuInflater();
                     inflater.inflate(elem.getMenuRes(), popup.getMenu());
                     popup.show();
-
                     PopupMenu.OnMenuItemClickListener listener = elem.getListener();
                     if (listener != null) {
                         popup.setOnMenuItemClickListener(listener);
                     }
+
                 }
             }
         }
@@ -833,8 +849,10 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
      */
     public void setRetry(boolean enabled) {
         if (enabled) {
+            if (mFlContent != null) mFlContent.setVisibility(View.GONE);
             if (mTvRetry != null) mTvRetry.setVisibility(View.VISIBLE);
         } else {
+            if (mFlContent != null) mFlContent.setVisibility(View.VISIBLE);
             if (mTvRetry != null) mTvRetry.setVisibility(View.GONE);
         }
     }
@@ -875,6 +893,7 @@ public class BaseUIActivity extends BaseActivity implements TabHost.OnTabChangeL
 
     public void setRetryText(String text, @Nullable Drawable start, @Nullable Drawable top,
                              @Nullable Drawable end, @Nullable Drawable bottom) {
+        if (mFlContent != null) mFlContent.setVisibility(View.GONE);
         if (mTvRetry != null) {
             mTvRetry.setVisibility(View.VISIBLE);
             mTvRetry.setText(text);

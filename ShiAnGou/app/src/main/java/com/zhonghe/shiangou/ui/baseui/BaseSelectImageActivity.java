@@ -9,6 +9,7 @@ import android.view.Gravity;
 import android.view.View;
 
 import com.google.gson.reflect.TypeToken;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
@@ -21,6 +22,7 @@ import com.zhonghe.shiangou.utile.JSONParser;
 import com.zhonghe.shiangou.utile.PrefUtils;
 import com.zhonghe.shiangou.utile.UploadHeaderTask;
 import com.zhonghe.shiangou.utile.UploadImageTask;
+import com.zhonghe.shiangou.utile.UtilPro;
 import com.zhonghe.shiangou.utile.image.CropHandler;
 import com.zhonghe.shiangou.utile.image.CropHelper;
 import com.zhonghe.shiangou.utile.image.CropParams;
@@ -77,6 +79,10 @@ public abstract class BaseSelectImageActivity extends BaseTopActivity
      * @param parent
      */
     public void selectPicture(View parent, final CropParams params) {
+        if (!UtilPro.getPermission(this)) {
+            Util.toast(mContext,R.string.permission_nopermission);
+            return;
+        }
         if (mDialog == null) {
             mCropParams = params;
             mDialog = new SelectPictureDialog(this, new View.OnClickListener() {

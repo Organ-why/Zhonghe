@@ -49,7 +49,7 @@ public class RemarkAdapter extends AbsAdapter<RemarkInfo> {
         }
         RemarkInfo info = mList.get(i);
         ProjectApplication.mImageLoader.loadCircleImage(holder.idItemRemarkHeaderImg,info.getUser_pic());
-        holder.idItemRemarkNameTv.setText(UtilString.nullToEmpty(info.getUser_name()));
+        holder.idItemRemarkNameTv.setText(UtilString.nullToEmpty(info.getNick_name()));
         holder.idItemRemarkDateTv.setText(Util.formatDate(info.getAdd_time(), Util.ALLDATE));
         holder.idItemRemarkDescTv.setText(UtilString.nullToEmpty(info.getContent()));
         List<RefundImgInfo> imgList = new ArrayList<>();

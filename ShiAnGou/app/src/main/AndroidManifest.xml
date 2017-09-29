@@ -8,12 +8,16 @@
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+    <!--文件权限 honor v9-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <uses-feature android:name="android.hardware.camera" /> <!-- 使用照相机权限 -->
     <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
     <uses-permission android:name="com.huawei.launcher2.permission.READ_SETTINGS" />
     <uses-permission android:name="com.huawei.launcher2.permission.WRITE_SETTINGS" />
     <uses-permission android:name="com.huawei.launcher3.permission.READ_SETTINGS" />
     <uses-permission android:name="com.huawei.launcher3.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="com.huawei.launcher3.permission.CAMERA" />
     <!-- 微信支付 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -112,6 +116,7 @@
         <activity
             android:name=".ui.activity.LoginActivity"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 登录 -->
         <activity
@@ -125,6 +130,11 @@
         <!-- 确认订单 -->
         <activity
             android:name=".ui.activity.ConfirmOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <!-- 购物车 -->
+        <activity
+            android:name=".ui.activity.CartExpandableActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|stateHidden" />
         <!-- 地址管理 -->
@@ -206,13 +216,11 @@
         <!-- 线下首页 -->
         <activity
             android:name=".ui.activity.PointUnlineActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 线下商户详情 -->
         <activity
             android:name=".ui.activity.PointUnlineDetailActivity"
-            android:launchMode="singleTask"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 积分详情 -->
@@ -290,16 +298,21 @@
             android:name=".ui.activity.UnlinePayActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <!--搜索商户-->
+        <!-- 搜索商户 -->
         <activity
             android:name=".ui.activity.SearchShopActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
-        <!--评论商户-->
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!-- 评论商户 -->
         <activity
             android:name=".ui.activity.ShopRemarkActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <!--线下支付订单-->
+        <activity android:name=".ui.activity.UnlineOrderActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateHidden"
+            ></activity>
     </application>
 
 </manifest>

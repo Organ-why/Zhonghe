@@ -31,6 +31,7 @@ public class ProjectApplication extends Application {
     //当前用户信息
     public static UserInfo mUser;
 
+
     public static IWXAPI WXapi;
     //位置信息
     public static BDLocation mLocation;

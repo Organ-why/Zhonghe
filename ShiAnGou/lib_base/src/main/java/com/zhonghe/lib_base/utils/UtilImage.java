@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.view.View;
 
@@ -42,14 +43,11 @@ public class UtilImage {
 
         Resources res = ctx.getResources();
 
-        RoundingParams defroundedParams = new RoundingParams();
-        defroundedParams.setRoundAsCircle(false);
         //默认图片配置
         BitmapDrawable defaultPlaceholderDrawable = new BitmapDrawable(res,
                 BitmapFactory.decodeResource(res, R.mipmap.common_image_goods));
         mDefaultHierarchyBuilder = new GenericDraweeHierarchyBuilder(res)
                 .setFadeDuration(300)
-                .setRoundingParams(defroundedParams)
                 .setActualImageScaleType(ScaleType.FIT_XY)
                 .setPlaceholderImage(defaultPlaceholderDrawable);
         mDefaultCropHierarchyBuilder = new GenericDraweeHierarchyBuilder(res)
@@ -70,7 +68,7 @@ public class UtilImage {
 
         //圆形图片配置
         BitmapDrawable defaultPlaceholderDrawableheader = new BitmapDrawable(res,
-                BitmapFactory.decodeResource(res, R.mipmap.common_image_default_header));
+                BitmapFactory.decodeResource(res, R.mipmap.res_default_header_orange));
         RoundingParams circleParams = new RoundingParams();
         circleParams.setRoundAsCircle(true);
         mCircleHierarchyBuilder = new GenericDraweeHierarchyBuilder(res)
@@ -142,6 +140,16 @@ public class UtilImage {
     public void loadImage(SimpleDraweeView view, String url) {
         if (view != null && UtilString.isNotBlank(url)) {
             view.setHierarchy(mDefaultHierarchyBuilder.build());
+            Uri uri = Uri.parse(url);
+            view.setImageURI(uri);
+        }
+    }
+    public void loadImagegray(SimpleDraweeView view, String url) {
+        if (view != null && UtilString.isNotBlank(url)) {
+            GenericDraweeHierarchyBuilder builder = this.mDefaultHierarchyBuilder;
+            ColorDrawable dw = new ColorDrawable(0xaadcdcdc);
+            builder.setPlaceholderImage(dw);
+            view.setHierarchy(builder.build());
             Uri uri = Uri.parse(url);
             view.setImageURI(uri);
         }

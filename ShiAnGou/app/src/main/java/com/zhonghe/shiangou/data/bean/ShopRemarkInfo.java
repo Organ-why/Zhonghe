@@ -29,7 +29,7 @@ public class ShopRemarkInfo extends BaseBean {
     private String merchant_id;
     private float grade;
     private String details;
-    private String datetime;
+    private long datetime;
     private String menus;
     private String state;
     private String nick_name;
@@ -76,11 +76,11 @@ public class ShopRemarkInfo extends BaseBean {
         this.details = details;
     }
 
-    public String getDatetime() {
+    public long getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(String datetime) {
+    public void setDatetime(long datetime) {
         this.datetime = datetime;
     }
 

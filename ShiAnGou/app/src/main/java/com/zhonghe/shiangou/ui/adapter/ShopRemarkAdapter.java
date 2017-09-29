@@ -3,12 +3,14 @@ package com.zhonghe.shiangou.ui.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.lib_base.baseui.adapter.AbsAdapter;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.RefundImgInfo;
@@ -31,12 +33,16 @@ import butterknife.ButterKnife;
 
 public class ShopRemarkAdapter extends AbsAdapter<ShopRemarkInfo> {
     private RefundSubmitAdapter adapter;
+    private OnImgClick click;
 
     public ShopRemarkAdapter(Context context) {
         super(context);
-        adapter = new RefundSubmitAdapter(context, false);
+
     }
 
+    public void setImgClick(OnImgClick click) {
+        this.click = click;
+    }
     @Override
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder holder;
@@ -50,19 +56,38 @@ public class ShopRemarkAdapter extends AbsAdapter<ShopRemarkInfo> {
         ShopRemarkInfo info = mList.get(position);
         ProjectApplication.mImageLoader.loadCircleImage(holder.idItemRemarkHeaderImg, UtilPro.getImgHttpUrl(info.getUser_pic()));
         holder.idItemRemarkNameTv.setText(UtilString.nullToEmpty(info.getNick_name()));
+        holder.idItemRemarkDateTv.setText(UtilString.nullToEmpty(Util.formatDate(info.getDatetime(), Util.ALLDATETIME)));
         holder.ratingBar.setStar(info.getGrade());
         holder.idItemRemarkDescTv.setText(UtilString.nullToEmpty(info.getDetails()));
+        adapter = new RefundSubmitAdapter(mContext, false);
         List<RefundImgInfo> imgList = new ArrayList<>();
-        for (ShopRemarkInfo.PhotolistBean img : info.getPhotolist()) {
-            RefundImgInfo imginfo = new RefundImgInfo();
-            imginfo.setAdd(false);
-            imginfo.setImgUrl(img.getPath());
-            imgList.add(imginfo);
+        final List<String> imgs = new ArrayList<>();
+        if (UtilList.isNotEmpty(info.getPhotolist())) {
+            for (ShopRemarkInfo.PhotolistBean img : info.getPhotolist()) {
+                RefundImgInfo imginfo = new RefundImgInfo();
+                imginfo.setAdd(false);
+                imginfo.setImgUrl(UtilPro.getImgHttpUrl(img.getPath()));
+                imgs.add(UtilPro.getImgHttpUrl(img.getPath()));
+                imgList.add(imginfo);
+            }
+        } else {
+            imgList.clear();
+            imgs.clear();
         }
 //        holder.ratingBar.setStar(info.get);
         adapter.setList(imgList);
         holder.idRefundSubmitImgGv.setAdapter(adapter);
+        holder.idRefundSubmitImgGv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                click.OnClickItem(imgs,position);
+            }
+        });
         return view;
+    }
+
+    public interface OnImgClick {
+        void OnClickItem(List<String> imgs, int position);
     }
 
     static class ViewHolder {

@@ -1,6 +1,7 @@
 package com.zhonghe.shiangou.ui.adapter;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
@@ -13,6 +14,9 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.RefundImgInfo;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.activity.RemarkActivity;
+import com.zhonghe.shiangou.ui.dialog.ImgDialog;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -59,7 +63,7 @@ public class RefundSubmitAdapter extends AbsAdapter<RefundImgInfo> {
         }
         if (!isCancel) {
             holder.idRefundCancelImgIb.setVisibility(View.INVISIBLE);
-        }else {
+        } else {
             holder.idRefundCancelImgIb.setVisibility(View.VISIBLE);
         }
 

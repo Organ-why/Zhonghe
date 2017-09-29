@@ -17,6 +17,7 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.PointGoodsInfo;
 import com.zhonghe.shiangou.data.bean.PointItemInfo;
+import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
@@ -54,6 +55,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
     TextView idPointAllTv;
     private List<BaseBannerInfo> bannerInfo;
     private TextView idPointnumTv;
+    private UserInfo userInfo;
 
     @Override
     protected void initTop() {
@@ -92,8 +94,18 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
         idPointAllTv = (TextView) header.findViewById(R.id.id_point_all_tv);
         idPointAllTv.setOnClickListener(this);
         idPointnumTv = (TextView) header.findViewById(R.id.id_point_num_tv);
-        idPointnumTv.setText(UtilString.nullToEmpty(Util.formatPrice(ProjectApplication.mUser.getRank_points())));
+
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                setRetry(false);
+                getPointGoodsMsg();
+                getUserPoint();
+            }
+        });
+
         getPointGoodsMsg();
+        getUserPoint();
     }
 
     void getPointGoodsMsg() {
@@ -103,6 +115,7 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
             public void onFail(String error) {
                 setWaitingDialog(false);
                 Util.toast(mContext, error);
+                setRetry(true);
                 idPointGv.onRefreshComplete();
             }
 
@@ -128,6 +141,25 @@ public class PointActivity extends BaseTopActivity implements PullToRefreshBase.
                 }
 
                 idPointGv.onRefreshComplete();
+            }
+        });
+        addRequest(request);
+    }
+
+    void getUserPoint() {
+        setWaitingDialog(true);
+        Request<?> request = HttpUtil.getUserMSGPoint(mContext, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+                setWaitingDialog(false);
+                setRetryText(R.string.res_string_retry);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                setWaitingDialog(false);
+                userInfo = (UserInfo) obj;
+                idPointnumTv.setText(UtilString.nullToEmpty(Util.formatPrice(userInfo.getRank_points())));
             }
         });
         addRequest(request);

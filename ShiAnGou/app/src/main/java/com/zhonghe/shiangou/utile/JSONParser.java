@@ -34,7 +34,8 @@ public class JSONParser {
                 return gson.fromJson(jsonString, (Type) type);
             } catch (JsonSyntaxException e) {
                 e.printStackTrace();
-                throw new RuntimeException("类型转换错误1");
+//                throw new RuntimeException("类型转换错误");
+                throw new RuntimeException("类型错误");
 //                return null;
             }
         } else if (type instanceof Class<?>) {
@@ -42,7 +43,7 @@ public class JSONParser {
                 return gson.fromJson(jsonString, (Class<?>) type);
             } catch (JsonSyntaxException e) {
                 e.printStackTrace();
-                throw new RuntimeException("类型转换错误2");
+                throw new RuntimeException("类型错误");
 //                return null;
             }
         } else {

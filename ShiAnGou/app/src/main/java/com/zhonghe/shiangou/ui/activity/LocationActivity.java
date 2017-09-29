@@ -73,7 +73,7 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
     private double lastX = 0.0;
     private int mCurrentDirection = 0;
     private MyLocationData locData;
-    private boolean isFirstLoc;//首次定位
+    private boolean isFirstLoc = true;//首次定位
 
     @Override
     protected void initLayout() {
@@ -172,7 +172,7 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 // 当不需要定位图层时关闭定位图层
 //                    mBaiduMap.setMyLocationEnabled(false);
         mCurrentMarker = null;
-        mCurrentMode = MyLocationConfiguration.LocationMode.FOLLOWING;
+        mCurrentMode = MyLocationConfiguration.LocationMode.NORMAL;
         mBaiduMap.setMyLocationConfiguration(new MyLocationConfiguration(
                 mCurrentMode, true, mCurrentMarker));
         MapStatus.Builder builder = new MapStatus.Builder();
@@ -191,9 +191,9 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 //        MapStatusUpdate u = MapStatusUpdateFactory.newLatLngZoom(ll,
 //                f);
 //        mBaiduMap.animateMapStatus(u);
-
-
         drivingSearch();
+
+
     }
 
     //当前位置
@@ -217,14 +217,7 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
 // 设置定位数据
         mBaiduMap.setMyLocationData(locData);
 
-        if (isFirstLoc) {
-            isFirstLoc = false;
-            LatLng ll = new LatLng(location.getLatitude(),
-                    location.getLongitude());
-            MapStatus.Builder builder = new MapStatus.Builder();
-            builder.target(ll).zoom(18.0f);
-            mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
-        }
+
 
     }
 
@@ -289,6 +282,17 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
             overlay.addToMap();
             overlay.zoomToSpan();
 
+
+            if (isFirstLoc) {
+                //第一次设置缩放比例
+//                isFirstLoc = false;
+                LatLng ll = new LatLng(location.getLatitude(),
+                        location.getLongitude());
+                MapStatus.Builder builder = new MapStatus.Builder();
+
+                builder.target(ll).zoom(18.0f);
+                mBaiduMap.animateMapStatus(MapStatusUpdateFactory.newMapStatus(builder.build()));
+            }
 //                nowResultdrive = result;
 //                if (!hasShownDialogue) {
 //                    MyTransitDlg myTransitDlg = new MyTransitDlg(RoutePlanDemo.this,
@@ -389,15 +393,35 @@ public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanR
             return null;
         }
     }
+    @Override
+    protected void onPause() {
+        mMapView.onPause();
+        super.onPause();
+    }
 
     @Override
+    protected void onResume() {
+        mMapView.onResume();
+        super.onResume();
+        //为系统的方向传感器注册监听器
+        mSensorManager.registerListener(this, mSensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+                SensorManager.SENSOR_DELAY_UI);
+    }
+
+    @Override
+    protected void onStop() {
+        //取消注册传感器监听
+        mSensorManager.unregisterListener(this);
+        super.onStop();
+    }
+    @Override
     protected void onDestroy() {
-        super.onDestroy();
         mBaiduMap.setMyLocationEnabled(false);
         mMapView.onDestroy();
         mMapView = null;
         //取消注册传感器监听
         mSensorManager.unregisterListener(this);
         ProjectApplication.mLocationService.stop();
+        super.onDestroy();
     }
 }

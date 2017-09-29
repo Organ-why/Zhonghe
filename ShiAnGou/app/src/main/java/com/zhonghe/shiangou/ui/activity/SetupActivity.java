@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
@@ -49,7 +50,9 @@ public class SetupActivity extends BaseTopActivity {
     }
 
     void setData() {
-        ProjectApplication.mImageLoader.loadCircleImage(idSetupSetheaderSv, ProjectApplication.mUser.getUser_pic());
+        if (UtilString.isNotEmpty(ProjectApplication.mUser.getUser_pic())) {
+            ProjectApplication.mImageLoader.loadCircleImage(idSetupSetheaderSv, ProjectApplication.mUser.getUser_pic());
+        }
     }
 
     @OnClick({R.id.id_setup_setname_rl, R.id.id_setup_address_rl, R.id.id_setup_changepwd_rl, R.id.id_setup_fgvpwd_rl, R.id.id_logout_bt})

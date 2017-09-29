@@ -200,7 +200,7 @@ public class Util {
     }
 
     public static String ALLDATE = "yyyy-MM-dd";
-    public static String ALLDATETIME = "yyyy-MM-dd";
+    public static String ALLDATETIME = "yyyy-MM-dd  hh:mm";
 
     /**
      * 格式化时间

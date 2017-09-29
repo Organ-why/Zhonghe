@@ -9,7 +9,7 @@ public class CstBase {
     //项目是否处于调试模式
     public static boolean DEBUG 					= true;
     //项目是否处于调试模式
-    public static boolean INNER_DEBUG 				= false;
+    public static boolean INNER_DEBUG 				= true;
     //app ID
     public static String APP_KEY                     = "";
 }

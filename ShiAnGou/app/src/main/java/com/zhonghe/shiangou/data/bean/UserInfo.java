@@ -75,8 +75,9 @@ public class  UserInfo extends BaseBean {
     private String birthday;
     private String user_money;
     private String frozen_money;
-    @DatabaseField(columnName = ColumnHelper.UserColumns.POINT)
+//    @DatabaseField(columnName = ColumnHelper.UserColumns.POINT)
     private String pay_points;
+    @DatabaseField(columnName = ColumnHelper.UserColumns.POINT)
     private double rank_points;
     private String address_id;
     private String reg_time;

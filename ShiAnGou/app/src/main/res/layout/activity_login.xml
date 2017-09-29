@@ -34,6 +34,8 @@
             android:id="@+id/id_login_name_et"
             style="@style/common_edittext_style"
             android:layout_marginLeft="@dimen/margin_h"
+            android:imeOptions="actionNext"
+            android:singleLine="true"
             android:layout_toRightOf="@id/ids_icon_input3"
             tools:text="12345678910" />
     </RelativeLayout>
@@ -59,6 +61,8 @@
             android:id="@+id/id_login_pwd_et"
             style="@style/common_edittext_style"
             android:layout_marginLeft="@dimen/margin_h"
+            android:singleLine="true"
+            android:imeOptions="actionDone"
             android:layout_toRightOf="@id/ids_icon_input4"
             android:inputType="textPassword"
             tools:text="000000" />

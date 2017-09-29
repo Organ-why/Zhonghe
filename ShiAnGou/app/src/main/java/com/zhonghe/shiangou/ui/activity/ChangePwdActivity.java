@@ -51,11 +51,11 @@ public class ChangePwdActivity extends BaseTopActivity {
         idRegisterRegistBt.setText(R.string.common_confirm);
     }
 
-    @OnClick({R.id.id_register_getcode_tv, R.id.id_register_regist_bt})
+    @OnClick({ R.id.id_register_regist_bt})
     public void onViewClicked(View view) {
         switch (view.getId()) {
-            case R.id.id_register_getcode_tv:
-                break;
+//            case R.id.id_register_getcode_tv:
+//                break;
             case R.id.id_register_regist_bt:
                 break;
         }
@@ -83,10 +83,7 @@ public class ChangePwdActivity extends BaseTopActivity {
         addRequest(request);
     }
 
-    // 获取验证码
 
 
-    @OnClick(R.id.id_register_regist_bt)
-    public void onViewClicked() {
-    }
+
 }

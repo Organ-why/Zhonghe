@@ -214,11 +214,6 @@ public class CartExpandableFragment extends BaseTopFragment implements PullToRef
 //        for
     }
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
     @OnClick({R.id.cart_id_tobuy_bt, R.id.cart_id_del_bt})
     public void onClick(View view) {

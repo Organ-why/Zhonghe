@@ -61,7 +61,7 @@ public class RemarkActivity extends BaseSelectImageActivity implements BaseSelec
     private List<String> imgs;
     RefundSubmitAdapter adapter;
     RefundImgInfo infoadd;
-    float startCout = 1;
+    float startCout = 5;
     private String goodsId;
     private MenuTxt mMeunManager;
 

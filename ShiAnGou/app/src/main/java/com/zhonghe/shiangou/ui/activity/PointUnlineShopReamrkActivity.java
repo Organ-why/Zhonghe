@@ -2,6 +2,7 @@ package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 
 import com.android.volley.Request;
 import com.zhonghe.lib_base.utils.Util;
@@ -12,6 +13,7 @@ import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.adapter.ShopRemarkAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
+import com.zhonghe.shiangou.ui.dialog.ImgDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
 
@@ -23,7 +25,7 @@ import butterknife.ButterKnife;
 /**
  * auther: whyang
  * date: 2017/9/21
- * desc:
+ * desc: 商户评论列表
  */
 
 public class PointUnlineShopReamrkActivity extends BaseTopActivity implements NXListViewNO.IXListViewListener {
@@ -53,7 +55,16 @@ public class PointUnlineShopReamrkActivity extends BaseTopActivity implements NX
         shopId = intent.getStringExtra(CstProject.KEY.ID);
         xlistview.setXListViewListener(this);
         xlistview.setDividerHeight(0);
+        xlistview.setPullLoadEnable(true);
+        xlistview.setPullLoadEnable(true);
         adapter = new ShopRemarkAdapter(mContext);
+        adapter.setImgClick(new ShopRemarkAdapter.OnImgClick() {
+            @Override
+            public void OnClickItem(List<String> imgs, int position) {
+                ImgDialog imgDialog = new ImgDialog(mContext, imgs, position);
+                imgDialog.showAtLocation(xlistview, Gravity.BOTTOM, 0, 0);
+            }
+        });
         xlistview.setAdapter(adapter);
         getRemarkList();
     }

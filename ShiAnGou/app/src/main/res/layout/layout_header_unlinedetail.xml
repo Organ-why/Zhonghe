@@ -62,8 +62,8 @@
             android:layout_marginLeft="@dimen/margin_h"
             android:layout_marginTop="@dimen/margin_m"
             android:layout_toRightOf="@+id/ids_popular_tv"
-            app:starCount="5"
             app:clickable="false"
+            app:starCount="5"
             app:starEmpty="@mipmap/icon_star_normal"
             app:starFill="@mipmap/icon_star_selected"
             app:starHalf="@mipmap/icon_star_half"
@@ -85,13 +85,32 @@
 
     <View style="@style/common_divider_style1" />
 
-    <TextView
-        android:id="@+id/id_unline_detail_addre"
-        style="@style/TitleText_gray_style"
-        android:drawableLeft="@mipmap/icon_location"
-        android:drawablePadding="@dimen/margin_h"
-        android:drawableRight="@mipmap/icon_phone"
-        tools:text="@string/address_addressperson_addr" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/height_ll_item">
+
+
+        <ImageButton
+            android:id="@+id/id_unline_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@color/common_transparent"
+            android:padding="@dimen/padding_xxlsize"
+            android:src="@mipmap/icon_phone" />
+
+        <TextView
+            android:id="@+id/id_unline_detail_addre"
+            style="@style/TitleText_gray_style"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/id_unline_phone"
+            android:drawableLeft="@mipmap/icon_location"
+            android:drawablePadding="@dimen/margin_h"
+            tools:text="@string/address_addressperson_addr" />
+    </RelativeLayout>
+
 
     <View style="@style/common_divider_view_style10" />
 

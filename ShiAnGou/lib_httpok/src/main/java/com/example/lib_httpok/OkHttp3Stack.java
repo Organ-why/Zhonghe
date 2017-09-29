@@ -25,9 +25,6 @@ import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-import static okhttp3.Protocol.HTTP_2;
-import static okhttp3.Protocol.SPDY_3;
-
 /**
  * Date: 2017/8/10.
  * Author: whyang

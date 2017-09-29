@@ -59,7 +59,6 @@ public class PayDialog extends PopupWindow implements View.OnClickListener {
         payLl = ButterKnife.findById(mMenuView, R.id.pay_ll);
         idPayWechatLl = ButterKnife.findById(mMenuView, R.id.id_pay_wechat_ll);
         idPayWechatLl.setOnClickListener(this);
-        setContentView(mMenuView);
         setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         setHeight(ViewGroup.LayoutParams.MATCH_PARENT);
         setFocusable(true);

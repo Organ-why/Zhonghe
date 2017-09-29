@@ -7,10 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.zhonghe.lib_base.baseui.activity.BaseNavActivity;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.dialog.AppUpdataDialog;
 import com.zhonghe.shiangou.ui.fragment.CartExpandableFragment;
@@ -44,6 +46,7 @@ public class MainActivity extends BaseNavActivity {
     @Override
     protected void initViews() {
         registerAction(CstProject.BROADCAST_ACTION.MAINTAB_CHECK_ACTION);
+        registerAction(CstProject.BROADCAST_ACTION.LOCATION_ACTION);
     }
 
     @Override
@@ -62,5 +65,15 @@ public class MainActivity extends BaseNavActivity {
 
     @Override
     public void onTabChanged(String tabId) {
+        UtilLog.d("onTabChanged..........." + tabId);
+        switch (getCurrentTab()) {
+            case 2:
+            case 3:
+                if (ProjectApplication.mUser == null) {
+                    ProDispatcher.goLoginActivity(mContext);
+                    setOnTabChanged(0);
+                }
+                break;
+        }
     }
 }

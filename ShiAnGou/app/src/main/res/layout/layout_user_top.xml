@@ -23,7 +23,7 @@
             android:layout_centerHorizontal="true"
             app:actualImageScaleType="fitXY"
             app:failureImage="@mipmap/res_default_header"
-            app:placeholderImage="@mipmap/res_default_header"
+            app:placeholderImage="@mipmap/res_default_header_orange"
             app:roundAsCircle="true" />
 
         <TextView

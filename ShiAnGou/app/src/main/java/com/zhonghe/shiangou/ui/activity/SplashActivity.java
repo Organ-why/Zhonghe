@@ -1,11 +1,15 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.content.PermissionChecker;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.android.volley.Request;
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
@@ -13,12 +17,18 @@ import com.baidu.mapapi.search.route.DrivingRoutePlanOption;
 import com.baidu.mapapi.search.route.PlanNode;
 import com.zhonghe.lib_base.baseui.BaseUIActivity;
 import com.zhonghe.lib_base.baseui.UIOptions;
+import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
+import com.zhonghe.shiangou.data.bean.UserInfo;
+import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ProLocationListener;
+import com.zhonghe.shiangou.ui.listener.ResultListener;
+import com.zhonghe.shiangou.utile.UtilPay;
+import com.zhonghe.shiangou.utile.UtilPro;
 
 public class SplashActivity extends BaseTopActivity {
     @Override
@@ -35,14 +45,12 @@ public class SplashActivity extends BaseTopActivity {
     protected void initLayout() {
         setContentView(R.layout.activity_splash);
     }
+
     Handler delayedHandler;
+
     @Override
     protected void initViews() {
         registerAction(CstProject.BROADCAST_ACTION.LOCATION_ACTION);
-
-//开始定位
-        ProjectApplication.mLocationService.registerListener(new ProLocationListener(mContext));
-        ProjectApplication.mLocationService.start();
         delayedHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -50,7 +58,43 @@ public class SplashActivity extends BaseTopActivity {
                 finish();
             }
         };
-//        delayedHandler.sendMessageDelayed(new Message(), 1500);
+
+//        PermissionChecker.checkPermission(this, "android.permission.ACCESS_COARSE_LOCATION", Process.myPid(), Process.myUid(), getPackageName()) == PackageManager.PERMISSION_GRANTED;
+
+
+        if (UtilPro.getLocationPermission(mContext)) {
+            //有这个权限，做相应处理
+            ProjectApplication.mLocationService.registerListener(new ProLocationListener(mContext));
+            ProjectApplication.mLocationService.start();
+        } else {//没有权限
+            Util.toast(mContext, R.string.location_nopermission);
+        }
+        getUserMSG();
+    }
+
+    void getUserMSG() {
+        if (ProjectApplication.mUser == null) {
+            delayedHandler.sendMessageDelayed(new Message(), 1000);
+            return;
+        }
+        Request<?> request = HttpUtil.getUserMSG(mContext, new ResultListener() {
+            @Override
+            public void onFail(String error) {
+                Util.toast(mContext, error);
+            }
+
+            @Override
+            public void onSuccess(Object obj) {
+                UserInfo info = (UserInfo) obj;
+                if (ProjectApplication.mUser != null) {
+                    info.setToken_secret(ProjectApplication.mUser.getToken_secret());
+                    ProjectApplication.mUser = info;
+                    ProjectApplication.mDaoFactory.getUserDao().addUser(ProjectApplication.mUser);
+                }
+                delayedHandler.sendMessageDelayed(new Message(), 1000);
+            }
+        });
+        addRequest(request);
     }
 
     @Override
@@ -58,7 +102,6 @@ public class SplashActivity extends BaseTopActivity {
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
                 ProjectApplication.mLocationService.stop();
-                delayedHandler.sendMessageDelayed(new Message(), 1500);
 //                int code = intent.getIntExtra(CstProject.KEY.CODE, BDLocation.TypeServerError);
 //                if (code != BDLocation.TypeServerError) {
 //                    BDLocation location = ProjectApplication.mLocation;

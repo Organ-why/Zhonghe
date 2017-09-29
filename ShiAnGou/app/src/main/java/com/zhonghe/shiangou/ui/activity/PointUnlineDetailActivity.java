@@ -2,8 +2,10 @@ package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,10 +22,13 @@ import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.ShopRemarkAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
+import com.zhonghe.shiangou.ui.dialog.ImgDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.RatingBar;
 import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
 import com.zhonghe.shiangou.utile.UtilPro;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -32,7 +37,7 @@ import butterknife.OnClick;
 /**
  * auther: whyang
  * date: 2017/9/12
- * desc:
+ * desc:商户详情
  */
 
 public class PointUnlineDetailActivity extends BaseTopActivity implements NXListViewNO.IXListViewListener, View.OnClickListener {
@@ -59,6 +64,8 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
     private ShopRemarkAdapter adapter;
     private UnlineShopDetailInfo info;
     private View footer;
+    private ImgDialog imgDialog;
+    private ImageButton phoneIb;
 
     @Override
     protected void initTop() {
@@ -108,6 +115,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
 
     @Override
     protected void initViews() {
+        registerAction(CstProject.BROADCAST_ACTION.REMARK_ACTION);
         Intent intent = getIntent();
         shopId = intent.getStringExtra(CstProject.KEY.ID);
 
@@ -120,6 +128,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
         idShopTitle = ButterKnife.findById(headerdesc, R.id.id_shop_title);
         ratingBar = ButterKnife.findById(headerdesc, R.id.ratingBar);
         idShopmsgTv = ButterKnife.findById(headerdesc, R.id.id_shopmsg_tv);
+        phoneIb = ButterKnife.findById(headerdesc, R.id.id_unline_phone);
         idUnlineDetailName = ButterKnife.findById(headerdesc, R.id.id_shop_title);
         idUnlineDetailAddre = ButterKnife.findById(headerdesc, R.id.id_unline_detail_addre);
         idUnlineDetailRemarknum = ButterKnife.findById(headerdesc, R.id.id_unline_detail_remarknum);
@@ -138,8 +147,22 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
         xlistview.addFooterView(footer);
         xlistview.setDividerHeight(0);
         adapter = new ShopRemarkAdapter(mContext);
+
+        adapter.setImgClick(new ShopRemarkAdapter.OnImgClick() {
+            @Override
+            public void OnClickItem(List<String> imgs, int position) {
+                imgDialog = new ImgDialog(mContext,imgs,position);
+                imgDialog.showAtLocation(idShopPay, Gravity.BOTTOM, 0, 0);
+            }
+        });
         xlistview.setAdapter(adapter);
         getDetail();
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                getDetail();
+            }
+        });
     }
 
     void getDetail() {
@@ -170,9 +193,11 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
         idShopTitle.setText(UtilString.nullToEmpty(data.getMerchant_name()));
         idImgNum.setText(UtilString.nullToEmpty(data.getPhoto_num()));
         ratingBar.setStar(data.getGrade());
-        idUnlineDetailAddre.setText(UtilString.nullToEmpty(data.getIntro()));
+        idUnlineDetailAddre.setText(UtilString.nullToEmpty(data.getAddress()));
         idUnlineDetailAddre.setOnClickListener(this);
-        idShopmsgTv.setText(String.format(getString(R.string.unline_shop_msg), Util.formatPrice(data.getAverage()), data.getIntro(), data.getIntro()));
+        phoneIb.setOnClickListener(this);
+
+        idShopmsgTv.setText(String.format(getString(R.string.unline_shop_msg), Util.formatPrice(data.getAverage()), data.getArea_name(), data.getIntro()));
         idUnlineDetailRemarknum.setText(String.format(getString(R.string.unline_remark), data.getComment_num()));
     }
 
@@ -189,6 +214,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
     @OnClick({R.id.id_shop_share, R.id.id_shop_reamrk, R.id.id_shop_pay})
     @Override
     public void onClick(View v) {
+        super.onClick(v);
         switch (v.getId()) {
             case R.id.id_unline_detail_remarknum:
                 if (info != null)
@@ -206,6 +232,10 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
                 if (info != null)
                     ProDispatcher.goLocationActivity(mContext, info.getLongitude(), info.getLatitude());
                 break;
+            case R.id.id_unline_phone:
+                if (info != null)
+                    UtilPro.CallPhone(mContext, info.getPhone());
+                break;
             case R.id.id_shop_pay:
                 ProDispatcher.goUnlinePayActivity(mContext, shopId);
                 break;
@@ -217,5 +247,13 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
         }
     }
 
-
+    @Override
+    protected void onReceive(Intent intent) {
+        super.onReceive(intent);
+        switch (intent.getAction()) {
+            case CstProject.BROADCAST_ACTION.REMARK_ACTION:
+                getDetail();
+                break;
+        }
+    }
 }

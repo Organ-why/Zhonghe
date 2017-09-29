@@ -75,11 +75,6 @@ public class UserFragment extends BaseTopFragment {
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
 
     @Override
     protected void initTop() {
@@ -151,6 +146,7 @@ public class UserFragment extends BaseTopFragment {
                 break;
             case CstProject.BROADCAST_ACTION.LOGOUT_ACTION:
                 idUserNameTv.setText("");
+                idUserHeaderIv.setImageResource(R.mipmap.res_default_header_orange);
                 ProjectApplication.mImageLoader.loadCircleImage(idUserHeaderIv, "file://");
                 break;
         }
@@ -175,7 +171,12 @@ public class UserFragment extends BaseTopFragment {
 
             @Override
             public void onSuccess(Object obj) {
-//                ProjectApplication.mUser = (UserInfo) obj;
+                UserInfo info = (UserInfo) obj;
+                if (ProjectApplication.mUser != null) {
+                    info.setToken_secret(ProjectApplication.mUser.getToken_secret());
+                    ProjectApplication.mUser = info;
+                    ProjectApplication.mDaoFactory.getUserDao().addUser(ProjectApplication.mUser);
+                }
                 setWaitingDialog(false);
                 setUserMSG();
             }

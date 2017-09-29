@@ -1,8 +1,9 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -13,7 +14,11 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.zhonghe.lib_base.baseui.MenuImg;
+import com.zhonghe.lib_base.baseui.MenuPopup;
+import com.zhonghe.lib_base.baseui.MenuTxt;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
@@ -81,13 +86,49 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
     protected void initTop() {
         setTitle(R.string.prodetail_act_title);
         setNavigation(R.mipmap.common_nav_back);
+//        final MenuTxt mMeunManager = new MenuTxt.MenuTxtBuilder(this)
+//                .setTitle(R.string.common_submit)
+//                .setListener(new MenuItem.OnMenuItemClickListener() {
+//                    @Override
+//                    public boolean onMenuItemClick(MenuItem item) {
+//                        return false;
+//                    }
+//                }).build();
+//        addMenu(mMeunManager);
+        MenuImg iconMenu = new MenuImg.MenuImgBuilder(this).setIcon(R.mipmap.icon_cart_black).setListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                ProDispatcher.goCartActivity(mContext);
+                return true;
+            }
+        }).build();
+        addMenu(iconMenu);
+        MenuPopup popup = new MenuPopup.MenuPopupBuilder(this).setListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                int id = item.getItemId();
+                if (id == R.id.id_menu_home) {
+                    ProDispatcher.sendMainTabBroadcast(mContext, 0);
+                    ProDispatcher.goMainActivity(mContext);
+                    finish();
+                    return true;
+                } else if (id == R.id.id_menu_search) {
+                    ProDispatcher.goSearchActivity(mContext);
+                    return true;
+                } else if (id == R.id.id_menu_follow) {
+                    ProDispatcher.goLikeActivity(mContext);
+                    return true;
+                }
+                return false;
+            }
+        }).setIcon(R.mipmap.icon_menu_more_black).setMenuRes(R.menu.menu_goods_detail).build();
+        addMenu(popup);
     }
 
     @Override
     protected void initLayout() {
         setContentView(R.layout.activity_goodsdetail_list);
         ButterKnife.bind(this);
-
     }
 
     @Override
@@ -116,6 +157,13 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
         guestDetailXlistview.addHeaderView(headerView);
         adapter = new GoodsDetailAdapter(mContext, imgMsg);
         guestDetailXlistview.setAdapter(adapter);
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                setRetry(false);
+                getData();
+            }
+        });
         getData();
     }
 
@@ -124,6 +172,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
         Request<?> request = HttpUtil.getGoodsDetail(this, goodsId, new ResultListener() {
             @Override
             public void onFail(String error) {
+                setRetry(true);
                 setWaitingDialog(false);
             }
 
@@ -145,12 +194,21 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
         idGoodsdetailTitleTv.setText(data.getGoods().getGoods_name());
         idGoodsdetailDescTv.setText(data.getGoods().getGoods_brief());
         idGoodsdetailPriceTv.setText(data.getGoods().getShop_price());
-        idGoodsdetailSoldnumTv.setText(data.getGoods().getWarn_number());
+        idGoodsdetailSoldnumTv.setText(String.format(getString(R.string.prodetail_sale_num), data.getGoods().getVirtual_sales()));
+        if (data.getCollect()==1) {
+            idGoodsdetailLikeIb.setImageResource(R.mipmap.res_follow_selected);
+        } else {
+            idGoodsdetailLikeIb.setImageResource(R.mipmap.res_follow_nomal);
+        }
+        if (UtilList.isEmpty(data.getGoods_type())) {
+            skurl.setVisibility(View.GONE);
+        }
+        adapter.setAspectRatio(data.getGoods().getImg_width() / data.getGoods().getImg_height());
         adapter.setList(data.getGoods().getImg_desc());
         if (data.getGoods_ping() != null) {
             String img = data.getGoods_ping().getImg();
             ProjectApplication.mImageLoader.loadCircleImage(idItemRemarkHeaderImg, UtilString.nullToEmpty(img));
-            idItemRemarkNameTv.setText(UtilString.nullToEmpty(data.getGoods_ping().getUser_name()));
+            idItemRemarkNameTv.setText(UtilString.nullToEmpty(data.getGoods_ping().getNick_name()));
             idItemRemarkDateTv.setText(UtilString.nullToEmpty(data.getGoods_ping().getAdd_time()));
             idItemRemarkDescTv.setText(UtilString.nullToEmpty(data.getGoods_ping().getContent()));
         } else {
@@ -161,7 +219,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
 
     //商品图片
     void setShowBanner() {
-
+        idGoodsdetailBannerLl.removeAllViews();
         for (String imgurl : data.getGoods_img()) {
             BaseBannerInfo baseBannerInfo = new BaseBannerInfo();
             baseBannerInfo.setBanner_images(imgurl);
@@ -232,7 +290,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
                     skudialog.dismiss();
                     ArrayList<String> list = new ArrayList<>();
                     list.add(data.getGoods().getGoods_id());
-                    ProDispatcher.goConfirmOrderActivity(mContext, list, 1,sku,mCount);
+                    ProDispatcher.goConfirmOrderActivity(mContext, list, 1, sku, mCount);
                 }
             });
         }
@@ -244,6 +302,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
     @OnClick({R.id.id_goodsdetail_buynow_bt, R.id.id_goodsdetail_addcart_bt, R.id.id_goodsdetail_like_ib})
     @Override
     public void onClick(View view) {
+        super.onClick(view);
         switch (view.getId()) {
             case R.id.id_goodsdetail_buynow_bt:
                 if (ProjectApplication.mUser == null) {

@@ -18,6 +18,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 import com.zhonghe.lib_base.baseui.UIOptions;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
@@ -89,12 +90,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
 
     @Override
     protected void initViews() {
-        setOnRetryListener(new OnRetryListener() {
-            @Override
-            public void onRetry() {
-                getHomeData();
-            }
-        });
+        registerAction(CstProject.BROADCAST_ACTION.LOCATION_ACTION);
         rlTitle.setBackgroundResource(R.color.res_color_white);
         titleUserIvb.setImageResource(R.mipmap.common_nav_back);
         titleMsgIvb.setImageResource(R.mipmap.icon_exchange_record);
@@ -115,28 +111,48 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         xlistview.addHeaderView(header);
         adapter = new UnlineShopAdapter(mContext, null);
         xlistview.setAdapter(adapter);
-        getHomeData();
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                setRetry(false);
+                if (ProjectApplication.mLocation == null) {
+                    Util.toast(mContext, R.string.location_location_loading);
+                    setWaitingDialog(true);
+                    ProjectApplication.mLocationService.start();
+                } else {
+                    getHomeData();
+                }
+            }
+        });
+        if (ProjectApplication.mLocation == null) {
+            Util.toast(mContext, R.string.location_location_loading);
+            setWaitingDialog(true);
+            ProjectApplication.mLocationService.start();
+        } else {
+            getHomeData();
+        }
     }
 
     void setShopCat() {
         int screenWidth = Util.getScreenWidth(mContext);
         LinearLayout.LayoutParams categoryParams = new LinearLayout.LayoutParams(screenWidth / 3, Util.dip2px(mContext, 95));
 //        for (int i = 0; i < homeData.getCat().size(); i++) {
-        for (final ShopCatInfo cat : homeData.getCat()) {
-            View item = LayoutInflater.from(mContext).inflate(R.layout.item_unlin_type, null);
-            SimpleDraweeView iconimg = (SimpleDraweeView) item.findViewById(R.id.id_item_home_category_title_iv);
-            TextView icontv = (TextView) item.findViewById(R.id.id_item_home_category_title_name);
-            ProjectApplication.mImageLoader.loadImage(iconimg, cat.getType_img());
-            icontv.setText(cat.getType_name());
-            item.setLayoutParams(categoryParams);
-            item.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ProDispatcher.goPointUnlineListActivity(mContext, cat.getType_id());
-                }
-            });
-            flowLayout.addView(item);
-        }
+        if (UtilList.isNotEmpty(homeData.getCat()))
+            for (final ShopCatInfo cat : homeData.getCat()) {
+                View item = LayoutInflater.from(mContext).inflate(R.layout.item_unlin_type, null);
+                SimpleDraweeView iconimg = (SimpleDraweeView) item.findViewById(R.id.id_item_home_category_title_iv);
+                TextView icontv = (TextView) item.findViewById(R.id.id_item_home_category_title_name);
+                ProjectApplication.mImageLoader.loadImage(iconimg, cat.getType_img());
+                icontv.setText(cat.getType_name());
+                item.setLayoutParams(categoryParams);
+                item.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ProDispatcher.goPointUnlineListActivity(mContext, cat.getType_id());
+                    }
+                });
+                flowLayout.addView(item);
+            }
 
     }
 
@@ -155,6 +171,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
             public void onFail(String error) {
                 setWaitingDialog(false);
                 Util.toast(mContext, error);
+                setRetry(true);
                 xlistview.stopRefresh();
                 xlistview.stopLoadMore();
             }
@@ -179,6 +196,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
     }
 
     void showBanner(String imgUrl) {
+        llContentTitle.removeAllViews();
         SimpleDraweeView imageView = new SimpleDraweeView(mContext);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(mContext, 175));
         imageView.setLayoutParams(layoutParams);
@@ -195,7 +213,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
 //                Bitmap bitmap = EncodingUtils.createQRCode("http://blog.csdn.net/a_zhon/", 500, 500, logo);
                 break;
             case R.id.title_msg_ivb:
-
+                ProDispatcher.goUnlineOrderActivity(mContext);
                 break;
             case R.id.id_category_title_tv:
                 ProDispatcher.goSearchShopActivity(mContext);
@@ -211,7 +229,6 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
                 break;
         }
     }
-
 
 
     @Override
@@ -230,7 +247,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
                 ProjectApplication.mLocationService.stop();
-//                getHomeData();
+                getHomeData();
                 break;
         }
     }

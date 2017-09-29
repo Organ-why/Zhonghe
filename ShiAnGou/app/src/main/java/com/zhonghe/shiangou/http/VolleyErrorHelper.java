@@ -21,7 +21,7 @@ public class VolleyErrorHelper {
         if (error instanceof TimeoutError) {
             return ProjectApplication.getInstance().getApplicationContext().getResources().getString(R.string.error_timeout);
         } else if (isServerProblem(error)) {
-            return  ProjectApplication.getInstance().getApplicationContext().getResources().getString(R.string.error_server);
+            return  ProjectApplication.getInstance().getApplicationContext().getResources().getString( R.string.error_server);
         } else if (isNetworkProblem(error)) {
             return  ProjectApplication.getInstance().getApplicationContext().getResources().getString(R.string.error_internet);
         }

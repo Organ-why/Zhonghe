@@ -47,7 +47,7 @@
             app:starFill="@mipmap/icon_star_selected"
             app:starHalf="@mipmap/icon_star_half"
             app:starImageSize="16dp"
-            app:starStep="1"
+            app:starStep="5"
             app:stepSize="Half" />
 
     </RelativeLayout>

@@ -24,6 +24,7 @@
             app:placeholderImage="@mipmap/icon_home_category_seafood" />
 
         <TextView
+            style="@style/common_text_gray_title"
             android:id="@+id/id_item_home_category_title_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

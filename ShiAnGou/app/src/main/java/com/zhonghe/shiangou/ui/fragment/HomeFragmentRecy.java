@@ -26,6 +26,7 @@ import com.zhonghe.shiangou.data.bean.BaseBannerInfo;
 import com.zhonghe.shiangou.data.bean.HomeCategoryInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.http.HttpUtil;
+import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.activity.CustomScanActivity;
@@ -36,11 +37,13 @@ import com.zhonghe.shiangou.ui.adapter.ViewHolder;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.ui.dialog.AppUpdataDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
+import com.zhonghe.shiangou.ui.widget.BannerPresenter;
 import com.zhonghe.shiangou.ui.widget.BaseRecPrensenter;
 import com.zhonghe.shiangou.ui.widget.DynamicBanner;
 import com.zhonghe.shiangou.ui.widget.FlowLayout;
 import com.zhonghe.shiangou.ui.widget.HorizontalListView;
 import com.zhonghe.shiangou.ui.widget.RecyclerPresenter;
+import com.zhonghe.shiangou.utile.UtilPro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,7 +68,7 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
     HorizontalListView horizontalListView;
     @Bind(R.id.sfl)
     SwipeRefreshLayout sfl;
-//    private RecyAdapter adapter;
+    //    private RecyAdapter adapter;
     private LinearLayoutManager layoutManager;
     private boolean mShouldScroll;
     private int mToPosition;
@@ -85,10 +88,18 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
     protected void initLayout() {
         setContentView(R.layout.layout_recyclerview);
         ButterKnife.bind(this, getView());
+        setOnRetryListener(new OnRetryListener() {
+            @Override
+            public void onRetry() {
+                setRetry(false);
+                getHomeData();
+            }
+        });
     }
 
     @Override
     protected void initViews() {
+        registerAction(CstProject.BROADCAST_ACTION.LOCATION_ACTION);
         View header = LayoutInflater.from(mActivity).inflate(R.layout.layout_home_header, null);
         llContentTitle = (LinearLayout) header.findViewById(R.id.ll_content_title);
         llContentList = (LinearLayout) header.findViewById(R.id.ll_content_list);
@@ -103,7 +114,7 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
                 .setListener(this).build();
         presenter.setCarListener(this);
         presenter.setIsLoadMore(false);
-        presenter.setIsRefresh(false);
+        presenter.setIsRefresh(true);
 //        adapter = new RecyAdapter(mActivity, categoryInfo);
 //        RecyHeaderAdapter<ViewHolder> headerAdapter = new RecyHeaderAdapter<>(adapter);
 //        headerAdapter.addHeaderView(header);
@@ -118,6 +129,7 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);
+                setRetry(true);
                 Util.toast(mActivity, error);
             }
 
@@ -199,10 +211,17 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
     }
 
     void showBanner() {
-        View BannerView = new DynamicBanner(mActivity, LayoutInflater.from(mActivity), 5000).initView(bannerInfo);
+//        View BannerView = new DynamicBanner(mActivity, LayoutInflater.from(mActivity), 5000).initView(bannerInfo);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, Util.dip2px(mActivity, 175));
-        BannerView.setLayoutParams(layoutParams);
-        llContentTitle.addView(BannerView);
+        View view = new BannerPresenter(mActivity, 5000, new BannerPresenter.OnItemVpClick() {
+            @Override
+            public void OnVpClick(int position) {
+                BaseBannerInfo info = bannerInfo.get(position);
+                ProDispatcher.goGoodsDetailActivity(mActivity, info.getGoods_id());
+            }
+        }).setPosition(false).initView(bannerInfo);
+        view.setLayoutParams(layoutParams);
+        llContentTitle.addView(view);
     }
 
     void RecyScrollTo(int posi) {
@@ -231,7 +250,7 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
             case R.id.title_msg_ivb:
                 int REQUEST_CODE = 0x0000c0de; // Only use bottom 16 bits
                 Intent intent = new Intent(mActivity, CustomScanActivity.class);
-                startActivityForResult(intent,REQUEST_CODE);
+                startActivityForResult(intent, REQUEST_CODE);
                 //需要以带返回结果的方式启动扫描界面
 //                new IntentIntegrator(getActivity())
 //                        .setOrientationLocked(false)
@@ -250,16 +269,17 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
         super.onClick(view);
         switch (view.getId()) {
             case R.id.id_point_unline:
-//                ProDispatcher.goPointActivity(mActivity);
-//                ProDispatcher.goLocationActivity(mActivity);
-                ProDispatcher.goPointUnlineActivity(mActivity);
+                //线下商城
+                if (!UtilPro.getLocationPermission(mActivity)) {
+                    Util.toast(mActivity, R.string.location_nopermission);
+                } else {
+                    ProDispatcher.goPointUnlineActivity(mActivity);
+                }
 //                ProDispatcher.goPointUnlineDetailActivity(mActivity);
                 break;
             case R.id.id_point_online:
+                //积分商城
                 ProDispatcher.goPointActivity(mActivity);
-//                ProDispatcher.goLocationActivity(mActivity);
-////                ProDispatcher.goPointUnlineActivity(mActivity);
-////                ProDispatcher.goPointUnlineDetailActivity(mActivity);
                 break;
         }
     }
@@ -316,15 +336,11 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
 
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
-
-
-    @Override
     public void OnRefresh() {
-//        presenter.RefreshComplet();
+        presenter.RefreshComplet();
+        llContentTitle.removeAllViews();
+        llContentList.removeAllViews();
+        getHomeData();
     }
 
     @Override
@@ -342,6 +358,7 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
     public void OnLoadMore() {
 //        presenter.LoadMoreComplet();
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
@@ -356,6 +373,18 @@ public class HomeFragmentRecy extends BaseTopFragment implements RecyAdapter.add
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+
+    @Override
+    protected void onReceive(Intent intent) {
+        super.onReceive(intent);
+        switch (intent.getAction()) {
+            case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
+                setWaitingDialog(false);
+                ProjectApplication.mLocationService.stop();
+                break;
         }
     }
 }

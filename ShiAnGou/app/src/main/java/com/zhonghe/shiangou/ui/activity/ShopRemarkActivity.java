@@ -21,6 +21,7 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.RefundImgInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
+import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.RefundSubmitAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseSelectImageActivity;
@@ -162,6 +163,7 @@ public class ShopRemarkActivity extends BaseSelectImageActivity implements BaseS
             public void onSuccess(Object obj) {
                 setWaitingDialog(false);
                 Util.toast(mContext, R.string.common_success_tip);
+                ProDispatcher.sendRemarkBroadcast(mContext);
                 finish();
             }
         });

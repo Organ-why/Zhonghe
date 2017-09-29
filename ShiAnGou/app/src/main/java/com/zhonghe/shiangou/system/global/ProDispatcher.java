@@ -11,6 +11,7 @@ import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.constant.CstProject.BROADCAST_ACTION;
 import com.zhonghe.shiangou.ui.activity.AboutActivity;
 import com.zhonghe.shiangou.ui.activity.AddressManageActivity;
+import com.zhonghe.shiangou.ui.activity.CartExpandableActivity;
 import com.zhonghe.shiangou.ui.activity.ChangeAddressActivity;
 import com.zhonghe.shiangou.ui.activity.ChangeNameActivity;
 import com.zhonghe.shiangou.ui.activity.ChangePwdActivity;
@@ -45,6 +46,7 @@ import com.zhonghe.shiangou.ui.activity.SearchActivity;
 import com.zhonghe.shiangou.ui.activity.SearchShopActivity;
 import com.zhonghe.shiangou.ui.activity.SetupActivity;
 import com.zhonghe.shiangou.ui.activity.ShopRemarkActivity;
+import com.zhonghe.shiangou.ui.activity.UnlineOrderActivity;
 import com.zhonghe.shiangou.ui.activity.UnlinePayActivity;
 import com.zhonghe.shiangou.ui.activity.UserActivity;
 
@@ -165,6 +167,23 @@ public class ProDispatcher {
             return;
         }
         Intent intent = new Intent(context, SetupActivity.class);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 购物车
+     *
+     * @param context
+     */
+    public static void goCartActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
+            return;
+        }
+        Intent intent = new Intent(context, CartExpandableActivity.class);
         context.startActivity(intent);
     }
 
@@ -419,7 +438,30 @@ public class ProDispatcher {
         if (context == null) {
             return;
         }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
+            return;
+        }
+
         Intent intent = new Intent(context, PointUnlineActivity.class);
+//        intent.putExtra(CstProject.KEY.ID, goods_id);
+        context.startActivity(intent);
+    }
+
+    /**
+     * 线下订单
+     *
+     * @param context
+     */
+    public static void goUnlineOrderActivity(Context context) {
+        if (context == null) {
+            return;
+        }
+        if (ProjectApplication.mUser == null) {
+            goLoginActivity(context);
+            return;
+        }
+        Intent intent = new Intent(context, UnlineOrderActivity.class);
 //        intent.putExtra(CstProject.KEY.ID, goods_id);
         context.startActivity(intent);
     }
@@ -732,7 +774,7 @@ public class ProDispatcher {
      * 支付返回
      *
      * @param context
-     * @param resultCode
+     * @param resultCode -1 失败
      */
     public static void sendPayResultBroadcast(Context context, int resultCode) {
         if (context == null) {
@@ -745,6 +787,20 @@ public class ProDispatcher {
         Intent intent = new Intent();
         intent.putExtra(CstProject.KEY.CODE, resultCode);
         intent.setAction(BROADCAST_ACTION.PAY_RESULT_ACTION);
+        LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
+        manager.sendBroadcast(intent);
+    }
+
+    /**
+     * 评论
+     * @param context
+     */
+    public static void sendRemarkBroadcast(Context context) {
+        if (context == null) {
+            return;
+        }
+        Intent intent = new Intent();
+        intent.setAction(BROADCAST_ACTION.REMARK_ACTION);
         LocalBroadcastManager manager = LocalBroadcastManager.getInstance(context);
         manager.sendBroadcast(intent);
     }

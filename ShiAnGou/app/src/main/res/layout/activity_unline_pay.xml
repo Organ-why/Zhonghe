@@ -46,15 +46,16 @@
                 android:background="@color/common_transparent"
                 android:gravity="right|center_vertical"
                 android:hint="@string/unline_pay_total_tip"
+                android:imeOptions="flagNoExtractUi|actionDone"
                 android:inputType="numberDecimal"
-                android:imeOptions="actionDone"
-                android:singleLine="true"
-                android:maxLines="1" />
+                android:maxLines="1"
+                android:singleLine="true" />
         </LinearLayout>
 
         <View style="@style/common_divider_view_style10" />
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/money_pay_ll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,6 +79,8 @@
                 android:layout_height="wrap_content">
 
                 <RadioButton
+
+                    android:id="@+id/radio_bt_wehcat"
                     style="@style/common_text_user_item"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_ll_item"
@@ -93,6 +96,7 @@
                     android:text="@string/common_pointtitle_str" />
 
                 <RadioButton
+                    android:id="@+id/radio_bt_ali"
                     style="@style/common_text_user_item"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_ll_item"
@@ -100,6 +104,7 @@
                     android:layout_marginLeft="@dimen/margin_h"
                     android:background="@color/common_transparent"
                     android:button="@null"
+                    android:checked="true"
                     android:drawableLeft="@mipmap/icon_pay_alipay_m"
                     android:drawablePadding="@dimen/padding_xxlsize"
                     android:drawableRight="@drawable/common_selectall_cb_selector"

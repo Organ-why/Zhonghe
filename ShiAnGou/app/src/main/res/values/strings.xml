@@ -90,6 +90,7 @@
     <string name="title_register_code_time">%s秒后可重发</string>
     <string name="register_to_get_securitycode">重新获取</string>
 
+    <string name="error_login_needlog">您的账号已经在其它设备登录，请您重新登录！</string>
     <!--设置-->
     <string name="setup_title_text">设置</string>
     <string name="setup_setname_text">点击设置昵称</string>
@@ -117,6 +118,12 @@
     <string name="confirmorder_order_fail">生成订单失败，请重新确认</string>
     <string name="confirmorder_order_success">订单成功</string>
 
+
+    <string name="order_unline_consume">消费:%s元</string>
+    <string name="order_unline_actualMoney">实付:</string>
+    <string name="order_unline_title">消费记录</string>
+
+
     <!-- 商品详情-->
     <string name="prodetail_act_title">商品详情</string>
     <string name="prodetail_img_title">图文详情</string>
@@ -136,6 +143,7 @@
     <string name="prodetail_collection_cancel_success">取消收藏成功</string>
     <string name="prodetail_collection_cancel">取消收藏</string>
     <string name="prodetail_more_remark">查看更多评价</string>
+    <string name="prodetail_sale_num">已售:%s</string>
 
 
     <string name="prodetail_title_refunds">退货/退款</string>
@@ -288,6 +296,12 @@
     <string name="unline_pay_total">消费总额:</string>
     <string name="unline_pay_title">马上结算</string>
     <string name="unline_pay_lack">提示: 扣除积分后还差%s元，请点击支付选择支付方式</string>
+
+
+    <!--位置-->
+    <string name="location_nopermission">您没有打开应用的定位权限，\n请在设置中打开</string>
+    <string name="permission_nopermission">您没有打开应用的相关权限，\n请在设置中打开</string>
+    <string name="location_location_loading">获取位置中，请稍等</string>
     <!--搜索-->
     <string name="search_title_hot">热门搜索</string>
     <string name="search_title_history">历史搜索</string>

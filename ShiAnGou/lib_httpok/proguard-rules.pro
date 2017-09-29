@@ -23,3 +23,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep public class * implements com.android.volley.toolbox.HttpStack      # 保持哪些类不被混淆
+#-keep public class * com.example.lib_httpok.OkHttp3Stack      # 保持哪些类不被混淆
+-keep public class * com.example.lib_httpok.** { *; }     # 保持哪些类不被混淆
+#OkHttp3
+#-dontwarn com.squareup.okhttp3.**
+#-keep class com.squareup.okhttp3.** { *;}
+#-dontwarn okio.**

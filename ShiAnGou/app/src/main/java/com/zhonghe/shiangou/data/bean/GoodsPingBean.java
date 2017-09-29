@@ -29,6 +29,7 @@ public class GoodsPingBean extends BaseBean {
     private String id_value;
     private String email;
     private String user_name;
+    private String nick_name;
     private String content;
     private String comment_rank;
     private String add_time;
@@ -38,6 +39,14 @@ public class GoodsPingBean extends BaseBean {
     private String user_id;
     private String img;
     private String goods_id;
+
+    public String getNick_name() {
+        return nick_name;
+    }
+
+    public void setNick_name(String nick_name) {
+        this.nick_name = nick_name;
+    }
 
     public String getComment_id() {
         return comment_id;

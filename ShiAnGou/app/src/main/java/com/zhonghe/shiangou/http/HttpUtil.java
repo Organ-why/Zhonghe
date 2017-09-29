@@ -16,6 +16,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.reflect.TypeToken;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilLog;
+import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.baseres.BaseRes;
 import com.zhonghe.shiangou.data.bean.AddressInfo;
 import com.zhonghe.shiangou.data.bean.AddressSelectInfo;
@@ -30,6 +31,7 @@ import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
 import com.zhonghe.shiangou.data.bean.HomeData;
 import com.zhonghe.shiangou.data.bean.LogisticsInfo;
 import com.zhonghe.shiangou.data.bean.OrderInfo;
+import com.zhonghe.shiangou.data.bean.OrderUnline;
 import com.zhonghe.shiangou.data.bean.PointDetailInfo;
 import com.zhonghe.shiangou.data.bean.PointGoodsInfo;
 import com.zhonghe.shiangou.data.bean.PointOrderInfo;
@@ -101,6 +103,8 @@ public class HttpUtil {
     public static String URL_UserMSGPoint = URL_PRO_UNLINE + "UserInfo/getbase";
     //线下支付---alipay
     public static String URL_UNLINEPAY_ALI = URL_PRO_UNLINE + "Payment/index";
+    //线下订单
+    public static String URL_UnlineOrder = URL_PRO_UNLINE + "OfflineOrder/userorder";
 
     //分类
     public static String URL_CategoryParent = URL_PRO + "app/type/ding.php";
@@ -360,27 +364,50 @@ public class HttpUtil {
 
     /**
      * 线下支付 ali
+     *
      * @param context
      * @param total_money
      * @param actual_money
      * @param actual_points
      * @param merchant_id
-     * @param pay_type 付款类型 1为支付宝，2为微信，3为现金(即只消费积分)
+     * @param pay_type      付款类型 1为支付宝，2为微信，3为现金(即只消费积分)
      * @param listener
      * @return
      */
-    public static Request<?> getUNLINEPAY_ALI(Context context, String total_money, String actual_money, String actual_points,
-                                              String merchant_id, String pay_type, final ResultListener listener) {
+    public static Request<?> getUnlinePay_Ali(Context context, double total_money, double actual_money, double actual_points,
+                                              String merchant_id, int pay_type, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
-        map.put("total_money", total_money);
-        map.put("actual_money", actual_money);
-        map.put("actual_points", actual_points);
+        map.put("total_money", Util.formatPrice(total_money));
+        map.put("actual_money", Util.formatPrice(actual_money));
+        map.put("actual_points", Util.formatPrice(actual_points));
         map.put("merchant_id", merchant_id);
-        map.put("pay_type", pay_type);
+        map.put("pay_type", String.valueOf(pay_type));
 
 //        map.put("ident", code);
 //        BaseRes<String> res = new BaseRes<>();
-        Request<?> request = volleyPost(context, URL_UNLINEPAY_ALI, map, listener, UserInfo.class);
+        Request<?> request = volleyPost(context, URL_UNLINEPAY_ALI, map, listener, CharPay.DataBean.class);
+        return request;
+    }
+
+    /**
+     * 线下订单
+     *
+     * @param context
+     * @param cursize
+     * @param curpage
+     * @param listener
+     * @return
+     */
+    public static Request<?> getUnlineOrder(Context context, int cursize, int curpage, final ResultListener listener) {
+        Map<String, String> map = new HashMap<>();
+        map.put("curpage ", curpage + "");
+        map.put("cursize", cursize + "");
+//        map.put("ident", code);
+//        BaseRes<String> res = new BaseRes<>();
+        Type bean = new TypeToken<List<OrderUnline>>() {
+
+        }.getType();
+        Request<?> request = volleyPost(context, URL_UnlineOrder, map, listener, bean);
         return request;
     }
 
@@ -454,6 +481,11 @@ public class HttpUtil {
     public static Request<?> getGoodsDetail(Context context, String goods_id, final ResultListener listener) {
         Map<String, String> map = new HashMap<>();
         map.put("goods_id", goods_id);
+        if (ProjectApplication.mUser != null) {
+            map.put("user_id", ProjectApplication.mUser.getUser_id());
+        } else {
+            map.put("user_id", "0");
+        }
 //        BaseRes<HomeData> res = new BaseRes<>();
 //        Type bean = new TypeToken< BaseRes<HomeData>>(){}.getType();
         Request<?> request = volleyPost(context, URL_GoodsDetail, map, listener, GoodsdetailInfo.class);
@@ -1403,18 +1435,23 @@ public class HttpUtil {
         StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
+                UtilLog.d("resp-url:" + url);
+                UtilLog.d("resp-map:" + map.toString());
+                UtilLog.d("resp-str:" + s);
                 try {
-                    UtilLog.d("resp-url:" + url);
-                    UtilLog.d("resp-map:" + map.toString());
-                    UtilLog.d("resp-str:" + s);
                     JSONObject json = new JSONObject(s);
                     BaseRes obj = (BaseRes) JSONParser.toObject(json.toString(), BaseRes.class);
                     if (obj.getState() != 1) {
                         switch (obj.getState()) {
                             case 14:
 //                                ProDispatcher.goLoginActivity(context);
+                                ProjectApplication.mUser=null;
+                                ProjectApplication.mPrefrence.setUserId(null);
                                 ProDispatcher.sendNeedLoginBroadcast(context);
-                                listener.onFail(obj.getMsg());
+                                ProDispatcher.sendLogoutBroadcast(context);
+                                listener.onFail(context.getString(R.string.error_login_needlog));
+                                ProDispatcher.goLoginActivity(context);
+//                                listener.onFail(obj.getMsg());
                                 break;
                             default:
                                 listener.onFail(obj.getMsg());

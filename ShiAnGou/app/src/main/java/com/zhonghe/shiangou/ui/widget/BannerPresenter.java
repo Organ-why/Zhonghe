@@ -62,8 +62,9 @@ public class BannerPresenter implements ViewPager.OnPageChangeListener {
         isPlay = play;
     }
 
-    public void setPosition(boolean position) {
+    public BannerPresenter setPosition(boolean position) {
         isPosition = position;
+        return this;
     }
 
     private Handler runHandler = new Handler() {

@@ -10,6 +10,7 @@ import com.handmark.pulltorefresh.library.HeaderGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.zhonghe.lib_base.utils.Util;
+import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
@@ -87,9 +88,14 @@ public class GridViewFragment extends BaseFullFragment implements PullToRefreshB
                     adapter.setList(list);
                     if (adapter.getCount() == 0) {
                         setRetryText(R.string.search_search_goods_empty, R.mipmap.icon_empty_search);
+                    } else {
+                        setRetry(false);
                     }
                 } else {
                     adapter.addList(list);
+                }
+                if (UtilList.getCount(list) > 0) {
+                    curpage++;
                 }
                 idDefaultGridview.onRefreshComplete();
             }

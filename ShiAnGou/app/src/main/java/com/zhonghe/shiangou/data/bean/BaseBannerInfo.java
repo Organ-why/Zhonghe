@@ -18,6 +18,15 @@ public class BaseBannerInfo extends BaseBean {
     private String banner_images;
     private String banner_type;
     private String banner_url;
+    private String goods_id;
+
+    public String getGoods_id() {
+        return goods_id;
+    }
+
+    public void setGoods_id(String goods_id) {
+        this.goods_id = goods_id;
+    }
 
     public String getImgUrl() {
         return imgUrl;
