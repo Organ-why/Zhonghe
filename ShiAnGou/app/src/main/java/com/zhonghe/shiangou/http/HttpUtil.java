@@ -212,7 +212,8 @@ public class HttpUtil {
      * @return
      */
     public static Request<?> getVersionCode(Context context, final ResultListener listener) {
-        Request<?> request = volleyGet(context, URL_VersionCode, listener, String.class);
+        Map<String, String> map = new HashMap<>();
+        Request<?> request = volleyPost(context, URL_VersionCode, map, listener, String.class);
         return request;
     }
 
@@ -467,7 +468,7 @@ public class HttpUtil {
 //        BaseRes<HomeData> res = new BaseRes<>();
         Type bean = new TypeToken<List<GoodsInfo>>() {
         }.getType();
-        Request<?> request = volleyGet(context, URL_SearchHot, listener, bean);
+        Request<?> request = volleyPost(context, URL_SearchHot, map, listener, bean);
         return request;
     }
 
@@ -746,7 +747,7 @@ public class HttpUtil {
 //        BaseRes<HomeData> res = new BaseRes<>();
         Type bean = new TypeToken<List<CategoryParent>>() {
         }.getType();
-        Request<?> request = volleyGet(context, URL_CategoryParent, listener, bean);
+        Request<?> request = volleyPost(context, URL_CategoryParent, map, listener, bean);
         return request;
     }
 
@@ -1445,7 +1446,7 @@ public class HttpUtil {
                         switch (obj.getState()) {
                             case 14:
 //                                ProDispatcher.goLoginActivity(context);
-                                ProjectApplication.mUser=null;
+                                ProjectApplication.mUser = null;
                                 ProjectApplication.mPrefrence.setUserId(null);
                                 ProDispatcher.sendNeedLoginBroadcast(context);
                                 ProDispatcher.sendLogoutBroadcast(context);

@@ -58,7 +58,12 @@
 -keep class com.zhonghe.shiangou.utile.** { *;}
 -keep class com.zhonghe.shiangou.ui.adapter.** { *;}
 -keep class com.zhonghe.shiangou.ui.activity.** { *;}
+-keep class com.zhonghe.shiangou.ui.widget.** { *;}
 -keep class com.zhonghe.shiangou.ui.fragment.** { *;}
+-keep class com.zhonghe.shiangou.data.baseres.** { *;}
+-keep class com.zhonghe.shiangou.system.constant.** { *;}
+-keep class com.zhonghe.shiangou.system.global.** { *;}
+-keep public class * extends com.zhonghe.shiangou.data.bean.BaseBean
 
 #保持注解继承类不混淆
 -keep class * extends java.lang.annotation.Annotation {*;}
