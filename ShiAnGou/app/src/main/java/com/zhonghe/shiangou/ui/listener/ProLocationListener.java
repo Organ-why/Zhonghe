@@ -8,6 +8,7 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
+import com.zhonghe.lib_base.utils.UtilLog;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 
@@ -112,7 +113,8 @@ public class ProLocationListener implements BDLocationListener {
                 sb.append("\ndescribe : ");
                 sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
             }
-//            logMsg(sb.toString());
+            UtilLog.e(sb.toString());
+
 
         }
     }

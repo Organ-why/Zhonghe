@@ -1464,6 +1464,7 @@ public class HttpUtil {
                         listener.onSuccess(null);
                     }
                 } catch (Exception e) {
+                    UtilLog.d("try_catch" + s);
                     e.printStackTrace();
                     listener.onFail(e.getMessage());
                 }

@@ -34,6 +34,7 @@
 -optimizations !code/simplification/arithmetic,!field/*,!class/merging/*  # 混淆时所采用的算法
 
 -keep public class * extends android.app.Activity      # 保持哪些类不被混淆
+-keep public class * extends android.app.Fragment
 -keep public class * extends android.app.Application   # 保持哪些类不被混淆
 -keep public class * extends android.app.Service       # 保持哪些类不被混淆
 -keep public class * extends android.content.BroadcastReceiver  # 保持哪些类不被混淆
@@ -42,6 +43,36 @@
 -keep public class * extends android.preference.Preference        # 保持哪些类不被混淆
 -keep public class com.android.vending.licensing.ILicensingService    # 保持哪些类不被混淆
 -keep public class com.google.vending.licensing.ILicensingService
+
+
+-dontwarn com.squareup.okhttp.**
+-keep class com.squareup.okhttp.** { *;}
+
+-keep class com.baidu.** { *;}
+-keep class vi.com.** { *;}
+-dontwarn com.baidu.**
+-keep class com.j256.ormlite.** { *;}
+-dontwarn com.j256.ormlite.**
+-keep class com.zhonghe.shiangou.http.** { *;}
+-keep class com.zhonghe.shiangou.bean.** { *;}
+-keep class com.zhonghe.shiangou.utile.** { *;}
+-keep class com.zhonghe.shiangou.ui.adapter.** { *;}
+-keep class com.zhonghe.shiangou.ui.activity.** { *;}
+-keep class com.zhonghe.shiangou.ui.fragment.** { *;}
+
+#保持注解继承类不混淆
+-keep class * extends java.lang.annotation.Annotation {*;}
+#保持Serializable实现类不被混淆
+-keepnames class * implements java.io.Serializable
+#保持Serializable不被混淆并且enum 类也不被混淆
+-keepclassmembers class * implements java.io.Serializable {
+    static final long serialVersionUID;
+    private static final java.io.ObjectStreamField[] serialPersistentFields;
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+    java.lang.Object writeReplace();
+    java.lang.Object readResolve();
+}
 
 -keepclasseswithmembernames class * {  # 保持 native 方法不被混淆
     native <methods>;

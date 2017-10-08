@@ -115,7 +115,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
             @Override
             public void onRetry() {
                 setRetry(false);
-                if (ProjectApplication.mLocation == null) {
+                if (ProjectApplication.mLocation.getCity() == null) {
                     Util.toast(mContext, R.string.location_location_loading);
                     setWaitingDialog(true);
                     ProjectApplication.mLocationService.start();
@@ -124,7 +124,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
                 }
             }
         });
-        if (ProjectApplication.mLocation == null) {
+        if (ProjectApplication.mLocation.getCity() == null) {
             Util.toast(mContext, R.string.location_location_loading);
             setWaitingDialog(true);
             ProjectApplication.mLocationService.start();
@@ -158,7 +158,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
 
     void getHomeData() {
         setWaitingDialog(true);
-        if (ProjectApplication.mLocation == null) {
+        if (ProjectApplication.mLocation.getCity() == null) {
             ProjectApplication.mLocationService.start();
             setWaitingDialog(false);
             xlistview.stopRefresh();
@@ -246,8 +246,13 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         super.onReceive(intent);
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
-                ProjectApplication.mLocationService.stop();
-                getHomeData();
+                if (ProjectApplication.mLocation.getCity() == null) {
+                    ProjectApplication.mLocationService.start();
+                } else {
+                    ProjectApplication.mLocationService.stop();
+                    getHomeData();
+                }
+
                 break;
         }
     }
