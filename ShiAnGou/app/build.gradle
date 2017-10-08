@@ -16,9 +16,15 @@ android {
         }
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     sourceSets {
@@ -29,15 +35,7 @@ android {
 
     signingConfigs {
         debug {
-            storeFile file("keystore/shiangou.jks")
-            storePassword "shiangou123"
-            keyAlias "key_shiangou"
-            keyPassword "shiangou123"
-        }
-
-
-        release {
-            storeFile file("keystore/shiangou.jks")
+            storeFile file("/keystore/shiangou.jks")
             storePassword "shiangou123"
             keyAlias "key_shiangou"
             keyPassword "shiangou123"
