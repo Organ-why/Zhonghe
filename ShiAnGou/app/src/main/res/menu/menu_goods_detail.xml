@@ -15,4 +15,8 @@
         android:id="@+id/id_menu_follow"
         android:icon="@mipmap/icon_follow_menu"
         android:title="@string/prodetail_buy_cellection" />
+    <item
+        android:id="@+id/id_menu_share"
+        android:icon="@mipmap/icon_share"
+        android:title="@string/common_share" />
 </menu>

@@ -2,6 +2,10 @@
 shiangou@163.com
 zhonghesannong
 
+QQ:
+1106387261
+O4qzG9jyl6r8AXeF
+
 微信开发者账号
 wechat_shiangou@163.com
 Shiangou123
@@ -15,6 +19,9 @@ zhonghesannong010
 
 APPID: 2017080408031021
 
+新浪微博
+账号shiangou@163.com
+密码:Shiangou123
 
 
 KeyStore

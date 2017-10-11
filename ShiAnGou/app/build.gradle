@@ -6,7 +6,7 @@ android {
     defaultConfig {
         applicationId "com.zhonghe.shiangou"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 21
         versionCode 1000
         versionName "1.0.00"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -30,6 +30,7 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
+            jniLibs.srcDirs = ['src/main/jniLibs']
         }
     }
 
@@ -66,10 +67,19 @@ dependencies {
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'com.android.support:support-v4:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+//    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
     compile 'com.android.support:recyclerview-v7:23.2.1'
     compile 'com.journeyapps:zxing-android-embedded:3.3.0'
     testCompile 'junit:junit:4.12'
+    compile files('libs/weiboSDKCore.jar')
+    compile files('libs/wechat-sdk-android-with-mta-1.1.6.jar')
+    compile files('libs/umeng_social_tool.jar')
+    compile files('libs/umeng_social_net.jar')
+    compile files('libs/umeng_social_api.jar')
+    compile files('libs/SocialSDK_WeiXin_Full.jar')
+    compile files('libs/SocialSDK_Sina_Full.jar')
+    compile files('libs/SocialSDK_QQ_Full.jar')
+    compile files('libs/open_sdk_r5788_lite.jar')
 }
 
 

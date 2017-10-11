@@ -7,9 +7,12 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <!--分享-->
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
 
     <!--文件权限 honor v9-->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <uses-feature android:name="android.hardware.camera" /> <!-- 使用照相机权限 -->
     <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
@@ -102,6 +105,71 @@
             android:exported="false"
             android:screenOrientation="behind"
             android:windowSoftInputMode="adjustResize|stateHidden" />
+
+        <!--分享-->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="59b638674544cb6841000c00" >
+        </meta-data>
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.tencent.tauth.AuthActivity"
+            android:launchMode="singleTask"
+            android:noHistory="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="tencent1106387261" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+        <activity
+            android:name=".ui.activity.WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action
+                    android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.umeng.socialize.media.WBShareCallBackActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:exported="false"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity android:name="com.sina.weibo.sdk.web.WeiboSdkWebActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            >
+        </activity>
+        <activity
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            android:launchMode="singleTask"
+            android:name="com.sina.weibo.sdk.share.WbShareTransActivity">
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+
         <!-- 主界面 -->
         <activity
             android:name=".ui.activity.MainActivity"
@@ -115,8 +183,8 @@
         <!-- 登录 -->
         <activity
             android:name=".ui.activity.LoginActivity"
-            android:screenOrientation="portrait"
             android:launchMode="singleTask"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 登录 -->
         <activity
@@ -285,7 +353,7 @@
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 商户评论列表 -->
         <activity
-            android:name=".ui.activity.PointUnlineShopReamrkActivity"
+            android:name=".ui.activity.PointUnlineShopRemarkActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <!-- 商户图片 -->
@@ -309,10 +377,10 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" />
         <!--线下支付订单-->
-        <activity android:name=".ui.activity.UnlineOrderActivity"
+        <activity
+            android:name=".ui.activity.UnlineOrderActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan|stateHidden"
-            ></activity>
+            android:windowSoftInputMode="adjustPan|stateHidden"></activity>
     </application>
 
 </manifest>

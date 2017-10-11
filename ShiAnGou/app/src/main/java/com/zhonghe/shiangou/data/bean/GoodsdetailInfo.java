@@ -21,6 +21,16 @@ public class GoodsdetailInfo extends BaseBean {
     private GoodsPingBean goods_ping;
     private List<String> goods_img;
     private List<GoodsTypeBean> goods_type;
+    private String share_url;
+
+    public String getShare_url() {
+        return share_url;
+    }
+
+    public void setShare_url(String share_url) {
+        this.share_url = share_url;
+    }
+
     //1收藏 0 未收藏
     private int collect;
 

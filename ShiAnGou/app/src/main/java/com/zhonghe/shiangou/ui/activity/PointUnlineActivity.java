@@ -124,7 +124,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
                 }
             }
         });
-        if (ProjectApplication.mLocation.getCity() == null) {
+        if (ProjectApplication.mLocation==null||ProjectApplication.mLocation==null||ProjectApplication.mLocation.getCity() == null) {
             Util.toast(mContext, R.string.location_location_loading);
             setWaitingDialog(true);
             ProjectApplication.mLocationService.start();
@@ -158,7 +158,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
 
     void getHomeData() {
         setWaitingDialog(true);
-        if (ProjectApplication.mLocation.getCity() == null) {
+        if (ProjectApplication.mLocation==null||ProjectApplication.mLocation.getCity() == null) {
             ProjectApplication.mLocationService.start();
             setWaitingDialog(false);
             xlistview.stopRefresh();
@@ -246,7 +246,7 @@ public class PointUnlineActivity extends BaseTopActivity implements NXListViewNO
         super.onReceive(intent);
         switch (intent.getAction()) {
             case CstProject.BROADCAST_ACTION.LOCATION_ACTION:
-                if (ProjectApplication.mLocation.getCity() == null) {
+                if (ProjectApplication.mLocation==null||ProjectApplication.mLocation.getCity() == null) {
                     ProjectApplication.mLocationService.start();
                 } else {
                     ProjectApplication.mLocationService.stop();

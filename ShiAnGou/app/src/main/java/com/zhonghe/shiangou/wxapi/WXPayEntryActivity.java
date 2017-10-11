@@ -11,7 +11,7 @@ import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
-import com.tencent.mm.opensdk.utils.Log;
+import com.umeng.socialize.utils.Log;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.system.constant.CstProject;

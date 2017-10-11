@@ -1,5 +1,6 @@
 package com.zhonghe.shiangou.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.widget.PopupMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.umeng.socialize.UMShareAPI;
 import com.zhonghe.lib_base.baseui.MenuImg;
 import com.zhonghe.lib_base.baseui.MenuPopup;
 import com.zhonghe.lib_base.baseui.MenuTxt;
@@ -29,10 +31,12 @@ import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.GoodsDetailAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
+import com.zhonghe.shiangou.ui.dialog.ShareDialog;
 import com.zhonghe.shiangou.ui.dialog.SkuSelectDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.DynamicBanner;
 import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
+import com.zhonghe.shiangou.utile.UtilPro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,6 +83,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
     private String mSKU;
     //SKU 选择Dialog
     SkuSelectDialog skudialog;
+    ShareDialog shareDialog;
     GoodsDetailAdapter adapter;
     boolean isFollow = true;
 
@@ -117,6 +122,10 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
                     return true;
                 } else if (id == R.id.id_menu_follow) {
                     ProDispatcher.goLikeActivity(mContext);
+
+                    return true;
+                } else if (id == R.id.id_menu_share) {
+                    getShare();
                     return true;
                 }
                 return false;
@@ -195,7 +204,7 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
         idGoodsdetailDescTv.setText(data.getGoods().getGoods_brief());
         idGoodsdetailPriceTv.setText(data.getGoods().getShop_price());
         idGoodsdetailSoldnumTv.setText(String.format(getString(R.string.prodetail_sale_num), data.getGoods().getVirtual_sales()));
-        if (data.getCollect()==1) {
+        if (data.getCollect() == 1) {
             idGoodsdetailLikeIb.setImageResource(R.mipmap.res_follow_selected);
         } else {
             idGoodsdetailLikeIb.setImageResource(R.mipmap.res_follow_nomal);
@@ -298,6 +307,13 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
         skudialog.showAtLocation(view, Gravity.BOTTOM, 0, 0);
     }
 
+    void getShare() {
+        if (shareDialog == null) {
+            shareDialog = new ShareDialog(mContext, data.getShare_url(), UtilPro.getImgHttpUrl(data.getGoods().getGoods_thumb()),
+                    data.getGoods().getGoods_name(), data.getGoods().getGoods_desc());
+        }
+        shareDialog.showAtLocation(idGoodsdetailTitleTv, Gravity.BOTTOM, 0, 0);
+    }
 
     @OnClick({R.id.id_goodsdetail_buynow_bt, R.id.id_goodsdetail_addcart_bt, R.id.id_goodsdetail_like_ib})
     @Override
@@ -361,4 +377,11 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
         }
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
+    }
+
 }

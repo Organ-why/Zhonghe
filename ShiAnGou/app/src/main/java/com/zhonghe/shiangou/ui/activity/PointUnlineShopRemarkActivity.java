@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  * desc: 商户评论列表
  */
 
-public class PointUnlineShopReamrkActivity extends BaseTopActivity implements NXListViewNO.IXListViewListener {
+public class PointUnlineShopRemarkActivity extends BaseTopActivity implements NXListViewNO.IXListViewListener {
     @Bind(R.id.xlistview)
     NXListViewNO xlistview;
     private ShopRemarkAdapter adapter;

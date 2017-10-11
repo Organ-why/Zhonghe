@@ -35,7 +35,7 @@ import butterknife.OnClick;
 /**
  * auther: whyang
  * date: 2017/9/19
- * desc:
+ * desc: 首页分类商品列表
  */
 
 public class GoodsCategoryListActivity extends BaseTopActivity {
@@ -71,18 +71,25 @@ public class GoodsCategoryListActivity extends BaseTopActivity {
         Intent intent = getIntent();
         String keyWord = intent.getStringExtra(CstProject.KEY.KEY);
         String cat_id = intent.getStringExtra(CstProject.KEY.ID);
+
+
+        getCategoryChild(cat_id);
+    }
+
+    void setData(String catid) {
+        if (viewpager.getChildCount() > 0) return;
         Bundle bundle1 = new Bundle();
-        bundle1.putString(CstProject.KEY.ID, "-1");
+        bundle1.putString(CstProject.KEY.ID, catid);
         bundle1.putString(CstProject.KEY.KEY, "");
         bundle1.putString(CstProject.KEY.ORDERBY, "0");
         addTab(R.string.pro_list_tag_default, GridViewFragment.class, bundle1);
         Bundle bundle2 = new Bundle();
-        bundle2.putString(CstProject.KEY.ID, "-1");
+        bundle2.putString(CstProject.KEY.ID, catid);
         bundle2.putString(CstProject.KEY.KEY, "");
         bundle2.putString(CstProject.KEY.ORDERBY, "1");
         addTab(R.string.pro_list_tag_sales, GridViewFragment.class, bundle2);
         Bundle bundle3 = new Bundle();
-        bundle3.putString(CstProject.KEY.ID, "-1");
+        bundle3.putString(CstProject.KEY.ID, catid);
         bundle3.putString(CstProject.KEY.KEY, "");
         bundle3.putString(CstProject.KEY.ORDERBY, "2");
         addTab(R.string.pro_list_tag_comment, GridViewFragment.class, bundle3);
@@ -91,8 +98,6 @@ public class GoodsCategoryListActivity extends BaseTopActivity {
                 mAppTabs));
         tablayout.setupWithViewPager(viewpager);
         viewpager.setCurrentItem(0);
-
-        getCategoryChild(cat_id);
     }
 
     void addTab(int title, Class<? extends BaseUIFragment> cls, Bundle args) {
@@ -134,7 +139,8 @@ public class GoodsCategoryListActivity extends BaseTopActivity {
                 final List<CategoryChild> chillist = (List<CategoryChild>) obj;
                 if (UtilList.getCount(chillist) > 0) {
                     idTypeTv.setText(getList(chillist).get(0));
-                    ProDispatcher.sendChangeCategoryBroadcast(mContext, chillist.get(0).getCat_id());
+//                    ProDispatcher.sendChangeCategoryBroadcast(mContext, chillist.get(0).getCat_id());
+                    setData(chillist.get(0).getCat_id());
                     presenter = new PopListPresenter(mContext, getList(chillist), idTypeLl, idTypeIv, new PopListPresenter.OnPopItemClickListener() {
                         @Override
                         public void OnClickItem(String t, int position) {

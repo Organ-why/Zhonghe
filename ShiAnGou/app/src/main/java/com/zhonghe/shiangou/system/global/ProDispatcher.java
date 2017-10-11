@@ -35,7 +35,7 @@ import com.zhonghe.shiangou.ui.activity.PointExchangeResultActivity;
 import com.zhonghe.shiangou.ui.activity.PointUnlineActivity;
 import com.zhonghe.shiangou.ui.activity.PointUnlineDetailActivity;
 import com.zhonghe.shiangou.ui.activity.PointUnlineListActivity;
-import com.zhonghe.shiangou.ui.activity.PointUnlineShopReamrkActivity;
+import com.zhonghe.shiangou.ui.activity.PointUnlineShopRemarkActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsBeginActivity;
 import com.zhonghe.shiangou.ui.activity.RefundsDetailActivity;
@@ -520,7 +520,7 @@ public class ProDispatcher {
         if (context == null) {
             return;
         }
-        Intent intent = new Intent(context, PointUnlineShopReamrkActivity.class);
+        Intent intent = new Intent(context, PointUnlineShopRemarkActivity.class);
         intent.putExtra(CstProject.KEY.ID, merchant_id);
         context.startActivity(intent);
     }

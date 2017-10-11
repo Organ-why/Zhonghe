@@ -30,6 +30,7 @@
     <string name="common_msg">我的消息</string>
     <string name="common_save">保存</string>
     <string name="common_success_tip">成功</string>
+    <string name="common_fail_tip">失败</string>
     <string name="common_user_center">我的帐户</string>
     <string name="common_search">搜索</string>
     <string name="common_updata">更新</string>
