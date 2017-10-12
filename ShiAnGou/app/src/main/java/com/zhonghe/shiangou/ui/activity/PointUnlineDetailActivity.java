@@ -23,6 +23,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.adapter.ShopRemarkAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.ImgDialog;
+import com.zhonghe.shiangou.ui.dialog.ShareDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.ui.widget.RatingBar;
 import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
@@ -66,6 +67,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
     private View footer;
     private ImgDialog imgDialog;
     private ImageButton phoneIb;
+    private ShareDialog shareDialog;
 
     @Override
     protected void initTop() {
@@ -200,7 +202,13 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
         idShopmsgTv.setText(String.format(getString(R.string.unline_shop_msg), Util.formatPrice(data.getAverage()), data.getArea_name(), data.getIntro()));
         idUnlineDetailRemarknum.setText(String.format(getString(R.string.unline_remark), data.getComment_num()));
     }
-
+    void getShare(View view) {
+        if (shareDialog == null) {
+            shareDialog = new ShareDialog(mContext, info.getShare_url(), UtilPro.getImgHttpUrl(info.getMerchant_thumb()),
+                    info.getMerchant_name(), info.getIntro());
+        }
+        shareDialog.showAtLocation(view, Gravity.BOTTOM, 0, 0);
+    }
     @Override
     public void onRefresh() {
 
@@ -240,6 +248,7 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
                 ProDispatcher.goUnlinePayActivity(mContext, shopId);
                 break;
             case R.id.id_shop_share:
+                getShare(idShopShare);
                 break;
             case R.id.id_shop_reamrk:
                 ProDispatcher.goShopRemarkActivity(mContext, shopId);

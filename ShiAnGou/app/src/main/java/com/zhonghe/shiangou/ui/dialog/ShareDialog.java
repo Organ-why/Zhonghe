@@ -179,6 +179,7 @@ public class ShareDialog extends PopupWindow implements View.OnClickListener{
             case R.id.id_share_link:
                 break;
             case R.id.id_share_cancel:
+                dismiss();
                 break;
         }
     }

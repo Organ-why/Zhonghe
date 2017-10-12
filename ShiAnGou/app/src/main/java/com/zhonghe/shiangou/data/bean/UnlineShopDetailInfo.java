@@ -30,6 +30,7 @@ public class UnlineShopDetailInfo extends BaseBean {
      */
 
     private String merchant_id;
+    private String share_url;
     private String merchant_name;
     private float grade;
     private String phone;
@@ -50,6 +51,14 @@ public class UnlineShopDetailInfo extends BaseBean {
     private String photo_num;
     private double latitude;
     private double longitude;
+
+    public String getShare_url() {
+        return share_url;
+    }
+
+    public void setShare_url(String share_url) {
+        this.share_url = share_url;
+    }
 
     public double getLatitude() {
         return latitude;
