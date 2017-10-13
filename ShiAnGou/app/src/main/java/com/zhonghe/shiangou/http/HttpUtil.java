@@ -905,21 +905,19 @@ public class HttpUtil {
      * 物流
      *
      * @param context
-     * @param number
-     * @param type
-     * @param express
      * @param resultListener
      * @return
      */
-    public static Request<?> getLogisticsDetail(Context context, String number, String type, String express, ResultListener resultListener) {
+    public static Request<?> getLogisticsDetail(Context context, String order_sn, ResultListener resultListener) {
         Map<String, String> map = new HashMap<>();
 //        map.put("goods_id", goods_id);
 //        运单号：number
 //        快递公司代码：type
 //        快递公司名 ： express
-        map.put("number", number + "");
-        map.put("type", type + "");
-        map.put("express", express + "");
+        map.put("order_sn", order_sn + "");
+//        map.put("number", number + "");
+//        map.put("type", type + "");
+//        map.put("express", express + "");
 //        map.put("user_id", ProjectApplication.mUser.getUser_id());
 
 //        BaseRes<HomeData> res = new BaseRes<>();

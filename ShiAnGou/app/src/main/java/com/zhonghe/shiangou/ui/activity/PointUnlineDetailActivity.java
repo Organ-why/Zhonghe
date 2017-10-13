@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.umeng.socialize.UMShareAPI;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilString;
@@ -264,5 +265,10 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
                 getDetail();
                 break;
         }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode, resultCode, data);
     }
 }

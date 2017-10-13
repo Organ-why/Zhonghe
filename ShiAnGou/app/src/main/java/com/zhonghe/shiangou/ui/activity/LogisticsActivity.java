@@ -23,6 +23,9 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
+/**
+ * 物流
+ */
 public class LogisticsActivity extends BaseTopActivity {
 
 
@@ -34,9 +37,10 @@ public class LogisticsActivity extends BaseTopActivity {
     TextView idLogisticsCodeTv;
     @Bind(R.id.id_logistics_progress_ll)
     LinearLayout idLogisticsProgressLl;
-    private String number;
-    private String type;
-    private String express;
+    private String order_sn;
+//    private String number;
+//    private String type;
+//    private String express;
     private LogisticsInfo mData;
 
     @Override
@@ -54,15 +58,16 @@ public class LogisticsActivity extends BaseTopActivity {
     @Override
     protected void initViews() {
         Intent intent = getIntent();
-        number = intent.getStringExtra(CstProject.KEY.VALUES1);
-        type = intent.getStringExtra(CstProject.KEY.VALUES2);
-        express = intent.getStringExtra(CstProject.KEY.VALUES3);
+        order_sn = intent.getStringExtra(CstProject.KEY.ID);
+//        number = intent.getStringExtra(CstProject.KEY.VALUES1);
+//        type = intent.getStringExtra(CstProject.KEY.VALUES2);
+//        express = intent.getStringExtra(CstProject.KEY.VALUES3);
         getLogistics();
     }
 
     void getLogistics() {
         setWaitingDialog(true);
-        Request<?> request = HttpUtil.getLogisticsDetail(mContext, number, type, express, new ResultListener() {
+        Request<?> request = HttpUtil.getLogisticsDetail(mContext,order_sn, new ResultListener() {
             @Override
             public void onFail(String error) {
                 setWaitingDialog(false);

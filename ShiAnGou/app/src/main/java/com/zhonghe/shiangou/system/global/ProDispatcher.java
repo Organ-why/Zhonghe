@@ -298,14 +298,16 @@ public class ProDispatcher {
      *
      * @param context
      */
-    public static void goLogisticsActivity(Context context, String num, String type, String express) {
+    public static void goLogisticsActivity(Context context, String order_sn) {
+//    public static void goLogisticsActivity(Context context, String num, String type, String express) {
         if (context == null) {
             return;
         }
         Intent intent = new Intent(context, LogisticsActivity.class);
-        intent.putExtra(CstProject.KEY.VALUES1, num);
-        intent.putExtra(CstProject.KEY.VALUES2, type);
-        intent.putExtra(CstProject.KEY.VALUES3, express);
+        intent.putExtra(CstProject.KEY.ID, order_sn);
+//        intent.putExtra(CstProject.KEY.VALUES1, num);
+//        intent.putExtra(CstProject.KEY.VALUES2, type);
+//        intent.putExtra(CstProject.KEY.VALUES3, express);
         context.startActivity(intent);
     }
 

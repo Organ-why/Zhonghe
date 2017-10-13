@@ -114,7 +114,7 @@ public class OrderAllFragment extends BaseFullFragment implements PullToRefreshB
             OrderRemind(item.getOrder_sn(),1);
         } else if (orderType.equals("3")) {
             //查看物流
-            ProDispatcher.goLogisticsActivity(mActivity, item.getNumber(), item.getType(), item.getExpress());
+            ProDispatcher.goLogisticsActivity(mActivity, item.getOrder_sn());
         } else {
             //删除订单
             DelOrder(position, item.getOrder_sn(), orderType);
