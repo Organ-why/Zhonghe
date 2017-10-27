@@ -19,7 +19,7 @@ import com.zhonghe.shiangou.utile.UtilPro;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -61,17 +61,17 @@ public class UnlineShopAdapter extends AbsAdapter<ShopInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_home_category_item_iv)
+        @BindView(R.id.id_home_category_item_iv)
         SimpleDraweeView idHomeCategoryItemIv;
-        @Bind(R.id.id_goods_rigthtop_tv)
+        @BindView(R.id.id_goods_rigthtop_tv)
         TextView idGoodsRigthtopTv;
-        @Bind(R.id.id_goods_title_tv)
+        @BindView(R.id.id_goods_title_tv)
         TextView idGoodsTitleTv;
-        @Bind(R.id.id_goods_address_tv)
+        @BindView(R.id.id_goods_address_tv)
         TextView idGoodsAddressTv;
-        @Bind(R.id.id_goods_popular_tv)
+        @BindView(R.id.id_goods_popular_tv)
         TextView idGoodsPopularTv;
-        @Bind(R.id.ratingBar)
+        @BindView(R.id.ratingBar)
         RatingBar ratingBar;
 
         ViewHolder(View view) {

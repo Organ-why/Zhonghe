@@ -16,7 +16,7 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.R.id.list;
@@ -28,7 +28,7 @@ public class UnlineOrderActivity extends BaseTopActivity implements PullToRefres
     UnlineOrderAdapter adapter;
     int curpage = 1;
     int cursize = 10;
-    @Bind(R.id.id_default_listview)
+    @BindView(R.id.id_default_listview)
     PullToRefreshListView idDefaultListview;
     private List<OrderUnline> mData;
 

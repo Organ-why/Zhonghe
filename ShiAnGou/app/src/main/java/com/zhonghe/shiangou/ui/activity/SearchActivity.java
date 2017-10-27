@@ -9,9 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.android.volley.Request;
-import com.google.gson.Gson;
 import com.zhonghe.lib_base.utils.Util;
-import com.zhonghe.lib_base.utils.UtilList;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsInfo;
@@ -20,15 +18,12 @@ import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseSystemActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
-import com.zhonghe.shiangou.ui.widget.FlowLayout;
 import com.zhonghe.shiangou.ui.widget.FlowLayout1;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -39,17 +34,17 @@ import butterknife.OnClick;
  */
 
 public class SearchActivity extends BaseSystemActivity {
-    @Bind(R.id.id_search_hot_fl)
+    @BindView(R.id.id_search_hot_fl)
     FlowLayout1 idSearchHotFl;
-    @Bind(R.id.id_search_history_fl)
+    @BindView(R.id.id_search_history_fl)
     FlowLayout1 idSearchHistoryFl;
-    @Bind(R.id.id_search_cancel)
+    @BindView(R.id.id_search_cancel)
     TextView idSearchCancel;
-    @Bind(R.id.id_category_title_tv)
+    @BindView(R.id.id_category_title_tv)
     EditText idCategoryTitleTv;
-    @Bind(R.id.id_serach_hot_ll)
+    @BindView(R.id.id_serach_hot_ll)
     LinearLayout idSerachHotLl;
-    @Bind(R.id.id_serach_history_ll)
+    @BindView(R.id.id_serach_history_ll)
     LinearLayout idSerachHistoryLl;
 
     List<GoodsInfo> searchHot;

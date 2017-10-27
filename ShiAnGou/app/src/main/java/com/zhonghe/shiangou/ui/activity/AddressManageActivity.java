@@ -20,16 +20,16 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AddressManageActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2<ListView>, AddressListAdapter.AddressContrListener {
 
 
-    @Bind(R.id.id_address_listview)
+    @BindView(R.id.id_address_listview)
     PullToRefreshListView idAddressListview;
-    @Bind(R.id.id_addressmng_add_bt)
+    @BindView(R.id.id_addressmng_add_bt)
     Button idAddressmngAddBt;
 
     List<AddressInfo> mData;

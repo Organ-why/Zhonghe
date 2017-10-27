@@ -22,17 +22,14 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.GoodsTypeBean;
 import com.zhonghe.shiangou.data.bean.GoodsdetailInfo;
-import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
-import com.zhonghe.shiangou.ui.listener.ResultListener;
-import com.zhonghe.shiangou.ui.widget.FlowLayout;
 import com.zhonghe.shiangou.ui.widget.FlowLayout1;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
 import butterknife.BindDimen;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -41,43 +38,43 @@ import butterknife.OnClick;
  * @desc :
  */
 public class SkuSelectDialog extends PopupWindow implements View.OnClickListener {
-    @Bind(R.id.sku_select_img)
+    @BindView(R.id.sku_select_img)
     SimpleDraweeView skuSelectImg;
-    @Bind(R.id.sku_select_title_tv)
+    @BindView(R.id.sku_select_title_tv)
     TextView skuSelectTitleTv;
-    @Bind(R.id.sku_select_close_iv)
+    @BindView(R.id.sku_select_close_iv)
     ImageView skuSelectCloseIv;
-    @Bind(R.id.item_sku_select_symbol_tv)
+    @BindView(R.id.item_sku_select_symbol_tv)
     TextView itemSkuSelectSymbolTv;
-    @Bind(R.id.item_sku_select_price_tv)
+    @BindView(R.id.item_sku_select_price_tv)
     TextView itemSkuSelectPriceTv;
-    @Bind(R.id.item_sku_select_oldprice_tv)
+    @BindView(R.id.item_sku_select_oldprice_tv)
     TextView itemSkuSelectOldpriceTv;
-    @Bind(R.id.item_sku_select_amounttv)
+    @BindView(R.id.item_sku_select_amounttv)
     TextView itemSkuSelectAmounttv;
-    @Bind(R.id.order_sku_rl)
+    @BindView(R.id.order_sku_rl)
     RelativeLayout orderSkuRl;
-    @Bind(R.id.sku_context_msg_ll)
+    @BindView(R.id.sku_context_msg_ll)
     LinearLayout skuContextMsgLl;
-    @Bind(R.id.sku_select_id_ll)
+    @BindView(R.id.sku_select_id_ll)
     LinearLayout skuSelectIdLl;
-    @Bind(R.id.layout_id_reduce_iv)
+    @BindView(R.id.layout_id_reduce_iv)
     ImageView layoutIdReduceIv;
-    @Bind(R.id.layout_id_number_tv)
+    @BindView(R.id.layout_id_number_tv)
     TextView layoutIdNumberTv;
-    @Bind(R.id.layout_id_add_iv)
+    @BindView(R.id.layout_id_add_iv)
     ImageView layoutIdAddIv;
-    @Bind(R.id.layout_layout_id_changenum)
+    @BindView(R.id.layout_layout_id_changenum)
     LinearLayout layoutLayoutIdChangenum;
-    @Bind(R.id.sku_context_change_ll)
+    @BindView(R.id.sku_context_change_ll)
     LinearLayout skuContextChangeLl;
-    @Bind(R.id.sku_context_id_context)
+    @BindView(R.id.sku_context_id_context)
     RelativeLayout skuContextIdContext;
     Button addbtn;
     Button buybtn;
     Button confirmbtn;
     LinearLayout addcarLl;
-    @Bind(R.id.sku_select_id__flow)
+    @BindView(R.id.sku_select_id__flow)
     FlowLayout1 skuFlow;
     private View mMenuView;
     private View mLlRoot;

@@ -22,7 +22,7 @@ import com.zhonghe.shiangou.utile.UtilPro;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -91,19 +91,19 @@ public class ShopRemarkAdapter extends AbsAdapter<ShopRemarkInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_item_remark_header_img)
+        @BindView(R.id.id_item_remark_header_img)
         SimpleDraweeView idItemRemarkHeaderImg;
-        @Bind(R.id.id_item_remark_name_tv)
+        @BindView(R.id.id_item_remark_name_tv)
         TextView idItemRemarkNameTv;
-        @Bind(R.id.ids_popular_tv)
+        @BindView(R.id.ids_popular_tv)
         TextView idsPopularTv;
-        @Bind(R.id.ratingBar)
+        @BindView(R.id.ratingBar)
         RatingBar ratingBar;
-        @Bind(R.id.id_item_remark_date_tv)
+        @BindView(R.id.id_item_remark_date_tv)
         TextView idItemRemarkDateTv;
-        @Bind(R.id.id_item_remark_desc_tv)
+        @BindView(R.id.id_item_remark_desc_tv)
         TextView idItemRemarkDescTv;
-        @Bind(R.id.id_refund_submit_img_gv)
+        @BindView(R.id.id_refund_submit_img_gv)
         GridView idRefundSubmitImgGv;
 
         ViewHolder(View view) {

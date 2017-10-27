@@ -25,7 +25,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -158,7 +158,7 @@ public class RecyAdapter extends RecyclerView.Adapter {
 
 
     public static class GroupItemViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.id_home_category_item_title_iv)
+        @BindView(R.id.id_home_category_item_title_iv)
         SimpleDraweeView idHomeCategoryItemTitleIv;
 
         public GroupItemViewHolder(View itemView) {
@@ -168,15 +168,15 @@ public class RecyAdapter extends RecyclerView.Adapter {
     }
 
     public static class SubItemViewHolder extends RecyclerView.ViewHolder {
-        @Bind(R.id.id_home_category_item_iv)
+        @BindView(R.id.id_home_category_item_iv)
         SimpleDraweeView idHomeCategoryItemIv;
-        @Bind(R.id.id_home_category_item_title_tv)
+        @BindView(R.id.id_home_category_item_title_tv)
         TextView idHomeCategoryItemTitleTv;
-        @Bind(R.id.id_home_category_item_price_tv)
+        @BindView(R.id.id_home_category_item_price_tv)
         TextView idHomeCategoryItemPriceTv;
-        @Bind(R.id.id_home_category_item_oldprice_tv)
+        @BindView(R.id.id_home_category_item_oldprice_tv)
         TextView idHomeCategoryItemOldpriceTv;
-        @Bind(R.id.id_home_category_item_cart_iv)
+        @BindView(R.id.id_home_category_item_cart_iv)
         ImageView idHomeCategoryItemCartIv;
 
         public SubItemViewHolder(View itemView) {

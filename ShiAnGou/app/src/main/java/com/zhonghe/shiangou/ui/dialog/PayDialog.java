@@ -13,16 +13,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
-import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.zhonghe.shiangou.R;
-import com.zhonghe.shiangou.data.bean.CharPay;
-import com.zhonghe.shiangou.system.constant.CstProject;
-import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.utile.UtilPay;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by a on 2017/8/17.
@@ -30,15 +25,15 @@ import butterknife.OnClick;
 
 public class PayDialog extends PopupWindow implements View.OnClickListener {
     private final View mMenuView;
-    @Bind(R.id.id_pay_wechat_ll)
+    @BindView(R.id.id_pay_wechat_ll)
     LinearLayout idPayWechatLl;
-    @Bind(R.id.pay_ll)
+    @BindView(R.id.pay_ll)
     LinearLayout payLl;
-    @Bind(R.id.id_pay_dialog_cancel)
+    @BindView(R.id.id_pay_dialog_cancel)
     ImageView idPayDialogCancel;
-    @Bind(R.id.root_view)
+    @BindView(R.id.root_view)
     RelativeLayout rootView;
-    @Bind(R.id.id_pay_alipay_ll)
+    @BindView(R.id.id_pay_alipay_ll)
     LinearLayout idPayAlipayLl;
 
     payClickListener payListener;

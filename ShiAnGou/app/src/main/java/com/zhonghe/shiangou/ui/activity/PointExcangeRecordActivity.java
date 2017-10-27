@@ -18,7 +18,7 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  */
 
 public class PointExcangeRecordActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2, PointOrderAdapter.pointOrderDelListener {
-    @Bind(R.id.id_default_listview)
+    @BindView(R.id.id_default_listview)
     PullToRefreshListView idDefaultListview;
     private PointOrderAdapter adapter;
     List<PointOrderInfo> mList;

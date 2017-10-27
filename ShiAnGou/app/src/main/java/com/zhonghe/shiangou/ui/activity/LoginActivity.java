@@ -17,25 +17,25 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseTopActivity {
 
-    @Bind(R.id.ids_icon_input3)
+    @BindView(R.id.ids_icon_input3)
     ImageView idsIconInput3;
-    @Bind(R.id.id_login_name_et)
+    @BindView(R.id.id_login_name_et)
     EditText idLoginNameEt;
-    @Bind(R.id.ids_icon_input4)
+    @BindView(R.id.ids_icon_input4)
     ImageView idsIconInput4;
-    @Bind(R.id.id_login_pwd_et)
+    @BindView(R.id.id_login_pwd_et)
     EditText idLoginPwdEt;
-    @Bind(R.id.id_login_register_ll)
+    @BindView(R.id.id_login_register_ll)
     LinearLayout idLoginRegisterLl;
-    @Bind(R.id.id_login_forgetpwd_tv)
+    @BindView(R.id.id_login_forgetpwd_tv)
     TextView idLoginFogavepwdTv;
-    @Bind(R.id.id_login_log_bt)
+    @BindView(R.id.id_login_log_bt)
     Button idLoginLogBt;
 
     @Override

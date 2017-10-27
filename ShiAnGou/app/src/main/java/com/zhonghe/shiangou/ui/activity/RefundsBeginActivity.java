@@ -29,7 +29,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -38,13 +38,13 @@ import butterknife.OnClick;
  */
 
 public class RefundsBeginActivity extends BaseSelectImageActivity implements BaseSelectImageActivity.upLoadListener, RefundSubmitAdapter.CancelImgListener {
-    @Bind(R.id.id_refund_submit_desc_et)
+    @BindView(R.id.id_refund_submit_desc_et)
     EditText idRefundSubmitDescEt;
-    @Bind(R.id.id_refund_submit_img_gv)
+    @BindView(R.id.id_refund_submit_img_gv)
     GridView idRefundSubmitImgGv;
-    @Bind(R.id.id_refund_submit_bt)
+    @BindView(R.id.id_refund_submit_bt)
     Button idRefundSubmitBt;
-    @Bind(R.id.id_refund_price_tv)
+    @BindView(R.id.id_refund_price_tv)
     TextView idRefundPriceTv;
 
     private List<String> files;

@@ -18,7 +18,7 @@ import com.zhonghe.shiangou.system.global.ProDispatcher;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static android.support.v7.appcompat.R.id.info;
@@ -106,23 +106,23 @@ public class AddressListAdapter extends AbsAdapter<AddressInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.item_cart_id_cb)
+        @BindView(R.id.item_cart_id_cb)
         CheckBox itemCartIdCb;
-        @Bind(R.id.address_user_tv)
+        @BindView(R.id.address_user_tv)
         TextView addressUserTv;
-        @Bind(R.id.address_default_tv)
+        @BindView(R.id.address_default_tv)
         TextView addressDefaultTv;
-        @Bind(R.id.address_phone_tv)
+        @BindView(R.id.address_phone_tv)
         TextView addressPhoneTv;
-        @Bind(R.id.address_image_right)
+        @BindView(R.id.address_image_right)
         ImageView addressImageRight;
-        @Bind(R.id.address_content_tv)
+        @BindView(R.id.address_content_tv)
         TextView addressContentTv;
-        @Bind(R.id.address_setdefault_tv)
+        @BindView(R.id.address_setdefault_tv)
         TextView addressSetdefaultTv;
-        @Bind(R.id.address_delete_tv)
+        @BindView(R.id.address_delete_tv)
         TextView addressDeleteTv;
-        @Bind(R.id.address_edit_tv)
+        @BindView(R.id.address_edit_tv)
         TextView addressEditTv;
 
         ViewHolder(View view) {

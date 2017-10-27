@@ -20,7 +20,7 @@ import com.zhonghe.shiangou.data.bean.CartItemBO;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -470,49 +470,49 @@ public class CartProdcutAdapter extends AbsAdapter<CartItemBO> {
 
     static class ViewHolder {
         //选中按钮checkbox
-        @Bind(R.id.item_cart_id_cb)
+        @BindView(R.id.item_cart_id_cb)
         CheckBox itemCartIdCb;
-//        @Bind(R.id.item_cart_id_iv)
+//        @BindView(R.id.item_cart_id_iv)
 //        SimpleDraweeView itemCartIdIv;
-        @Bind(R.id.item_cart_id_title_tv)
+        @BindView(R.id.item_cart_id_title_tv)
         TextView itemCartIdTitleTv;
-        @Bind(R.id.item_cart_id_sku_tv)
+        @BindView(R.id.item_cart_id_sku_tv)
         TextView itemCartIdSkuTv;
-        @Bind(R.id.layout_id_reduce_iv)
+        @BindView(R.id.layout_id_reduce_iv)
         ImageView layoutIdReduceIv;
-        @Bind(R.id.layout_id_number_tv)
+        @BindView(R.id.layout_id_number_tv)
         TextView layoutIdNumberTv;
-        @Bind(R.id.layout_id_add_iv)
+        @BindView(R.id.layout_id_add_iv)
         ImageView layoutIdAddIv;
-        @Bind(R.id.item_cart_id_totalpay_tv)
+        @BindView(R.id.item_cart_id_totalpay_tv)
         TextView itemCartIdTotalpayTv;
         //库存不足textview提示
-        @Bind(R.id.item_cart_id_shortage_tv)
+        @BindView(R.id.item_cart_id_shortage_tv)
         TextView itemCartIdShortageTv;
-        @Bind(R.id.item_cart_id_oldprice_tv)
+        @BindView(R.id.item_cart_id_oldprice_tv)
         TextView itemCartIdOldpriceTv;
-        @Bind(R.id.item_cart_id_price_ll)
+        @BindView(R.id.item_cart_id_price_ll)
         LinearLayout itemCartIdPriceLl;
         //满减
-        @Bind(R.id.order_sku_ll_fullcut)
+        @BindView(R.id.order_sku_ll_fullcut)
         LinearLayout itemCartIdDiscountll;
-        @Bind(R.id.order_sku_fullcut_tv)
+        @BindView(R.id.order_sku_fullcut_tv)
         TextView itemCartIdDiscountTv;
 
-        @Bind(R.id.order_sku_rl)
+        @BindView(R.id.order_sku_rl)
         RelativeLayout orderSkuRl;
         //改变数量view
-        @Bind(R.id.layout_layout_id_changenum)
+        @BindView(R.id.layout_layout_id_changenum)
         LinearLayout layoutLayoutIdChangenum;
         //商品状态
-        @Bind(R.id.item_cart_id_status_tv)
+        @BindView(R.id.item_cart_id_status_tv)
         TextView itemCartIdStatusTv;
         //失效text
-        @Bind(R.id.item_cart_id_status)
+        @BindView(R.id.item_cart_id_status)
         TextView itemCartIdStatus;
 
         //底部距离
-        @Bind(R.id.cart_id_bottom)
+        @BindView(R.id.cart_id_bottom)
         View itemBottomView;
 
         ViewHolder(View view) {

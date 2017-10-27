@@ -10,7 +10,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
  */
 
 public class PointFragment extends BaseTopFragment {
-    @Bind(R.id.id_point_gv)
+    @BindView(R.id.id_point_gv)
     PullToRefreshGridView idPointGv;
 
     @Override
@@ -44,6 +44,5 @@ public class PointFragment extends BaseTopFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 }

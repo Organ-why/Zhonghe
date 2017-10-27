@@ -8,7 +8,7 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -19,9 +19,9 @@ import butterknife.OnClick;
  */
 
 public class PointExchangeResultActivity extends BaseTopActivity {
-    @Bind(R.id.id_point_torecord_bt)
+    @BindView(R.id.id_point_torecord_bt)
     Button idPointTorecordBt;
-    @Bind(R.id.id_point_gobuy_bt)
+    @BindView(R.id.id_point_gobuy_bt)
     Button idPointGobuyBt;
 
     @Override

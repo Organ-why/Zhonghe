@@ -32,7 +32,7 @@ import com.zhonghe.shiangou.utile.UtilPro;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -43,7 +43,7 @@ import butterknife.OnClick;
  */
 
 public class PointUnlineDetailActivity extends BaseTopActivity implements NXListViewNO.IXListViewListener, View.OnClickListener {
-    @Bind(R.id.xlistview)
+    @BindView(R.id.xlistview)
     NXListViewNO xlistview;
 
     SimpleDraweeView idShopIv;
@@ -54,11 +54,11 @@ public class PointUnlineDetailActivity extends BaseTopActivity implements NXList
     TextView idUnlineDetailName;
     TextView idUnlineDetailAddre;
     TextView idUnlineDetailRemarknum;
-    @Bind(R.id.id_shop_share)
+    @BindView(R.id.id_shop_share)
     LinearLayout idShopShare;
-    @Bind(R.id.id_shop_reamrk)
+    @BindView(R.id.id_shop_reamrk)
     LinearLayout idShopReamrk;
-    @Bind(R.id.id_shop_pay)
+    @BindView(R.id.id_shop_pay)
     TextView idShopPay;
     private String shopId;
     private LinearLayout llContentTitle;

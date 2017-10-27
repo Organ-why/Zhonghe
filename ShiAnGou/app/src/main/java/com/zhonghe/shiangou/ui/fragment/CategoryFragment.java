@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -45,19 +45,19 @@ import butterknife.OnClick;
  * Author: whyang
  */
 public class CategoryFragment extends BaseTopFragment {
-    @Bind(R.id.rl_title)
+    @BindView(R.id.rl_title)
     RelativeLayout rl_bg;
-    @Bind(R.id.title_user_ivb)
+    @BindView(R.id.title_user_ivb)
     ImageButton titleUserIvb;
-    @Bind(R.id.title_msg_ivb)
+    @BindView(R.id.title_msg_ivb)
     ImageButton titleMsgIvb;
-    @Bind(R.id.id_category_title_tv)
+    @BindView(R.id.id_category_title_tv)
     TextView idCategoryTitleTv;
-    @Bind(R.id.id_category_radiogroup)
+    @BindView(R.id.id_category_radiogroup)
     RadioGroup idCategoryRadiogroup;
-    @Bind(R.id.id_category_child_title_tv)
+    @BindView(R.id.id_category_child_title_tv)
     TextView idCategoryChildTitleTv;
-    @Bind(R.id.id_category_child_gv)
+    @BindView(R.id.id_category_child_gv)
     GridView idCategoryChildGv;
 
     List<CategoryParent> categoryParents;

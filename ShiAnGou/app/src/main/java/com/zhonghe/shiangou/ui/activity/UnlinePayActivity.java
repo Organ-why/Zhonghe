@@ -1,11 +1,7 @@
 package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.annotation.IdRes;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -20,19 +16,15 @@ import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.lib_base.utils.UtilString;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.CharPay;
-import com.zhonghe.shiangou.data.bean.CharPayUnline;
-import com.zhonghe.shiangou.data.bean.UnlineShopDetailInfo;
 import com.zhonghe.shiangou.data.bean.UserInfo;
 import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
-import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
-import com.zhonghe.shiangou.ui.dialog.PayDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.utile.UtilPay;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -44,17 +36,17 @@ import butterknife.OnClick;
 
 public class UnlinePayActivity extends BaseTopActivity {
 
-    @Bind(R.id.id_pay_pointnum_tv)
+    @BindView(R.id.id_pay_pointnum_tv)
     TextView idPayPointnumTv;
-    @Bind(R.id.id_pay_total_ev)
+    @BindView(R.id.id_pay_total_ev)
     EditText idPayTotalEv;
-    @Bind(R.id.id_pay_lack_tv)
+    @BindView(R.id.id_pay_lack_tv)
     TextView idPayLackTv;
-    @Bind(R.id.radiogroup)
+    @BindView(R.id.radiogroup)
     RadioGroup radiogroup;
-    @Bind(R.id.money_pay_ll)
+    @BindView(R.id.money_pay_ll)
     LinearLayout moneyPayLl;
-    @Bind(R.id.confirm_pay)
+    @BindView(R.id.confirm_pay)
     Button confirmPay;
 
     private UserInfo userInfo;

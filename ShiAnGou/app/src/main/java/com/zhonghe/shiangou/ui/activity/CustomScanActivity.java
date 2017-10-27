@@ -13,7 +13,7 @@ import com.journeyapps.barcodescanner.DecoratedBarcodeView;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,7 +24,7 @@ import butterknife.OnClick;
  */
 
 public class CustomScanActivity extends AppCompatActivity implements DecoratedBarcodeView.TorchListener {
-    @Bind(R.id.dbv_custom)
+    @BindView(R.id.dbv_custom)
     DecoratedBarcodeView mDBV;
     private CaptureManager captureManager;
     private boolean isLightOn = false;

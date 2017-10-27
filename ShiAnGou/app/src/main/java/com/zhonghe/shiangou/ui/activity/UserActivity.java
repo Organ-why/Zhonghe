@@ -2,30 +2,25 @@ package com.zhonghe.shiangou.ui.activity;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
-import com.android.volley.Request;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.zhonghe.lib_base.constant.CstScheme;
-import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.data.bean.RefundImgInfo;
-import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseSelectImageActivity;
-import com.zhonghe.shiangou.ui.listener.ResultListener;
 import com.zhonghe.shiangou.utile.image.CropParams;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -34,15 +29,15 @@ import butterknife.OnClick;
  * Author: whyang
  */
 public class UserActivity extends BaseSelectImageActivity implements BaseSelectImageActivity.upLoadListener {
-    @Bind(R.id.id_setup_setheader_sv)
+    @BindView(R.id.id_setup_setheader_sv)
     SimpleDraweeView idSetupSetheaderSv;
-    @Bind(R.id.id_user_header_rl)
+    @BindView(R.id.id_user_header_rl)
     RelativeLayout idUserHeaderRl;
-    @Bind(R.id.id_user_nickname_rl)
+    @BindView(R.id.id_user_nickname_rl)
     RelativeLayout idUserNicknameRl;
-    @Bind(R.id.id_user_address_rl)
+    @BindView(R.id.id_user_address_rl)
     RelativeLayout idUserAddressRl;
-    @Bind(R.id.id_user_logout_bt)
+    @BindView(R.id.id_user_logout_bt)
     Button idUserLogoutBt;
     private String mPath;
 

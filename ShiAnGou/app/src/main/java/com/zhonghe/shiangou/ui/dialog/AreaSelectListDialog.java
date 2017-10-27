@@ -27,7 +27,7 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -37,17 +37,17 @@ import butterknife.ButterKnife;
  */
 
 public class AreaSelectListDialog extends PopupWindow {
-    @Bind(R.id.id_area_province)
+    @BindView(R.id.id_area_province)
     ListView idAreaProvince;
-    @Bind(R.id.id_area_city)
+    @BindView(R.id.id_area_city)
     ListView idAreaCity;
-    @Bind(R.id.id_area_district)
+    @BindView(R.id.id_area_district)
     ListView idAreaDistrict;
-    @Bind(R.id.photo_id_root)
+    @BindView(R.id.photo_id_root)
     LinearLayout photoIdRoot;
-    @Bind(R.id.photo_id_cancel)
+    @BindView(R.id.photo_id_cancel)
     TextView photoIdCancel;
-    @Bind(R.id.id_addarea_tv)
+    @BindView(R.id.id_addarea_tv)
     TextView idAddareaTv;
     private View mMenuView;
     private Context mContext;

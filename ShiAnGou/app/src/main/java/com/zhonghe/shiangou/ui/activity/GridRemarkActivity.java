@@ -20,12 +20,12 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class GridRemarkActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2 {
 
-    @Bind(R.id.id_default_gridview)
+    @BindView(R.id.id_default_gridview)
     PullToRefreshGridView idDefaultGridview;
     private ImgRoundedAdapter adapter;
     private List<String> imgList;

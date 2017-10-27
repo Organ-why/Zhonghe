@@ -34,7 +34,7 @@ import com.zhonghe.shiangou.ui.widget.PopListPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -44,17 +44,17 @@ import static com.zhonghe.shiangou.system.constant.CstProject.KEY.KEY;
  * 商户列表
  */
 public class PointUnlineListActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2<ListView> {
-    @Bind(R.id.id_default_listview)
+    @BindView(R.id.id_default_listview)
     PullToRefreshListView idDefaultListview;
-    @Bind(R.id.float_ll)
+    @BindView(R.id.float_ll)
     LinearLayout floatLl;
-    @Bind(R.id.title_user_ivb)
+    @BindView(R.id.title_user_ivb)
     ImageButton titleUserIvb;
-    @Bind(R.id.title_msg_ivb)
+    @BindView(R.id.title_msg_ivb)
     ImageButton titleMsgIvb;
-    @Bind(R.id.id_category_title_tv)
+    @BindView(R.id.id_category_title_tv)
     TextView idCategoryTitleTv;
-    @Bind(R.id.rl_title)
+    @BindView(R.id.rl_title)
     RelativeLayout rlTitle;
     ImageView typeIv;
     ImageView orderbyIv;

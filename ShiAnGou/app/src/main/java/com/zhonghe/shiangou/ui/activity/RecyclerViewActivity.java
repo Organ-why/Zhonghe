@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -16,7 +16,7 @@ import butterknife.ButterKnife;
  */
 
 public class RecyclerViewActivity extends BaseTopActivity {
-    @Bind(R.id.id_recyclerview)
+    @BindView(R.id.id_mrecyclerview)
     RecyclerView idRecyclerview;
 
     @Override

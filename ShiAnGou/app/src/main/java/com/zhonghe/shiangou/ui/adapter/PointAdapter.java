@@ -16,7 +16,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -54,11 +54,11 @@ public class PointAdapter extends AbsAdapter<PointItemInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_home_category_item_title_tv)
+        @BindView(R.id.id_home_category_item_title_tv)
         TextView idHomeCategoryItemTitleTv;
-        @Bind(R.id.id_home_category_item_price_tv)
+        @BindView(R.id.id_home_category_item_price_tv)
         TextView idHomeCategoryItemPriceTv;
-        @Bind(R.id.id_goods_img)
+        @BindView(R.id.id_goods_img)
         SimpleDraweeView idGoodsImg;
 
         ViewHolder(View view) {

@@ -16,7 +16,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -60,13 +60,13 @@ public class PointListAdapter extends AbsAdapter<PointItemInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_home_category_item_iv)
+        @BindView(R.id.id_home_category_item_iv)
         SimpleDraweeView idHomeCategoryItemIv;
-        @Bind(R.id.id_point_zero_submit_bt)
+        @BindView(R.id.id_point_zero_submit_bt)
         Button idPointZeroSubmitBt;
-        @Bind(R.id.id_home_category_item_title_tv)
+        @BindView(R.id.id_home_category_item_title_tv)
         TextView idHomeCategoryItemTitleTv;
-        @Bind(R.id.id_home_category_item_price_tv)
+        @BindView(R.id.id_home_category_item_price_tv)
         TextView idHomeCategoryItemPriceTv;
 
         ViewHolder(View view) {

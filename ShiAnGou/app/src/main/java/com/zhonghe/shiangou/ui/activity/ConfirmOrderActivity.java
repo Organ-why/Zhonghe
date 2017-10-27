@@ -28,7 +28,7 @@ import com.zhonghe.shiangou.utile.UtilPay;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -37,40 +37,40 @@ import butterknife.OnClick;
  * Author: whyang
  */
 public class ConfirmOrderActivity extends BaseTopActivity implements PayDialog.payClickListener {
-    @Bind(R.id.id_confirmorder_address_rl)
+    @BindView(R.id.id_confirmorder_address_rl)
     RelativeLayout idConfirmorderAddressRl;
     List<String> ids;
 
     ConfirmRspInfo mData;
-    @Bind(R.id.id_confirmorder_goodslist_ll)
+    @BindView(R.id.id_confirmorder_goodslist_ll)
     LinearLayout idConfirmorderGoodslistLl;
-    @Bind(R.id.cart_id_all_cb)
+    @BindView(R.id.cart_id_all_cb)
     TextView cartIdAllCb;
-    @Bind(R.id.cart_id_totalpay_tv)
+    @BindView(R.id.cart_id_totalpay_tv)
     TextView cartIdTotalpayTv;
-    @Bind(R.id.cart_id_total_tv)
+    @BindView(R.id.cart_id_total_tv)
     TextView cartIdTotalTv;
-    @Bind(R.id.cart_id_total_ll)
+    @BindView(R.id.cart_id_total_ll)
     LinearLayout cartIdTotalLl;
-    @Bind(R.id.cart_id_tobuy_bt)
+    @BindView(R.id.cart_id_tobuy_bt)
     Button cartIdTobuyBt;
-    @Bind(R.id.cart_id_del_bt)
+    @BindView(R.id.cart_id_del_bt)
     Button cartIdDelBt;
-    @Bind(R.id.cart_id_pay_rl)
+    @BindView(R.id.cart_id_pay_rl)
     RelativeLayout cartIdPayRl;
-    @Bind(R.id.id_confirm_address_name_tv)
+    @BindView(R.id.id_confirm_address_name_tv)
     TextView idConfirmAddressNameTv;
-    @Bind(R.id.id_confirm_address_phone_tv)
+    @BindView(R.id.id_confirm_address_phone_tv)
     TextView idConfirmAddressPhoneTv;
-    @Bind(R.id.id_confirm_address_area_tv)
+    @BindView(R.id.id_confirm_address_area_tv)
     TextView idConfirmAddressAreaTv;
-    @Bind(R.id.id_confirm_address_ll)
+    @BindView(R.id.id_confirm_address_ll)
     LinearLayout idConfirmAddressLl;
-    @Bind(R.id.id_confirm_num_tv)
+    @BindView(R.id.id_confirm_num_tv)
     TextView idConfirmNumTv;
-    @Bind(R.id.id_confirm_)
+    @BindView(R.id.id_confirm_)
     EditText idConfirm;
-    @Bind(R.id.id_confirm_total_tv)
+    @BindView(R.id.id_confirm_total_tv)
     TextView idConfirmTotalTv;
 
     //选择地址

@@ -20,7 +20,7 @@ import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.dialog.AreaSelectListDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,17 +29,17 @@ import butterknife.OnClick;
  */
 public class ChangeAddressActivity extends BaseTopActivity {
 
-    @Bind(R.id.id_addressmsg_person_et)
+    @BindView(R.id.id_addressmsg_person_et)
     EditText idAddressmsgPersonEt;
-    @Bind(R.id.id_addressmsg_phone_et)
+    @BindView(R.id.id_addressmsg_phone_et)
     EditText idAddressmsgPhoneEt;
-    @Bind(R.id.id_addressmsg_address_et)
+    @BindView(R.id.id_addressmsg_address_et)
     TextView idAddressmsgAddressEt;
-    @Bind(R.id.id_address_area_rl)
+    @BindView(R.id.id_address_area_rl)
     RelativeLayout idAddressAreaRl;
-    @Bind(R.id.id_addressmsg_addressmsg_et)
+    @BindView(R.id.id_addressmsg_addressmsg_et)
     EditText idAddressmsgAddressmsgEt;
-    @Bind(R.id.id_address_confirm_bt)
+    @BindView(R.id.id_address_confirm_bt)
     Button idAddressConfirmBt;
 
     AddressInfo addressInfo;

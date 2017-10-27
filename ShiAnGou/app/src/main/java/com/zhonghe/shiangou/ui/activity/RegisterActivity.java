@@ -16,7 +16,7 @@ import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -26,17 +26,17 @@ import butterknife.OnClick;
  * Author: whyang
  */
 public class RegisterActivity extends BaseTopActivity {
-    @Bind(R.id.id_register_getcode_tv)
+    @BindView(R.id.id_register_getcode_tv)
     TextView idRegisterGetcodeTv;
-    @Bind(R.id.ids_register_phone_et)
+    @BindView(R.id.ids_register_phone_et)
     EditText idsRegisterPhoneEt;
-    @Bind(R.id.ids_register_code_et)
+    @BindView(R.id.ids_register_code_et)
     EditText idsRegisterCodeEt;
-    @Bind(R.id.ids_register_pwd_et)
+    @BindView(R.id.ids_register_pwd_et)
     EditText idsRegisterPwdEt;
-    @Bind(R.id.ids_register_pwdag_et)
+    @BindView(R.id.ids_register_pwdag_et)
     EditText idsRegisterPwdagEt;
-    @Bind(R.id.id_register_regist_bt)
+    @BindView(R.id.id_register_regist_bt)
     Button idRegisterRegistBt;
     private static int mEndTimes = 60 * 1000;
     private CountDownTimer mDownTimer;

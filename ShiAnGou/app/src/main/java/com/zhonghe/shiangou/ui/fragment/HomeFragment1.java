@@ -36,7 +36,7 @@ import com.zhonghe.shiangou.ui.widget.HorizontalListView;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -45,26 +45,26 @@ import butterknife.OnClick;
  * Author: whyang
  */
 public class HomeFragment1 extends BaseTopFragment implements HomeCategoryListView.addCartListener, PullToRefreshBase.OnRefreshListener2 {
-    @Bind(R.id.cart_id_lv)
+    @BindView(R.id.cart_id_lv)
     PullToRefreshScrollView cartIdLv;
-    @Bind(R.id.id_home_category_horizontal_title_hl)
+    @BindView(R.id.id_home_category_horizontal_title_hl)
     HorizontalListView horizontalListView;
-    @Bind(R.id.ll_content)
+    @BindView(R.id.ll_content)
     LinearLayout ll_content;
-    @Bind(R.id.ll_content_title)
+    @BindView(R.id.ll_content_title)
     LinearLayout llContentTitle;
-    @Bind(R.id.ll_content_list)
+    @BindView(R.id.ll_content_list)
     LinearLayout llContentList;
-//    @Bind(R.id.common_data_xlistview)
+//    @BindView(R.id.common_data_xlistview)
 //    NXListViewNO commonDataXlistview;
 //    private Productadapter adapter;
 
 
-    @Bind(R.id.title_user_ivb)
+    @BindView(R.id.title_user_ivb)
     ImageButton titleUserIvb;
-    @Bind(R.id.title_msg_ivb)
+    @BindView(R.id.title_msg_ivb)
     ImageButton titleMsgIvb;
-    @Bind(R.id.id_category_title_tv)
+    @BindView(R.id.id_category_title_tv)
     TextView idCategoryTitleTv;
     List<HomeCategoryInfo> categoryInfo;
     List<BaseBannerInfo> bannerInfo;

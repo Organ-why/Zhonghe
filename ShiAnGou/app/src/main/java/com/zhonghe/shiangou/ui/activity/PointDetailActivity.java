@@ -24,7 +24,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -35,31 +35,31 @@ import butterknife.OnClick;
  */
 
 public class PointDetailActivity extends BaseTopActivity {
-    @Bind(R.id.id_point_detail_name_tv)
+    @BindView(R.id.id_point_detail_name_tv)
     TextView idPointDetailNameTv;
-    @Bind(R.id.id_point_detail_point_tv)
+    @BindView(R.id.id_point_detail_point_tv)
     TextView idPointDetailPointTv;
-    @Bind(R.id.id_point_detail_stock_tv)
+    @BindView(R.id.id_point_detail_stock_tv)
     TextView idPointDetailStockTv;
-    @Bind(R.id.id_user_address_rl)
+    @BindView(R.id.id_user_address_rl)
     RelativeLayout idUserAddressRl;
-    @Bind(R.id.id_confirm_address_name_tv)
+    @BindView(R.id.id_confirm_address_name_tv)
     TextView idConfirmAddressNameTv;
-    @Bind(R.id.id_confirm_address_phone_tv)
+    @BindView(R.id.id_confirm_address_phone_tv)
     TextView idConfirmAddressPhoneTv;
-    @Bind(R.id.id_confirm_address_area_tv)
+    @BindView(R.id.id_confirm_address_area_tv)
     TextView idConfirmAddressAreaTv;
-    @Bind(R.id.id_confirm_address_ll)
+    @BindView(R.id.id_confirm_address_ll)
     LinearLayout idConfirmAddressLl;
-    @Bind(R.id.id_point_detail_msgname_tv)
+    @BindView(R.id.id_point_detail_msgname_tv)
     TextView idPointDetailMsgnameTv;
-    @Bind(R.id.id_point_detail_type_tv)
+    @BindView(R.id.id_point_detail_type_tv)
     TextView idPointDetailTypeTv;
-    @Bind(R.id.id_point_detail_phone_tv)
+    @BindView(R.id.id_point_detail_phone_tv)
     TextView idPointDetailPhoneTv;
-    @Bind(R.id.id_point_detail_exchange_bt)
+    @BindView(R.id.id_point_detail_exchange_bt)
     Button idPointDetailExchangeBt;
-    @Bind(R.id.id_point_iv)
+    @BindView(R.id.id_point_iv)
     SimpleDraweeView idPointIv;
     private PointDetailInfo mData;
     private String goodsId;

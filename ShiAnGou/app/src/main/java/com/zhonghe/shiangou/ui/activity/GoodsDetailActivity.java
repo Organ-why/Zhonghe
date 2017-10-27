@@ -41,7 +41,7 @@ import com.zhonghe.shiangou.utile.UtilPro;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -63,13 +63,13 @@ public class GoodsDetailActivity extends BaseTopActivity implements View.OnClick
     RelativeLayout remark;
     TextView idGoodsdetailMoreTv;
 
-    @Bind(R.id.id_goodsdetail_like_ib)
+    @BindView(R.id.id_goodsdetail_like_ib)
     ImageButton idGoodsdetailLikeIb;
-    @Bind(R.id.guest_detail_xlistview)
+    @BindView(R.id.guest_detail_xlistview)
     NXListViewNO guestDetailXlistview;
-    @Bind(R.id.id_goodsdetail_buynow_bt)
+    @BindView(R.id.id_goodsdetail_buynow_bt)
     Button idGoodsdetailBuynowBt;
-    @Bind(R.id.id_goodsdetail_addcart_bt)
+    @BindView(R.id.id_goodsdetail_addcart_bt)
     Button idGoodsdetailAddcartBt;
     SkuSelectDialog mDialog;
     List<BaseBannerInfo> bannerInfo;

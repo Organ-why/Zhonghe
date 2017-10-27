@@ -19,7 +19,7 @@ import com.zhonghe.shiangou.ui.adapter.CartProdcutAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -29,32 +29,32 @@ import butterknife.OnClick;
  * @desc 购物车页面
  */
 public class CartFragment extends BaseTopFragment implements PullToRefreshBase.OnRefreshListener2<ListView> {
-    @Bind(R.id.cart_id_lv)
+    @BindView(R.id.cart_id_lv)
     PullToRefreshListView cartIdLv;
     //全选按钮
-    @Bind(R.id.cart_id_all_cb)
+    @BindView(R.id.cart_id_all_cb)
     CheckBox cartIdAllCb;
     //合计
-    @Bind(R.id.cart_id_totalpay_tv)
+    @BindView(R.id.cart_id_totalpay_tv)
     TextView cartIdTotalpayTv;
     //满减价格
-//    @Bind(R.id.cart_id_total_tv)
+//    @BindView(R.id.cart_id_total_tv)
 //    TextView cartIdTotalTv;
     //确认下单
-    @Bind(R.id.cart_id_tobuy_bt)
+    @BindView(R.id.cart_id_tobuy_bt)
     Button cartIdTobuyBt;
     //确认订单与选择----layout
-    @Bind(R.id.cart_id_pay_rl)
+    @BindView(R.id.cart_id_pay_rl)
     RelativeLayout cartIdPayRl;
     //    title
-    @Bind(R.id.custom_top_id_title)
+    @BindView(R.id.custom_top_id_title)
     TextView customTopIdTitle;
     //编辑
-    @Bind(R.id.custom_top_id_right_tv)
+    @BindView(R.id.custom_top_id_right_tv)
     TextView customTopIdRightTv;
-    @Bind(R.id.cart_id_total_ll)
+    @BindView(R.id.cart_id_total_ll)
     LinearLayout cartIdTotalLl;
-    @Bind(R.id.cart_id_del_bt)
+    @BindView(R.id.cart_id_del_bt)
     Button cartIdDelBt;
 
     //无商品提示drawable

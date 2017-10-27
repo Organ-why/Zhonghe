@@ -18,7 +18,7 @@ import com.zhonghe.shiangou.ui.dialog.ImgDialog;
 
 import java.util.ArrayList;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -99,11 +99,11 @@ public class RefundSubmitAdapter extends AbsAdapter<RefundImgInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_refund_imgitem_img)
+        @BindView(R.id.id_refund_imgitem_img)
         SimpleDraweeView idRefundImgitemImg;
-        @Bind(R.id.id_refund_imgitem_ll)
+        @BindView(R.id.id_refund_imgitem_ll)
         LinearLayout idRefundImgitemLl;
-        @Bind(R.id.id_refund_cancel_img_ib)
+        @BindView(R.id.id_refund_cancel_img_ib)
         ImageButton idRefundCancelImgIb;
 
         ViewHolder(View view) {

@@ -26,7 +26,7 @@ import com.zhonghe.shiangou.ui.widget.PickerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -36,15 +36,15 @@ import butterknife.ButterKnife;
  */
 
 public class AreaSelectDialog extends PopupWindow {
-    @Bind(R.id.id_area_province)
+    @BindView(R.id.id_area_province)
     PickerView idAreaProvince;
-    @Bind(R.id.id_area_city)
+    @BindView(R.id.id_area_city)
     PickerView idAreaCity;
-    @Bind(R.id.id_area_district)
+    @BindView(R.id.id_area_district)
     PickerView idAreaDistrict;
-    @Bind(R.id.photo_id_root)
+    @BindView(R.id.photo_id_root)
     LinearLayout photoIdRoot;
-    @Bind(R.id.photo_id_cancel)
+    @BindView(R.id.photo_id_cancel)
     TextView photoIdCancel;
     private View mMenuView;
     private Context mContext;

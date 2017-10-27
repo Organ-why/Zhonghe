@@ -19,7 +19,7 @@ import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  */
 
 public class PointUnlineShopRemarkActivity extends BaseTopActivity implements NXListViewNO.IXListViewListener {
-    @Bind(R.id.xlistview)
+    @BindView(R.id.xlistview)
     NXListViewNO xlistview;
     private ShopRemarkAdapter adapter;
     private List<ShopRemarkInfo> mData;

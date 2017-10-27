@@ -17,7 +17,7 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -27,7 +27,7 @@ import butterknife.ButterKnife;
  */
 
 public class PointExcangeListActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2 {
-    @Bind(R.id.id_default_listview)
+    @BindView(R.id.id_default_listview)
     PullToRefreshListView idDefaultListview;
     PointListAdapter adapter;
     private int type;

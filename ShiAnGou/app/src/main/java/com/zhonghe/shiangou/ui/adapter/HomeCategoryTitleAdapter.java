@@ -16,7 +16,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -58,11 +58,11 @@ public class HomeCategoryTitleAdapter extends AbsAdapter<HomeCategoryInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_item_home_category_title_iv)
+        @BindView(R.id.id_item_home_category_title_iv)
         SimpleDraweeView idItemHomeCategoryTitleIv;
-        @Bind(R.id.id_item_home_category_title_name)
+        @BindView(R.id.id_item_home_category_title_name)
         TextView idItemHomeCategoryTitleName;
-        @Bind(R.id.id_item_home_category_title_ll)
+        @BindView(R.id.id_item_home_category_title_ll)
         LinearLayout idItemHomeCategoryTitleLl;
 
         ViewHolder(View view) {

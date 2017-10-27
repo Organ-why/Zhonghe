@@ -12,23 +12,23 @@ import com.zhonghe.shiangou.system.global.ProDispatcher;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SetupActivity extends BaseTopActivity {
 
-    @Bind(R.id.id_setup_setheader_sv)
+    @BindView(R.id.id_setup_setheader_sv)
     SimpleDraweeView idSetupSetheaderSv;
-    @Bind(R.id.id_setup_setname_rl)
+    @BindView(R.id.id_setup_setname_rl)
     RelativeLayout idSetupSetnameRl;
-    @Bind(R.id.id_setup_address_rl)
+    @BindView(R.id.id_setup_address_rl)
     RelativeLayout idSetupAddressRl;
-    @Bind(R.id.id_setup_changepwd_rl)
+    @BindView(R.id.id_setup_changepwd_rl)
     RelativeLayout idSetupChangepwdRl;
-    @Bind(R.id.id_setup_fgvpwd_rl)
+    @BindView(R.id.id_setup_fgvpwd_rl)
     RelativeLayout idSetupFgvpwdRl;
-    @Bind(R.id.id_logout_bt)
+    @BindView(R.id.id_logout_bt)
     Button idLogoutBt;
 
     @Override

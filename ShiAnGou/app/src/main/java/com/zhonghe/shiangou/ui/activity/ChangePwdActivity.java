@@ -13,7 +13,7 @@ import com.zhonghe.shiangou.http.HttpUtil;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -25,11 +25,11 @@ import butterknife.OnClick;
 public class ChangePwdActivity extends BaseTopActivity {
 
 
-    @Bind(R.id.ids_register_pwdag_et)
+    @BindView(R.id.ids_register_pwdag_et)
     EditText idsRegisterPwdagEt;
-    @Bind(R.id.ids_register_code_et)
+    @BindView(R.id.ids_register_code_et)
     EditText idsRegisterCodeEt;
-    @Bind(R.id.id_register_regist_bt)
+    @BindView(R.id.id_register_regist_bt)
     Button idRegisterRegistBt;
 
     @Override

@@ -28,7 +28,7 @@ import com.zhonghe.shiangou.ui.widget.PopListPresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -39,15 +39,15 @@ import butterknife.OnClick;
  */
 
 public class GoodsCategoryListActivity extends BaseTopActivity {
-    @Bind(R.id.tablayout)
+    @BindView(R.id.tablayout)
     TabLayout tablayout;
-    @Bind(R.id.id_type_tv)
+    @BindView(R.id.id_type_tv)
     TextView idTypeTv;
-    @Bind(R.id.id_type_iv)
+    @BindView(R.id.id_type_iv)
     ImageView idTypeIv;
-    @Bind(R.id.id_type_ll)
+    @BindView(R.id.id_type_ll)
     LinearLayout idTypeLl;
-    @Bind(R.id.viewpager)
+    @BindView(R.id.viewpager)
     ViewPager viewpager;
     private List<FragmentTab> mAppTabs;
     PopListPresenter presenter;

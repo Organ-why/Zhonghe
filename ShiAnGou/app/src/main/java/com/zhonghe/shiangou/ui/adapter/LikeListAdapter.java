@@ -17,7 +17,7 @@ import com.zhonghe.shiangou.ui.activity.LikeActivity;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -73,15 +73,15 @@ public class LikeListAdapter extends AbsAdapter<GoodsInfo> {
 
 
     static class ViewHolder {
-        @Bind(R.id.id_home_category_item_iv)
+        @BindView(R.id.id_home_category_item_iv)
         SimpleDraweeView idHomeCategoryItemIv;
-        @Bind(R.id.id_home_category_item_title_tv)
+        @BindView(R.id.id_home_category_item_title_tv)
         TextView idHomeCategoryItemTitleTv;
-        @Bind(R.id.id_item_money_type_tv)
+        @BindView(R.id.id_item_money_type_tv)
         TextView idItemMoneyTypeTv;
-        @Bind(R.id.id_home_category_item_price_tv)
+        @BindView(R.id.id_home_category_item_price_tv)
         TextView idHomeCategoryItemPriceTv;
-        @Bind(R.id.id_item_btv)
+        @BindView(R.id.id_item_btv)
         TextView idItemBtv;
 
         ViewHolder(View view) {

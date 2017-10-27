@@ -20,7 +20,7 @@ import com.zhonghe.shiangou.ui.widget.RatingBar;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -66,19 +66,19 @@ public class RemarkAdapter extends AbsAdapter<RemarkInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_item_remark_header_img)
+        @BindView(R.id.id_item_remark_header_img)
         SimpleDraweeView idItemRemarkHeaderImg;
-        @Bind(R.id.id_item_remark_name_tv)
+        @BindView(R.id.id_item_remark_name_tv)
         TextView idItemRemarkNameTv;
-        @Bind(R.id.id_item_remark_date_tv)
+        @BindView(R.id.id_item_remark_date_tv)
         TextView idItemRemarkDateTv;
-        @Bind(R.id.id_item_remark_desc_tv)
+        @BindView(R.id.id_item_remark_desc_tv)
         TextView idItemRemarkDescTv;
-        @Bind(R.id.ratingBar)
+        @BindView(R.id.ratingBar)
         RatingBar ratingBar;
-        @Bind(R.id.id_refund_submit_img_gv)
+        @BindView(R.id.id_refund_submit_img_gv)
         GridView idRefundSubmitImgGv;
-        @Bind(R.id.id_layout_remark)
+        @BindView(R.id.id_layout_remark)
         RelativeLayout idLayoutRemark;
 
         ViewHolder(View view) {

@@ -1,32 +1,22 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
-import com.baidu.location.LocationClient;
-import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BitmapDescriptor;
-import com.baidu.mapapi.map.BitmapDescriptorFactory;
 import com.baidu.mapapi.map.MapStatus;
-import com.baidu.mapapi.map.MapStatusUpdate;
 import com.baidu.mapapi.map.MapStatusUpdateFactory;
 import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.Marker;
-import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationData;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.map.TextOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.search.core.SearchResult;
 import com.baidu.mapapi.search.route.BikingRouteResult;
@@ -45,18 +35,15 @@ import com.zhonghe.shiangou.R;
 import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
-import com.zhonghe.shiangou.ui.listener.ProLocationListener;
 import com.zhonghe.shiangou.utile.overlayutil.DrivingRouteOverlay;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
-
-import static com.baidu.mapapi.map.MyLocationConfiguration.LocationMode.FOLLOWING;
 
 
 public class LocationActivity extends BaseTopActivity implements OnGetRoutePlanResultListener, SensorEventListener {
 
-    @Bind(R.id.bmapView)
+    @BindView(R.id.bmapView)
     MapView mMapView;
     private BaiduMap mBaiduMap;
 

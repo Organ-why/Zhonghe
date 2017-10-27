@@ -12,12 +12,12 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class RefundsActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2 {
 
-    @Bind(R.id.id_default_listview)
+    @BindView(R.id.id_default_listview)
     PullToRefreshListView idDefaultListview;
     private RefundsAdapter adapter;
     List<RefundsItemInfo> mList;

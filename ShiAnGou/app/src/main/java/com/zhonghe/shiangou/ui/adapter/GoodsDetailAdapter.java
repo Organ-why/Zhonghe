@@ -12,7 +12,7 @@ import com.zhonghe.shiangou.utile.UtilPro;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -49,7 +49,7 @@ public class GoodsDetailAdapter extends AbsAdapter<String> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_goods_img)
+        @BindView(R.id.id_goods_img)
         SimpleDraweeView idGoodsImg;
 
         ViewHolder(View view) {

@@ -29,7 +29,7 @@ import com.zhonghe.shiangou.ui.widget.HorizontalListView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -37,17 +37,17 @@ import butterknife.ButterKnife;
  * Author: whyang
  */
 public class HomeFragment extends BaseTopFragment {
-    @Bind(R.id.cart_id_lv)
+    @BindView(R.id.cart_id_lv)
     PullToRefreshScrollView cartIdLv;
-    @Bind(R.id.id_home_category_horizontal_title_hl)
+    @BindView(R.id.id_home_category_horizontal_title_hl)
     HorizontalListView horizontalListView;
-    @Bind(R.id.ll_content)
+    @BindView(R.id.ll_content)
     LinearLayout ll_content;
-    @Bind(R.id.ll_content_title)
+    @BindView(R.id.ll_content_title)
     LinearLayout llContentTitle;
-    @Bind(R.id.ll_content_list)
+    @BindView(R.id.ll_content_list)
     LinearLayout llContentList;
-//    @Bind(R.id.common_data_xlistview)
+//    @BindView(R.id.common_data_xlistview)
 //    NXListViewNO commonDataXlistview;
 //    private Productadapter adapter;
 
@@ -184,7 +184,6 @@ public class HomeFragment extends BaseTopFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
     @Override

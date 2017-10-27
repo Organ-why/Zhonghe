@@ -2,9 +2,6 @@ package com.zhonghe.shiangou.ui.fragment;
 
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.android.volley.Request;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -20,12 +17,11 @@ import com.zhonghe.shiangou.ui.adapter.OrderAdapter;
 import com.zhonghe.shiangou.ui.baseui.BaseFullFragment;
 import com.zhonghe.shiangou.ui.dialog.PayDialog;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
-import com.zhonghe.shiangou.ui.widget.xlistview.NXListViewNO;
 import com.zhonghe.shiangou.utile.UtilPay;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -38,7 +34,7 @@ public class OrderAllFragment extends BaseFullFragment implements PullToRefreshB
     int curpage = 1;
     int cursize = 10;
     List<OrderInfo> newData;
-    @Bind(R.id.id_default_listview)
+    @BindView(R.id.id_default_listview)
     PullToRefreshListView idDefaultListview;
     private PayDialog payDialog;
 

@@ -33,26 +33,26 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RemarkActivity extends BaseSelectImageActivity implements BaseSelectImageActivity.upLoadListener, RefundSubmitAdapter.CancelImgListener, RatingBar.OnRatingChangeListener {
 
 
-    @Bind(R.id.id_home_category_item_iv)
+    @BindView(R.id.id_home_category_item_iv)
     SimpleDraweeView idHomeCategoryItemIv;
-    @Bind(R.id.id_home_category_item_title_tv)
+    @BindView(R.id.id_home_category_item_title_tv)
     TextView idHomeCategoryItemTitleTv;
-    @Bind(R.id.id_refund_submit_desc_et)
+    @BindView(R.id.id_refund_submit_desc_et)
     EditText idRefundSubmitDescEt;
-    @Bind(R.id.id_refund_submit_img_gv)
+    @BindView(R.id.id_refund_submit_img_gv)
     GridView idRefundSubmitImgGv;
-    @Bind(R.id.id_item_remark_desc_tv)
+    @BindView(R.id.id_item_remark_desc_tv)
     TextView idItemRemarkDescTv;
-    @Bind(R.id.ratingBar)
+    @BindView(R.id.ratingBar)
     RatingBar ratingBar;
-    @Bind(R.id.id_unname_cb)
+    @BindView(R.id.id_unname_cb)
     CheckBox idUnnameCb;
 
 

@@ -25,17 +25,17 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SearchShopActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2 {
 
-    @Bind(R.id.id_default_listview)
+    @BindView(R.id.id_default_listview)
     PullToRefreshListView idDefaultListview;
-    @Bind(R.id.id_search_cancel)
+    @BindView(R.id.id_search_cancel)
     TextView idSearchCancel;
-    @Bind(R.id.id_category_title_tv)
+    @BindView(R.id.id_category_title_tv)
     EditText idCategoryTitleTv;
     private String keywords;
     private int curpage = 1;

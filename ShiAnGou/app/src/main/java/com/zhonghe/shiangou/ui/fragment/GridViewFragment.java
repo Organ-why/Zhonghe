@@ -23,7 +23,7 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -33,7 +33,7 @@ import butterknife.ButterKnife;
  */
 
 public class GridViewFragment extends BaseFullFragment implements PullToRefreshBase.OnRefreshListener2<HeaderGridView> {
-    @Bind(R.id.id_default_gridview)
+    @BindView(R.id.id_default_gridview)
     PullToRefreshGridView idDefaultGridview;
 
     String listId, listKey, orderBy;

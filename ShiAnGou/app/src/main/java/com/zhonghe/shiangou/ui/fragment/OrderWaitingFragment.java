@@ -21,7 +21,7 @@ import com.zhonghe.shiangou.utile.UtilPay;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
  * Author: whyang
  */
 public class OrderWaitingFragment extends BaseFullFragment implements PullToRefreshBase.OnRefreshListener2<ListView>, OrderAdapter.orderOperateListener, PayDialog.payClickListener {
-    @Bind(R.id.id_waiting_listview)
+    @BindView(R.id.id_waiting_listview)
     PullToRefreshListView idDefaultListview;
     String orderBy;
     OrderAdapter adapter;
@@ -89,7 +89,6 @@ public class OrderWaitingFragment extends BaseFullFragment implements PullToRefr
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 
 

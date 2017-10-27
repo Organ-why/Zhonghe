@@ -18,7 +18,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -64,17 +64,17 @@ public class PointOrderAdapter extends AbsAdapter<PointOrderInfo> {
 
 
     static class ViewHolder {
-        @Bind(R.id.id_home_category_item_iv)
+        @BindView(R.id.id_home_category_item_iv)
         SimpleDraweeView idHomeCategoryItemIv;
-        @Bind(R.id.id_point_record_del_iv)
+        @BindView(R.id.id_point_record_del_iv)
         ImageButton idPointRecordDelIv;
-        @Bind(R.id.id_point_record_num_tv)
+        @BindView(R.id.id_point_record_num_tv)
         TextView idPointRecordNumTv;
-        @Bind(R.id.ids_point_order_msg_ll)
+        @BindView(R.id.ids_point_order_msg_ll)
         LinearLayout idsPointOrderMsgLl;
-        @Bind(R.id.id_home_category_item_title_tv)
+        @BindView(R.id.id_home_category_item_title_tv)
         TextView idHomeCategoryItemTitleTv;
-        @Bind(R.id.id_point_record_time_tv)
+        @BindView(R.id.id_point_record_time_tv)
         TextView idPointRecordTimeTv;
 
         ViewHolder(View view) {

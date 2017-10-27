@@ -15,7 +15,7 @@ import com.zhonghe.shiangou.system.constant.CstProject;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -25,31 +25,31 @@ import butterknife.ButterKnife;
  */
 
 public class RefundsDetailActivity extends BaseTopActivity {
-    @Bind(R.id.id_refund_begin_iv)
+    @BindView(R.id.id_refund_begin_iv)
     ImageView idRefundBeginIv;
-    @Bind(R.id.id_refund_begin_ttv)
+    @BindView(R.id.id_refund_begin_ttv)
     TextView idRefundBeginTtv;
-    @Bind(R.id.id_refund_begin_tmv)
+    @BindView(R.id.id_refund_begin_tmv)
     TextView idRefundBeginTmv;
-    @Bind(R.id.id_refund_ing_iv)
+    @BindView(R.id.id_refund_ing_iv)
     ImageView idRefundIngIv;
-    @Bind(R.id.id_refund_ing_ttv)
+    @BindView(R.id.id_refund_ing_ttv)
     TextView idRefundIngTtv;
-    @Bind(R.id.id_refund_ing_tmv)
+    @BindView(R.id.id_refund_ing_tmv)
     TextView idRefundIngTmv;
-    @Bind(R.id.id_refund_success_iv)
+    @BindView(R.id.id_refund_success_iv)
     ImageView idRefundSuccessIv;
-    @Bind(R.id.id_refund_success_ttv)
+    @BindView(R.id.id_refund_success_ttv)
     TextView idRefundSuccessTtv;
-    @Bind(R.id.id_refund_success_tmv)
+    @BindView(R.id.id_refund_success_tmv)
     TextView idRefundSuccessTmv;
-    @Bind(R.id.id_refund_msg_code_tv)
+    @BindView(R.id.id_refund_msg_code_tv)
     TextView idRefundMsgCodeTv;
-    @Bind(R.id.id_refund_msg_total_tv)
+    @BindView(R.id.id_refund_msg_total_tv)
     TextView idRefundMsgTotalTv;
-    @Bind(R.id.id_refund_msg_explain_tv)
+    @BindView(R.id.id_refund_msg_explain_tv)
     TextView idRefundMsgExplainTv;
-    @Bind(R.id.id_refund_msg_date_tv)
+    @BindView(R.id.id_refund_msg_date_tv)
     TextView idRefundMsgDateTv;
     private String refundsId;
     private RefundsDetailInfo mData;

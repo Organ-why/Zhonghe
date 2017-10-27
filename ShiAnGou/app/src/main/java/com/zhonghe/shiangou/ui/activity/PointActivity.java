@@ -30,7 +30,7 @@ import com.zhonghe.shiangou.ui.widget.DynamicBanner;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -40,7 +40,7 @@ import butterknife.ButterKnife;
  */
 
 public class PointActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2, View.OnClickListener {
-    @Bind(R.id.id_point_gv)
+    @BindView(R.id.id_point_gv)
     PullToRefreshGridView idPointGv;
     PointAdapter adapter;
     List<PointItemInfo> goodsInfos;

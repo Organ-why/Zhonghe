@@ -19,11 +19,11 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LikeActivity extends BaseTopActivity implements PullToRefreshBase.OnRefreshListener2, LikeListAdapter.cancelLikeListener {
-    @Bind(R.id.id_default_listview)
+    @BindView(R.id.id_default_listview)
     PullToRefreshListView idDefaultListview;
 
     LikeListAdapter adapter;

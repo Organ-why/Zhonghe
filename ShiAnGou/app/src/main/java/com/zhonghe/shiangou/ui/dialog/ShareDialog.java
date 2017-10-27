@@ -17,11 +17,7 @@ import com.umeng.socialize.media.UMWeb;
 import com.zhonghe.lib_base.utils.Util;
 import com.zhonghe.shiangou.R;
 
-import java.util.List;
-
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * auther: whyang
@@ -100,7 +96,6 @@ public class ShareDialog extends PopupWindow implements View.OnClickListener{
     @Override
     public void dismiss() {
         super.dismiss();
-        ButterKnife.unbind(mMenuView);
     }
 
     private void ShareWeb(String url, String thumb_img, String title, String desc, SHARE_MEDIA shareMedia) {

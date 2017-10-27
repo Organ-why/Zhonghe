@@ -13,7 +13,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -46,9 +46,9 @@ public class CategoryChildAdapter extends AbsAdapter<CategoryChild> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_item_category_child_img)
+        @BindView(R.id.id_item_category_child_img)
         SimpleDraweeView idItemCategoryChildImg;
-        @Bind(R.id.id_item_category_child_tv)
+        @BindView(R.id.id_item_category_child_tv)
         TextView idItemCategoryChildTv;
 
         ViewHolder(View view) {

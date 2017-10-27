@@ -20,7 +20,7 @@ import com.zhonghe.shiangou.ui.fragment.OrderAllFragment;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -143,23 +143,23 @@ public class OrderAdapter extends AbsAdapter<OrderInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_order_code_tv)
+        @BindView(R.id.id_order_code_tv)
         TextView idOrderCodeTv;
-        @Bind(R.id.id_order_type_tv)
+        @BindView(R.id.id_order_type_tv)
         TextView idOrderTypeTv;
-        @Bind(R.id.id_order_num_tv)
+        @BindView(R.id.id_order_num_tv)
         TextView idOrderNumTv;
-        @Bind(R.id.id_order_total_tv)
+        @BindView(R.id.id_order_total_tv)
         TextView idOrderTotalTv;
-        @Bind(R.id.id_order_freight_tv)
+        @BindView(R.id.id_order_freight_tv)
         TextView idOrderFreightTv;
-        @Bind(R.id.id_order_negative_tv)
+        @BindView(R.id.id_order_negative_tv)
         TextView idOrderNegativeTv;
-        @Bind(R.id.id_order_negative_tv2)
+        @BindView(R.id.id_order_negative_tv2)
         TextView idOrderNegativeTv2;
-        @Bind(R.id.id_order_positive_tv)
+        @BindView(R.id.id_order_positive_tv)
         TextView idOrderPositiveTv;
-        @Bind(R.id.id_order_goodslist_ll)
+        @BindView(R.id.id_order_goodslist_ll)
         LinearLayout goodslist_ll;
 
         ViewHolder(View view) {

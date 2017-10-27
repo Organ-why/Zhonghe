@@ -1,6 +1,5 @@
 package com.zhonghe.shiangou.ui.activity;
 
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -14,7 +13,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopActivity;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -25,9 +24,9 @@ import butterknife.OnClick;
  */
 
 public class ChangeNameActivity extends BaseTopActivity {
-    @Bind(R.id.ids_register_code_et)
+    @BindView(R.id.ids_register_code_et)
     EditText idsRegisterCodeEt;
-    @Bind(R.id.id_register_regist_bt)
+    @BindView(R.id.id_register_regist_bt)
     Button idRegisterRegistBt;
 
     @Override

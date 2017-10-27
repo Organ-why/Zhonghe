@@ -21,7 +21,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -87,13 +87,13 @@ public class RefundsAdapter extends AbsAdapter<RefundsItemInfo> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_refund_goods_ll)
+        @BindView(R.id.id_refund_goods_ll)
         LinearLayout idRefundGoodsLl;
-        @Bind(R.id.id_refund_code_tv)
+        @BindView(R.id.id_refund_code_tv)
         TextView idsTotalMoney;
-        @Bind(R.id.id_refund_price_tv)
+        @BindView(R.id.id_refund_price_tv)
         TextView idRefundPriceTv;
-        @Bind(R.id.id_refund_desc_tv)
+        @BindView(R.id.id_refund_desc_tv)
         TextView idRefundDescTv;
 
         ViewHolder(View view) {

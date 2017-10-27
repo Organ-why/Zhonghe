@@ -11,7 +11,7 @@ import com.zhonghe.shiangou.data.bean.AddressArea;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -42,7 +42,7 @@ public class AddareaAdapter extends AbsAdapter<AddressArea> {
     }
 
     static class ViewHolder {
-        @Bind(R.id.id_addarea_tv)
+        @BindView(R.id.id_addarea_tv)
         TextView idAddareaTv;
 
         ViewHolder(View view) {

@@ -18,7 +18,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -50,21 +50,21 @@ public class ConfirmGoodsList {
     }
 
     static class ViewHolder {
-        @Bind(R.id.sku_select_img)
+        @BindView(R.id.sku_select_img)
         SimpleDraweeView skuSelectImg;
-        @Bind(R.id.sku_select_title_tv)
+        @BindView(R.id.sku_select_title_tv)
         TextView skuSelectTitleTv;
-        @Bind(R.id.item_sku_select_symbol_tv)
+        @BindView(R.id.item_sku_select_symbol_tv)
         TextView itemSkuSelectSymbolTv;
-        @Bind(R.id.item_sku_select_price_tv)
+        @BindView(R.id.item_sku_select_price_tv)
         TextView itemSkuSelectPriceTv;
-        @Bind(R.id.item_sku_select_oldprice_tv)
+        @BindView(R.id.item_sku_select_oldprice_tv)
         TextView itemSkuSelectOldpriceTv;
-        @Bind(R.id.item_sku_select_amounttv)
+        @BindView(R.id.item_sku_select_amounttv)
         TextView itemSkuSelectAmounttv;
-        @Bind(R.id.order_sku_rl)
+        @BindView(R.id.order_sku_rl)
         RelativeLayout orderSkuRl;
-        @Bind(R.id.id_num_tv)
+        @BindView(R.id.id_num_tv)
         TextView numTv;
 
         ViewHolder(View view) {

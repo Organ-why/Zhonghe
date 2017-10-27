@@ -29,7 +29,7 @@ import com.zhonghe.shiangou.ui.listener.ResultListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -38,30 +38,30 @@ import butterknife.OnClick;
  * Author: whyang
  */
 public class CartExpandableFragment extends BaseTopFragment implements PullToRefreshBase.OnRefreshListener2<ExpandableListView> {
-    @Bind(R.id.cart_id_expandlv)
+    @BindView(R.id.cart_id_expandlv)
     PullToRefreshExpandableListView cartIdLv;
-    @Bind(R.id.cart_id_all_cb)
+    @BindView(R.id.cart_id_all_cb)
     CheckBox cartIdAllCb;
-    @Bind(R.id.cart_id_totalpay_tv)
+    @BindView(R.id.cart_id_totalpay_tv)
     TextView cartIdTotalpayTv;
-    @Bind(R.id.cart_id_total_tv)
+    @BindView(R.id.cart_id_total_tv)
     TextView cartIdTotalTv;
-    @Bind(R.id.cart_id_total_ll)
+    @BindView(R.id.cart_id_total_ll)
     LinearLayout cartIdTotalLl;
-    @Bind(R.id.cart_id_tobuy_bt)
+    @BindView(R.id.cart_id_tobuy_bt)
     Button cartIdTobuyBt;
-    @Bind(R.id.cart_id_del_bt)
+    @BindView(R.id.cart_id_del_bt)
     Button cartIdDelBt;
-    @Bind(R.id.cart_id_pay_rl)
+    @BindView(R.id.cart_id_pay_rl)
     RelativeLayout cartIdPayRl;
 
 
     List<CartItemGroupBO> data;
-    @Bind(R.id.custom_top_id_back)
+    @BindView(R.id.custom_top_id_back)
     ImageView customTopIdBack;
-    @Bind(R.id.custom_top_id_title)
+    @BindView(R.id.custom_top_id_title)
     TextView customTopIdTitle;
-    @Bind(R.id.custom_top_id_right_tv)
+    @BindView(R.id.custom_top_id_right_tv)
     TextView customTopIdRightTv;
 
 

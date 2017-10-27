@@ -20,7 +20,7 @@ import com.zhonghe.shiangou.system.global.ProjectApplication;
 import com.zhonghe.shiangou.ui.baseui.BaseTopFragment;
 import com.zhonghe.shiangou.ui.listener.ResultListener;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -30,31 +30,31 @@ import butterknife.OnClick;
  * 用户
  */
 public class UserFragment extends BaseTopFragment {
-    @Bind(R.id.id_user_order_rl)
+    @BindView(R.id.id_user_order_rl)
     RelativeLayout idUserOrderRl;
-    @Bind(R.id.id_user_unpay_ll)
+    @BindView(R.id.id_user_unpay_ll)
     LinearLayout idUserUnpayLl;
-    @Bind(R.id.id_user_unsend_ll)
+    @BindView(R.id.id_user_unsend_ll)
     LinearLayout idUserUnsendLl;
-    @Bind(R.id.id_user_wait_ll)
+    @BindView(R.id.id_user_wait_ll)
     LinearLayout idUserWaitLl;
-    @Bind(R.id.id_user_unremark_ll)
+    @BindView(R.id.id_user_unremark_ll)
     LinearLayout idUserUnremarkLl;
-    @Bind(R.id.id_user_return_ll)
+    @BindView(R.id.id_user_return_ll)
     LinearLayout idUserReturnLl;
-    @Bind(R.id.id_user_like_rl)
+    @BindView(R.id.id_user_like_rl)
     RelativeLayout idUserLikeRl;
-    @Bind(R.id.id_user_contactus_rl)
+    @BindView(R.id.id_user_contactus_rl)
     RelativeLayout idUserContactusRl;
-    @Bind(R.id.id_user_header_iv)
+    @BindView(R.id.id_user_header_iv)
     SimpleDraweeView idUserHeaderIv;
-    @Bind(R.id.id_user_name_tv)
+    @BindView(R.id.id_user_name_tv)
     TextView idUserNameTv;
-    @Bind(R.id.id_user_point_rl)
+    @BindView(R.id.id_user_point_rl)
     RelativeLayout idUserPointRl;
-    @Bind(R.id.id_user_msg_rl)
+    @BindView(R.id.id_user_msg_rl)
     RelativeLayout idUserMsgRl;
-    @Bind(R.id.id_user_setup_rl)
+    @BindView(R.id.id_user_setup_rl)
     RelativeLayout idUserSetupRl;
 
     @Override
